@@ -1,3 +1,11 @@
+#Target
+miniRT
+
+#Personal files
+tags
+.tags
+.cache/*
+
 # Prerequisites
 *.d
 
