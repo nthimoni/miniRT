@@ -23,7 +23,7 @@ RUN = ./$(NAME)
 all: $(NAME)
 	$(RUN)
 
-$(NAME): $(MLX) $(LIBFT) $(OBJS)
+$(NAME): $(OBJDIR) $(MLX) $(LIBFT) $(OBJS)
 	$(CC) $(OBJS) $(LIBPATH) $(LINK) -o $(NAME)
 
 -include $(DEPENDS)
@@ -37,6 +37,9 @@ $(LIBFT):
 $(MLX):
 	make -C $(MLXPATH)
 
+$(OBJDIR):
+	@mkdir -p $(OBJDIR)
+
 run:
 	$(RUN)
 
@@ -44,11 +47,11 @@ val:
 	$(VAL)
 
 clean:
-	rm -rf $(OBJS)
+	rm -rf $(OBJDIR)
 
 fclean: clean
-	#make fclean -C $(FTPATH)
-	#make clean -C $(MLXPATH)
+	make fclean -C $(FTPATH)
+	make clean -C $(MLXPATH)
 	rm -f $(NAME)
 
 re: fclean $(NAME) run
