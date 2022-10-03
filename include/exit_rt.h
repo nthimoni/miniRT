@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   exit_rt.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/23 14:54:33 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/09/28 20:56:33 by nthimoni         ###   ########.fr       */
+/*   Created: 2022/10/03 18:08:04 by nthimoni          #+#    #+#             */
+/*   Updated: 2022/10/03 18:08:29 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef EXIT_RT_H
+# define EXIT_RT_H 
+
 #include "libft.h"
 
-int	main(void)
-{
-	ft_printf("Hello World!\n");
-	return (0);
-}
+void	exit_rt(t_list* trash, char *error_msg, int exit_code);
+
+#endif 
