@@ -6,12 +6,12 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 14:43:53 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/03 17:54:23 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/03 23:49:39 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECTOR_H
-#define VECTOR_H 
+#define VECTOR_H
 
 typedef double	t_decimal;
 
@@ -23,10 +23,13 @@ typedef struct	s_tuple
 	t_decimal	w;
 }	t_tuple;
 
-t_vector3	add_v3(t_vector3 v1, t_vector3 v2);
-void		scale_v3(t_vector3 *v1, t_decimal s);
-t_decimal	length_v3(t_vector3 v1);
-t_vector3	subst_v3(t_point3 p1, t_point3 p2);
-t_vector3	norm_v3(t_vector3 v);
+t_tuple		*create_tuple(t_decimal *array, t_rt *rt);
+t_tuple		*create_null_tuple(t_rt *rt);
+t_tuple		*create_v3(t_tuple *p1, t_tuple *p2, t_rt *rt);
+t_tuple		*create_tuple_copy(t_tuple *t, t_rt *rt);
+t_tuple		*add_v3(t_tuple *v1, t_tuple *v2, t_rt *rt);
+void		scale_v3(t_tuple *v1, t_decimal s);
+t_decimal	length_v3(t_tuple *v);
+t_tuple		*norm_v3(t_tuple *v, t_rt *rt);
 
 #endif 
