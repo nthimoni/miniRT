@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/23 14:54:33 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/09/28 20:56:33 by nthimoni         ###   ########.fr       */
+/*   Created: 2022/10/03 18:10:50 by nthimoni          #+#    #+#             */
+/*   Updated: 2022/10/03 18:13:02 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef ERROR_H
+# define ERROR_H 
 
-int	main(void)
-{
-	ft_printf("Hello World!\n");
-	return (0);
-}
+# define BAD_ALLOC 1
+# define BAD_ALLOC_MSG "Malloc Failed!\n"
+
+#endif 
