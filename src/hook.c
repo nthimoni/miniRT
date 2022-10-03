@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_rt.c                                          :+:      :+:    :+:   */
+/*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/03 18:03:15 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/03 23:58:10 by rmorel           ###   ########.fr       */
+/*   Created: 2022/10/03 23:42:34 by rmorel            #+#    #+#             */
+/*   Updated: 2022/10/03 23:56:18 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "trash.h"
-#include "libft.h"
+#include "miniRT.h"
 
-void	exit_rt(t_list* trash, char *error_msg, int exit_code)
+int	red_cross(t_rt *rt)
 {
-	//free_trash(trash);
-	(void)trash;
-	if (error_msg)
-		ft_putstr_fd(error_msg, 2);
-	exit(exit_code);
-
+	ft_printf("Sayonara !\n");
+	mlx_loop_end(rt->mlx);
+	return (1);
 }

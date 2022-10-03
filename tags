@@ -15,6 +15,7 @@ $(OBJDIR)	Makefile	/^$(OBJDIR):$/;"	t
 $(OBJDIR)%.o	Makefile	/^$(OBJDIR)%.o: $(SRCDIR)%.c$/;"	t
 $(OBJDIR)%.o	libft/Makefile	/^$(OBJDIR)%.o: $(SRCDIR)%.c$/;"	t
 $(OBJ_DIR)/%.o	minilibx-linux/Makefile.mk	/^$(OBJ_DIR)\/%.o: %.c$/;"	t
+0	.cache/compile_commands.json	/^  {$/;"	o
 AR	libft/Makefile	/^AR = ar -rc$/;"	m
 AUTHOR	minilibx-linux/man/man1/mlx.1	/^.SH AUTHOR$/;"	s	title:MiniLibX
 AUTHOR	minilibx-linux/man/man1/mlx_loop.1	/^.SH AUTHOR$/;"	s	title:MiniLibX
@@ -26,6 +27,8 @@ AUTHOR	minilibx-linux/man/man3/mlx_loop.3	/^.SH AUTHOR$/;"	s	title:MiniLibX
 AUTHOR	minilibx-linux/man/man3/mlx_new_image.3	/^.SH AUTHOR$/;"	s	title:MiniLibX
 AUTHOR	minilibx-linux/man/man3/mlx_new_window.3	/^.SH AUTHOR$/;"	s	title:MiniLibX
 AUTHOR	minilibx-linux/man/man3/mlx_pixel_put.3	/^.SH AUTHOR$/;"	s	title:MiniLibX
+BAD_ALLOC	include/error.h	/^# define BAD_ALLOC /;"	d
+BAD_ALLOC_MSG	include/error.h	/^# define BAD_ALLOC_MSG /;"	d
 BASES_H	libft/include/include_imp/bases.h	/^# define BASES_H$/;"	d
 BASE_10	libft/include/include_imp/bases.h	/^# define BASE_10 /;"	d
 BASE_16_LOW	libft/include/include_imp/bases.h	/^# define BASE_16_LOW /;"	d
@@ -60,7 +63,9 @@ DESCRIPTION	minilibx-linux/man/man3/mlx_new_window.3	/^.SH DESCRIPTION$/;"	s	tit
 DESCRIPTION	minilibx-linux/man/man3/mlx_pixel_put.3	/^.SH DESCRIPTION$/;"	s	title:MiniLibX
 ENV_DISPLAY	minilibx-linux/mlx_int.h	/^# define ENV_DISPLAY /;"	d
 EOF	minilibx-linux/configure	/^cat <<EOF$/;"	h
+ERROR_H	include/error.h	/^# define ERROR_H /;"	d
 ERR_NO_TRUECOLOR	minilibx-linux/mlx_int.h	/^# define ERR_NO_TRUECOLOR /;"	d
+EXIT_RT_H	include/exit_rt.h	/^# define EXIT_RT_H /;"	d
 EXTDIR	libft/Makefile	/^EXTDIR = extra\/$/;"	m
 EXTFILES	libft/Makefile	/^EXTFILES = get_next_line.c\\$/;"	m
 EXTOBJ	libft/Makefile	/^EXTOBJ = $(addprefix $(OBJDIR), $(addprefix $(EXTDIR), $(EXTFILES:.c=.o)))$/;"	m
@@ -97,7 +102,7 @@ LOCALHOST	minilibx-linux/mlx_int.h	/^# define LOCALHOST /;"	d
 MANDIR	libft/Makefile	/^MANDIR = mandatory\/$/;"	m
 MANFILES	libft/Makefile	/^MANFILES = ft_isalpha.c\\$/;"	m
 MANOBJ	libft/Makefile	/^MANOBJ = $(addprefix $(OBJDIR), $(addprefix $(MANDIR), $(MANFILES:.c=.o)))$/;"	m
-MINIRT_H	include/miniRT.h	/^# define MINIRT_H /;"	d
+MINIRT_H	include/miniRT.h	/^# define MINIRT_H$/;"	d
 MLX	Makefile	/^MLX = $(MLXPATH)libmlx.a$/;"	m
 MLXPATH	Makefile	/^MLXPATH = minilibx-linux\/$/;"	m
 MLX_H	minilibx-linux/mlx.h	/^#define	MLX_H$/;"	d
@@ -163,7 +168,7 @@ SRC	minilibx-linux/Makefile.mk	/^SRC	= mlx_init.c mlx_new_window.c mlx_pixel_put
 SRC	minilibx-linux/test/Makefile.mk	/^SRC = main.c$/;"	m
 SRCDIR	Makefile	/^SRCDIR = src\/$/;"	m
 SRCDIR	libft/Makefile	/^SRCDIR = src\/$/;"	m
-SRCS	Makefile	/^SRCS = main.c$/;"	m
+SRCS	Makefile	/^SRCS = main.c vector.c image.c hook.c exit_rt.c error.c$/;"	m
 STORING	minilibx-linux/man/man1/mlx_new_image.1	/^.SH STORING COLOR INSIDE IMAGES$/;"	s	title:MiniLibX
 STORING	minilibx-linux/man/man3/mlx_new_image.3	/^.SH STORING COLOR INSIDE IMAGES$/;"	s	title:MiniLibX
 SYNOPSYS	minilibx-linux/man/man1/mlx.1	/^.SH SYNOPSYS$/;"	s	title:MiniLibX
@@ -176,13 +181,16 @@ SYNOPSYS	minilibx-linux/man/man3/mlx_loop.3	/^.SH SYNOPSYS$/;"	s	title:MiniLibX
 SYNOPSYS	minilibx-linux/man/man3/mlx_new_image.3	/^.SH SYNOPSYS$/;"	s	title:MiniLibX
 SYNOPSYS	minilibx-linux/man/man3/mlx_new_window.3	/^.SH SYNOPSYS$/;"	s	title:MiniLibX
 SYNOPSYS	minilibx-linux/man/man3/mlx_pixel_put.3	/^.SH SYNOPSYS$/;"	s	title:MiniLibX
+TRASH_H	include/trash.h	/^# define TRASH_H /;"	d
 UNAME	minilibx-linux/Makefile.mk	/^UNAME = $(shell uname)$/;"	m
 UNAME	minilibx-linux/test/Makefile.mk	/^UNAME := $(shell uname)$/;"	m
 VAL	Makefile	/^VAL = valgrind --leak-check=full .\/$(NAME)$/;"	m
-VECTOR_H	include/vector.h	/^#define VECTOR_H /;"	d
+VECTOR_H	include/vector.h	/^#define VECTOR_H$/;"	d
 WARN_SHM_ATTACH	minilibx-linux/mlx_int.h	/^# define WARN_SHM_ATTACH /;"	d
 WIN1_SX	minilibx-linux/test/main.c	/^#define	WIN1_SX	/;"	d	file:
 WIN1_SY	minilibx-linux/test/main.c	/^#define	WIN1_SY	/;"	d	file:
+W_H	include/miniRT.h	/^# define W_H /;"	d
+W_W	include/miniRT.h	/^# define W_W /;"	d
 X-WINDOW	minilibx-linux/man/man1/mlx.1	/^.SH X-WINDOW CONCEPT$/;"	s	title:MiniLibX
 X-WINDOW	minilibx-linux/man/man1/mlx_loop.1	/^.SH X-WINDOW EVENTS$/;"	s	title:MiniLibX
 X-WINDOW	minilibx-linux/man/man3/mlx.3	/^.SH X-WINDOW CONCEPT$/;"	s	title:MiniLibX
@@ -190,7 +198,9 @@ X-WINDOW	minilibx-linux/man/man3/mlx_loop.3	/^.SH X-WINDOW EVENTS$/;"	s	title:Mi
 XPM	minilibx-linux/man/man1/mlx_new_image.1	/^.SH XPM IMAGES$/;"	s	title:MiniLibX
 XPM	minilibx-linux/man/man3/mlx_new_image.3	/^.SH XPM IMAGES$/;"	s	title:MiniLibX
 X_ShmAttach	minilibx-linux/mlx_new_image.c	/^#define	X_ShmAttach	/;"	d	file:
-add_v3	src/vector.c	/^t_vector3	add_v3(t_vector3 v1, t_vector3 v2)$/;"	f	typeref:typename:t_vector3
+add_to_trash	src/trash.c	/^void	add_to_trash(t_list **trash, void *ptr)$/;"	f	typeref:typename:void
+add_v3	src/vector.c	/^t_tuple	*add_v3(t_tuple *v1, t_tuple *v2, t_rt *rt)$/;"	f	typeref:typename:t_tuple *
+addr	include/miniRT.h	/^	char	*addr;$/;"	m	struct:s_img	typeref:typename:char *
 all	Makefile	/^all: $(NAME)$/;"	t
 all	libft/Makefile	/^all: $(NAME)$/;"	t
 all	minilibx-linux/Makefile	/^all	: do_configure$/;"	t
@@ -198,6 +208,7 @@ all	minilibx-linux/Makefile.mk	/^all	: $(NAME)$/;"	t
 all	minilibx-linux/test/Makefile.mk	/^all: $(NAME)$/;"	t
 at_exit	minilibx-linux/test/run_tests.sh	/^at_exit() {$/;"	f
 bound_str_size	libft/src/extra/ft_printf/print_s.c	/^static int	bound_str_size(const char *str, int max)$/;"	f	typeref:typename:int	file:
+bpp	include/miniRT.h	/^	int		bpp;$/;"	m	struct:s_img	typeref:typename:int
 bpp	minilibx-linux/mlx_int.h	/^	int				bpp;$/;"	m	struct:s_img	typeref:typename:int
 bpp1	minilibx-linux/test/main.c	/^int	bpp1;$/;"	v	typeref:typename:int
 bpp2	minilibx-linux/test/main.c	/^int	bpp2;$/;"	v	typeref:typename:int
@@ -210,17 +221,21 @@ clean	minilibx-linux/Makefile	/^clean	:$/;"	t
 clean	minilibx-linux/Makefile.mk	/^clean	:$/;"	t
 clean	minilibx-linux/configure	/^clean(){$/;"	f
 clean	minilibx-linux/test/Makefile.mk	/^clean:$/;"	t
+clear_image	src/image.c	/^void	clear_image(t_rt *rt)$/;"	f	typeref:typename:void
 cmap	minilibx-linux/mlx_int.h	/^	Colormap	cmap;$/;"	m	struct:s_xvar	typeref:typename:Colormap
 col	minilibx-linux/mlx_int.h	/^	int		col;$/;"	m	struct:s_xpm_col	typeref:typename:int
 color	minilibx-linux/mlx_int.h	/^	int		color;$/;"	m	struct:s_col_name	typeref:typename:int
 color_map_1	minilibx-linux/test/main.c	/^int	color_map_1(void *win,int w,int h)$/;"	f	typeref:typename:int
 color_map_2	minilibx-linux/test/main.c	/^int	color_map_2(unsigned char *data,int bpp,int sl,int w,int h,int endian, int type)$/;"	f	typeref:typename:int
+command	.cache/compile_commands.json	/^    "command": "gcc -c -Wall -Wextra -Werror -MMD -MP -Iinclude\/ -Ilibft\/include\/ -Iminilibx-/;"	s	object:0
 content	libft/include/libft.h	/^	t_content		content;$/;"	m	struct:s_list	typeref:typename:t_content
 cpywrd	libft/src/mandatory/ft_split.c	/^static	char	*cpywrd(char const *s, char c)$/;"	f	typeref:typename:char *	file:
 create_back	libft/src/bonus/ft_lstmap.c	/^static int	create_back(t_list *lst, t_content content)$/;"	f	typeref:typename:int	file:
-create_null_tuple	src/vector.c	/^t_tuple	*create_null_tuple(void)$/;"	f	typeref:typename:t_tuple *
-create_tuple	src/vector.c	/^t_tuple	*create_tuple(t_decimal *array)$/;"	f	typeref:typename:t_tuple *
-create_vector	src/vector.c	/^t_tuple	*create_vector(t_tuple *p1, t_tuple *p2)$/;"	f	typeref:typename:t_tuple *
+create_null_tuple	src/vector.c	/^t_tuple	*create_null_tuple(t_rt *rt)$/;"	f	typeref:typename:t_tuple *
+create_trgb	src/colors.c	/^int	create_trgb(int t, int r, int g, int b)$/;"	f	typeref:typename:int
+create_tuple	src/vector.c	/^t_tuple	*create_tuple(t_decimal *array, t_rt *rt)$/;"	f	typeref:typename:t_tuple *
+create_tuple_copy	src/vector.c	/^t_tuple	*create_tuple_copy(t_tuple *t, t_rt *rt)$/;"	f	typeref:typename:t_tuple *
+create_v3	src/vector.c	/^t_tuple	*create_v3(t_tuple *p1, t_tuple *p2, t_rt *rt)$/;"	f	typeref:typename:t_tuple *
 data	minilibx-linux/mlx_int.h	/^	char			*data;$/;"	m	struct:s_img	typeref:typename:char *
 data1	minilibx-linux/test/main.c	/^char	*data1;$/;"	v	typeref:typename:char *
 data2	minilibx-linux/test/main.c	/^char	*data2;$/;"	v	typeref:typename:char *
@@ -229,27 +244,32 @@ data4	minilibx-linux/test/main.c	/^char	*data4;$/;"	v	typeref:typename:char *
 decrgb	minilibx-linux/mlx_int.h	/^	int			decrgb[6];$/;"	m	struct:s_xvar	typeref:typename:int[6]
 depth	minilibx-linux/mlx_int.h	/^	int			depth;$/;"	m	struct:s_xvar	typeref:typename:int
 diez	libft/include/include_imp/parse_flags.h	/^	int		diez;$/;"	m	struct:s_flags	typeref:typename:int
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/nthimoni\/Documents\/miniRT",$/;"	s	object:0
 dispatcher	libft/src/extra/ft_printf/ft_printf.c	/^static void	dispatcher(t_flags *flags, va_list ap)$/;"	f	typeref:typename:void	file:
 display	minilibx-linux/mlx_int.h	/^	Display		*display;$/;"	m	struct:s_xvar	typeref:typename:Display *
 do_configure	minilibx-linux/Makefile	/^do_configure	:$/;"	t
 do_flush	minilibx-linux/mlx_int.h	/^	int			do_flush;$/;"	m	struct:s_xvar	typeref:typename:int
 dot	libft/include/include_imp/parse_flags.h	/^	int		dot;$/;"	m	struct:s_flags	typeref:typename:int
 end_loop	minilibx-linux/mlx_int.h	/^	int 		end_loop;$/;"	m	struct:s_xvar	typeref:typename:int
+endian	include/miniRT.h	/^	int		endian;$/;"	m	struct:s_img	typeref:typename:int
 endian1	minilibx-linux/test/main.c	/^int	endian1;$/;"	v	typeref:typename:int
 endian2	minilibx-linux/test/main.c	/^int	endian2;$/;"	v	typeref:typename:int
 endian3	minilibx-linux/test/main.c	/^int	endian3;$/;"	v	typeref:typename:int
 endian4	minilibx-linux/test/main.c	/^int	endian4;$/;"	v	typeref:typename:int
+exit_rt	src/exit_rt.c	/^void	exit_rt(t_list* trash, char *error_msg, int exit_code)$/;"	f	typeref:typename:void
 expose_hook	minilibx-linux/mlx_int.h	/^	int					(*expose_hook)();$/;"	m	struct:s_win_list	typeref:typename:int (*)()
 expose_param	minilibx-linux/mlx_int.h	/^	void				*expose_param;$/;"	m	struct:s_win_list	typeref:typename:void *
 expose_win1	minilibx-linux/test/main.c	/^int	expose_win1(void *p)$/;"	f	typeref:typename:int
 expose_win2	minilibx-linux/test/main.c	/^int	expose_win2(void *p)$/;"	f	typeref:typename:int
 fclean	Makefile	/^fclean: clean$/;"	t
 fclean	libft/Makefile	/^fclean: clean$/;"	t
+file	.cache/compile_commands.json	/^    "file": "src\/main.c"$/;"	s	object:0
 fill_str	libft/src/mandatory/ft_itoa.c	/^static	void	fill_str(char *str, int val, size_t len)$/;"	f	typeref:typename:void	file:
 flush	libft/src/extra/ft_printf/write_buf.c	/^static int	flush(char *buffer, size_t *len)$/;"	f	typeref:typename:int	file:
 format	minilibx-linux/mlx_int.h	/^	int				format;$/;"	m	struct:s_img	typeref:typename:int
 free_part_tab	libft/src/mandatory/ft_split.c	/^char	**free_part_tab(char **ret, int a)$/;"	f	typeref:typename:char **
 free_ptr	libft/src/extra/get_next_line.c	/^static char	*free_ptr(void **ptr)$/;"	f	typeref:typename:char *	file:
+free_trash	src/trash.c	/^void	free_trash(t_list *trash)$/;"	f	typeref:typename:void
 ft_atoi	libft/src/mandatory/ft_atoi.c	/^int	ft_atoi(const char *str)$/;"	f	typeref:typename:int
 ft_atol	libft/src/extra/ft_atol.c	/^long int	ft_atol(const char *str)$/;"	f	typeref:typename:long int
 ft_bzero	libft/src/mandatory/ft_bzero.c	/^void	ft_bzero(void *pointer, size_t count)$/;"	f	typeref:typename:void
@@ -300,7 +320,11 @@ ft_toupper	libft/src/mandatory/ft_toupper.c	/^int	ft_toupper(int c)$/;"	f	typere
 gc	minilibx-linux/mlx_int.h	/^	GC					gc;$/;"	m	struct:s_win_list	typeref:typename:GC
 gc	minilibx-linux/mlx_int.h	/^	GC				gc;$/;"	m	struct:s_img	typeref:typename:GC
 gere_mouse	minilibx-linux/test/new_win.c	/^int gere_mouse(int x,int y,int button,void*toto)$/;"	f	typeref:typename:int
+get_b	src/colors.c	/^int	get_b(int trgb)$/;"	f	typeref:typename:int
+get_g	src/colors.c	/^int	get_g(int trgb)$/;"	f	typeref:typename:int
 get_next_line	libft/src/extra/get_next_line.c	/^char	*get_next_line(int fd)$/;"	f	typeref:typename:char *
+get_r	src/colors.c	/^int	get_r(int trgb)$/;"	f	typeref:typename:int
+get_t	src/colors.c	/^int	get_t(int trgb)$/;"	f	typeref:typename:int
 get_xlib_include_path	minilibx-linux/configure	/^get_xlib_include_path(){$/;"	f
 height	minilibx-linux/mlx_int.h	/^	int				height;$/;"	m	struct:s_img	typeref:typename:int
 hook	minilibx-linux/mlx_int.h	/^	int		(*hook)();$/;"	m	struct:s_event_list	typeref:typename:int (*)()
@@ -310,14 +334,18 @@ im2	minilibx-linux/test/main.c	/^void	*im2;$/;"	v	typeref:typename:void *
 im3	minilibx-linux/test/main.c	/^void	*im3;$/;"	v	typeref:typename:void *
 im4	minilibx-linux/test/main.c	/^void	*im4;$/;"	v	typeref:typename:void *
 image	minilibx-linux/mlx_int.h	/^	XImage			*image;$/;"	m	struct:s_img	typeref:typename:XImage *
+img	include/miniRT.h	/^	t_img	*img;$/;"	m	struct:s_rt	typeref:typename:t_img *
+img	include/miniRT.h	/^	void	*img;$/;"	m	struct:s_img	typeref:typename:void *
 init_flags	libft/src/extra/ft_printf/ft_printf.c	/^static void	init_flags(t_flags *flags)$/;"	f	typeref:typename:void	file:
+init_rt	src/main.c	/^t_rt	*init_rt(void)$/;"	f	typeref:typename:t_rt *
 isin	libft/src/mandatory/ft_strtrim.c	/^static	int	isin(char a, const char *str)$/;"	f	typeref:typename:int	file:
 key_hook	minilibx-linux/mlx_int.h	/^	int					(*key_hook)();$/;"	m	struct:s_win_list	typeref:typename:int (*)()
 key_param	minilibx-linux/mlx_int.h	/^	void				*key_param;$/;"	m	struct:s_win_list	typeref:typename:void *
 key_win1	minilibx-linux/test/main.c	/^int	key_win1(int key,void *p)$/;"	f	typeref:typename:int
 key_win2	minilibx-linux/test/main.c	/^int	key_win2(int key,void *p)$/;"	f	typeref:typename:int
 key_win3	minilibx-linux/test/main.c	/^int	key_win3(int key,void *p)$/;"	f	typeref:typename:int
-length_v3	src/vector.c	/^t_decimal		length_v3(t_vector3 v1)$/;"	f	typeref:typename:t_decimal
+length_v3	src/vector.c	/^t_decimal	length_v3(t_tuple *v)$/;"	f	typeref:typename:t_decimal
+line_lgth	include/miniRT.h	/^	int		line_lgth;$/;"	m	struct:s_img	typeref:typename:int
 local_endian	minilibx-linux/test/main.c	/^int	local_endian;$/;"	v	typeref:typename:int
 log_error	minilibx-linux/configure	/^log_error(){$/;"	f
 log_error	minilibx-linux/test/run_tests.sh	/^log_error(){$/;"	f
@@ -334,6 +362,7 @@ main	minilibx-linux/test/run_tests.sh	/^main(){$/;"	f
 main	src/main.c	/^int	main(void)$/;"	f	typeref:typename:int
 mask	minilibx-linux/mlx_int.h	/^	int		mask;$/;"	m	struct:s_event_list	typeref:typename:int
 minus	libft/include/include_imp/parse_flags.h	/^	int		minus;$/;"	m	struct:s_flags	typeref:typename:int
+mlx	include/miniRT.h	/^	void	*mlx;$/;"	m	struct:s_rt	typeref:typename:void *
 mlx	minilibx-linux/test/main.c	/^void	*mlx;$/;"	v	typeref:typename:void *
 mlx	minilibx-linux/test/new_win.c	/^void *mlx;$/;"	v	typeref:typename:void *
 mlx_X_error	minilibx-linux/mlx_new_image.c	/^int	mlx_X_error;$/;"	v	typeref:typename:int
@@ -409,13 +438,14 @@ mouse_param	minilibx-linux/mlx_int.h	/^	void				*mouse_param;$/;"	m	struct:s_win
 mouse_win1	minilibx-linux/test/main.c	/^int	mouse_win1(int button,int x,int y, void *p)$/;"	f	typeref:typename:int
 mouse_win2	minilibx-linux/test/main.c	/^int	mouse_win2(int button,int x,int y, void *p)$/;"	f	typeref:typename:int
 mouse_win3	minilibx-linux/test/main.c	/^int	mouse_win3(int x,int y, void *p)$/;"	f	typeref:typename:int
+my_mlx_pixel_put	src/image.c	/^void	my_mlx_pixel_put(t_rt *rt, int x, int y, int color)$/;"	f	typeref:typename:void
 name	minilibx-linux/mlx_int.h	/^	char	*name;$/;"	m	struct:s_col_name	typeref:typename:char *
 name	minilibx-linux/mlx_int.h	/^	int		name;$/;"	m	struct:s_xpm_col	typeref:typename:int
 nb_size	libft/src/mandatory/ft_itoa.c	/^static	size_t	nb_size(int a)$/;"	f	typeref:typename:size_t	file:
 newempty	libft/src/extra/get_next_line.c	/^static char	*newempty(void)$/;"	f	typeref:typename:char *	file:
 next	libft/include/libft.h	/^	struct s_list	*next;$/;"	m	struct:s_list	typeref:struct:s_list *
 next	minilibx-linux/mlx_int.h	/^	struct s_win_list	*next;$/;"	m	struct:s_win_list	typeref:struct:s_win_list *
-norm_v3	src/vector.c	/^t_vector3	norm_v3(t_vector3 v)$/;"	f	typeref:typename:t_vector3
+norm_v3	src/vector.c	/^t_tuple	*norm_v3(t_tuple *v, t_rt *rt)$/;"	f	typeref:typename:t_tuple *
 null_str	libft/src/extra/ft_printf/print_s.c	/^static int	null_str(const char *str, t_flags *flags)$/;"	f	typeref:typename:int	file:
 param	minilibx-linux/mlx_int.h	/^	void	*param;$/;"	m	struct:s_event_list	typeref:typename:void *
 parse	libft/src/extra/get_next_line.c	/^static char	*parse(char **prev)$/;"	f	typeref:typename:char *	file:
@@ -444,20 +474,24 @@ re	minilibx-linux/Makefile	/^re	: clean all$/;"	t
 re	minilibx-linux/test/Makefile.mk	/^re: clean all$/;"	t
 read_file	libft/src/extra/get_next_line.c	/^static int	read_file(int fd, char **prev, char *buffer)$/;"	f	typeref:typename:int	file:
 read_nb	libft/src/extra/ft_printf/parse_flags.c	/^static int	read_nb(t_flags *flags, const char *str)$/;"	f	typeref:typename:int	file:
+red_cross	src/hook.c	/^int	red_cross(t_rt *rt)$/;"	f	typeref:typename:int
 reg_dot	libft/src/extra/ft_printf/print_di.c	/^void	reg_dot(t_flags *flags, size_t len)$/;"	f	typeref:typename:void
+render_next_frame	src/image.c	/^int	render_next_frame(t_rt *rt)$/;"	f	typeref:typename:int
 root	minilibx-linux/mlx_int.h	/^	Window		root;$/;"	m	struct:s_xvar	typeref:typename:Window
 run	Makefile	/^run:$/;"	t
 s_col_name	minilibx-linux/mlx_int.h	/^struct	s_col_name$/;"	s
 s_event_list	minilibx-linux/mlx_int.h	/^typedef struct	s_event_list$/;"	s
 s_flags	libft/include/include_imp/parse_flags.h	/^typedef struct s_flags$/;"	s
+s_img	include/miniRT.h	/^typedef struct	s_img$/;"	s
 s_img	minilibx-linux/mlx_int.h	/^typedef struct	s_img$/;"	s
 s_list	libft/include/libft.h	/^typedef struct s_list$/;"	s
+s_rt	include/miniRT.h	/^typedef struct	s_rt$/;"	s
 s_tuple	include/vector.h	/^typedef struct	s_tuple$/;"	s
 s_win_list	minilibx-linux/mlx_int.h	/^typedef struct	s_win_list$/;"	s
 s_xpm_col	minilibx-linux/mlx_int.h	/^typedef	struct	s_xpm_col$/;"	s
 s_xvar	minilibx-linux/mlx_int.h	/^typedef struct	s_xvar$/;"	s
 saved_mode	minilibx-linux/mlx_ext_randr.c	/^RRMode	saved_mode = 0;$/;"	v	typeref:typename:RRMode
-scale_v3	src/vector.c	/^void		scale_v3(t_vector3 *v1, t_decimal s)$/;"	f	typeref:typename:void
+scale_v3	src/vector.c	/^void	scale_v3(t_tuple *v1, t_decimal s)$/;"	f	typeref:typename:void
 screen	minilibx-linux/mlx_int.h	/^	int			screen;$/;"	m	struct:s_xvar	typeref:typename:int
 shm	minilibx-linux/mlx_int.h	/^	XShmSegmentInfo	shm;$/;"	m	struct:s_img	typeref:typename:XShmSegmentInfo
 shm_att_pb	minilibx-linux/mlx_new_image.c	/^int	shm_att_pb(Display *d,XErrorEvent *ev)$/;"	f	typeref:typename:int
@@ -477,13 +511,16 @@ t_content	libft/include/libft.h	/^typedef void*	t_content;$/;"	t	typeref:typenam
 t_decimal	include/vector.h	/^typedef double	t_decimal;$/;"	t	typeref:typename:double
 t_event_list	minilibx-linux/mlx_int.h	/^}				t_event_list;$/;"	t	typeref:struct:s_event_list
 t_flags	libft/include/include_imp/parse_flags.h	/^}	t_flags;$/;"	t	typeref:struct:s_flags
+t_img	include/miniRT.h	/^}	t_img;$/;"	t	typeref:struct:s_img
 t_img	minilibx-linux/mlx_int.h	/^}				t_img;$/;"	t	typeref:struct:s_img
 t_list	libft/include/libft.h	/^}	t_list;$/;"	t	typeref:struct:s_list
+t_rt	include/miniRT.h	/^}	t_rt;$/;"	t	typeref:struct:s_rt
 t_tuple	include/vector.h	/^}	t_tuple;$/;"	t	typeref:struct:s_tuple
 t_win_list	minilibx-linux/mlx_int.h	/^}				t_win_list;$/;"	t	typeref:struct:s_win_list
 t_xpm_col	minilibx-linux/mlx_int.h	/^}				t_xpm_col;$/;"	t	typeref:struct:s_xpm_col
 t_xvar	minilibx-linux/mlx_int.h	/^}				t_xvar;$/;"	t	typeref:struct:s_xvar
 test_default_main	minilibx-linux/test/run_tests.sh	/^test_default_main(){$/;"	f
+trash	include/miniRT.h	/^	t_list	*trash;$/;"	m	struct:s_rt	typeref:typename:t_list *
 type	libft/include/include_imp/parse_flags.h	/^	char	type;$/;"	m	struct:s_flags	typeref:typename:char
 type	minilibx-linux/mlx_int.h	/^	int				type;$/;"	m	struct:s_img	typeref:typename:int
 type_specifier	libft/src/extra/ft_printf/parse_flags.c	/^static int	type_specifier(char c, char *u)$/;"	f	typeref:typename:int	file:
@@ -493,6 +530,7 @@ val	Makefile	/^val:$/;"	t
 visual	minilibx-linux/mlx_int.h	/^	Visual		*visual;$/;"	m	struct:s_xvar	typeref:typename:Visual *
 w	include/vector.h	/^	t_decimal	w;$/;"	m	struct:s_tuple	typeref:typename:t_decimal
 width	minilibx-linux/mlx_int.h	/^	int				width;$/;"	m	struct:s_img	typeref:typename:int
+win	include/miniRT.h	/^	void	*win;$/;"	m	struct:s_rt	typeref:typename:void *
 win1	minilibx-linux/test/main.c	/^void	*win1;$/;"	v	typeref:typename:void *
 win1	minilibx-linux/test/new_win.c	/^void *win1;$/;"	v	typeref:typename:void *
 win2	minilibx-linux/test/main.c	/^void    *win2;$/;"	v	typeref:typename:void *
@@ -505,9 +543,11 @@ wm_delete_window	minilibx-linux/mlx_int.h	/^	Atom		wm_delete_window;$/;"	m	struc
 wm_protocols	minilibx-linux/mlx_int.h	/^	Atom		wm_protocols;$/;"	m	struct:s_xvar	typeref:typename:Atom
 wrdcnt	libft/src/mandatory/ft_split.c	/^static	int	wrdcnt(char const *s, char c)$/;"	f	typeref:typename:int	file:
 write_buf	libft/src/extra/ft_printf/write_buf.c	/^int	write_buf(const char *str, size_t len)$/;"	f	typeref:typename:int
+x	include/miniRT.h	/^	int		x;$/;"	m	struct:s_img	typeref:typename:int
 x	include/vector.h	/^	t_decimal	x;$/;"	m	struct:s_tuple	typeref:typename:t_decimal
 xpm1_x	minilibx-linux/test/main.c	/^int	xpm1_x;$/;"	v	typeref:typename:int
 xpm1_y	minilibx-linux/test/main.c	/^int	xpm1_y;$/;"	v	typeref:typename:int
+y	include/miniRT.h	/^	int		y;$/;"	m	struct:s_img	typeref:typename:int
 y	include/vector.h	/^	t_decimal	y;$/;"	m	struct:s_tuple	typeref:typename:t_decimal
 z	include/vector.h	/^	t_decimal	z;$/;"	m	struct:s_tuple	typeref:typename:t_decimal
 zero	libft/include/include_imp/parse_flags.h	/^	int		zero;$/;"	m	struct:s_flags	typeref:typename:int

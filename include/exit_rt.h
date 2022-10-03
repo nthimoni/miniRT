@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 18:08:04 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/03 18:08:29 by nthimoni         ###   ########.fr       */
+/*   Updated: 2022/10/03 23:48:03 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 #include "libft.h"
 
-void	exit_rt(t_list* trash, char *error_msg, int exit_code);
+void	exit_rt(t_list *trash, char *error_msg, int exit_code);
 
 #endif 
