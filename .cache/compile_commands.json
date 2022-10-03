@@ -1,0 +1,7 @@
+[
+  {
+    "directory": "/mnt/nfs/homes/nthimoni/Documents/miniRT",
+    "command": "gcc -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/main.c -o bin/main.o",
+    "file": "src/main.c"
+  }
+]
