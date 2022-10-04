@@ -2,9 +2,9 @@
 miniRT
 
 #Personal files
-tags
-.tags
-.cache/*
+*/tags
+*/.tags
+*/.cache/*
 
 # Prerequisites
 *.d
