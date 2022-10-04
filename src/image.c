@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 22:14:48 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/03 23:56:03 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/04 17:10:36 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	clear_image(t_rt *rt)
 			&rt->img->line_lgth, &rt->img->endian);
 	// Fonction pour dessiner la scene sur le raster space (l'ecran) a mettre en dessous
 	// Ex : draw_scene(t_rt *rt);
+	test2(rt);
 	mlx_put_image_to_window(rt->mlx, rt->win, rt->img->img,
 		rt->img->x, rt->img->y);
 }
@@ -28,15 +29,11 @@ void	clear_image(t_rt *rt)
 void	my_mlx_pixel_put(t_rt *rt, int x, int y, int color)
 {
 	char	*dst;
-	int		x2;
-	int		y2;
 
-	x2 = x + W_W / 2;
-	y2 = y + W_H / 2;
-	if (x2 > W_W || y2 > W_H || x2 <= 0 || y2 <= 0)
+	if (x > W_W || y > W_H || x <= 0 || y <= 0)
 		return ;
-	dst = rt->img->addr + (y2 * rt->img->line_lgth
-			+ x2 * (rt->img->bpp / 8));
+	dst = rt->img->addr + (y * rt->img->line_lgth
+			+ x * (rt->img->bpp / 8));
 	*(unsigned int *)dst = color;
 }
 
