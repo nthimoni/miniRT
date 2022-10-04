@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   print.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/23 14:54:33 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/04 17:24:55 by rmorel           ###   ########.fr       */
+/*   Created: 2022/10/04 13:36:56 by rmorel            #+#    #+#             */
+/*   Updated: 2022/10/04 15:45:34 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "miniRT.h"
+#ifndef PRINT_H
+#define PRINT_H 
 
-int	main(void)
-{
-	t_rt	*rt;
+void	print_tuple(t_tuple *t, char *str);
+void	print_matrix4(t_decimal **m);
 
-	rt = NULL;
-	ft_printf("Hello World!\n");
-	rt = init_rt();
-	clear_image(rt);
-	test(rt);
-	(void)rt;
-	mlx_loop(rt->mlx);
-	return (0);
-}
+
+#endif 

@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 16:18:25 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/03 23:56:44 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/04 13:37:54 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,14 @@ typedef struct	s_rt
 	t_img	*img;
 }	t_rt;
 
+# include	"vector.h"
 # include	<math.h>
 # include	"exit_rt.h"
 # include	"error.h"
+# include	"print.h"
 # include	"trash.h"
-# include	"vector.h"
+# include	"test.h"
+# include	<stdio.h>
 # include	<mlx.h>
 
 //	colors.c
@@ -61,5 +64,9 @@ int	red_cross(t_rt *rt);
 void	clear_image(t_rt *rt);
 void	my_mlx_pixel_put(t_rt *rt, int x, int y, int color);
 int		render_next_frame(t_rt *rt);
+
+//	main.c
+
+t_rt	*init_rt(void);
 
 #endif 
