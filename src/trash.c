@@ -6,13 +6,14 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 17:59:49 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/03 18:15:44 by nthimoni         ###   ########.fr       */
+/*   Updated: 2022/10/05 14:19:43 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "error.h"
 #include "exit_rt.h"
+#include "trash.h"
+#include "error.h"
 
 void	add_to_trash(t_list **trash, void *ptr)
 {

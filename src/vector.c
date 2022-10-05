@@ -6,11 +6,12 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 14:53:04 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/03 23:54:10 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/05 14:20:04 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "vector.h"
+#include "exit_rt.h"
 
 // Malloc les vecteurs et les add to trashi, utiliser des pointeurs
 
