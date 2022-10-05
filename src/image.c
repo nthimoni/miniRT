@@ -6,19 +6,20 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 22:14:48 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/04 17:10:36 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/05 19:39:12 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
+#include "test.h"
 
 void	clear_image(t_rt *rt)
 {
-	mlx_destroy_image(rt->mlx, rt->img->img);
+	/*mlx_destroy_image(rt->mlx, rt->img->img);
 	ft_bzero(rt->img, sizeof(t_img));
 	rt->img->img = mlx_new_image(rt->mlx, W_W, W_H);
 	rt->img->addr = mlx_get_data_addr(rt->img->img, &rt->img->bpp,
-			&rt->img->line_lgth, &rt->img->endian);
+			&rt->img->line_lgth, &rt->img->endian);*/
 	// Fonction pour dessiner la scene sur le raster space (l'ecran) a mettre en dessous
 	// Ex : draw_scene(t_rt *rt);
 	test2(rt);
@@ -32,8 +33,9 @@ void	my_mlx_pixel_put(t_rt *rt, int x, int y, int color)
 
 	if (x > W_W || y > W_H || x <= 0 || y <= 0)
 		return ;
-	dst = rt->img->addr + (y * rt->img->line_lgth
-			+ x * (rt->img->bpp / 8));
+	printf("x = %d y = %d color = %d\n", x, y, color);
+	printf("img->adr = %p\n", rt->img->addr);
+	dst = rt->img->addr + (y * rt->img->line_lgth + x * (rt->img->bpp / 8));
 	*(unsigned int *)dst = color;
 }
 

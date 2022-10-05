@@ -6,12 +6,13 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 12:56:21 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/04 17:14:03 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/05 19:20:37 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 #include "test.h"
+#include "print.h"
 
 t_decimal	**create_matrix_x(int x)
 {
@@ -131,7 +132,7 @@ void	test2(t_rt *rt)
 	proj->velocity = create_tuple(arr2, rt);
 	gravity = create_tuple(arr3, rt);
 	wind = create_tuple(arr4, rt);
-	while (i < 100)
+	while (i < 10)
 	{
 		my_mlx_pixel_put(rt, (int)proj->position->x, (int)proj->position->y, 
 				create_trgb(0, 255, 0, 0));
@@ -148,8 +149,10 @@ void	tick_environment(t_proj *proj, t_tuple *gravity, t_tuple *wind, t_rt *rt)
 	void	*tmp2;
 
 	tmp1 = proj->position;
+	print_tuple(proj->position, "position");
 	proj->position = add_v3(proj->position, proj->velocity, rt);
 	free(tmp1);
+	print_tuple(proj->position, "position");
 	tmp2 = proj->velocity;
 	proj->velocity = add_v3(proj->velocity, gravity, rt);
 	free(tmp2);
