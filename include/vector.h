@@ -6,12 +6,18 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 14:43:53 by rmorel            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/10/04 16:18:18 by rmorel           ###   ########.fr       */
+=======
+/*   Updated: 2022/10/05 14:13:27 by rmorel           ###   ########.fr       */
+>>>>>>> 4a1ab7445df60f748c384842dd0dfa9774244b51
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECTOR_H
 #define VECTOR_H
+
+# include "miniRT.h"
 
 typedef double	t_decimal;
 
