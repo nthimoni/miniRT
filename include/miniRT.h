@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 16:18:25 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/03 23:56:44 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/05 14:19:43 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,6 @@ typedef struct	s_rt
 }	t_rt;
 
 # include	<math.h>
-# include	"exit_rt.h"
-# include	"error.h"
-# include	"trash.h"
-# include	"vector.h"
 # include	<mlx.h>
 
 //	colors.c

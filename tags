@@ -168,7 +168,7 @@ SRC	minilibx-linux/Makefile.mk	/^SRC	= mlx_init.c mlx_new_window.c mlx_pixel_put
 SRC	minilibx-linux/test/Makefile.mk	/^SRC = main.c$/;"	m
 SRCDIR	Makefile	/^SRCDIR = src\/$/;"	m
 SRCDIR	libft/Makefile	/^SRCDIR = src\/$/;"	m
-SRCS	Makefile	/^SRCS = main.c vector.c image.c hook.c exit_rt.c error.c$/;"	m
+SRCS	Makefile	/^SRCS = main.c vector.c image.c hook.c exit_rt.c$/;"	m
 STORING	minilibx-linux/man/man1/mlx_new_image.1	/^.SH STORING COLOR INSIDE IMAGES$/;"	s	title:MiniLibX
 STORING	minilibx-linux/man/man3/mlx_new_image.3	/^.SH STORING COLOR INSIDE IMAGES$/;"	s	title:MiniLibX
 SYNOPSYS	minilibx-linux/man/man1/mlx.1	/^.SH SYNOPSYS$/;"	s	title:MiniLibX
