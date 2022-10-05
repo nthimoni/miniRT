@@ -15,7 +15,6 @@ $(OBJDIR)	Makefile	/^$(OBJDIR):$/;"	t
 $(OBJDIR)%.o	Makefile	/^$(OBJDIR)%.o: $(SRCDIR)%.c$/;"	t
 $(OBJDIR)%.o	libft/Makefile	/^$(OBJDIR)%.o: $(SRCDIR)%.c$/;"	t
 $(OBJ_DIR)/%.o	minilibx-linux/Makefile.mk	/^$(OBJ_DIR)\/%.o: %.c$/;"	t
-0	.cache/compile_commands.json	/^  {$/;"	o
 AR	libft/Makefile	/^AR = ar -rc$/;"	m
 AUTHOR	minilibx-linux/man/man1/mlx.1	/^.SH AUTHOR$/;"	s	title:MiniLibX
 AUTHOR	minilibx-linux/man/man1/mlx_loop.1	/^.SH AUTHOR$/;"	s	title:MiniLibX
@@ -169,11 +168,7 @@ SRC	minilibx-linux/Makefile.mk	/^SRC	= mlx_init.c mlx_new_window.c mlx_pixel_put
 SRC	minilibx-linux/test/Makefile.mk	/^SRC = main.c$/;"	m
 SRCDIR	Makefile	/^SRCDIR = src\/$/;"	m
 SRCDIR	libft/Makefile	/^SRCDIR = src\/$/;"	m
-<<<<<<< HEAD
 SRCS	Makefile	/^SRCS = main.c vector.c image.c hook.c exit_rt.c print.c init.c test.c trash.c colors.c$/;"	m
-=======
-SRCS	Makefile	/^SRCS = main.c vector.c image.c hook.c exit_rt.c$/;"	m
->>>>>>> 4a1ab7445df60f748c384842dd0dfa9774244b51
 STORING	minilibx-linux/man/man1/mlx_new_image.1	/^.SH STORING COLOR INSIDE IMAGES$/;"	s	title:MiniLibX
 STORING	minilibx-linux/man/man3/mlx_new_image.3	/^.SH STORING COLOR INSIDE IMAGES$/;"	s	title:MiniLibX
 SYNOPSYS	minilibx-linux/man/man1/mlx.1	/^.SH SYNOPSYS$/;"	s	title:MiniLibX
@@ -233,7 +228,6 @@ col	minilibx-linux/mlx_int.h	/^	int		col;$/;"	m	struct:s_xpm_col	typeref:typenam
 color	minilibx-linux/mlx_int.h	/^	int		color;$/;"	m	struct:s_col_name	typeref:typename:int
 color_map_1	minilibx-linux/test/main.c	/^int	color_map_1(void *win,int w,int h)$/;"	f	typeref:typename:int
 color_map_2	minilibx-linux/test/main.c	/^int	color_map_2(unsigned char *data,int bpp,int sl,int w,int h,int endian, int type)$/;"	f	typeref:typename:int
-command	.cache/compile_commands.json	/^    "command": "gcc -c -Wall -Wextra -Werror -MMD -MP -Iinclude\/ -Ilibft\/include\/ -Iminilibx-/;"	s	object:0
 content	libft/include/libft.h	/^	t_content		content;$/;"	m	struct:s_list	typeref:typename:t_content
 cpywrd	libft/src/mandatory/ft_split.c	/^static	char	*cpywrd(char const *s, char c)$/;"	f	typeref:typename:char *	file:
 create_back	libft/src/bonus/ft_lstmap.c	/^static int	create_back(t_list *lst, t_content content)$/;"	f	typeref:typename:int	file:
@@ -252,7 +246,6 @@ data4	minilibx-linux/test/main.c	/^char	*data4;$/;"	v	typeref:typename:char *
 decrgb	minilibx-linux/mlx_int.h	/^	int			decrgb[6];$/;"	m	struct:s_xvar	typeref:typename:int[6]
 depth	minilibx-linux/mlx_int.h	/^	int			depth;$/;"	m	struct:s_xvar	typeref:typename:int
 diez	libft/include/include_imp/parse_flags.h	/^	int		diez;$/;"	m	struct:s_flags	typeref:typename:int
-directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/nthimoni\/Documents\/miniRT",$/;"	s	object:0
 dispatcher	libft/src/extra/ft_printf/ft_printf.c	/^static void	dispatcher(t_flags *flags, va_list ap)$/;"	f	typeref:typename:void	file:
 display	minilibx-linux/mlx_int.h	/^	Display		*display;$/;"	m	struct:s_xvar	typeref:typename:Display *
 do_configure	minilibx-linux/Makefile	/^do_configure	:$/;"	t
@@ -272,7 +265,6 @@ expose_win1	minilibx-linux/test/main.c	/^int	expose_win1(void *p)$/;"	f	typeref:
 expose_win2	minilibx-linux/test/main.c	/^int	expose_win2(void *p)$/;"	f	typeref:typename:int
 fclean	Makefile	/^fclean: clean$/;"	t
 fclean	libft/Makefile	/^fclean: clean$/;"	t
-file	.cache/compile_commands.json	/^    "file": "src\/main.c"$/;"	s	object:0
 fill_matrix_x	src/test.c	/^void	fill_matrix_x(t_decimal **array, int sz)$/;"	f	typeref:typename:void
 fill_str	libft/src/mandatory/ft_itoa.c	/^static	void	fill_str(char *str, int val, size_t len)$/;"	f	typeref:typename:void	file:
 flush	libft/src/extra/ft_printf/write_buf.c	/^static int	flush(char *buffer, size_t *len)$/;"	f	typeref:typename:int	file:
@@ -523,6 +515,7 @@ sl3	minilibx-linux/test/main.c	/^int	sl3;$/;"	v	typeref:typename:int
 sl4	minilibx-linux/test/main.c	/^int	sl4;$/;"	v	typeref:typename:int
 space	libft/include/include_imp/parse_flags.h	/^	int		space;$/;"	m	struct:s_flags	typeref:typename:int
 strlcpy_is_not_posix	minilibx-linux/mlx_xpm.c	/^unsigned int	strlcpy_is_not_posix(char *dest, char *src, unsigned int size)$/;"	f	typeref:typename:unsigned int
+sub_v3	src/vector.c	/^t_tuple	*sub_v3(t_tuple *v1, t_tuple *v2, t_rt *rt)$/;"	f	typeref:typename:t_tuple *
 t_content	libft/include/libft.h	/^typedef void*	t_content;$/;"	t	typeref:typename:void *
 t_decimal	include/vector.h	/^typedef double	t_decimal;$/;"	t	typeref:typename:double
 t_event_list	minilibx-linux/mlx_int.h	/^}				t_event_list;$/;"	t	typeref:struct:s_event_list

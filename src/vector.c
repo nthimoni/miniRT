@@ -6,11 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 14:53:04 by rmorel            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/10/04 16:25:52 by rmorel           ###   ########.fr       */
-=======
-/*   Updated: 2022/10/05 14:20:04 by rmorel           ###   ########.fr       */
->>>>>>> 4a1ab7445df60f748c384842dd0dfa9774244b51
+/*   Updated: 2022/10/05 19:18:56 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +71,28 @@ t_tuple	*add_v3(t_tuple *v1, t_tuple *v2, t_rt *rt)
 {
 	t_tuple	*new;
 
-	if (v1->w || v2->w)
+	/*if (v1->w || v2->w)
 	{
 		ft_putstr_fd("Add_v3 param's is a point", 2);
 		return (NULL);
-	}
+	}*/
+	new = create_null_tuple(rt);
+	new->x = v2->x + v1->x;
+	new->y = v2->y + v1->y;
+	new->z = v2->z + v1->z;
+	new->w = 0;
+	return (new);
+}
+
+t_tuple	*sub_v3(t_tuple *v1, t_tuple *v2, t_rt *rt)
+{
+	t_tuple	*new;
+
+	/*if (v1->w || v2->w)
+	{
+		ft_putstr_fd("Add_v3 param's is a point", 2);
+		return (NULL);
+	}*/
 	new = create_null_tuple(rt);
 	new->x = v2->x - v1->x;
 	new->y = v2->y - v1->y;

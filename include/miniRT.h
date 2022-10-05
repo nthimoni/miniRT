@@ -6,11 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 16:18:25 by nthimoni          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/10/04 13:37:54 by rmorel           ###   ########.fr       */
-=======
-/*   Updated: 2022/10/05 14:19:43 by rmorel           ###   ########.fr       */
->>>>>>> 4a1ab7445df60f748c384842dd0dfa9774244b51
+/*   Updated: 2022/10/05 19:05:54 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +37,10 @@ typedef struct	s_rt
 	t_img	*img;
 }	t_rt;
 
-# include	"vector.h"
-# include	<math.h>
-<<<<<<< HEAD
-# include	"exit_rt.h"
-# include	"error.h"
-# include	"print.h"
-# include	"trash.h"
-# include	"test.h"
-# include	<stdio.h>
-=======
->>>>>>> 4a1ab7445df60f748c384842dd0dfa9774244b51
-# include	<mlx.h>
+# include "vector.h"
+# include <math.h>
+# include <stdio.h>
+# include <mlx.h>
 
 //	colors.c
 
