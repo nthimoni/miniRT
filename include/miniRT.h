@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 16:18:25 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/05 19:05:54 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/06 13:55:31 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # define W_H 1080
 
 # include	"libft.h"
+# include <math.h>
+# include <stdio.h>
+# include <mlx.h>
 
 typedef struct	s_img
 {
@@ -37,10 +40,15 @@ typedef struct	s_rt
 	t_img	*img;
 }	t_rt;
 
-# include "vector.h"
-# include <math.h>
-# include <stdio.h>
-# include <mlx.h>
+typedef double	t_decimal;
+
+typedef struct	s_tuple
+{
+	t_decimal	x;
+	t_decimal	y;
+	t_decimal	z;
+	t_decimal	w;
+}	t_tuple;
 
 //	colors.c
 

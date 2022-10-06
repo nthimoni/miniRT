@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.62.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 12:66:33 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/04 15:47:37 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/06 13:55:33 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	print_tuple(t_tuple *t, char *str)
 {
-	printf("%s :\n| %6.3lf |\n| %6.3lf |\n| %6.3lf |\n| %6.3lf |\n",
+	printf("%s :\n| %6.1lf |\n| %6.1lf |\n| %6.1lf |\n| %6.1lf |\n",
 			str, t->x, t->y, t->z, t->w);
 }
 
-void	print_matrix4(t_decimal **m)
+void	print_matrix4(t_decimal **m, char *s)
 {
-	printf("Matrix :\n| %6.3lf %6.3lf %6.3lf %6.3lf |\n| %6.3lf %6.3lf %6.3lf %6.3lf |\n| %6.3lf %6.3lf %6.3lf %6.3lf |\n| %6.3lf %6.3lf %6.3lf %6.3lf |\n",
+	printf("Matrix %s :\n| %6.1lf %6.1lf %6.1lf %6.1lf |\n| %6.1lf %6.1lf %6.1lf %6.1lf |\n| %6.1lf %6.1lf %6.1lf %6.1lf |\n| %6.1lf %6.1lf %6.1lf %6.1lf |\n", s,
 			m[0][0], m[0][1], m[0][2], m[0][3],
 			m[1][0], m[1][1], m[1][2], m[1][3],
 			m[2][0], m[2][1], m[2][2], m[2][3],
