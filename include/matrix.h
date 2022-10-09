@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 12:05:46 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/06 17:38:28 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/09 23:02:08 by bek              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,20 @@ typedef struct	s_matrix_index
 	int	b;
 	int	c;
 	int	d;
-}	t_matrix_index;
+}	t_matex;
 
 t_decimal	**create_matrix_x(int x);
-void		fill_matrix_x(t_decimal *[4]array, int sz, char *str);
-t_decimal	**mult_matrix_x(int x, t_decimal *[4]new, t_decimal *[4]m1, t_decimal *[4]m2);
-void		identity_matrix(t_decimal *[4]new);
-t_decimal	**transpose_matrix(t_decimal *[4]m, int size, t_decimal *[4]new);
-t_decimal	det_matrix_2(t_decimal *[4]m);
-void		sub_matrix(t_decimal *[4]m, int sz, int a, int b, t_decimal *[4]new);
-void		matrix_ex1(t_decimal *[4]new);
-void		matrix_ex2(t_decimal *[4]new);
+void		fill_matrix_x(t_decimal array[4][4], int sz, char *str);
+void		mult_matrix_4(t_decimal new[4][4], t_decimal m1[4][4], t_decimal m2[4][4]);
+void		identity_matrix(t_decimal new[4][4]);
+void		transpose_matrix_4(t_decimal m[4][4], t_decimal new[4][4]);
+t_decimal	det_matrix_2(t_decimal m[2][2]);
+void		sub_matrix_4(t_decimal m[4][4], int a, int b, t_decimal new[3][3]);
+void		sub_matrix_4_1(t_decimal m[4][4], t_decimal new[3][3], t_matex i);
+void		sub_matrix_3(t_decimal m[3][3], int a, int b, t_decimal new[2][2]);
+void		sub_matrix_3_1(t_decimal m[3][3], t_decimal new[2][2], t_matex i);
+t_decimal	minor_matrix_3(t_decimal m[3][3], int a, int b);
+void		matrix_ex1(t_decimal new[4][4]);
+void		matrix_ex2(t_decimal new[4][4]);
 
 #endif 
