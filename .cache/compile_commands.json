@@ -1,0 +1,57 @@
+[
+  {
+    "directory": "/mnt/nfs/homes/nthimoni/Documents/miniRT",
+    "command": "gcc -g -fstack-protector-all -O0 -std=c99 -c  -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/main.c -o bin/main.o",
+    "file": "src/main.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/nthimoni/Documents/miniRT",
+    "command": "gcc -g -fstack-protector-all -O0 -std=c99 -c  -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/vector.c -o bin/vector.o",
+    "file": "src/vector.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/nthimoni/Documents/miniRT",
+    "command": "gcc -g -fstack-protector-all -O0 -std=c99 -c  -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/image.c -o bin/image.o",
+    "file": "src/image.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/nthimoni/Documents/miniRT",
+    "command": "gcc -g -fstack-protector-all -O0 -std=c99 -c  -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/hook.c -o bin/hook.o",
+    "file": "src/hook.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/nthimoni/Documents/miniRT",
+    "command": "gcc -g -fstack-protector-all -O0 -std=c99 -c  -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/exit_rt.c -o bin/exit_rt.o",
+    "file": "src/exit_rt.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/nthimoni/Documents/miniRT",
+    "command": "gcc -g -fstack-protector-all -O0 -std=c99 -c  -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/print.c -o bin/print.o",
+    "file": "src/print.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/nthimoni/Documents/miniRT",
+    "command": "gcc -g -fstack-protector-all -O0 -std=c99 -c  -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/init.c -o bin/init.o",
+    "file": "src/init.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/nthimoni/Documents/miniRT",
+    "command": "gcc -g -fstack-protector-all -O0 -std=c99 -c  -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/test.c -o bin/test.o",
+    "file": "src/test.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/nthimoni/Documents/miniRT",
+    "command": "gcc -g -fstack-protector-all -O0 -std=c99 -c  -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/trash.c -o bin/trash.o",
+    "file": "src/trash.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/nthimoni/Documents/miniRT",
+    "command": "gcc -g -fstack-protector-all -O0 -std=c99 -c  -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/colors.c -o bin/colors.o",
+    "file": "src/colors.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/nthimoni/Documents/miniRT",
+    "command": "gcc -g -fstack-protector-all -O0 -std=c99 -c  -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/matrix.c -o bin/matrix.o",
+    "file": "src/matrix.c"
+  }
+]

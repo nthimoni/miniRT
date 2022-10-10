@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 12:56:21 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/10 19:17:47 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/10 20:57:25 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ void	test(t_rt *rt)
 	t_tuple		v4;
 	t_tuple		v5;
 	t_tuple		v6;
-	t_decimal	arr1[4] = {1, 0, 0, 1};
-	t_decimal	arr2[4] = {0, 1, 0, 1};
-	t_decimal	arr3[4] = {0, 0, 1, 1};
-	t_decimal	arr4[4] = {1, 1, 1, 1};
-	t_decimal	arr5[4] = {1, 2, 3, 0};
-	t_decimal	arr6[4] = {2, 3, 4, 0};
+	t_u	arr1[4] = {1, 0, 0, 1};
+	t_u	arr2[4] = {0, 1, 0, 1};
+	t_u	arr3[4] = {0, 0, 1, 1};
+	t_u	arr4[4] = {1, 1, 1, 1};
+	t_u	arr5[4] = {1, 2, 3, 0};
+	t_u	arr6[4] = {2, 3, 4, 0};
 
 	p1 = create_tuple(arr1);
 	p2 = create_tuple(arr2);
@@ -66,10 +66,10 @@ void	test2(t_rt *rt)
 	t_proj		proj;
 	t_tuple		gravity;
 	t_tuple		wind;
-	t_decimal	arr1[4] = {0, 10, 0, 1};
-	t_decimal	arr2[4] = {20, 40, 0};
-	t_decimal	arr3[4] = {0, -1, 0, 0};
-	t_decimal	arr4[4] = {-0.01, 0, 0, 0};
+	t_u	arr1[4] = {0, 10, 0, 1};
+	t_u	arr2[4] = {20, 40, 0};
+	t_u	arr3[4] = {0, -1, 0, 0};
+	t_u	arr4[4] = {-0.01, 0, 0, 0};
 	int			i;
 	int			j;
 	int			k;
@@ -111,13 +111,13 @@ t_proj	tick_environment(t_proj proj, t_tuple gravity, t_tuple wind)
 
 void	test3(t_rt *rt)
 {
-	t_decimal	m1[4][4];
-	t_decimal	m2[4][4];
-	t_decimal	m3[4][4];
-	t_decimal	m4[3][3];
-	t_decimal	m5[2][2];
-	t_decimal	m6[4][4];
-	t_decimal	ret;
+	t_u	m1[4][4];
+	t_u	m2[4][4];
+	t_u	m3[4][4];
+	t_u	m4[3][3];
+	t_u	m5[2][2];
+	t_u	m6[4][4];
+	t_u	ret;
 
 	ft_bzero(&m1, sizeof(m1));
 	ft_bzero(&m2, sizeof(m2));

@@ -1,34 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_rt.c                                          :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/03 18:03:15 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/10 18:59:49 by nthimoni         ###   ########.fr       */
+/*   Created: 2022/10/10 18:41:10 by nthimoni          #+#    #+#             */
+/*   Updated: 2022/10/10 19:15:03 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "parsing.h"
+#include <fcntl.h>
+#include <unistd.h>
+#include "miniRT.h"
+#include "error.h"
 #include "exit_rt.h"
-#include "trash.h"
 
-void	exit_rt(t_rt *rt, char *error_msg, int exit_code)
+void	parsing(t_rt *rt, char *file, t_scene *scene)
 {
-	free_trash(rt->trash);
-	(void)rt->trash;
-	if (error_msg)
-		ft_putstr_fd(error_msg, 2);
-	exit(exit_code);
+	int		fd;
+	char	*line;
 
-}
-
-void	exit_parsing(t_rt *rt, char *error_msg, int exit_code)
-{
-	free_trash(rt->trash);
-	(void)rt->trash;
-	if (error_msg)
-		ft_putstr_fd(error_msg, 2);
-	exit(exit_code);
+	fd = open(file, O_RDONLY);
+	if (fd == -1)
+		exit_parsing(rt, OPEN_FAILED_MSG, OPEN_FAILED);
+	line = get_next_line(fd);
+	while (line)
+	{
+		fill_scene(line, scene);
+		line = get_next_line(fd);
+		if (!line)
+			exit_parsing(rt, BAD_ALLOC_MSG, BAD_ALLOC);
+	}
 }

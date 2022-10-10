@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 12:04:54 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/10 19:12:15 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/10 20:57:25 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,28 @@
 #include "miniRT.h"
 #include "print.h"
 
-t_decimal	**create_matrix_x(int x)
+t_u	**create_matrix_x(int x)
 {
-	t_decimal	**array;
+	t_u	**array;
 	int			i;
 
-	array = malloc(sizeof(t_decimal *) * (x + 1));
+	array = malloc(sizeof(t_u *) * (x + 1));
 	if (!array)
 		return (NULL);
 	i = 0;
 	while (i < x)
 	{
-		array[i] = malloc(sizeof(t_decimal) * x);
+		array[i] = malloc(sizeof(t_u) * x);
 		if (!array[i])
 			return (NULL);
-		ft_bzero(array[i], sizeof(t_decimal) * x);
+		ft_bzero(array[i], sizeof(t_u) * x);
 		i++;
 	}
 	array[x] = NULL;
 	return (array);
 }
 
-void	fill_matrix_x(t_decimal array[4][4], int sz, char *str)
+void	fill_matrix_x(t_u array[4][4], int sz, char *str)
 {
 	int	i;
 	int	j;
@@ -56,7 +56,7 @@ void	fill_matrix_x(t_decimal array[4][4], int sz, char *str)
 	}
 }
 
-void	mult_matrix_4(t_decimal new[4][4], t_decimal m1[4][4], t_decimal m2[4][4])
+void	mult_matrix_4(t_u new[4][4], t_u m1[4][4], t_u m2[4][4])
 {
 	t_matex	i;
 
@@ -77,7 +77,7 @@ void	mult_matrix_4(t_decimal new[4][4], t_decimal m1[4][4], t_decimal m2[4][4])
 	return ;
 }
 
-void	identity_matrix_m4(t_decimal new[4][4])
+void	identity_matrix_m4(t_u new[4][4])
 {
 	int			i;
 	int			j;
@@ -100,7 +100,7 @@ void	identity_matrix_m4(t_decimal new[4][4])
 	return ;
 }
 
-void	transpose_matrix_4(t_decimal m[4][4], t_decimal new[4][4])
+void	transpose_matrix_4(t_u m[4][4], t_u new[4][4])
 {
 	int			i;
 	int			j;
@@ -120,12 +120,12 @@ void	transpose_matrix_4(t_decimal m[4][4], t_decimal new[4][4])
 	return ;
 }
 
-t_decimal	det_matrix_2(t_decimal m[2][2])
+t_u	det_matrix_2(t_u m[2][2])
 {
 	return (m[0][0] * m[1][1] - m[0][1] * m[1][0]);
 }
 
-void	sub_matrix_4(t_decimal m[4][4], int a, int b, t_decimal new[3][3])
+void	sub_matrix_4(t_u m[4][4], int a, int b, t_u new[3][3])
 {
 	t_matex	i;
 
@@ -154,7 +154,7 @@ void	sub_matrix_4(t_decimal m[4][4], int a, int b, t_decimal new[3][3])
 	return ;
 }
 
-void	sub_matrix_4_1(t_decimal m[4][4], t_decimal new[3][3], t_matex i)
+void	sub_matrix_4_1(t_u m[4][4], t_u new[3][3], t_matex i)
 {
 	while (i.c < 4)
 	{
@@ -175,7 +175,7 @@ void	sub_matrix_4_1(t_decimal m[4][4], t_decimal new[3][3], t_matex i)
 	return ;
 }
 
-void	sub_matrix_3(t_decimal m[3][3], int a, int b, t_decimal new[2][2])
+void	sub_matrix_3(t_u m[3][3], int a, int b, t_u new[2][2])
 {
 	t_matex	i;
 
@@ -204,7 +204,7 @@ void	sub_matrix_3(t_decimal m[3][3], int a, int b, t_decimal new[2][2])
 	return ;
 }
 
-void	sub_matrix_3_1(t_decimal m[3][3], t_decimal new[2][2], t_matex i)
+void	sub_matrix_3_1(t_u m[3][3], t_u new[2][2], t_matex i)
 {
 	while (i.c < 3)
 	{
@@ -225,25 +225,25 @@ void	sub_matrix_3_1(t_decimal m[3][3], t_decimal new[2][2], t_matex i)
 	return ;
 }
 
-t_decimal	minor_matrix_3(t_decimal m[3][3], int a, int b)
+t_u	minor_matrix_3(t_u m[3][3], int a, int b)
 {
-	t_decimal	new[2][2];
-	t_decimal	ret;
+	t_u	new[2][2];
+	t_u	ret;
 
 	ret = 0;
-	ft_bzero(&new, sizeof(t_decimal[2][2]));
+	ft_bzero(&new, sizeof(t_u[2][2]));
 	sub_matrix_3(m, a, b, new);
 	ret = det_matrix_2(new);
 	return (ret);
 }
 
-t_decimal	cofactor_matrix_3(t_decimal m[3][3], int a, int b)
+t_u	cofactor_matrix_3(t_u m[3][3], int a, int b)
 {
-	t_decimal	new[2][2];
-	t_decimal	ret;
+	t_u	new[2][2];
+	t_u	ret;
 
 	ret = 0;
-	ft_bzero(&new, sizeof(t_decimal[2][2]));
+	ft_bzero(&new, sizeof(t_u[2][2]));
 	sub_matrix_3(m, a, b, new);
 	ret = det_matrix_2(new);
 	if ((a + b) % 2 && ret)
@@ -251,13 +251,13 @@ t_decimal	cofactor_matrix_3(t_decimal m[3][3], int a, int b)
 	return (ret);
 }
 
-t_decimal	cofactor_matrix_4(t_decimal m[4][4], int a, int b)
+t_u	cofactor_matrix_4(t_u m[4][4], int a, int b)
 {
-	t_decimal	new[3][3];
-	t_decimal	ret;
+	t_u	new[3][3];
+	t_u	ret;
 
 	ret = 0;
-	ft_bzero(&new, sizeof(t_decimal[2][2]));
+	ft_bzero(&new, sizeof(t_u[2][2]));
 	sub_matrix_4(m, a, b, new);
 	ret = det_matrix_3(new);
 	if ((a + b) % 2 && ret)
@@ -265,9 +265,9 @@ t_decimal	cofactor_matrix_4(t_decimal m[4][4], int a, int b)
 	return (ret);
 }
 
-t_decimal	det_matrix_3(t_decimal m[3][3])
+t_u	det_matrix_3(t_u m[3][3])
 {
-	t_decimal	ret;
+	t_u	ret;
 
 	ret = m[0][0] * cofactor_matrix_3(m, 0, 0)
 		+ m[0][1] * cofactor_matrix_3(m, 0, 1)
@@ -275,13 +275,13 @@ t_decimal	det_matrix_3(t_decimal m[3][3])
 	return (ret);
 }
 
-t_decimal	det_matrix_4(t_decimal m[4][4])
+t_u	det_matrix_4(t_u m[4][4])
 {
-	t_decimal	ret;
-	t_decimal	new_0[3][3];
-	t_decimal	new_1[3][3];
-	t_decimal	new_2[3][3];
-	t_decimal	new_3[3][3];
+	t_u	ret;
+	t_u	new_0[3][3];
+	t_u	new_1[3][3];
+	t_u	new_2[3][3];
+	t_u	new_3[3][3];
 
 	sub_matrix_4(m, 0, 0, new_0);
 	sub_matrix_4(m, 0, 1, new_1);
@@ -292,18 +292,18 @@ t_decimal	det_matrix_4(t_decimal m[4][4])
 	return (ret);
 }
 
-t_bool	matrix_4_is_invertible(t_decimal m[4][4])
+t_bool	matrix_4_is_invertible(t_u m[4][4])
 {
 	if (det_matrix_4(m))
 		return (TRUE);
 	return (FALSE);
 }
 
-void	invert_matrix_4(t_decimal m[4][4], t_decimal new[4][4])
+void	invert_matrix_4(t_u m[4][4], t_u new[4][4])
 {
 	int			i;
 	int			j;
-	t_decimal	ret;
+	t_u	ret;
 
 	i = 0;
 	j = 0;
@@ -322,7 +322,7 @@ void	invert_matrix_4(t_decimal m[4][4], t_decimal new[4][4])
 	}
 }
 
-void	matrix_ex1(t_decimal new[4][4])
+void	matrix_ex1(t_u new[4][4])
 {
 	new[0][0] = 1;
 	new[0][1] = 2;
@@ -343,7 +343,7 @@ void	matrix_ex1(t_decimal new[4][4])
 	return ;
 }
 
-void	matrix_ex2(t_decimal new[4][4])
+void	matrix_ex2(t_u new[4][4])
 {
 	new[0][0] = -2;
 	new[0][1] = -8;
@@ -364,7 +364,7 @@ void	matrix_ex2(t_decimal new[4][4])
 	return ;
 }
 
-void	matrix_ex3(t_decimal new[3][3])
+void	matrix_ex3(t_u new[3][3])
 {
 	new[0][0] = 1;
 	new[0][1] = 2;
@@ -378,7 +378,7 @@ void	matrix_ex3(t_decimal new[3][3])
 	return ;
 }
 
-void	matrix_ex4(t_decimal new[4][4])
+void	matrix_ex4(t_u new[4][4])
 {
 	new[0][0] = 8;
 	new[0][1] = -5;
