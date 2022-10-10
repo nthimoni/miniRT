@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 16:18:25 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/06 13:55:31 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/10 17:57:41 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,12 @@ typedef struct	s_tuple
 	t_decimal	w;
 }	t_tuple;
 
+typedef	enum	e_bool
+{
+	FALSE,
+	TRUE,
+}	t_bool;
+
 //	colors.c
 
 int	create_trgb(int t, int r, int g, int b);
@@ -68,8 +74,9 @@ void	clear_image(t_rt *rt);
 void	my_mlx_pixel_put(t_rt *rt, int x, int y, int color);
 int		render_next_frame(t_rt *rt);
 
-//	main.c
+//	init.c
 
 t_rt	*init_rt(void);
+int		key_hook(int keycode, t_rt *rt);
 
 #endif 
