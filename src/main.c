@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 14:54:33 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/06 17:07:36 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/10 15:56:49 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ int	main(void)
 	test3(rt);
 	(void)rt;
 	mlx_loop(rt->mlx);
+	ft_split("ok", ' ');
 	return (0);
 }

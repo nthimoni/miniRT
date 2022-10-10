@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 14:53:04 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/06 15:22:27 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/10 20:57:25 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 // Malloc les vecteurs et les add to trashi, utiliser des pointeurs
 
-t_tuple	create_tuple(t_decimal *array)
+t_tuple	create_tuple(t_u *array)
 {
 	t_tuple	new;
 
@@ -92,16 +92,16 @@ t_tuple	neg_tupple(t_tuple t)
 	return (new);
 }
 
-void	scale_v3(t_tuple v1, t_decimal s)
+void	scale_v3(t_tuple v1, t_u s)
 {
 	v1.x *= s;
 	v1.y *= s;
 	v1.z *= s;
 }
 
-t_decimal	length_v3(t_tuple v)
+t_u	length_v3(t_tuple v)
 {
-	t_decimal	d;
+	t_u	d;
 
 	if (v.w)
 	{
@@ -121,9 +121,9 @@ t_tuple	norm_v3(t_tuple v)
 	return (new);
 }
 
-t_decimal	dot_product_v3(t_tuple v1, t_tuple v2)
+t_u	dot_product_v3(t_tuple v1, t_tuple v2)
 {
-	t_decimal	d;
+	t_u	d;
 
 	if (v1.w || v2.w)
 	{
