@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 12:56:21 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/09 23:26:17 by bek              ###   ########.fr       */
+/*   Updated: 2022/10/10 19:17:47 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,22 +116,48 @@ void	test3(t_rt *rt)
 	t_decimal	m3[4][4];
 	t_decimal	m4[3][3];
 	t_decimal	m5[2][2];
+	t_decimal	m6[4][4];
 	t_decimal	ret;
 
+	ft_bzero(&m1, sizeof(m1));
+	ft_bzero(&m2, sizeof(m2));
+	ft_bzero(&m3, sizeof(m3));
+	ft_bzero(&m4, sizeof(m4));
+	ft_bzero(&m5, sizeof(m5));
+	ft_bzero(&m6, sizeof(m6));
 	matrix_ex1(m1);
 	print_matrix_4(m1, "m1");
-	matrix_ex2(m2);
-	print_matrix_4(m2, "m2");
-	mult_matrix_4(m3, m1, m2);
-	print_matrix_4(m3, "m3");
 	transpose_matrix_4(m1, m2);
 	print_matrix_4(m2, "m2 = m1 transpose");
 	sub_matrix_4(m2, 2, 2, m4);
 	print_matrix_3(m4, "m4 = m2 sub(2, 2)");
 	sub_matrix_3(m4, 0, 0, m5);
 	print_matrix_2(m5, "m5 = m4 sub(0, 0)");
-	//ret = minor_matrix_3(m4, 0, 0);
+	matrix_ex3(m4);
+	ret = minor_matrix_3(m4, 0, 0);
+	printf("Minor m4(0, 0) = %lf\n", ret);
+	ret = cofactor_matrix_3(m4, 0, 0);
+	printf("Cofact m4(0, 0) = %lf\n", ret);
+	ret = minor_matrix_3(m4, 1, 0);
+	printf("Minor m4(1, 0) = %lf\n", ret);
+	ret = cofactor_matrix_3(m4, 1, 0);
+	printf("Cofact m4(1, 0) = %lf\n", ret);
+	ret = det_matrix_3(m4);
+	printf("Det m4 = %lf\n", ret);
+	matrix_ex2(m3);
+	print_matrix_4(m3, "m3");
+	ret = det_matrix_4(m3);
+	printf("Det m3 = %lf\n", ret);
+	identity_matrix_m4(m3);
+	print_matrix_4(m3, "m3");
+	invert_matrix_4(m3, m6);
+	print_matrix_4(m6, "m4");
+	matrix_ex2(m3);
+	print_matrix_4(m3, "m3");
+	invert_matrix_4(m3, m6);
+	print_matrix_4(m6, "m6 = inverse(m3)");
+	mult_matrix_4(m1, m3, m6);
+	print_matrix_4(m1, "m1 = m3 * m6");
 	(void)ret;
-	//printf("Minor m4(0, 0) = %lf\n", ret);
 	(void)rt;
 }
