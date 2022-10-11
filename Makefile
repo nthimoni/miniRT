@@ -7,12 +7,13 @@ FTINC = $(FTPATH)include/
 LIBFT = $(FTPATH)libft.a
 MLX = $(MLXPATH)libmlx.a
 ######################################################################
-SRCS = main.c vector.c image.c hook.c exit_rt.c print.c init.c test.c trash.c colors.c matrix.c transformations.c
+SRCS = 	main.c vector.c image.c hook.c exit_rt.c print.c init.c test.c trash.c \
+		colors.c matrix.c transformations.c ray.c
 OBJS = $(addprefix $(OBJDIR),$(SRCS:.c=.o))
 DEPENDS = $(OBJS:.o=.d)
 ######################################################################
-CC = gcc -g -fstack-protector-all -O0 -std=c99
-CFLAGS = #-Wall -Wextra -Werror -MMD -MP
+CC = gcc -g
+CFLAGS = -Wall -Wextra -Werror -MMD -MP
 LINK = -lmlx -lft -lm -lXext -lX11
 INCPATH = -I$(INCDIR) -I$(FTINC) -I$(MLXPATH)
 LIBPATH = -L$(FTPATH) -L$(MLXPATH)

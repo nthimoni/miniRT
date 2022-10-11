@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 12:56:21 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/10 23:22:10 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/11 13:01:34 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "matrix.h"
 #include "vector.h"
 #include "transformations.h"
+#include <math.h>
 
 void	test(t_rt *rt)
 {
