@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 16:18:25 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/10 20:57:25 by nthimoni         ###   ########.fr       */
+/*   Updated: 2022/10/11 11:14:49 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # define W_W 1920
 # define W_H 1080
+# define M_PI           3.14159265358979323846
 
 # include	"libft.h"
 # include <math.h>
@@ -55,6 +56,12 @@ typedef	enum	e_bool
 	FALSE,
 	TRUE,
 }	t_bool;
+
+typedef struct	s_ray
+{
+	t_tuple	o;
+	t_tuple	d;
+}	t_ray;
 
 //	colors.c
 
