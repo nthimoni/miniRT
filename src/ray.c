@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.h                                             :+:      :+:    :+:   */
+/*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/04 13:02:04 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/10 22:48:04 by rmorel           ###   ########.fr       */
+/*   Created: 2022/10/11 11:13:15 by rmorel            #+#    #+#             */
+/*   Updated: 2022/10/11 11:29:18 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEST_H
-#define TEST_H 
+#include "miniRT.h"
+#include "ray.h"
 
-typedef struct	s_proj
+void	create_ray(t_ray *new, t_tuple p, t_tuple v)
 {
-	t_tuple	position;
-	t_tuple	velocity;
-}	t_proj;
+	ray->o.x = p.x;
+	ray->o.y = p.y;
+	ray->o.z = p.z;
+	ray->o.w = p.w;
+	ray->d.x = v.x;
+	ray->d.y = v.y;
+	ray->d.z = v.z;
+	ray->d.w = v.w;
+}
 
-void		test(t_rt *rt);
-void		test2(t_rt *rt);
-t_proj		tick_environment(t_proj proj, t_tuple gravity, t_tuple wind);
-void		test3(t_rt *rt);
-void		test4(t_rt *rt);
-void		print_point_test4(t_rt *rt, t_tuple pos);
-
-
-#endif 
+void	position(t_tuple *new, t_ray r, t_tuple p)
+{
+	new->x = p.x * r.d.x + r.o.x;
+	new->y = p.y * r.d.y + r.o.y;
+	new->z = p.z * r.d.z + r.o.z;
+	new->w = 0;
+}

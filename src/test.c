@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 12:56:21 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/10 20:57:25 by nthimoni         ###   ########.fr       */
+/*   Updated: 2022/10/10 23:22:10 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "print.h"
 #include "matrix.h"
 #include "vector.h"
+#include "transformations.h"
 
 void	test(t_rt *rt)
 {
@@ -160,4 +161,52 @@ void	test3(t_rt *rt)
 	print_matrix_4(m1, "m1 = m3 * m6");
 	(void)ret;
 	(void)rt;
+}
+
+void	test4(t_rt *rt)
+{
+	t_tuple	pos;
+	t_u		arr1[4] = {0, 0, 0, 1};
+	t_u		m_trans[4][4];
+	t_u		m_rotate[4][4];
+	t_u		angle;
+	int		i;
+
+	pos = create_tuple(arr1);
+	trans_mat_4(m_trans, 0, 300, 0);
+	mult_tuple_mat_4(&pos, m_trans, pos);
+	angle = 30 * M_PI / 180;
+	i = 0;
+	while (i < 12)
+	{
+		print_point_test4(rt, pos);
+		rot_z_mat_4(m_rotate, angle);
+		mult_tuple_mat_4(&pos, m_rotate, pos);
+		i++;
+	}
+}
+
+void	print_point_test4(t_rt *rt, t_tuple pos)
+{
+	int			j;
+	int			k;
+
+	j = -4;
+	k = -4;
+	pos.x += W_W / 2;
+	pos.y += W_H / 2;
+	printf("M2 pos.x = %lf pos.y = %lf\n", pos.x, pos.y);
+	while (j < 4)
+	{
+		while (k < 4)
+		{
+			if ((int)pos.y + k > 0 && (int)pos.y + k < W_H && (int)pos.x + j > 0 &&  (int)pos.x + j < W_W)
+			{
+				my_mlx_pixel_put(rt, (int)pos.x + j, W_H - (int)pos.y - k, create_trgb(0, 0, 255, 0));
+			}
+			k++;
+		}
+		j++;
+		k = -4;
+	}
 }
