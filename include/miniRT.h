@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 16:18:25 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/11 11:14:49 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/11 15:35:22 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # define W_W 1920
 # define W_H 1080
-# define M_PI           3.14159265358979323846
 
 # include	"libft.h"
 # include <math.h>
@@ -63,6 +62,15 @@ typedef struct	s_ray
 	t_tuple	d;
 }	t_ray;
 
+typedef struct	s_intersect
+{
+	t_tuple	pixel;
+	t_bool	intersect;
+	t_ray	ray;
+//	t_obj	*obj;
+	t_tuple	i1;
+	t_tuple	i2;
+}	t_intersect;
 //	colors.c
 
 int	create_trgb(int t, int r, int g, int b);

@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:13:15 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/11 11:29:18 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/11 16:45:58 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 
 void	create_ray(t_ray *new, t_tuple p, t_tuple v)
 {
-	ray->o.x = p.x;
-	ray->o.y = p.y;
-	ray->o.z = p.z;
-	ray->o.w = p.w;
-	ray->d.x = v.x;
-	ray->d.y = v.y;
-	ray->d.z = v.z;
-	ray->d.w = v.w;
+	new->o.x = p.x;
+	new->o.y = p.y;
+	new->o.z = p.z;
+	new->o.w = p.w;
+	new->d.x = v.x;
+	new->d.y = v.y;
+	new->d.z = v.z;
+	new->d.w = v.w;
 }
 
 void	position(t_tuple *new, t_ray r, t_tuple p)
@@ -31,4 +31,70 @@ void	position(t_tuple *new, t_ray r, t_tuple p)
 	new->y = p.y * r.d.y + r.o.y;
 	new->z = p.z * r.d.z + r.o.z;
 	new->w = 0;
+}
+
+void	init_inter(t_rt *rt, t_intersect inter[W_W][W_H])
+{
+	init_pixel(rt, inter);
+	init_rays(inter);
+}
+
+void	init_pixel(t_rt *rt, t_intersect inter[W_W][W_H])
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (i < W_W)
+	{
+		while (j++ < W_H)
+			pixel_raster_to_space(&inter[i][j], i, j, rt);
+		j = 0;
+		i++;
+	}
+}
+
+void	init_rays(t_intersect inter[W_W][W_H])
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (i < W_W)
+	{
+		while (j++ < W_H)
+		{
+			inter[i][j].ray.o.x = inter[i][j].pixel.x;
+			inter[i][j].ray.o.y = inter[i][j].pixel.y;
+			inter[i][j].ray.o.z = inter[i][j].pixel.z;
+			inter[i][j].ray.o.w = 1;
+			inter[i][j].ray.d.x = inter[i][j].pixel.x;
+			inter[i][j].ray.d.y = inter[i][j].pixel.y;
+			inter[i][j].ray.d.z = inter[i][j].pixel.z;
+			inter[i][j].ray.d.x = 0;
+		}
+		j = 0;
+		i++;
+	}
+}
+
+//	Pour l'instant que si C est a l'origine et le plan sur le point (0, 0, 1)
+void	pixel_raster_to_space(t_intersect *i, int x, int y, t_rt *rt)
+{
+	i->pixel.x = (x + 0.5) / W_W;
+	i->pixel.y = (y + 0.5) / W_H;
+	if (i->pixel.x > 0.5)
+		i->pixel.x = 2 * i->pixel.x - 1;
+	else
+		i->pixel.x = 1 - 2 * i->pixel.x;
+	if (i->pixel.y > 0.5)
+		i->pixel.y = 2 * i->pixel.y - 1;
+	else
+		i->pixel.y = 1 - 2 * i->pixel.y;
+	i->pixel.x = (2 * i->pixel.x - 1) * W_W / W_H * tan(rt->scn.cam.FOV / 2);	
+	i->pixel.y = (2 * i->pixel.y - 1) * tan(rt->scn.can.FOV/2);	
+	i->pixel.z = -1;
+	i->pixel.w = 1;
 }
