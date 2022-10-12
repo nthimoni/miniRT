@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:08:02 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/10 19:11:19 by nthimoni         ###   ########.fr       */
+/*   Updated: 2022/10/11 17:35:22 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,38 +18,37 @@
 
 typedef enum e_otype
 {
+	NONE = 0,
+	AMBIANT,
 	CAMERA,
 	SPHERE,
 	PLAN,
-	CYLINDRE
+	CYLINDRE,
+	LIGHT
 }	t_otype;
-
-typedef struct s_light
-{
-	int		color;
-	float	ratio;
-	t_tuple	postion;
-}	t_light;
 
 typedef struct s_obj
 {
 	t_otype	type;
-	t_tuple	postion;
-	t_tuple	orientation;
-	float	diameter;
+	t_tuple	o;
+	t_tuple	d;
+	float	diam;
 	float	height;
 	int		FOV;
 	int		color;
+	float	ratio;
 }	t_obj;
 
 typedef struct s_scene
 {
-	t_light ambiant;
-	t_obj	camera;
-	t_list	*lights;
+	t_obj amb;
+	t_obj	cam;
+	t_list	*light;
 	t_list	*objs;
 }	t_scene;
 
 void	void_parsing(char *file, t_scene *scene);
+int 	ft_strslen(char **sp);
+t_obj	*creat_obj(t_otype type);
 
 #endif 
