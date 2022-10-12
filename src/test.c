@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 12:56:21 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/11 13:01:34 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/12 13:21:26 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,7 @@ void	test3(t_rt *rt)
 	print_matrix_4(m3, "m3");
 	ret = det_matrix_4(m3);
 	printf("Det m3 = %lf\n", ret);
-	identity_matrix_m4(m3);
+	identity_matrix_4(m3);
 	print_matrix_4(m3, "m3");
 	invert_matrix_4(m3, m6);
 	print_matrix_4(m6, "m4");
@@ -174,15 +174,15 @@ void	test4(t_rt *rt)
 	int		i;
 
 	pos = create_tuple(arr1);
-	trans_mat_4(m_trans, 0, 300, 0);
-	mult_tuple_mat_4(&pos, m_trans, pos);
+	trans_matrix_4(m_trans, 0, 300, 0);
+	mult_tuple_matrix_4(&pos, m_trans, pos);
 	angle = 30 * M_PI / 180;
 	i = 0;
 	while (i < 12)
 	{
 		print_point_test4(rt, pos);
-		rot_z_mat_4(m_rotate, angle);
-		mult_tuple_mat_4(&pos, m_rotate, pos);
+		rot_z_matrix_4(m_rotate, angle);
+		mult_tuple_matrix_4(&pos, m_rotate, pos);
 		i++;
 	}
 }

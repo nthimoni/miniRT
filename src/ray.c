@@ -6,12 +6,15 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:13:15 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/11 16:45:58 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/12 13:29:33 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 #include "ray.h"
+#include "matrix.h"
+#include "transformations.h"
+#include "print.h"
 
 void	create_ray(t_ray *new, t_tuple p, t_tuple v)
 {
@@ -55,6 +58,26 @@ void	init_pixel(t_rt *rt, t_intersect inter[W_W][W_H])
 	}
 }
 
+void	world_to_camera(t_rt *rt)
+{
+	t_u	rot_y;
+	t_u	rot_z;
+	t_u	rot_y_m4[4][4];
+	t_u	rot_z_m4[4][4];
+	t_u	trans_m4[4][4];
+	t_u	tmp[4][4];
+
+	rot_y = M_PI - atan(rt->cam_d.x / rt->cam_d.z);
+	rot_z = atan(rt->cam_d.y / rt->cam_d.x);
+	identity_matrix_4(rt->wtoc_m);
+	rot_y_matrix_4(rot_y_m4, rot_y);
+	rot_z_matrix_4(rot_z_m4, rot_z);
+	trans_matrix_4(trans_m4, rt->cam_o.x, rt->cam_o.y, rt->cam_o.z);
+	mult_matrix_4(tmp, rot_y_m4, rot_z_m4);
+	mult_matrix_4(rt->wtoc_m, trans_m4, tmp);
+	print_matrix_4(rt->wtoc_m, "wtoc");
+}
+
 void	init_rays(t_intersect inter[W_W][W_H])
 {
 	int	i;
@@ -93,8 +116,8 @@ void	pixel_raster_to_space(t_intersect *i, int x, int y, t_rt *rt)
 		i->pixel.y = 2 * i->pixel.y - 1;
 	else
 		i->pixel.y = 1 - 2 * i->pixel.y;
-	i->pixel.x = (2 * i->pixel.x - 1) * W_W / W_H * tan(rt->scn.cam.FOV / 2);	
-	i->pixel.y = (2 * i->pixel.y - 1) * tan(rt->scn.can.FOV/2);	
+	i->pixel.x = (2 * i->pixel.x - 1) * W_W / W_H * tan(rt->angle / 2);	
+	i->pixel.y = (2 * i->pixel.y - 1) * tan(rt->angle / 2);	
 	i->pixel.z = -1;
 	i->pixel.w = 1;
 }

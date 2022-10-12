@@ -237,6 +237,7 @@ all	minilibx-linux/Makefile	/^all	: do_configure$/;"	t
 all	minilibx-linux/Makefile.mk	/^all	: $(NAME)$/;"	t
 all	minilibx-linux/test/Makefile.mk	/^all: $(NAME)$/;"	t
 ambiant	include/parsing.h	/^	t_light ambiant;$/;"	m	struct:s_scene	typeref:typename:t_light
+angle	include/miniRT.h	/^	t_u		angle;$/;"	m	struct:s_rt	typeref:typename:t_u
 at_exit	minilibx-linux/test/run_tests.sh	/^at_exit() {$/;"	f
 b	include/matrix.h	/^	int	b;$/;"	m	struct:s_matrix_index	typeref:typename:int
 bound_str_size	libft/src/extra/ft_printf/print_s.c	/^static int	bound_str_size(const char *str, int max)$/;"	f	typeref:typename:int	file:
@@ -247,6 +248,8 @@ bpp2	minilibx-linux/test/main.c	/^int	bpp2;$/;"	v	typeref:typename:int
 bpp3	minilibx-linux/test/main.c	/^int	bpp3;$/;"	v	typeref:typename:int
 bpp4	minilibx-linux/test/main.c	/^int	bpp4;$/;"	v	typeref:typename:int
 c	include/matrix.h	/^	int	c;$/;"	m	struct:s_matrix_index	typeref:typename:int
+cam_d	include/miniRT.h	/^	t_tuple	cam_d;$/;"	m	struct:s_rt	typeref:typename:t_tuple
+cam_o	include/miniRT.h	/^	t_tuple	cam_o;$/;"	m	struct:s_rt	typeref:typename:t_tuple
 camera	include/parsing.h	/^	t_obj	camera;$/;"	m	struct:s_scene	typeref:typename:t_obj
 check	minilibx-linux/Makefile.mk	/^check: all$/;"	t
 clean	Makefile	/^clean:$/;"	t
@@ -287,6 +290,7 @@ create_tuple	src/vector.c	/^t_tuple	create_tuple(t_u *array)$/;"	f	typeref:typen
 create_tuple_copy	src/vector.c	/^t_tuple	create_tuple_copy(t_tuple t)$/;"	f	typeref:typename:t_tuple
 create_v3	src/vector.c	/^t_tuple	create_v3(t_tuple p1, t_tuple p2)$/;"	f	typeref:typename:t_tuple
 cross_product_v3	src/vector.c	/^t_tuple	cross_product_v3(t_tuple v1, t_tuple v2)$/;"	f	typeref:typename:t_tuple
+ctow_m	include/miniRT.h	/^	t_u		ctow_m[4][4];$/;"	m	struct:s_rt	typeref:typename:t_u[4][4]
 d	include/matrix.h	/^	int	d;$/;"	m	struct:s_matrix_index	typeref:typename:int
 d	include/miniRT.h	/^	t_tuple	d;$/;"	m	struct:s_ray	typeref:typename:t_tuple
 data	minilibx-linux/mlx_int.h	/^	char			*data;$/;"	m	struct:s_img	typeref:typename:char *
@@ -414,7 +418,7 @@ hook	minilibx-linux/mlx_int.h	/^	int		(*hook)();$/;"	m	struct:s_event_list	typer
 hooks	minilibx-linux/mlx_int.h	/^	t_event_list		hooks[MLX_MAX_EVENT];$/;"	m	struct:s_win_list	typeref:typename:t_event_list[]
 i1	include/miniRT.h	/^	t_tuple	i1;$/;"	m	struct:s_intersect	typeref:typename:t_tuple
 i2	include/miniRT.h	/^	t_tuple	i2;$/;"	m	struct:s_intersect	typeref:typename:t_tuple
-identity_matrix_m4	src/matrix.c	/^void	identity_matrix_m4(t_u new[4][4])$/;"	f	typeref:typename:void
+identity_matrix_4	src/matrix.c	/^void	identity_matrix_4(t_u new[4][4])$/;"	f	typeref:typename:void
 im1	minilibx-linux/test/main.c	/^void    *im1;$/;"	v	typeref:typename:void *
 im2	minilibx-linux/test/main.c	/^void	*im2;$/;"	v	typeref:typename:void *
 im3	minilibx-linux/test/main.c	/^void	*im3;$/;"	v	typeref:typename:void *
@@ -538,7 +542,7 @@ mouse_win1	minilibx-linux/test/main.c	/^int	mouse_win1(int button,int x,int y, v
 mouse_win2	minilibx-linux/test/main.c	/^int	mouse_win2(int button,int x,int y, void *p)$/;"	f	typeref:typename:int
 mouse_win3	minilibx-linux/test/main.c	/^int	mouse_win3(int x,int y, void *p)$/;"	f	typeref:typename:int
 mult_matrix_4	src/matrix.c	/^void	mult_matrix_4(t_u new[4][4], t_u m1[4][4], t_u m2[4][4])$/;"	f	typeref:typename:void
-mult_tuple_mat_4	src/transformations.c	/^void	mult_tuple_mat_4(t_tuple *new, t_u m[4][4], t_tuple t)$/;"	f	typeref:typename:void
+mult_tuple_matrix_4	src/transformations.c	/^void	mult_tuple_matrix_4(t_tuple *new, t_u m[4][4], t_tuple t)$/;"	f	typeref:typename:void
 my_mlx_pixel_put	src/image.c	/^void	my_mlx_pixel_put(t_rt *rt, int x, int y, int color)$/;"	f	typeref:typename:void
 name	minilibx-linux/mlx_int.h	/^	char	*name;$/;"	m	struct:s_col_name	typeref:typename:char *
 name	minilibx-linux/mlx_int.h	/^	int		name;$/;"	m	struct:s_xpm_col	typeref:typename:int
@@ -597,9 +601,9 @@ red_cross	src/hook.c	/^int	red_cross(t_rt *rt)$/;"	f	typeref:typename:int
 reg_dot	libft/src/extra/ft_printf/print_di.c	/^void	reg_dot(t_flags *flags, size_t len)$/;"	f	typeref:typename:void
 render_next_frame	src/image.c	/^int	render_next_frame(t_rt *rt)$/;"	f	typeref:typename:int
 root	minilibx-linux/mlx_int.h	/^	Window		root;$/;"	m	struct:s_xvar	typeref:typename:Window
-rot_x_mat_4	src/transformations.c	/^void	rot_x_mat_4(t_u m[4][4], t_u angle)$/;"	f	typeref:typename:void
-rot_y_mat_4	src/transformations.c	/^void	rot_y_mat_4(t_u m[4][4], t_u angle)$/;"	f	typeref:typename:void
-rot_z_mat_4	src/transformations.c	/^void	rot_z_mat_4(t_u m[4][4], t_u angle)$/;"	f	typeref:typename:void
+rot_x_matrix_4	src/transformations.c	/^void	rot_x_matrix_4(t_u m[4][4], t_u angle)$/;"	f	typeref:typename:void
+rot_y_matrix_4	src/transformations.c	/^void	rot_y_matrix_4(t_u m[4][4], t_u angle)$/;"	f	typeref:typename:void
+rot_z_matrix_4	src/transformations.c	/^void	rot_z_matrix_4(t_u m[4][4], t_u angle)$/;"	f	typeref:typename:void
 run	Makefile	/^run:$/;"	t
 s_col_name	minilibx-linux/mlx_int.h	/^struct	s_col_name$/;"	s
 s_event_list	minilibx-linux/mlx_int.h	/^typedef struct	s_event_list$/;"	s
@@ -620,10 +624,10 @@ s_win_list	minilibx-linux/mlx_int.h	/^typedef struct	s_win_list$/;"	s
 s_xpm_col	minilibx-linux/mlx_int.h	/^typedef	struct	s_xpm_col$/;"	s
 s_xvar	minilibx-linux/mlx_int.h	/^typedef struct	s_xvar$/;"	s
 saved_mode	minilibx-linux/mlx_ext_randr.c	/^RRMode	saved_mode = 0;$/;"	v	typeref:typename:RRMode
-scale_mat_4	src/transformations.c	/^void	scale_mat_4(t_u m[4][4], t_u x, t_u y, t_u z)$/;"	f	typeref:typename:void
+scale_matrix_4	src/transformations.c	/^void	scale_matrix_4(t_u m[4][4], t_u x, t_u y, t_u z)$/;"	f	typeref:typename:void
 scale_v3	src/vector.c	/^void	scale_v3(t_tuple v1, t_u s)$/;"	f	typeref:typename:void
 screen	minilibx-linux/mlx_int.h	/^	int			screen;$/;"	m	struct:s_xvar	typeref:typename:int
-shearing_mat_4	src/transformations.c	/^void	shearing_mat_4(t_u m[4][4], t_u shearing[6])$/;"	f	typeref:typename:void
+shearing_matrix_4	src/transformations.c	/^void	shearing_matrix_4(t_u m[4][4], t_u shearing[6])$/;"	f	typeref:typename:void
 shm	minilibx-linux/mlx_int.h	/^	XShmSegmentInfo	shm;$/;"	m	struct:s_img	typeref:typename:XShmSegmentInfo
 shm_att_pb	minilibx-linux/mlx_new_image.c	/^int	shm_att_pb(Display *d,XErrorEvent *ev)$/;"	f	typeref:typename:int
 show	minilibx-linux/Makefile.mk	/^show:$/;"	t
@@ -670,7 +674,7 @@ test3	src/test.c	/^void	test3(t_rt *rt)$/;"	f	typeref:typename:void
 test4	src/test.c	/^void	test4(t_rt *rt)$/;"	f	typeref:typename:void
 test_default_main	minilibx-linux/test/run_tests.sh	/^test_default_main(){$/;"	f
 tick_environment	src/test.c	/^t_proj	tick_environment(t_proj proj, t_tuple gravity, t_tuple wind)$/;"	f	typeref:typename:t_proj
-trans_mat_4	src/transformations.c	/^void	trans_mat_4(t_u m[4][4], t_u x, t_u y, t_u z)$/;"	f	typeref:typename:void
+trans_matrix_4	src/transformations.c	/^void	trans_matrix_4(t_u m[4][4], t_u x, t_u y, t_u z)$/;"	f	typeref:typename:void
 transpose_matrix_4	src/matrix.c	/^void	transpose_matrix_4(t_u m[4][4], t_u new[4][4])$/;"	f	typeref:typename:void
 trash	include/miniRT.h	/^	t_list	*trash;$/;"	m	struct:s_rt	typeref:typename:t_list *
 type	include/parsing.h	/^	t_otype	type;$/;"	m	struct:s_obj	typeref:typename:t_otype
@@ -695,8 +699,10 @@ win_list	minilibx-linux/mlx_int.h	/^	t_win_list	*win_list;$/;"	m	struct:s_xvar	t
 window	minilibx-linux/mlx_int.h	/^	Window				window;$/;"	m	struct:s_win_list	typeref:typename:Window
 wm_delete_window	minilibx-linux/mlx_int.h	/^	Atom		wm_delete_window;$/;"	m	struct:s_xvar	typeref:typename:Atom
 wm_protocols	minilibx-linux/mlx_int.h	/^	Atom		wm_protocols;$/;"	m	struct:s_xvar	typeref:typename:Atom
+world_to_camera	src/ray.c	/^void	world_to_camera(t_rt *rt)$/;"	f	typeref:typename:void
 wrdcnt	libft/src/mandatory/ft_split.c	/^static	int	wrdcnt(char const *s, char c)$/;"	f	typeref:typename:int	file:
 write_buf	libft/src/extra/ft_printf/write_buf.c	/^int	write_buf(const char *str, size_t len)$/;"	f	typeref:typename:int
+wtoc_m	include/miniRT.h	/^	t_u		wtoc_m[4][4];$/;"	m	struct:s_rt	typeref:typename:t_u[4][4]
 x	include/miniRT.h	/^	int		x;$/;"	m	struct:s_img	typeref:typename:int
 x	include/miniRT.h	/^	t_u	x;$/;"	m	struct:s_tuple	typeref:typename:t_u
 xpm1_x	minilibx-linux/test/main.c	/^int	xpm1_x;$/;"	v	typeref:typename:int
