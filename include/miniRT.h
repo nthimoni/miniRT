@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 16:18:25 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/12 14:10:55 by nthimoni         ###   ########.fr       */
+/*   Updated: 2022/10/12 14:16:16 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,15 @@
 # include <stdio.h>
 # include <mlx.h>
 
-#include "parsing.h"
+typedef double	t_u;
+
+typedef struct	s_tuple
+{
+	t_u	x;
+	t_u	y;
+	t_u	z;
+	t_u	w;
+}	t_tuple;
 
 typedef struct	s_img
 {
@@ -34,6 +42,7 @@ typedef struct	s_img
 	int		y;
 }	t_img;
 
+#include "parsing.h"
 
 typedef struct	s_rt
 {
@@ -44,15 +53,6 @@ typedef struct	s_rt
 	t_scene	scn;
 }	t_rt;
 
-typedef double	t_u;
-
-typedef struct	s_tuple
-{
-	t_u	x;
-	t_u	y;
-	t_u	z;
-	t_u	w;
-}	t_tuple;
 
 typedef	enum	e_bool
 {
