@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 16:18:25 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/12 13:28:44 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/12 15:17:18 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define W_W 1920
 # define W_H 1080
 
-# include	"libft.h"
+# include "libft.h"
 # include <math.h>
 # include <stdio.h>
 # include <mlx.h>
@@ -42,6 +42,8 @@ typedef struct	s_img
 	int		y;
 }	t_img;
 
+#include "parsing.h"
+
 typedef struct	s_rt
 {
 	t_list	*trash;
@@ -53,6 +55,7 @@ typedef struct	s_rt
 	t_tuple	cam_o;
 	t_tuple	cam_d;
 	t_u		angle;
+	t_scene	scn;
 }	t_rt;
 
 typedef	enum	e_bool
