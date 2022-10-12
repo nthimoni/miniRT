@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/03 18:10:50 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/11 14:28:56 by nthimoni         ###   ########.fr       */
+/*   Created: 2022/10/11 14:23:51 by nthimoni          #+#    #+#             */
+/*   Updated: 2022/10/11 16:53:46 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H 
+#include "parsing.h"
 
-# define BAD_ALLOC 1
-# define BAD_ALLOC_MSG "Malloc Failed!\n"
+int ft_strslen(char **sp)
+{
+	int	i;
 
-# define OPEN_FAILED 2
-# define OPEN_FAILED_MSG "Failed to open your file!\n"
+	i = 0;
+	while (sp[i])
+		i++;
+	return (i);
+}
 
-# define PARSE_ERROR 3
-# define PARSE_ERROR_MSG "Parse error!"
+t_obj	*creat_obj(t_otype type)
+{
+	t_obj *ret;
 
-#endif 
+	ret = malloc(sizeof(t_obj));
+	if (!ret)
+		return (NULL);
+	ret->type = type;
+	return (ret);
+}
