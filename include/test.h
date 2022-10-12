@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 13:02:04 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/10 22:48:04 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/12 16:32:55 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_proj		tick_environment(t_proj proj, t_tuple gravity, t_tuple wind);
 void		test3(t_rt *rt);
 void		test4(t_rt *rt);
 void		print_point_test4(t_rt *rt, t_tuple pos);
+void		test_world_matrix(t_rt *rt);
 
 
 #endif 

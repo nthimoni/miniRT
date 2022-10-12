@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 22:14:48 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/10 22:51:49 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/12 15:19:27 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ void	clear_image(t_rt *rt)
 			&rt->img->line_lgth, &rt->img->endian);*/
 	// Fonction pour dessiner la scene sur le raster space (l'ecran) a mettre en dessous
 	// Ex : draw_scene(t_rt *rt);
-	test2(rt);
-	test4(rt);
+	//test2(rt);
+	//test4(rt);
 	mlx_put_image_to_window(rt->mlx, rt->win, rt->img->img,
 		rt->img->x, rt->img->y);
 }

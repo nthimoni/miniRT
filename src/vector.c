@@ -6,12 +6,13 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 14:53:04 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/10 20:57:25 by nthimoni         ###   ########.fr       */
+/*   Updated: 2022/10/12 18:01:14 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
 #include "exit_rt.h"
+#include "print.h"
 
 // Malloc les vecteurs et les add to trashi, utiliser des pointeurs
 
@@ -92,11 +93,11 @@ t_tuple	neg_tupple(t_tuple t)
 	return (new);
 }
 
-void	scale_v3(t_tuple v1, t_u s)
+void	scale_v3(t_tuple *v1, t_u s)
 {
-	v1.x *= s;
-	v1.y *= s;
-	v1.z *= s;
+	v1->x *= s;
+	v1->y *= s;
+	v1->z *= s;
 }
 
 t_u	length_v3(t_tuple v)
@@ -112,13 +113,16 @@ t_u	length_v3(t_tuple v)
 	return (d);
 }
 
-t_tuple	norm_v3(t_tuple v)
+void	norm_v3(t_tuple *v)
 {
-	t_tuple	new;
+	t_u	l;
 
-	ft_bzero(&new, sizeof(t_tuple));
-	scale_v3(new, 1 / length_v3(v));
-	return (new);
+	l = length_v3(*v);
+	if (!l)
+		return ;
+	v->x /= l;
+	v->y /= l;
+	v->z /= l;
 }
 
 t_u	dot_product_v3(t_tuple v1, t_tuple v2)

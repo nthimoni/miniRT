@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 12:56:21 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/12 13:21:26 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/12 17:47:01 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	test(t_rt *rt)
 	v3 = create_tuple(arr5);
 	v4 = create_tuple(arr6);
 	v5 = cross_product_v3(v3, v4);
-	v6 = norm_v3(v3);
+	norm_v3(&v3);
 	print_tuple(&p1, "p1");
 	print_tuple(&p2, "p2");
 	print_tuple(&p3, "p3");
@@ -210,4 +210,40 @@ void	print_point_test4(t_rt *rt, t_tuple pos)
 		j++;
 		k = -4;
 	}
+}
+
+void	test_world_matrix(t_rt *rt)
+{
+	t_tuple	cam_d_base;
+	t_tuple	cam_o_base;
+
+	cam_d_base.x = 0;
+	cam_d_base.y = 0;
+	cam_d_base.z = -1;
+	cam_d_base.w = 0;
+	cam_o_base.x = 0;
+	cam_o_base.y = 0;
+	cam_o_base.z = 0;
+	cam_o_base.w = 1;
+	print_matrix_4(rt->wtoc_m, "wtoc");
+	print_matrix_4(rt->ctow_m, "ctow");
+	print_tuple(&rt->cam_d, "cam_d");
+	mult_tuple_matrix_4(&rt->cam_d, rt->ctow_m, rt->cam_d);
+	print_tuple(&rt->cam_d, "cam_d after * ctoc");
+	mult_tuple_matrix_4(&rt->cam_d, rt->wtoc_m, rt->cam_d);
+	print_tuple(&rt->cam_d, "cam_d after * wtoc");
+	norm_v3(&rt->cam_d);
+	print_tuple(&rt->cam_d, "cam_d after norm");
+	print_tuple(&cam_d_base, "cam_d_base");
+	mult_tuple_matrix_4(&cam_d_base, rt->ctow_m, cam_d_base);
+	print_tuple(&cam_d_base, "cam_d_base * ctow");
+	norm_v3(&cam_d_base);
+	print_tuple(&cam_d_base, "cam_d after norm");
+	mult_tuple_matrix_4(&cam_d_base, rt->wtoc_m, cam_d_base);
+	print_tuple(&cam_d_base, "cam_d_base * wtoc");
+	print_tuple(&cam_o_base, "cam_o_base");
+	mult_tuple_matrix_4(&cam_o_base, rt->ctow_m, cam_o_base);
+	print_tuple(&cam_o_base, "cam_o_base * ctow");
+	mult_tuple_matrix_4(&cam_o_base, rt->wtoc_m, cam_o_base);
+	print_tuple(&cam_o_base, "cam_o_base * wtoc");
 }
