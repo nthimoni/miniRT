@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:13:15 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/12 13:29:33 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/12 18:13:02 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include "matrix.h"
 #include "transformations.h"
 #include "print.h"
+#include "test.h"
+#include "vector.h"
 
 void	create_ray(t_ray *new, t_tuple p, t_tuple v)
 {
@@ -38,8 +40,9 @@ void	position(t_tuple *new, t_ray r, t_tuple p)
 
 void	init_inter(t_rt *rt, t_intersect inter[W_W][W_H])
 {
+	world_to_camera(rt);
 	init_pixel(rt, inter);
-	init_rays(inter);
+	init_rays(inter, rt);
 }
 
 void	init_pixel(t_rt *rt, t_intersect inter[W_W][W_H])
@@ -69,16 +72,16 @@ void	world_to_camera(t_rt *rt)
 
 	rot_y = M_PI - atan(rt->cam_d.x / rt->cam_d.z);
 	rot_z = atan(rt->cam_d.y / rt->cam_d.x);
-	identity_matrix_4(rt->wtoc_m);
-	rot_y_matrix_4(rot_y_m4, rot_y);
+	rot_y_matrix_4(rot_y_m4, - rot_y);
 	rot_z_matrix_4(rot_z_m4, rot_z);
 	trans_matrix_4(trans_m4, rt->cam_o.x, rt->cam_o.y, rt->cam_o.z);
-	mult_matrix_4(tmp, rot_y_m4, rot_z_m4);
-	mult_matrix_4(rt->wtoc_m, trans_m4, tmp);
-	print_matrix_4(rt->wtoc_m, "wtoc");
+	mult_matrix_4(tmp, rot_z_m4, rot_y_m4);
+	mult_matrix_4(rt->ctow_m, trans_m4, tmp);
+	invert_matrix_4(rt->ctow_m, rt->wtoc_m);
+	test_world_matrix(rt);
 }
 
-void	init_rays(t_intersect inter[W_W][W_H])
+void	init_rays(t_intersect inter[W_W][W_H], t_rt *rt)
 {
 	int	i;
 	int	j;
@@ -97,6 +100,10 @@ void	init_rays(t_intersect inter[W_W][W_H])
 			inter[i][j].ray.d.y = inter[i][j].pixel.y;
 			inter[i][j].ray.d.z = inter[i][j].pixel.z;
 			inter[i][j].ray.d.x = 0;
+			mult_tuple_matrix_4(&inter[i][j].ray.o, rt->ctow_m, inter[i][j].ray.o);
+			mult_tuple_matrix_4(&inter[i][j].ray.d, rt->ctow_m, inter[i][j].ray.d);
+			norm_v3(&inter[i][j].ray.d);
+			print_tuple(&inter[i][j].ray.d, "Pix_d");
 		}
 		j = 0;
 		i++;

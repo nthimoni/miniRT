@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 12:38:44 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/12 13:30:00 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/12 17:20:27 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,8 @@ t_rt	*init_rt(void)
 	rt->cam_d.x = 1;
 	rt->cam_d.y = 1;
 	rt->cam_d.z = 1;
-	rt->cam_d.w = 1;
-	rt->angle = 70/180* M_PI;
-	printf("img->adr = %p\n", rt->img->addr);
+	rt->cam_d.w = 0;
+	rt->angle = 70 / 180 * M_PI;
 	mlx_hook(rt->win, 17, 1<<17, red_cross, rt);
 	mlx_hook(rt->win, 2, 1L << 0, key_hook, rt);
 	return (rt);

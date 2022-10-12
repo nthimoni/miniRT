@@ -81,12 +81,14 @@ DESCRIPTION	minilibx-linux/man/man3/mlx_new_window.3	/^.SH DESCRIPTION$/;"	s	tit
 DESCRIPTION	minilibx-linux/man/man3/mlx_pixel_put.3	/^.SH DESCRIPTION$/;"	s	title:MiniLibX
 ENV_DISPLAY	minilibx-linux/mlx_int.h	/^# define ENV_DISPLAY /;"	d
 EOF	minilibx-linux/configure	/^cat <<EOF$/;"	h
+EPS	include/miniRT.h	/^# define EPS /;"	d
 ERROR_H	include/error.h	/^# define ERROR_H /;"	d
 ERR_NO_TRUECOLOR	minilibx-linux/mlx_int.h	/^# define ERR_NO_TRUECOLOR /;"	d
 EXIT_RT_H	include/exit_rt.h	/^# define EXIT_RT_H /;"	d
 EXTDIR	libft/Makefile	/^EXTDIR = extra\/$/;"	m
 EXTFILES	libft/Makefile	/^EXTFILES = get_next_line.c\\$/;"	m
 EXTOBJ	libft/Makefile	/^EXTOBJ = $(addprefix $(OBJDIR), $(addprefix $(EXTDIR), $(EXTFILES:.c=.o)))$/;"	m
+FALSE	include/miniRT.h	/^	FALSE,$/;"	e	enum:e_bool
 FOV	include/parsing.h	/^	int		FOV;$/;"	m	struct:s_obj	typeref:typename:int
 FTINC	Makefile	/^FTINC = $(FTPATH)include\/$/;"	m
 FTPATH	Makefile	/^FTPATH = libft\/$/;"	m
@@ -215,6 +217,7 @@ SYNOPSYS	minilibx-linux/man/man3/mlx_pixel_put.3	/^.SH SYNOPSYS$/;"	s	title:Mini
 TEST_H	include/test.h	/^#define TEST_H /;"	d
 TRANSFORMATIONS_H	include/transformations.h	/^#define TRANSFORMATIONS_H /;"	d
 TRASH_H	include/trash.h	/^# define TRASH_H /;"	d
+TRUE	include/miniRT.h	/^	TRUE,$/;"	e	enum:e_bool
 UNAME	minilibx-linux/Makefile.mk	/^UNAME = $(shell uname)$/;"	m
 UNAME	minilibx-linux/test/Makefile.mk	/^UNAME := $(shell uname)$/;"	m
 VAL	Makefile	/^VAL = valgrind --leak-check=full .\/$(NAME)$/;"	m
@@ -298,6 +301,7 @@ create_v3	src/vector.c	/^t_tuple	create_v3(t_tuple p1, t_tuple p2)$/;"	f	typeref
 cross_product_v3	src/vector.c	/^t_tuple	cross_product_v3(t_tuple v1, t_tuple v2)$/;"	f	typeref:typename:t_tuple
 ctow_m	include/miniRT.h	/^	t_u		ctow_m[4][4];$/;"	m	struct:s_rt	typeref:typename:t_u[4][4]
 d	include/matrix.h	/^	int	d;$/;"	m	struct:s_matrix_index	typeref:typename:int
+d	include/miniRT.h	/^	t_tuple	d;$/;"	m	struct:s_ray	typeref:typename:t_tuple
 d	include/parsing.h	/^	t_tuple	d;$/;"	m	struct:s_obj	typeref:typename:t_tuple
 data	minilibx-linux/mlx_int.h	/^	char			*data;$/;"	m	struct:s_img	typeref:typename:char *
 data1	minilibx-linux/test/main.c	/^char	*data1;$/;"	v	typeref:typename:char *
@@ -329,6 +333,7 @@ do_configure	minilibx-linux/Makefile	/^do_configure	:$/;"	t
 do_flush	minilibx-linux/mlx_int.h	/^	int			do_flush;$/;"	m	struct:s_xvar	typeref:typename:int
 dot	libft/include/include_imp/parse_flags.h	/^	int		dot;$/;"	m	struct:s_flags	typeref:typename:int
 dot_product_v3	src/vector.c	/^t_u	dot_product_v3(t_tuple v1, t_tuple v2)$/;"	f	typeref:typename:t_u
+e_bool	include/miniRT.h	/^typedef	enum	e_bool$/;"	g
 e_otype	include/parsing.h	/^typedef enum e_otype$/;"	g
 end_loop	minilibx-linux/mlx_int.h	/^	int 		end_loop;$/;"	m	struct:s_xvar	typeref:typename:int
 endian	include/miniRT.h	/^	int		endian;$/;"	m	struct:s_img	typeref:typename:int
@@ -426,6 +431,8 @@ height	include/parsing.h	/^	float	height;$/;"	m	struct:s_obj	typeref:typename:fl
 height	minilibx-linux/mlx_int.h	/^	int				height;$/;"	m	struct:s_img	typeref:typename:int
 hook	minilibx-linux/mlx_int.h	/^	int		(*hook)();$/;"	m	struct:s_event_list	typeref:typename:int (*)()
 hooks	minilibx-linux/mlx_int.h	/^	t_event_list		hooks[MLX_MAX_EVENT];$/;"	m	struct:s_win_list	typeref:typename:t_event_list[]
+i1	include/miniRT.h	/^	t_tuple	i1;$/;"	m	struct:s_intersect	typeref:typename:t_tuple
+i2	include/miniRT.h	/^	t_tuple	i2;$/;"	m	struct:s_intersect	typeref:typename:t_tuple
 identity_matrix_4	src/matrix.c	/^void	identity_matrix_4(t_u new[4][4])$/;"	f	typeref:typename:void
 im1	minilibx-linux/test/main.c	/^void    *im1;$/;"	v	typeref:typename:void *
 im2	minilibx-linux/test/main.c	/^void	*im2;$/;"	v	typeref:typename:void *
@@ -437,8 +444,9 @@ img	include/miniRT.h	/^	void	*img;$/;"	m	struct:s_img	typeref:typename:void *
 init_flags	libft/src/extra/ft_printf/ft_printf.c	/^static void	init_flags(t_flags *flags)$/;"	f	typeref:typename:void	file:
 init_inter	src/ray.c	/^void	init_inter(t_rt *rt, t_intersect inter[W_W][W_H])$/;"	f	typeref:typename:void
 init_pixel	src/ray.c	/^void	init_pixel(t_rt *rt, t_intersect inter[W_W][W_H])$/;"	f	typeref:typename:void
-init_rays	src/ray.c	/^void	init_rays(t_intersect inter[W_W][W_H])$/;"	f	typeref:typename:void
+init_rays	src/ray.c	/^void	init_rays(t_intersect inter[W_W][W_H], t_rt *rt)$/;"	f	typeref:typename:void
 init_rt	src/init.c	/^t_rt	*init_rt(void)$/;"	f	typeref:typename:t_rt *
+intersect	include/miniRT.h	/^	t_bool	intersect;$/;"	m	struct:s_intersect	typeref:typename:t_bool
 invert_matrix_4	src/matrix.c	/^void	invert_matrix_4(t_u m[4][4], t_u new[4][4])$/;"	f	typeref:typename:void
 isin	libft/src/mandatory/ft_strtrim.c	/^static	int	isin(char a, const char *str)$/;"	f	typeref:typename:int	file:
 key_hook	minilibx-linux/mlx_int.h	/^	int					(*key_hook)();$/;"	m	struct:s_win_list	typeref:typename:int (*)()
@@ -558,8 +566,9 @@ neg_tupple	src/vector.c	/^t_tuple	neg_tupple(t_tuple t)$/;"	f	typeref:typename:t
 newempty	libft/src/extra/get_next_line.c	/^static char	*newempty(void)$/;"	f	typeref:typename:char *	file:
 next	libft/include/libft.h	/^	struct s_list	*next;$/;"	m	struct:s_list	typeref:struct:s_list *
 next	minilibx-linux/mlx_int.h	/^	struct s_win_list	*next;$/;"	m	struct:s_win_list	typeref:struct:s_win_list *
-norm_v3	src/vector.c	/^t_tuple	norm_v3(t_tuple v)$/;"	f	typeref:typename:t_tuple
+norm_v3	src/vector.c	/^void	norm_v3(t_tuple *v)$/;"	f	typeref:typename:void
 null_str	libft/src/extra/ft_printf/print_s.c	/^static int	null_str(const char *str, t_flags *flags)$/;"	f	typeref:typename:int	file:
+o	include/miniRT.h	/^	t_tuple	o;$/;"	m	struct:s_ray	typeref:typename:t_tuple
 o	include/parsing.h	/^	t_tuple	o;$/;"	m	struct:s_obj	typeref:typename:t_tuple
 objs	include/parsing.h	/^	t_list	*objs;$/;"	m	struct:s_scene	typeref:typename:t_list *
 param	minilibx-linux/mlx_int.h	/^	void	*param;$/;"	m	struct:s_event_list	typeref:typename:void *
@@ -568,6 +577,7 @@ parse_args	minilibx-linux/configure	/^parse_args(){$/;"	f
 parse_flags	libft/src/extra/ft_printf/parse_flags.c	/^const char	*parse_flags(const char *str, t_flags *flags)$/;"	f	typeref:typename:const char *
 parsing	src/parsing.c	/^void	parsing(t_rt *rt, char *file, t_scene *scene)$/;"	f	typeref:typename:void
 pix	minilibx-linux/mlx_int.h	/^	Pixmap			pix;$/;"	m	struct:s_img	typeref:typename:Pixmap
+pixel	include/miniRT.h	/^	t_tuple	pixel;$/;"	m	struct:s_intersect	typeref:typename:t_tuple
 pixel_raster_to_space	src/ray.c	/^void	pixel_raster_to_space(t_intersect *i, int x, int y, t_rt *rt)$/;"	f	typeref:typename:void
 plus	libft/include/include_imp/parse_flags.h	/^	int		plus;$/;"	m	struct:s_flags	typeref:typename:int
 position	include/test.h	/^	t_tuple	position;$/;"	m	struct:s_proj	typeref:typename:t_tuple
@@ -593,6 +603,7 @@ private_cmap	minilibx-linux/mlx_int.h	/^	int			private_cmap;$/;"	m	struct:s_xvar
 process_dot	libft/src/extra/ft_printf/parse_flags.c	/^static void	process_dot(t_flags *flags)$/;"	f	typeref:typename:void	file:
 pshm_format	minilibx-linux/mlx_int.h	/^	int			pshm_format;$/;"	m	struct:s_xvar	typeref:typename:int
 ratio	include/parsing.h	/^	float	ratio;$/;"	m	struct:s_obj	typeref:typename:float
+ray	include/miniRT.h	/^	t_ray	ray;$/;"	m	struct:s_intersect	typeref:typename:t_ray
 re	Makefile	/^re: fclean $(NAME) run$/;"	t
 re	libft/Makefile	/^re: fclean $(NAME)$/;"	t
 re	minilibx-linux/Makefile	/^re	: clean all$/;"	t
@@ -612,10 +623,12 @@ s_event_list	minilibx-linux/mlx_int.h	/^typedef struct	s_event_list$/;"	s
 s_flags	libft/include/include_imp/parse_flags.h	/^typedef struct s_flags$/;"	s
 s_img	include/miniRT.h	/^typedef struct	s_img$/;"	s
 s_img	minilibx-linux/mlx_int.h	/^typedef struct	s_img$/;"	s
+s_intersect	include/miniRT.h	/^typedef struct	s_intersect$/;"	s
 s_list	libft/include/libft.h	/^typedef struct s_list$/;"	s
 s_matrix_index	include/matrix.h	/^typedef struct	s_matrix_index$/;"	s
 s_obj	include/parsing.h	/^typedef struct s_obj$/;"	s
 s_proj	include/test.h	/^typedef struct	s_proj$/;"	s
+s_ray	include/miniRT.h	/^typedef struct	s_ray$/;"	s
 s_rt	include/miniRT.h	/^typedef struct	s_rt$/;"	s
 s_scene	include/parsing.h	/^typedef struct s_scene$/;"	s
 s_tuple	include/miniRT.h	/^typedef struct	s_tuple$/;"	s
@@ -624,7 +637,8 @@ s_xpm_col	minilibx-linux/mlx_int.h	/^typedef	struct	s_xpm_col$/;"	s
 s_xvar	minilibx-linux/mlx_int.h	/^typedef struct	s_xvar$/;"	s
 saved_mode	minilibx-linux/mlx_ext_randr.c	/^RRMode	saved_mode = 0;$/;"	v	typeref:typename:RRMode
 scale_matrix_4	src/transformations.c	/^void	scale_matrix_4(t_u m[4][4], t_u x, t_u y, t_u z)$/;"	f	typeref:typename:void
-scale_v3	src/vector.c	/^void	scale_v3(t_tuple v1, t_u s)$/;"	f	typeref:typename:void
+scale_v3	src/vector.c	/^void	scale_v3(t_tuple *v1, t_u s)$/;"	f	typeref:typename:void
+scn	include/miniRT.h	/^	t_scene	scn;$/;"	m	struct:s_rt	typeref:typename:t_scene
 screen	minilibx-linux/mlx_int.h	/^	int			screen;$/;"	m	struct:s_xvar	typeref:typename:int
 set_type	src/parsing.c	/^static int	set_type(char **sp, t_scene *scene, t_rt *rt)$/;"	f	typeref:typename:int	file:
 shearing_matrix_4	src/transformations.c	/^void	shearing_matrix_4(t_u m[4][4], t_u shearing[6])$/;"	f	typeref:typename:void
@@ -647,16 +661,19 @@ sub_matrix_3_1	src/matrix.c	/^void	sub_matrix_3_1(t_u m[3][3], t_u new[2][2], t_
 sub_matrix_4	src/matrix.c	/^void	sub_matrix_4(t_u m[4][4], int a, int b, t_u new[3][3])$/;"	f	typeref:typename:void
 sub_matrix_4_1	src/matrix.c	/^void	sub_matrix_4_1(t_u m[4][4], t_u new[3][3], t_matex i)$/;"	f	typeref:typename:void
 sub_tupple	src/vector.c	/^t_tuple	sub_tupple(t_tuple t1, t_tuple t2)$/;"	f	typeref:typename:t_tuple
+t_bool	include/miniRT.h	/^}	t_bool;$/;"	t	typeref:enum:e_bool
 t_content	libft/include/libft.h	/^typedef void*	t_content;$/;"	t	typeref:typename:void *
 t_event_list	minilibx-linux/mlx_int.h	/^}				t_event_list;$/;"	t	typeref:struct:s_event_list
 t_flags	libft/include/include_imp/parse_flags.h	/^}	t_flags;$/;"	t	typeref:struct:s_flags
 t_img	include/miniRT.h	/^}	t_img;$/;"	t	typeref:struct:s_img
 t_img	minilibx-linux/mlx_int.h	/^}				t_img;$/;"	t	typeref:struct:s_img
+t_intersect	include/miniRT.h	/^}	t_intersect;$/;"	t	typeref:struct:s_intersect
 t_list	libft/include/libft.h	/^}	t_list;$/;"	t	typeref:struct:s_list
 t_matex	include/matrix.h	/^}	t_matex;$/;"	t	typeref:struct:s_matrix_index
 t_obj	include/parsing.h	/^}	t_obj;$/;"	t	typeref:struct:s_obj
 t_otype	include/parsing.h	/^}	t_otype;$/;"	t	typeref:enum:e_otype
 t_proj	include/test.h	/^}	t_proj;$/;"	t	typeref:struct:s_proj
+t_ray	include/miniRT.h	/^}	t_ray;$/;"	t	typeref:struct:s_ray
 t_rt	include/miniRT.h	/^}	t_rt;$/;"	t	typeref:struct:s_rt
 t_scene	include/parsing.h	/^}	t_scene;$/;"	t	typeref:struct:s_scene
 t_tuple	include/miniRT.h	/^}	t_tuple;$/;"	t	typeref:struct:s_tuple
@@ -669,6 +686,7 @@ test2	src/test.c	/^void	test2(t_rt *rt)$/;"	f	typeref:typename:void
 test3	src/test.c	/^void	test3(t_rt *rt)$/;"	f	typeref:typename:void
 test4	src/test.c	/^void	test4(t_rt *rt)$/;"	f	typeref:typename:void
 test_default_main	minilibx-linux/test/run_tests.sh	/^test_default_main(){$/;"	f
+test_world_matrix	src/test.c	/^void	test_world_matrix(t_rt *rt)$/;"	f	typeref:typename:void
 tick_environment	src/test.c	/^t_proj	tick_environment(t_proj proj, t_tuple gravity, t_tuple wind)$/;"	f	typeref:typename:t_proj
 trans_matrix_4	src/transformations.c	/^void	trans_matrix_4(t_u m[4][4], t_u x, t_u y, t_u z)$/;"	f	typeref:typename:void
 transpose_matrix_4	src/matrix.c	/^void	transpose_matrix_4(t_u m[4][4], t_u new[4][4])$/;"	f	typeref:typename:void
@@ -698,6 +716,7 @@ wm_protocols	minilibx-linux/mlx_int.h	/^	Atom		wm_protocols;$/;"	m	struct:s_xvar
 world_to_camera	src/ray.c	/^void	world_to_camera(t_rt *rt)$/;"	f	typeref:typename:void
 wrdcnt	libft/src/mandatory/ft_split.c	/^static	int	wrdcnt(char const *s, char c)$/;"	f	typeref:typename:int	file:
 write_buf	libft/src/extra/ft_printf/write_buf.c	/^int	write_buf(const char *str, size_t len)$/;"	f	typeref:typename:int
+wtoc_m	include/miniRT.h	/^	t_u		wtoc_m[4][4];$/;"	m	struct:s_rt	typeref:typename:t_u[4][4]
 x	include/miniRT.h	/^	int		x;$/;"	m	struct:s_img	typeref:typename:int
 x	include/miniRT.h	/^	t_u	x;$/;"	m	struct:s_tuple	typeref:typename:t_u
 xpm1_x	minilibx-linux/test/main.c	/^int	xpm1_x;$/;"	v	typeref:typename:int
