@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 12:38:44 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/10 16:21:43 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/12 13:30:00 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,15 @@ t_rt	*init_rt(void)
 	rt->img->img = mlx_new_image(rt->mlx, W_W, W_H);
 	rt->img->addr = mlx_get_data_addr(rt->img->img, &rt->img->bpp,
 			&rt->img->line_lgth, &rt->img->endian);
+	rt->cam_o.x = 1;
+	rt->cam_o.y = 1;
+	rt->cam_o.z = 1;
+	rt->cam_o.w = 1;
+	rt->cam_d.x = 1;
+	rt->cam_d.y = 1;
+	rt->cam_d.z = 1;
+	rt->cam_d.w = 1;
+	rt->angle = 70/180* M_PI;
 	printf("img->adr = %p\n", rt->img->addr);
 	mlx_hook(rt->win, 17, 1<<17, red_cross, rt);
 	mlx_hook(rt->win, 2, 1L << 0, key_hook, rt);

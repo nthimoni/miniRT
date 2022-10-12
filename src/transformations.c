@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 20:48:24 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/10 23:21:35 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/12 12:14:31 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <math.h>
 #include "miniRT.h"
 
-void	trans_mat_4(t_u m[4][4], t_u x, t_u y, t_u z)
+void	trans_matrix_4(t_u m[4][4], t_u x, t_u y, t_u z)
 {
 	int	i;
 	int	j;
@@ -39,7 +39,7 @@ void	trans_mat_4(t_u m[4][4], t_u x, t_u y, t_u z)
 	m[2][3] = z;
 }
 
-void	scale_mat_4(t_u m[4][4], t_u x, t_u y, t_u z)
+void	scale_matrix_4(t_u m[4][4], t_u x, t_u y, t_u z)
 {
 	int	i;
 	int	j;
@@ -62,7 +62,7 @@ void	scale_mat_4(t_u m[4][4], t_u x, t_u y, t_u z)
 	m[3][3] = 1;
 }
 
-void	rot_x_mat_4(t_u m[4][4], t_u angle)
+void	rot_x_matrix_4(t_u m[4][4], t_u angle)
 {
 	int	i;
 	int	j;
@@ -87,7 +87,7 @@ void	rot_x_mat_4(t_u m[4][4], t_u angle)
 	m[3][3] = 1;
 }
 
-void	rot_y_mat_4(t_u m[4][4], t_u angle)
+void	rot_y_matrix_4(t_u m[4][4], t_u angle)
 {
 	int	i;
 	int	j;
@@ -112,7 +112,7 @@ void	rot_y_mat_4(t_u m[4][4], t_u angle)
 	m[3][3] = 1;
 }
 
-void	rot_z_mat_4(t_u m[4][4], t_u angle)
+void	rot_z_matrix_4(t_u m[4][4], t_u angle)
 {
 	int	i;
 	int	j;
@@ -137,7 +137,7 @@ void	rot_z_mat_4(t_u m[4][4], t_u angle)
 	m[3][3] = 1;
 }
 
-void	shearing_mat_4(t_u m[4][4], t_u shearing[6])
+void	shearing_matrix_4(t_u m[4][4], t_u shearing[6])
 {
 	int	i;
 	int	j;
@@ -165,7 +165,7 @@ void	shearing_mat_4(t_u m[4][4], t_u shearing[6])
 	m[2][1] = shearing[5];
 }
 
-void	mult_tuple_mat_4(t_tuple *new, t_u m[4][4], t_tuple t)
+void	mult_tuple_matrix_4(t_tuple *new, t_u m[4][4], t_tuple t)
 {
 	new->x = t.x * m[0][0] + t.y * m[0][1] + t.z * m[0][2] + t.w *m[0][3];
 	new->y = t.x * m[1][0] + t.y * m[1][1] + t.z * m[1][2] + t.w *m[1][3];

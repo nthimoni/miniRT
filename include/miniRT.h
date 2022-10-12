@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 16:18:25 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/11 15:35:22 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/12 13:28:44 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,16 @@
 # include <math.h>
 # include <stdio.h>
 # include <mlx.h>
+
+typedef double	t_u;
+
+typedef struct	s_tuple
+{
+	t_u	x;
+	t_u	y;
+	t_u	z;
+	t_u	w;
+}	t_tuple;
 
 typedef struct	s_img
 {
@@ -38,17 +48,12 @@ typedef struct	s_rt
 	void	*mlx;
 	void	*win;
 	t_img	*img;
+	t_u		wtoc_m[4][4];
+	t_u		ctow_m[4][4];
+	t_tuple	cam_o;
+	t_tuple	cam_d;
+	t_u		angle;
 }	t_rt;
-
-typedef double	t_u;
-
-typedef struct	s_tuple
-{
-	t_u	x;
-	t_u	y;
-	t_u	z;
-	t_u	w;
-}	t_tuple;
 
 typedef	enum	e_bool
 {
@@ -71,6 +76,7 @@ typedef struct	s_intersect
 	t_tuple	i1;
 	t_tuple	i2;
 }	t_intersect;
+
 //	colors.c
 
 int	create_trgb(int t, int r, int g, int b);

@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 12:04:54 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/10 20:57:25 by nthimoni         ###   ########.fr       */
+/*   Updated: 2022/10/12 13:20:57 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	mult_matrix_4(t_u new[4][4], t_u m1[4][4], t_u m2[4][4])
 	return ;
 }
 
-void	identity_matrix_m4(t_u new[4][4])
+void	identity_matrix_4(t_u new[4][4])
 {
 	int			i;
 	int			j;
