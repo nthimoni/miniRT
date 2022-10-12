@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 16:18:25 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/11 15:35:22 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/12 14:10:55 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@
 # define W_W 1920
 # define W_H 1080
 
-# include	"libft.h"
+# include "libft.h"
 # include <math.h>
 # include <stdio.h>
 # include <mlx.h>
+
+#include "parsing.h"
 
 typedef struct	s_img
 {
@@ -32,12 +34,14 @@ typedef struct	s_img
 	int		y;
 }	t_img;
 
+
 typedef struct	s_rt
 {
 	t_list	*trash;
 	void	*mlx;
 	void	*win;
 	t_img	*img;
+	t_scene	scn;
 }	t_rt;
 
 typedef double	t_u;

@@ -6,15 +6,14 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:08:02 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/11 17:35:22 by nthimoni         ###   ########.fr       */
+/*   Updated: 2022/10/12 14:15:14 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSING_H
 # define PARSING_H 
 
-#include "miniRT.h"
-
+#include "libft.h"
 
 typedef enum e_otype
 {
@@ -26,6 +25,7 @@ typedef enum e_otype
 	CYLINDRE,
 	LIGHT
 }	t_otype;
+
 
 typedef struct s_obj
 {
