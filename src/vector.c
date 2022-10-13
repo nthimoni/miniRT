@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 14:53:04 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/12 18:01:14 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/13 23:14:21 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,9 +104,9 @@ t_u	length_v3(t_tuple v)
 {
 	t_u	d;
 
-	if (v.w)
+	if (v.w > 1 - EPS && v.w < 1 + EPS)
 	{
-		ft_putstr_fd("Add_v3 parami's is a point", 2);
+		ft_putstr_fd("Add_v3 parami's is a point\n", 2);
 		return (0);
 	}
 	d = sqrt((v.x * v.x) + (v.y * v.y) + (v.z * v.z));
@@ -128,10 +128,14 @@ void	norm_v3(t_tuple *v)
 t_u	dot_product_v3(t_tuple v1, t_tuple v2)
 {
 	t_u	d;
+	t_u		onep;
+	t_u		onem;
 
-	if (v1.w || v2.w)
+	onep = 1 + EPS;
+	onem = 1 - EPS;
+	if ((v1.w > onem && v1.w < onep) || (v2.w > onem && v2.w < onep))
 	{
-		ft_putstr_fd("Dot_product_v3 param's is a point", 2);
+		ft_putstr_fd("Cross_product_v3 param's is a point", 2);
 		return (0);
 	}
 	d = v2.x * v1.x + v2.y * v1.y + v2.z * v1.z;
@@ -141,14 +145,15 @@ t_u	dot_product_v3(t_tuple v1, t_tuple v2)
 t_tuple	cross_product_v3(t_tuple v1, t_tuple v2)
 {
 	t_tuple	new;
+	t_u		onep;
+	t_u		onem;
 
-	if (v1.w || v2.w)
-	{
+	onep = 1 + EPS;
+	onem = 1 - EPS;
+	if ((v1.w > onem && v1.w < onep) || (v2.w > onem && v2.w < onep))
 		ft_putstr_fd("Cross_product_v3 param's is a point", 2);
-	}
-	new = create_null_tuple();
 	new.x = v1.y * v2.z - v1.z * v2.y;
-	new.y = v1.x * v2.z - v1.z * v2.x;
+	new.y = v1.z * v2.x - v1.x * v2.z;
 	new.z = v1.x * v2.y - v1.y * v2.x;
 	new.w = 0;
 	return (new);

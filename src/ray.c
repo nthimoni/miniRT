@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:13:15 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/12 18:13:02 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/13 23:18:57 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,79 +38,35 @@ void	position(t_tuple *new, t_ray r, t_tuple p)
 	new->w = 0;
 }
 
-void	init_inter(t_rt *rt, t_intersect inter[W_W][W_H])
+void	init_inter(t_rt *rt)
 {
+	test_sphere_init(rt);
 	world_to_camera(rt);
-	init_pixel(rt, inter);
-	init_rays(inter, rt);
+	init_pixel(rt);
+	clear_image(rt);
 }
 
-void	init_pixel(t_rt *rt, t_intersect inter[W_W][W_H])
+void	init_pixel(t_rt *rt)
 {
-	int	i;
-	int	j;
+	int			i;
+	int			j;
+	t_intersect	inter;
 
 	i = 0;
 	j = 0;
-	while (i < W_W)
+	while (i < 10)
 	{
-		while (j++ < W_H)
-			pixel_raster_to_space(&inter[i][j], i, j, rt);
-		j = 0;
-		i++;
-	}
-}
-
-void	world_to_camera(t_rt *rt)
-{
-	t_u	rot_y;
-	t_u	rot_z;
-	t_u	rot_y_m4[4][4];
-	t_u	rot_z_m4[4][4];
-	t_u	trans_m4[4][4];
-	t_u	tmp[4][4];
-
-	rot_y = M_PI - atan(rt->cam_d.x / rt->cam_d.z);
-	rot_z = atan(rt->cam_d.y / rt->cam_d.x);
-	rot_y_matrix_4(rot_y_m4, - rot_y);
-	rot_z_matrix_4(rot_z_m4, rot_z);
-	trans_matrix_4(trans_m4, rt->cam_o.x, rt->cam_o.y, rt->cam_o.z);
-	mult_matrix_4(tmp, rot_z_m4, rot_y_m4);
-	mult_matrix_4(rt->ctow_m, trans_m4, tmp);
-	invert_matrix_4(rt->ctow_m, rt->wtoc_m);
-	test_world_matrix(rt);
-}
-
-void	init_rays(t_intersect inter[W_W][W_H], t_rt *rt)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (i < W_W)
-	{
-		while (j++ < W_H)
+		while (j++ < 1)
 		{
-			inter[i][j].ray.o.x = inter[i][j].pixel.x;
-			inter[i][j].ray.o.y = inter[i][j].pixel.y;
-			inter[i][j].ray.o.z = inter[i][j].pixel.z;
-			inter[i][j].ray.o.w = 1;
-			inter[i][j].ray.d.x = inter[i][j].pixel.x;
-			inter[i][j].ray.d.y = inter[i][j].pixel.y;
-			inter[i][j].ray.d.z = inter[i][j].pixel.z;
-			inter[i][j].ray.d.x = 0;
-			mult_tuple_matrix_4(&inter[i][j].ray.o, rt->ctow_m, inter[i][j].ray.o);
-			mult_tuple_matrix_4(&inter[i][j].ray.d, rt->ctow_m, inter[i][j].ray.d);
-			norm_v3(&inter[i][j].ray.d);
-			print_tuple(&inter[i][j].ray.d, "Pix_d");
+			ft_bzero(&inter, sizeof(t_intersect));
+			pixel_raster_to_space(&inter, i, j, rt);
+			intersect_obj(rt, &inter, i, j);
 		}
 		j = 0;
 		i++;
 	}
 }
 
-//	Pour l'instant que si C est a l'origine et le plan sur le point (0, 0, 1)
 void	pixel_raster_to_space(t_intersect *i, int x, int y, t_rt *rt)
 {
 	i->pixel.x = (x + 0.5) / W_W;
@@ -123,8 +79,154 @@ void	pixel_raster_to_space(t_intersect *i, int x, int y, t_rt *rt)
 		i->pixel.y = 2 * i->pixel.y - 1;
 	else
 		i->pixel.y = 1 - 2 * i->pixel.y;
-	i->pixel.x = (2 * i->pixel.x - 1) * W_W / W_H * tan(rt->angle / 2);	
-	i->pixel.y = (2 * i->pixel.y - 1) * tan(rt->angle / 2);	
-	i->pixel.z = -1;
+	i->pixel.x = (2 * i->pixel.x - 1) * W_W / W_H * tan(rt->scn.cam.FOV / 2);	
+	i->pixel.y = (2 * i->pixel.y - 1) * tan(rt->scn.cam.FOV / 2);	
+	i->pixel.z = 1;
 	i->pixel.w = 1;
+	printf("angle = %lf\n", rt->scn.cam.FOV);
+	printf("i->pixel.x = %lf, y = %lf\n", i->pixel.x, i->pixel.y);
+	ft_bzero(&i->ray.o, sizeof(t_tuple));
+	i->ray.o.w = 1;
+	i->ray.d.x = i->pixel.x - 0;
+	i->ray.d.y = i->pixel.y - 0;
+	i->ray.d.z = i->pixel.z - 0;
+	i->ray.d.w = 0;
+	mult_tuple_matrix_4(&i->ray.o, rt->ctow_m, i->ray.o);
+	mult_tuple_matrix_4(&i->ray.d, rt->ctow_m, i->ray.d);
+	printf("i->ray.d.x = %lf, y = %lf\n", i->ray.d.x, i->ray.d.y);
+	norm_v3(&i->ray.d);
+}
+
+void	test_sphere_init(t_rt *rt)
+{
+	ft_bzero(&rt->scn.cam, sizeof(t_obj));
+	ft_bzero(&rt->scn.sph, sizeof(t_obj));
+	rt->scn.cam.o.x = 0;
+	rt->scn.cam.o.y = 0;
+	rt->scn.cam.o.z = 0;
+	rt->scn.cam.o.w = 1;
+	rt->scn.cam.d.x = 0;
+	rt->scn.cam.d.y = 0;
+	rt->scn.cam.d.z = 1;
+	rt->scn.cam.d.w = 0;
+	norm_v3(&rt->scn.cam.d);
+	rt->scn.sph.o.x = 0;
+	rt->scn.sph.o.y = 0;
+	rt->scn.sph.o.z = 20;
+	rt->scn.sph.o.w = 10;
+	rt->scn.sph.diam = 20;
+	rt->scn.cam.FOV = M_PI * 70 / 180;	
+	rt->scn.sph.color = create_trgb(0, 255, 0, 0);
+}
+
+t_bool	solve_quadratic(t_intersect *inter, t_quadra q)
+{
+	q.disc = pow(q.b, 2) - 4 * q.a * q.c;
+	if (q.disc < 0)
+		return (FALSE);
+	else if (q.disc == 0)
+	{
+		inter->t0 = -q.b * 0.5 / q.a;
+		inter->t1 = -inter->t0;
+		return (TRUE);
+	}
+	else
+	{
+		q.q = - 0.5 * (q.b + ft_sign(q.b) * sqrt(q.disc));
+		if (q.q / q.a > q.q / q.a)
+		{
+			inter->t0 = q.q / q.c;
+			inter->t1 = q.q / q.a;
+		}
+		else
+		{
+			inter->t0 = q.q / q.a;
+			inter->t1 = q.q / q.c;
+		}
+	}
+	return (TRUE);
+}
+
+int	ft_sign(t_u i)
+{
+	if (i < 0)
+		return (-1);
+	else
+		return (1);
+}
+
+void	intersect_obj(t_rt *rt, t_intersect *inter, int i, int j)
+{
+	t_quadra	q;
+	t_tuple		s_to_r;
+
+	s_to_r = create_v3(rt->scn.sph.o, inter->ray.o);
+	print_tuple(&inter->ray.d, "inter->ray.d");
+	q.a = dot_product_v3(inter->ray.d, inter->ray.d);
+	q.b = dot_product_v3(inter->ray.d, s_to_r);
+	q.c = dot_product_v3(s_to_r, s_to_r) - pow(rt->scn.sph.diam / 2, 2); 
+	printf("q.a = %lf q.b = %lf q.c = %lf\n", q.a, q.b, q.c);
+	if (!solve_quadratic(inter, q))
+		return ;
+	else
+		inter->obj = &rt->scn.sph; 
+	my_mlx_pixel_put(rt, i, j, rt->scn.sph.color);	
+}
+
+void	get_matrix_align_v1_v2(t_u m[4][4], t_tuple v1, t_tuple v2)
+{
+	t_tuple	u;
+	t_u		cos_a;
+	t_u		k;
+
+	u = cross_product_v3(v1, v2);
+	cos_a = dot_product_v3(v1, v2);
+	k = 1.0 / (1.0 + cos_a);
+	m[0][0] = u.x * u.x * k + cos_a;
+	m[0][1] = u.y * u.x * k - u.z;
+	m[0][2] = u.z * u.x * k + u.y;
+	m[0][3] = 0;
+	m[1][0] = u.x * u.y * k + u.z;
+	m[1][1] = u.y * u.y * k + cos_a;
+	m[1][2] = u.z * u.y * k - u.x;
+	m[1][3] = 0;
+	m[2][0] = u.x * u.z * k - u.y;
+	m[2][1] = u.y * u.z * k + u.x;
+	m[2][2] = u.z * u.z * k + cos_a;
+	m[2][3] = 0;
+	m[3][0] = 0;
+	m[3][1] = 0;
+	m[3][2] = 0;
+	m[3][3] = 1;
+}
+
+t_u	clamp(t_u nb)
+{
+	if (nb > 1)
+		return (1);
+	else if (nb < -1)
+		return (-1);
+	return (nb);
+}
+
+void	world_to_camera(t_rt *rt)
+{
+	t_u		trans_m4[4][4];
+	t_u		tmp[4][4];
+	t_tuple	cam_space;
+
+	cam_space.x = 0;
+	cam_space.y = 0;
+	cam_space.z = -1;
+	cam_space.w = 0;
+	norm_v3(&cam_space);
+	print_tuple(&cam_space, "camspace");
+	print_tuple(&rt->scn.cam.d, "camd");
+	get_matrix_align_v1_v2(tmp, rt->scn.cam.d, cam_space);
+	print_matrix_4(tmp, "tmp");
+	trans_matrix_4(trans_m4, -rt->scn.cam.o.x, -rt->scn.cam.o.y, -rt->scn.cam.o.z);
+	print_matrix_4(trans_m4, "trans");
+	mult_matrix_4(rt->wtoc_m, tmp, trans_m4);
+	invert_matrix_4(rt->wtoc_m, rt->ctow_m);
+	test_world_matrix(rt);
 }

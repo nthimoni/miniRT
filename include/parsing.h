@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:08:02 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/12 14:15:14 by nthimoni         ###   ########.fr       */
+/*   Updated: 2022/10/13 17:50:59 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_obj
 	t_tuple	d;
 	float	diam;
 	float	height;
-	int		FOV;
+	t_u		FOV;
 	int		color;
 	float	ratio;
 }	t_obj;
@@ -43,6 +43,7 @@ typedef struct s_scene
 {
 	t_obj amb;
 	t_obj	cam;
+	t_obj	sph;
 	t_list	*light;
 	t_list	*objs;
 }	t_scene;
