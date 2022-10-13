@@ -58,5 +58,10 @@
     "directory": "/mnt/nfs/homes/nthimoni/Documents/miniRT",
     "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/transformations.c -o bin/transformations.o",
     "file": "src/transformations.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/nthimoni/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/ft_atof.c -o bin/ft_atof.o",
+    "file": "src/ft_atof.c"
   }
 ]
