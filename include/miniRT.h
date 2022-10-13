@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 16:18:25 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/12 18:02:32 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/13 17:31:13 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,6 @@ typedef struct	s_rt
 	t_img	*img;
 	t_u		wtoc_m[4][4];
 	t_u		ctow_m[4][4];
-	t_tuple	cam_o;
-	t_tuple	cam_d;
-	t_u		angle;
 	t_scene	scn;
 }	t_rt;
 
@@ -71,14 +68,25 @@ typedef struct	s_ray
 	t_tuple	d;
 }	t_ray;
 
+typedef struct	s_quadra
+{
+	t_u		disc;
+	t_u		a;
+	t_u		b;
+	t_u		c;
+	t_u		q;
+}	t_quadra;
+
 typedef struct	s_intersect
 {
-	t_tuple	pixel;
-	t_bool	intersect;
-	t_ray	ray;
-//	t_obj	*obj;
-	t_tuple	i1;
-	t_tuple	i2;
+	int			x;
+	int			y;
+	t_tuple		pixel;
+	t_ray		ray;
+	t_u			t0;
+	t_u			t1;
+	t_quadra	q;
+	t_obj		*obj;
 }	t_intersect;
 
 //	colors.c

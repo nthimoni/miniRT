@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 12:04:54 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/12 16:22:34 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/13 22:14:54 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	mult_matrix_4(t_u new[4][4], t_u m1[4][4], t_u m2[4][4])
 		{
 			while (i.c < 4)
 				new[i.a][i.b] += m1[i.a][i.c++] * m2[i.d++][i.b];
-			if (new[i.a][i.b] == 0)
+			if (new[i.a][i.b] > - EPS && new[i.a][i.b] < EPS)
 				new[i.a][i.b] = 0;
 			i.c = 0;
 			i.d = 0;
