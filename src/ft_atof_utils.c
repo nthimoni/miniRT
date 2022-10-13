@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   ft_atof_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/12 17:15:56 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/13 18:55:41 by nthimoni         ###   ########.fr       */
+/*   Created: 2022/10/13 18:31:59 by nthimoni          #+#    #+#             */
+/*   Updated: 2022/10/13 18:33:49 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include <stdlib.h>
 
-int main(int argc, char **argv)
+void free_split(char **sp)
 {
-	printf("%s\n", argv[1]);
-	float a = 0;
-	if (ft_atof(argv[1], &a))
-		printf("OVERFLOW!\n");
-	else
-		printf("%.15f\n", a);
-	printf("%.15f\n", atof(argv[1]));
+	int i;
+
+	i = 0;
+	while (sp[i])
+	{
+		free(sp[i]);
+		i++;
+	}
+	free(sp);
 }

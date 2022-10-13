@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 18:41:10 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/11 21:05:03 by nthimoni         ###   ########.fr       */
+/*   Updated: 2022/10/13 23:19:08 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,23 @@ static int	check_nb_arg(t_otype type, int nb_wrds)
 
 static int	fill_obj(char **sp, t_obj *tmp, t_rt *rt)
 {
+	int	error;
+
 	if (!check_nb_arg(tmp->type, ft_strslen(sp)))
-		return (1);
+		return (free(tmp), 1);
+	if (tmp->type == AMBIANT)
+		error = fill_light(tmp, rt, sp);
+	else if (tmp->type == CAMERA)
+		error = fill_cam(tmp, rt, sp);
+	else if (tmp->type == LIGHT)
+		error = fill_light(tmp, rt, sp);
+	else if (tmp->type == PLAN)
+		error = fill_plan(tmp, rt, sp);
+	else if (tmp->type == SPHERE)
+		error = fill_sphere(tmp, rt, sp);
+	else if (tmp->type == CYLINDRE)
+		error = fill_cylindre(tmp, rt, sp);
+	return (0);
 }
 
 static int	set_type(char **sp, t_scene *scene, t_rt *rt)
@@ -52,7 +67,7 @@ static int	set_type(char **sp, t_scene *scene, t_rt *rt)
 	tmp = creat_obj(otype[i]);
 	if (!tmp)
 	{
-		free(sp);
+		free_split(sp);
 		exit_parsing(rt, BAD_ALLOC_MSG, BAD_ALLOC);
 	}
 	if (fill_obj(sp, tmp, rt))
@@ -67,12 +82,14 @@ static void	fill_scene(char *line, t_scene *scene, t_rt *rt)
 	sp = ft_split(line, ' ');
 	if (!sp)
 		exit_parsing(rt, BAD_ALLOC_MSG, BAD_ALLOC);
+	if (!*sp)
+		return (free_split(sp));
 	if (set_type(sp, scene, rt))
 	{
-		free(sp);
+		free_split(sp);
 		exit_parsing(rt, PARSE_ERROR_MSG, PARSE_ERROR);
 	}
-	free(sp);
+	free_split(sp);
 }
 
 void	parsing(t_rt *rt, char *file, t_scene *scene)

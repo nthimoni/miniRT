@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:08:02 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/11 17:35:22 by nthimoni         ###   ########.fr       */
+/*   Updated: 2022/10/13 22:57:43 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ typedef struct s_obj
 	t_otype	type;
 	t_tuple	o;
 	t_tuple	d;
-	float	diam;
-	float	height;
+	double	diam;
+	double	height;
 	int		FOV;
 	int		color;
 	float	ratio;
@@ -50,5 +50,7 @@ typedef struct s_scene
 void	void_parsing(char *file, t_scene *scene);
 int 	ft_strslen(char **sp);
 t_obj	*creat_obj(t_otype type);
+int		ft_atof(char *str, float *val);
+void	free_split(char **sp);
 
 #endif 

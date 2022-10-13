@@ -7,7 +7,8 @@ FTINC = $(FTPATH)include/
 LIBFT = $(FTPATH)libft.a
 MLX = $(MLXPATH)libmlx.a
 ######################################################################
-SRCS = main.c vector.c image.c hook.c exit_rt.c print.c init.c test.c trash.c colors.c matrix.c transformations.c
+SRCS = main.c vector.c image.c hook.c exit_rt.c print.c init.c test.c trash.c colors.c matrix.c transformations.c\
+	   ft_atof.c ft_atof_utils.c
 OBJS = $(addprefix $(OBJDIR),$(SRCS:.c=.o))
 DEPENDS = $(OBJS:.o=.d)
 ######################################################################
