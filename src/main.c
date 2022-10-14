@@ -6,14 +6,16 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 14:54:33 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/13 22:09:05 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/14 13:26:06 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "miniRT.h"
+#include "init.h"
+#include "mlx.h"
 #include "test.h"
 #include "ray.h"
+#include "data_struct.h"
 
 int	main(void)
 {

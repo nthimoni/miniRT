@@ -6,14 +6,14 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 18:41:10 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/11 21:05:03 by nthimoni         ###   ########.fr       */
+/*   Updated: 2022/10/14 13:21:49 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 #include <fcntl.h>
 #include <unistd.h>
-#include "miniRT.h"
+#include "data_struct.h"
 #include "error.h"
 #include "exit_rt.h"
 

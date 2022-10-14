@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   trash.h                                            :+:      :+:    :+:   */
+/*   color.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/03 18:06:33 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/14 13:34:36 by rmorel           ###   ########.fr       */
+/*   Created: 2022/10/14 13:07:29 by rmorel            #+#    #+#             */
+/*   Updated: 2022/10/14 13:08:17 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TRASH_H
-# define TRASH_H 
+#ifndef COLOR_H
+#define COLOR_H 
 
-# include "libft.h"
-# include "data_struct.h"
-# include "error.h"
-# include "libft.h"
-# include "exit_rt.h"
-
-void	add_to_trash(t_rt *rt, void *ptr);
-void	free_trash(t_list *trash);
+int	create_trgb(int t, int r, int g, int b);
+int	get_t(int trgb);
+int	get_r(int trgb);
+int	get_g(int trgb);
+int	get_b(int trgb);
 
 #endif 

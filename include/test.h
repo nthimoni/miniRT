@@ -6,12 +6,21 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 13:02:04 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/12 16:32:55 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/14 13:35:57 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TEST_H
 #define TEST_H 
+
+# include "data_struct.h"
+# include "print.h"
+# include "matrix.h"
+# include "vector.h"
+# include "transformations.h"
+# include <math.h>
+# include "mlx.h"
+# include "image.h"
 
 typedef struct	s_proj
 {

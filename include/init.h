@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   trash.h                                            :+:      :+:    :+:   */
+/*   init.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/03 18:06:33 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/14 13:34:36 by rmorel           ###   ########.fr       */
+/*   Created: 2022/10/14 13:06:08 by rmorel            #+#    #+#             */
+/*   Updated: 2022/10/14 13:35:27 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TRASH_H
-# define TRASH_H 
+#ifndef INIT_H
+#define INIT_H 
 
-# include "libft.h"
 # include "data_struct.h"
-# include "error.h"
-# include "libft.h"
-# include "exit_rt.h"
+# include "mlx.h"
+# include "hook.h"
 
-void	add_to_trash(t_rt *rt, void *ptr);
-void	free_trash(t_list *trash);
+t_rt	*init_rt(void);
 
 #endif 

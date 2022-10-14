@@ -6,47 +6,15 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:08:02 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/13 17:50:59 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/14 13:10:45 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSING_H
 # define PARSING_H 
 
-#include "libft.h"
-
-typedef enum e_otype
-{
-	NONE = 0,
-	AMBIANT,
-	CAMERA,
-	SPHERE,
-	PLAN,
-	CYLINDRE,
-	LIGHT
-}	t_otype;
-
-
-typedef struct s_obj
-{
-	t_otype	type;
-	t_tuple	o;
-	t_tuple	d;
-	float	diam;
-	float	height;
-	t_u		FOV;
-	int		color;
-	float	ratio;
-}	t_obj;
-
-typedef struct s_scene
-{
-	t_obj amb;
-	t_obj	cam;
-	t_obj	sph;
-	t_list	*light;
-	t_list	*objs;
-}	t_scene;
+# include "libft.h"
+# include "data_struct.h"
 
 void	void_parsing(char *file, t_scene *scene);
 int 	ft_strslen(char **sp);

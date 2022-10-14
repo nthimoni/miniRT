@@ -6,17 +6,11 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 12:56:21 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/13 23:00:15 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/14 13:33:25 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
 #include "test.h"
-#include "print.h"
-#include "matrix.h"
-#include "vector.h"
-#include "transformations.h"
-#include <math.h>
 
 void	test(t_rt *rt)
 {

@@ -6,14 +6,18 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 14:43:53 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/12 17:48:35 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/14 13:36:24 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECTOR_H
 #define VECTOR_H
 
-# include "miniRT.h"
+# include "data_struct.h"
+# include "exit_rt.h"
+# include "print.h"
+# include <math.h>
+# include "color.h"
 
 t_tuple		create_tuple(t_u *array);
 t_tuple		create_null_tuple(void);
