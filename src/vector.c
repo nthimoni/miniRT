@@ -6,13 +6,11 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 14:53:04 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/13 23:14:21 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/14 13:34:04 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
-#include "exit_rt.h"
-#include "print.h"
 
 // Malloc les vecteurs et les add to trashi, utiliser des pointeurs
 

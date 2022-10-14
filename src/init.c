@@ -6,11 +6,11 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 12:38:44 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/13 14:59:59 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/14 13:31:25 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "init.h"
 
 t_rt	*init_rt(void)
 {
@@ -30,14 +30,4 @@ t_rt	*init_rt(void)
 	mlx_hook(rt->win, 17, 1<<17, red_cross, rt);
 	mlx_hook(rt->win, 2, 1L << 0, key_hook, rt);
 	return (rt);
-}
-
-int	key_hook(int keycode, t_rt *rt)
-{
-	if (keycode == 65307)
-	{
-		ft_printf("Auf Wiedersehen Herr Muller !\n");
-		mlx_loop_end(rt->mlx);
-	}
-	return (1);
 }

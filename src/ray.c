@@ -6,17 +6,11 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:13:15 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/13 23:18:57 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/14 15:42:45 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
 #include "ray.h"
-#include "matrix.h"
-#include "transformations.h"
-#include "print.h"
-#include "test.h"
-#include "vector.h"
 
 void	create_ray(t_ray *new, t_tuple p, t_tuple v)
 {
@@ -54,7 +48,7 @@ void	init_pixel(t_rt *rt)
 
 	i = 0;
 	j = 0;
-	while (i < 10)
+	while (i < 0)
 	{
 		while (j++ < 1)
 		{
@@ -101,9 +95,9 @@ void	test_sphere_init(t_rt *rt)
 {
 	ft_bzero(&rt->scn.cam, sizeof(t_obj));
 	ft_bzero(&rt->scn.sph, sizeof(t_obj));
-	rt->scn.cam.o.x = 0;
-	rt->scn.cam.o.y = 0;
-	rt->scn.cam.o.z = 0;
+	rt->scn.cam.o.x = 1;
+	rt->scn.cam.o.y = 1;
+	rt->scn.cam.o.z = 1;
 	rt->scn.cam.o.w = 1;
 	rt->scn.cam.d.x = 0;
 	rt->scn.cam.d.y = 0;
@@ -180,6 +174,7 @@ void	get_matrix_align_v1_v2(t_u m[4][4], t_tuple v1, t_tuple v2)
 	t_u		k;
 
 	u = cross_product_v3(v1, v2);
+	print_tuple(&u, "u");
 	cos_a = dot_product_v3(v1, v2);
 	k = 1.0 / (1.0 + cos_a);
 	m[0][0] = u.x * u.x * k + cos_a;
@@ -200,15 +195,6 @@ void	get_matrix_align_v1_v2(t_u m[4][4], t_tuple v1, t_tuple v2)
 	m[3][3] = 1;
 }
 
-t_u	clamp(t_u nb)
-{
-	if (nb > 1)
-		return (1);
-	else if (nb < -1)
-		return (-1);
-	return (nb);
-}
-
 void	world_to_camera(t_rt *rt)
 {
 	t_u		trans_m4[4][4];
@@ -220,13 +206,21 @@ void	world_to_camera(t_rt *rt)
 	cam_space.z = -1;
 	cam_space.w = 0;
 	norm_v3(&cam_space);
-	print_tuple(&cam_space, "camspace");
-	print_tuple(&rt->scn.cam.d, "camd");
-	get_matrix_align_v1_v2(tmp, rt->scn.cam.d, cam_space);
-	print_matrix_4(tmp, "tmp");
+	if (check_vector_opposite(cam_space, rt->scn.cam.d))
+		scale_matrix_4(tmp, -1, -1, -1);
+	else
+		get_matrix_align_v1_v2(tmp, rt->scn.cam.d, cam_space);
 	trans_matrix_4(trans_m4, -rt->scn.cam.o.x, -rt->scn.cam.o.y, -rt->scn.cam.o.z);
-	print_matrix_4(trans_m4, "trans");
 	mult_matrix_4(rt->wtoc_m, tmp, trans_m4);
 	invert_matrix_4(rt->wtoc_m, rt->ctow_m);
 	test_world_matrix(rt);
+}
+
+t_bool	check_vector_opposite(t_tuple v1, t_tuple v2)
+{
+	norm_v3(&v1);
+	norm_v3(&v2);
+	if ((v1.x == -v2.x) && (v1.y == -v2.y) && (v1.z == -v2.z) && (v1.w == v2.w))
+		return (TRUE);
+	return (FALSE);
 }

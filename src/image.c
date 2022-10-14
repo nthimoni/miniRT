@@ -6,12 +6,11 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 22:14:48 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/12 15:19:27 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/14 13:31:10 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
-#include "test.h"
+#include "image.h"
 
 void	clear_image(t_rt *rt)
 {
