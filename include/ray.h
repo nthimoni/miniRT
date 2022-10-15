@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:13:31 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/14 14:01:50 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/15 01:21:18 by bek              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "print.h"
 # include "test.h"
 # include "vector.h"
+# include <float.h>
 
 void	create_ray(t_ray *new, t_tuple p, t_tuple v);
 void	position(t_tuple *new, t_ray r, t_tuple p);
@@ -28,9 +29,11 @@ void	world_to_camera(t_rt *rt);
 void	init_pixel(t_rt *rt);
 void	pixel_raster_to_space(t_intersect *i, int x, int y, t_rt *rt);
 void	test_sphere_init(t_rt *rt);
+t_obj	*create_sphere(int type, t_tuple origin, float diam, int color);
 t_bool	solve_quadratic(t_intersect *inter, t_quadra q);
 int		ft_sign(t_u i);
 void	intersect_obj(t_rt *rt, t_intersect *inter, int i, int j);
+void	intersect_sph(t_obj	*sph, t_intersect *inter);
 void	get_matrix_align_v1_v2(t_u m[4][4], t_tuple v1, t_tuple v2);
 t_bool	check_vector_opposite(t_tuple v1, t_tuple v2);
 
