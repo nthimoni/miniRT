@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:13:15 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/14 18:24:21 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/15 02:10:45 by bek              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,16 @@ void	init_pixel(t_rt *rt)
 	{
 		while (j++ < W_H)
 		{
-			printf("[%d][%d]\n", i, j);
 			ft_bzero(&inter, sizeof(t_intersect));
+			inter.t0 = DBL_MAX;
+			inter.t1 = DBL_MAX;
 			pixel_raster_to_space(&inter, i, j, rt);
 			intersect_obj(rt, &inter, i, j);
 		}
 		j = 0;
 		i++;
 	}
-	pixel_raster_to_space(&inter, 500, 250, rt);
-	pixel_raster_to_space(&inter, 1500, 250, rt);
-	pixel_raster_to_space(&inter, 500, 750, rt);
-	pixel_raster_to_space(&inter, 1500, 750, rt);
+	printf("Done !");
 }
 
 void	pixel_raster_to_space(t_intersect *i, int x, int y, t_rt *rt)
@@ -76,7 +74,6 @@ void	pixel_raster_to_space(t_intersect *i, int x, int y, t_rt *rt)
 	i->pixel.y = i->pixel.y * tan(rt->scn.cam.FOV / 2);	
 	i->pixel.z = -1;
 	i->pixel.w = 1;
-	printf("i->pixel.x = %lf, y = %lf\n", i->pixel.x, i->pixel.y);
 	ft_bzero(&i->ray.o, sizeof(t_tuple));
 	i->ray.o.w = 1;
 	i->ray.d.x = i->pixel.x - 0;
@@ -85,12 +82,18 @@ void	pixel_raster_to_space(t_intersect *i, int x, int y, t_rt *rt)
 	i->ray.d.w = 0;
 	mult_tuple_matrix_4(&i->ray.o, rt->ctow_m, i->ray.o);
 	mult_tuple_matrix_4(&i->ray.d, rt->ctow_m, i->ray.d);
-	printf("i->ray.d.x = %lf, y = %lf, z = %lf\n", i->ray.d.x, i->ray.d.y, i->ray.d.z);
 	norm_v3(&i->ray.d);
 }
 
 void	test_sphere_init(t_rt *rt)
 {
+	t_tuple	o1;
+	t_tuple	o2;
+	t_tuple	o3;
+	t_u		arr1[4] = {-20, -20, 150, 1};
+	t_u		arr2[4] = {-50, -50, 200, 1};
+	t_u		arr3[4] = {-40, 0, 220, 1};
+
 	ft_bzero(&rt->scn.cam, sizeof(t_obj));
 	ft_bzero(&rt->scn.sph, sizeof(t_obj));
 	rt->scn.cam.o.x = 0;
@@ -102,13 +105,37 @@ void	test_sphere_init(t_rt *rt)
 	rt->scn.cam.d.z = 1;
 	rt->scn.cam.d.w = 0;
 	norm_v3(&rt->scn.cam.d);
-	rt->scn.sph.o.x = 30;
-	rt->scn.sph.o.y = 40;
+	rt->scn.sph.o.x = 0;
+	rt->scn.sph.o.y = 0;
 	rt->scn.sph.o.z = 200;
 	rt->scn.sph.o.w = 1;
 	rt->scn.sph.diam = 20;
 	rt->scn.cam.FOV = M_PI * 70 / 180;	
 	rt->scn.sph.color = create_trgb(0, 255, 0, 0);
+	o1 = create_tuple(arr1); 
+	o2 = create_tuple(arr2); 
+	o3 = create_tuple(arr3); 
+	ft_lstadd_back(&rt->scn.objs, ft_lstnew(create_sphere(3, o1, 30, create_trgb(0, 0, 255, 0))));
+	printf("sph_color = %d\n", ((t_obj *)rt->scn.objs->content)->color); 
+	ft_lstadd_back(&rt->scn.objs, ft_lstnew(create_sphere(3, o2, 50, create_trgb(0, 0, 255, 255))));
+	ft_lstadd_back(&rt->scn.objs, ft_lstnew(create_sphere(3, o3, 80, create_trgb(0, 0, 0, 255))));
+}
+
+t_obj	*create_sphere(int type, t_tuple origin, float diam, int color)
+{
+	t_obj	*sph;
+
+	sph = malloc(sizeof(t_obj));
+	if (!sph)
+		return (NULL);
+	sph->type = type; //3
+	sph->o.x = origin.x;
+	sph->o.y = origin.y;
+	sph->o.z = origin.z;
+	sph->o.w = origin.w;
+	sph->diam = diam;
+	sph->color = color;
+	return (sph);
 }
 
 t_bool	solve_quadratic(t_intersect *inter, t_quadra q)
@@ -118,8 +145,8 @@ t_bool	solve_quadratic(t_intersect *inter, t_quadra q)
 		return (FALSE);
 	else if (q.disc == 0)
 	{
-		inter->t0 = -q.b * 0.5 / q.a;
-		inter->t1 = -inter->t0;
+		inter->t0_tmp = -q.b * 0.5 / q.a;
+		inter->t1_tmp = -inter->t0_tmp;
 		return (TRUE);
 	}
 	else
@@ -127,13 +154,13 @@ t_bool	solve_quadratic(t_intersect *inter, t_quadra q)
 		q.q = - 0.5 * (q.b + ft_sign(q.b) * sqrt(q.disc));
 		if (q.q / q.a > q.q / q.a)
 		{
-			inter->t0 = q.q / q.c;
-			inter->t1 = q.q / q.a;
+			inter->t0_tmp = q.q / q.c;
+			inter->t1_tmp = q.q / q.a;
 		}
 		else
 		{
-			inter->t0 = q.q / q.a;
-			inter->t1 = q.q / q.c;
+			inter->t0_tmp = q.q / q.a;
+			inter->t1_tmp = q.q / q.c;
 		}
 	}
 	return (TRUE);
@@ -149,24 +176,33 @@ int	ft_sign(t_u i)
 
 void	intersect_obj(t_rt *rt, t_intersect *inter, int i, int j)
 {
+	t_list	*tmp;
+	tmp = rt->scn.objs;
+
+	while (tmp)
+	{
+		if (((t_obj *)tmp->content)->type == 3)
+			intersect_sph(tmp->content, inter);
+		tmp = tmp->next;
+	}
+	if (inter->t0 < DBL_MAX)
+		my_mlx_pixel_put(rt, i, j, inter->obj->color);
+}
+
+void	intersect_sph(t_obj	*sph, t_intersect *inter)
+{
 	t_quadra	q;
 	t_tuple		s_to_r;
 
-	//print_tuple(&rt->scn.sph.o, "sph.o");
-	//print_tuple(&inter->ray.o, "ray.o");
-	s_to_r = create_v3(rt->scn.sph.o, inter->ray.o);
-	//print_tuple(&s_to_r, "s_to_r");
+	s_to_r = create_v3(sph->o, inter->ray.o);
 	q.a = dot_product_v3(inter->ray.d, inter->ray.d);
 	q.b = 2 * dot_product_v3(inter->ray.d, s_to_r);
-	q.c = dot_product_v3(s_to_r, s_to_r) - pow(rt->scn.sph.diam / 2, 2); 
-	//printf("dot_product(s_to_r) = %lf pow(rt->scn.sph.diam / 2, 2) = %lf\n", dot_product_v3(s_to_r, s_to_r), pow(rt->scn.sph.diam / 2, 2)); 
-	//printf("q.a = %lf q.b = %lf q.c = %lf\n", q.a, q.b, q.c);
-	if (!solve_quadratic(inter, q))
+	q.c = dot_product_v3(s_to_r, s_to_r) - pow(sph->diam / 2, 2); 
+	if (!solve_quadratic(inter, q) || inter->t0_tmp > inter->t0)
 		return ;
-	else
-		inter->obj = &rt->scn.sph; 
-	my_mlx_pixel_put(rt, i, j, rt->scn.sph.color);
-	printf("true\n");
+	inter->obj = sph;
+	inter->t0 = inter->t0_tmp;
+	inter->t1 = inter->t1_tmp;
 }
 
 void	get_matrix_align_v1_v2(t_u m[4][4], t_tuple v1, t_tuple v2)
@@ -208,7 +244,7 @@ void	world_to_camera(t_rt *rt)
 	cam_space.w = 0;
 	norm_v3(&cam_space);
 	if (check_vector_opposite(cam_space, rt->scn.cam.d))
-		rot_y_matrix_4(tmp, M_PI);
+		scale_matrix_4(tmp, 1, 1, -1);
 	else
 		get_matrix_align_v1_v2(tmp, rt->scn.cam.d, cam_space);
 	trans_matrix_4(trans_m4, -rt->scn.cam.o.x, -rt->scn.cam.o.y, -rt->scn.cam.o.z);
