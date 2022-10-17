@@ -63,5 +63,15 @@
     "directory": "/mnt/nfs/homes/nthimoni/Documents/miniRT",
     "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/ft_atof.c -o bin/ft_atof.o",
     "file": "src/ft_atof.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/nthimoni/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/ft_atof_utils.c -o bin/ft_atof_utils.o",
+    "file": "src/ft_atof_utils.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/nthimoni/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/parsing_utils.c -o bin/parsing_utils.o",
+    "file": "src/parsing_utils.c"
   }
 ]

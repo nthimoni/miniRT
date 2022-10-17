@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 16:18:25 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/11 11:14:49 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/17 14:40:58 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,7 @@ typedef struct	s_img
 	int		y;
 }	t_img;
 
-typedef struct	s_rt
-{
-	t_list	*trash;
-	void	*mlx;
-	void	*win;
-	t_img	*img;
-}	t_rt;
+
 
 typedef double	t_u;
 
@@ -50,6 +44,17 @@ typedef struct	s_tuple
 	t_u	z;
 	t_u	w;
 }	t_tuple;
+
+typedef struct s_scene t_scene;
+
+typedef struct	s_rt
+{
+	t_list	*trash;
+	void	*mlx;
+	void	*win;
+	t_img	*img;
+	t_scene	*scn;
+}	t_rt;
 
 typedef	enum	e_bool
 {
