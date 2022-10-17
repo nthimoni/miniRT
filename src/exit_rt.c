@@ -6,13 +6,11 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 18:03:15 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/10 18:59:49 by nthimoni         ###   ########.fr       */
+/*   Updated: 2022/10/14 13:30:25 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "exit_rt.h"
-#include "trash.h"
 
 void	exit_rt(t_rt *rt, char *error_msg, int exit_code)
 {

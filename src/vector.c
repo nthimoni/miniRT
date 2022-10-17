@@ -6,12 +6,11 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 14:53:04 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/10 20:57:25 by nthimoni         ###   ########.fr       */
+/*   Updated: 2022/10/14 13:34:04 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vector.h"
-#include "exit_rt.h"
 
 // Malloc les vecteurs et les add to trashi, utiliser des pointeurs
 
@@ -92,42 +91,49 @@ t_tuple	neg_tupple(t_tuple t)
 	return (new);
 }
 
-void	scale_v3(t_tuple v1, t_u s)
+void	scale_v3(t_tuple *v1, t_u s)
 {
-	v1.x *= s;
-	v1.y *= s;
-	v1.z *= s;
+	v1->x *= s;
+	v1->y *= s;
+	v1->z *= s;
 }
 
 t_u	length_v3(t_tuple v)
 {
 	t_u	d;
 
-	if (v.w)
+	if (v.w > 1 - EPS && v.w < 1 + EPS)
 	{
-		ft_putstr_fd("Add_v3 parami's is a point", 2);
+		ft_putstr_fd("Add_v3 parami's is a point\n", 2);
 		return (0);
 	}
 	d = sqrt((v.x * v.x) + (v.y * v.y) + (v.z * v.z));
 	return (d);
 }
 
-t_tuple	norm_v3(t_tuple v)
+void	norm_v3(t_tuple *v)
 {
-	t_tuple	new;
+	t_u	l;
 
-	ft_bzero(&new, sizeof(t_tuple));
-	scale_v3(new, 1 / length_v3(v));
-	return (new);
+	l = length_v3(*v);
+	if (!l)
+		return ;
+	v->x /= l;
+	v->y /= l;
+	v->z /= l;
 }
 
 t_u	dot_product_v3(t_tuple v1, t_tuple v2)
 {
 	t_u	d;
+	t_u		onep;
+	t_u		onem;
 
-	if (v1.w || v2.w)
+	onep = 1 + EPS;
+	onem = 1 - EPS;
+	if ((v1.w > onem && v1.w < onep) || (v2.w > onem && v2.w < onep))
 	{
-		ft_putstr_fd("Dot_product_v3 param's is a point", 2);
+		ft_putstr_fd("Cross_product_v3 param's is a point", 2);
 		return (0);
 	}
 	d = v2.x * v1.x + v2.y * v1.y + v2.z * v1.z;
@@ -137,14 +143,15 @@ t_u	dot_product_v3(t_tuple v1, t_tuple v2)
 t_tuple	cross_product_v3(t_tuple v1, t_tuple v2)
 {
 	t_tuple	new;
+	t_u		onep;
+	t_u		onem;
 
-	if (v1.w || v2.w)
-	{
+	onep = 1 + EPS;
+	onem = 1 - EPS;
+	if ((v1.w > onem && v1.w < onep) || (v2.w > onem && v2.w < onep))
 		ft_putstr_fd("Cross_product_v3 param's is a point", 2);
-	}
-	new = create_null_tuple();
 	new.x = v1.y * v2.z - v1.z * v2.y;
-	new.y = v1.x * v2.z - v1.z * v2.x;
+	new.y = v1.z * v2.x - v1.x * v2.z;
 	new.z = v1.x * v2.y - v1.y * v2.x;
 	new.w = 0;
 	return (new);
