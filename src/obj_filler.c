@@ -6,13 +6,14 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 22:48:27 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/14 13:29:04 by nthimoni         ###   ########.fr       */
+/*   Updated: 2022/10/17 15:11:09 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 #include "parsing.h"
 #include "exit_rt.h"
+#include "data_struct.h"
 #include "error.h"
 
 int fill_light(t_obj *tmp, t_rt *rt, char **sp)
@@ -42,7 +43,7 @@ int fill_light(t_obj *tmp, t_rt *rt, char **sp)
 			free_split(sp);
 			exit_parsing(rt, BAD_ALLOC_MSG, BAD_ALLOC);
 		}
-		ft_lstadd_back(rt->scn.light, new);
+		ft_lstadd_back(&rt->scn.light, new);
 	}
 	return (0);
 }

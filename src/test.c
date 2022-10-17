@@ -6,16 +6,11 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 12:56:21 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/10 23:22:10 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/14 13:33:25 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
 #include "test.h"
-#include "print.h"
-#include "matrix.h"
-#include "vector.h"
-#include "transformations.h"
 
 void	test(t_rt *rt)
 {
@@ -45,7 +40,7 @@ void	test(t_rt *rt)
 	v3 = create_tuple(arr5);
 	v4 = create_tuple(arr6);
 	v5 = cross_product_v3(v3, v4);
-	v6 = norm_v3(v3);
+	norm_v3(&v3);
 	print_tuple(&p1, "p1");
 	print_tuple(&p2, "p2");
 	print_tuple(&p3, "p3");
@@ -149,7 +144,7 @@ void	test3(t_rt *rt)
 	print_matrix_4(m3, "m3");
 	ret = det_matrix_4(m3);
 	printf("Det m3 = %lf\n", ret);
-	identity_matrix_m4(m3);
+	identity_matrix_4(m3);
 	print_matrix_4(m3, "m3");
 	invert_matrix_4(m3, m6);
 	print_matrix_4(m6, "m4");
@@ -173,15 +168,15 @@ void	test4(t_rt *rt)
 	int		i;
 
 	pos = create_tuple(arr1);
-	trans_mat_4(m_trans, 0, 300, 0);
-	mult_tuple_mat_4(&pos, m_trans, pos);
+	trans_matrix_4(m_trans, 0, 300, 0);
+	mult_tuple_matrix_4(&pos, m_trans, pos);
 	angle = 30 * M_PI / 180;
 	i = 0;
 	while (i < 12)
 	{
 		print_point_test4(rt, pos);
-		rot_z_mat_4(m_rotate, angle);
-		mult_tuple_mat_4(&pos, m_rotate, pos);
+		rot_z_matrix_4(m_rotate, angle);
+		mult_tuple_matrix_4(&pos, m_rotate, pos);
 		i++;
 	}
 }
@@ -209,4 +204,35 @@ void	print_point_test4(t_rt *rt, t_tuple pos)
 		j++;
 		k = -4;
 	}
+}
+
+void	test_world_matrix(t_rt *rt)
+{
+	t_tuple	cam_space;
+
+	cam_space.x = 0;
+	cam_space.y = 0;
+	cam_space.z = -1;
+	cam_space.w = 0;
+	print_matrix_4(rt->wtoc_m, "wtoc");
+	print_matrix_4(rt->ctow_m, "ctow");
+	printf("\n");
+	print_tuple(&cam_space, "cam_space");
+	mult_tuple_matrix_4(&cam_space, rt->ctow_m, cam_space);
+	print_tuple(&cam_space, "cam_space * ctow");
+	mult_tuple_matrix_4(&cam_space, rt->wtoc_m, cam_space);
+	print_tuple(&cam_space, "cam_space * wtoc");
+	printf("\n");
+	print_tuple(&rt->scn.cam.d, "rt->scn.cam.d");
+	mult_tuple_matrix_4(&rt->scn.cam.d, rt->wtoc_m, rt->scn.cam.d);
+	print_tuple(&rt->scn.cam.d, "rt->scn.cam.d * wtoc");
+	mult_tuple_matrix_4(&rt->scn.cam.d, rt->ctow_m, rt->scn.cam.d);
+	print_tuple(&rt->scn.cam.d, "rt->scn.cam.d * ctow");
+	printf("\n");
+	print_tuple(&rt->scn.cam.o, "rt->scn.cam.o");
+	mult_tuple_matrix_4(&rt->scn.cam.o, rt->wtoc_m, rt->scn.cam.o);
+	print_tuple(&rt->scn.cam.o, "rt->scn.cam.o * wtoc");
+	mult_tuple_matrix_4(&rt->scn.cam.o, rt->ctow_m, rt->scn.cam.o);
+	print_tuple(&rt->scn.cam.o, "rt->scn.cam.o * ctow");
+	printf("\n");
 }

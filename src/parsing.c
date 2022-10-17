@@ -6,14 +6,14 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 18:41:10 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/13 23:19:08 by nthimoni         ###   ########.fr       */
+/*   Updated: 2022/10/17 15:01:47 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 #include <fcntl.h>
 #include <unistd.h>
-#include "miniRT.h"
+#include "data_struct.h"
 #include "error.h"
 #include "exit_rt.h"
 
@@ -36,6 +36,7 @@ static int	fill_obj(char **sp, t_obj *tmp, t_rt *rt)
 {
 	int	error;
 
+	error = 0;
 	if (!check_nb_arg(tmp->type, ft_strslen(sp)))
 		return (free(tmp), 1);
 	if (tmp->type == AMBIANT)
@@ -50,7 +51,7 @@ static int	fill_obj(char **sp, t_obj *tmp, t_rt *rt)
 		error = fill_sphere(tmp, rt, sp);
 	else if (tmp->type == CYLINDRE)
 		error = fill_cylindre(tmp, rt, sp);
-	return (0);
+	return (error);
 }
 
 static int	set_type(char **sp, t_scene *scene, t_rt *rt)
@@ -72,6 +73,7 @@ static int	set_type(char **sp, t_scene *scene, t_rt *rt)
 	}
 	if (fill_obj(sp, tmp, rt))
 		return (1);
+	(void)scene;
 	return (0);
 }
 

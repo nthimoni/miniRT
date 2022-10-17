@@ -6,14 +6,17 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 14:54:33 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/14 12:03:43 by nthimoni         ###   ########.fr       */
+/*   Updated: 2022/10/17 14:55:16 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "parsing.h"
-#include "miniRT.h"
+#include "init.h"
+#include "mlx.h"
 #include "test.h"
+#include "ray.h"
+#include "data_struct.h"
 
 int	main(void)
 {
@@ -32,8 +35,7 @@ int	main(void)
 	rt = NULL;
 	ft_printf("Hello World!\n");
 	rt = init_rt();
-	clear_image(rt);
-	//test3(rt);
+	init_inter(rt);
 	(void)rt;
 	mlx_loop(rt->mlx);
 	ft_split("ok", ' ');

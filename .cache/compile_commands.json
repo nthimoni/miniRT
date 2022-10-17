@@ -73,5 +73,10 @@
     "directory": "/mnt/nfs/homes/nthimoni/Documents/miniRT",
     "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/parsing_utils.c -o bin/parsing_utils.o",
     "file": "src/parsing_utils.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/nthimoni/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/ray.c -o bin/ray.o",
+    "file": "src/ray.c"
   }
 ]

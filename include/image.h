@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   trash.h                                            :+:      :+:    :+:   */
+/*   image.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/03 18:06:33 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/14 13:34:36 by rmorel           ###   ########.fr       */
+/*   Created: 2022/10/14 13:04:34 by rmorel            #+#    #+#             */
+/*   Updated: 2022/10/14 13:31:09 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TRASH_H
-# define TRASH_H 
+#ifndef IMAGE_H
+#define IMAGE_H 
 
-# include "libft.h"
 # include "data_struct.h"
-# include "error.h"
-# include "libft.h"
-# include "exit_rt.h"
+# include "mlx.h"
 
-void	add_to_trash(t_rt *rt, void *ptr);
-void	free_trash(t_list *trash);
+void	clear_image(t_rt *rt);
+void	my_mlx_pixel_put(t_rt *rt, int x, int y, int color);
+int		render_next_frame(t_rt *rt);
 
 #endif 

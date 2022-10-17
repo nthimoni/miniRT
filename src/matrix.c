@@ -6,13 +6,11 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 12:04:54 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/10 20:57:25 by nthimoni         ###   ########.fr       */
+/*   Updated: 2022/10/14 15:41:48 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "matrix.h"
-#include "miniRT.h"
-#include "print.h"
 
 t_u	**create_matrix_x(int x)
 {
@@ -66,7 +64,10 @@ void	mult_matrix_4(t_u new[4][4], t_u m1[4][4], t_u m2[4][4])
 		while (i.b < 4)
 		{
 			while (i.c < 4)
+			{
 				new[i.a][i.b] += m1[i.a][i.c++] * m2[i.d++][i.b];
+				clamp(&new[i.a][i.b]);
+			}
 			i.c = 0;
 			i.d = 0;
 			i.b++;
@@ -77,7 +78,7 @@ void	mult_matrix_4(t_u new[4][4], t_u m1[4][4], t_u m2[4][4])
 	return ;
 }
 
-void	identity_matrix_m4(t_u new[4][4])
+void	identity_matrix_4(t_u new[4][4])
 {
 	int			i;
 	int			j;
@@ -122,7 +123,11 @@ void	transpose_matrix_4(t_u m[4][4], t_u new[4][4])
 
 t_u	det_matrix_2(t_u m[2][2])
 {
-	return (m[0][0] * m[1][1] - m[0][1] * m[1][0]);
+	t_u	ret;
+
+	ret = m[0][0] * m[1][1] - m[0][1] * m[1][0];
+	clamp(&ret);
+	return (ret);
 }
 
 void	sub_matrix_4(t_u m[4][4], int a, int b, t_u new[3][3])
@@ -289,6 +294,7 @@ t_u	det_matrix_4(t_u m[4][4])
 	sub_matrix_4(m, 0, 3, new_3);
 	ret = m[0][0] * det_matrix_3(new_0) - m[0][1] * det_matrix_3(new_1)
 		+ m[0][2] * det_matrix_3(new_2) - m[0][3] * det_matrix_3(new_3);
+	clamp(&ret);
 	return (ret);
 }
 
@@ -315,6 +321,7 @@ void	invert_matrix_4(t_u m[4][4], t_u new[4][4])
 		while (j < 4)
 		{
 			new[j][i] = cofactor_matrix_4(m, i, j) / ret;
+			clamp(&new[i][j]);
 			j++;
 		}
 		i++;
@@ -397,4 +404,14 @@ void	matrix_ex4(t_u new[4][4])
 	new[3][2] = -9;
 	new[3][3] = -4;
 	return ;
+}
+
+void	clamp(t_u *x)
+{
+	if (*x > -EPS && *x < EPS)
+		*x = +0.0;
+	if (*x > 1 - EPS && *x < 1 + EPS)
+		*x = 1;
+	if (*x > -1 - EPS && *x < -1 + EPS)
+		*x = -1;
 }
