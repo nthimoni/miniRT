@@ -93,5 +93,10 @@
     "directory": "/mnt/nfs/homes/nthimoni/Documents/miniRT",
     "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/obj_filler.c -o bin/obj_filler.o",
     "file": "src/obj_filler.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/nthimoni/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/lighting.c -o bin/lighting.o",
+    "file": "src/lighting.c"
   }
 ]
