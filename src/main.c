@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 14:54:33 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/18 15:06:36 by nthimoni         ###   ########.fr       */
+/*   Updated: 2022/10/18 16:53:54 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ int	main(int argc, char **argv)
 	rt = NULL;
 	ft_printf("Hello World!\n");
 	rt = init_rt();
-	init_inter(rt);
 	if (argc > 1)
 		parsing(rt, argv[1], &rt->scn);
+	init_inter(rt);
 	(void)rt;
 	mlx_loop(rt->mlx);
 	ft_split("ok", ' ');

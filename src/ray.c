@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:13:15 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/15 02:10:45 by bek              ###   ########.fr       */
+/*   Updated: 2022/10/18 19:32:47 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	position(t_tuple *new, t_ray r, t_tuple p)
 
 void	init_inter(t_rt *rt)
 {
-	test_sphere_init(rt);
+	//test_sphere_init(rt);
 	world_to_camera(rt);
 	init_pixel(rt);
 	clear_image(rt);
@@ -85,59 +85,6 @@ void	pixel_raster_to_space(t_intersect *i, int x, int y, t_rt *rt)
 	norm_v3(&i->ray.d);
 }
 
-void	test_sphere_init(t_rt *rt)
-{
-	t_tuple	o1;
-	t_tuple	o2;
-	t_tuple	o3;
-	t_u		arr1[4] = {-20, -20, 150, 1};
-	t_u		arr2[4] = {-50, -50, 200, 1};
-	t_u		arr3[4] = {-40, 0, 220, 1};
-
-	ft_bzero(&rt->scn.cam, sizeof(t_obj));
-	ft_bzero(&rt->scn.sph, sizeof(t_obj));
-	rt->scn.cam.o.x = 0;
-	rt->scn.cam.o.y = 0;
-	rt->scn.cam.o.z = 0;
-	rt->scn.cam.o.w = 1;
-	rt->scn.cam.d.x = 0;
-	rt->scn.cam.d.y = 0;
-	rt->scn.cam.d.z = 1;
-	rt->scn.cam.d.w = 0;
-	norm_v3(&rt->scn.cam.d);
-	rt->scn.sph.o.x = 0;
-	rt->scn.sph.o.y = 0;
-	rt->scn.sph.o.z = 200;
-	rt->scn.sph.o.w = 1;
-	rt->scn.sph.diam = 20;
-	rt->scn.cam.FOV = M_PI * 70 / 180;	
-	rt->scn.sph.color = create_trgb(0, 255, 0, 0);
-	o1 = create_tuple(arr1); 
-	o2 = create_tuple(arr2); 
-	o3 = create_tuple(arr3); 
-	ft_lstadd_back(&rt->scn.objs, ft_lstnew(create_sphere(3, o1, 30, create_trgb(0, 0, 255, 0))));
-	printf("sph_color = %d\n", ((t_obj *)rt->scn.objs->content)->color); 
-	ft_lstadd_back(&rt->scn.objs, ft_lstnew(create_sphere(3, o2, 50, create_trgb(0, 0, 255, 255))));
-	ft_lstadd_back(&rt->scn.objs, ft_lstnew(create_sphere(3, o3, 80, create_trgb(0, 0, 0, 255))));
-}
-
-t_obj	*create_sphere(int type, t_tuple origin, float diam, int color)
-{
-	t_obj	*sph;
-
-	sph = malloc(sizeof(t_obj));
-	if (!sph)
-		return (NULL);
-	sph->type = type; //3
-	sph->o.x = origin.x;
-	sph->o.y = origin.y;
-	sph->o.z = origin.z;
-	sph->o.w = origin.w;
-	sph->diam = diam;
-	sph->color = color;
-	return (sph);
-}
-
 t_bool	solve_quadratic(t_intersect *inter, t_quadra q)
 {
 	q.disc = pow(q.b, 2) - 4 * q.a * q.c;
@@ -177,12 +124,16 @@ int	ft_sign(t_u i)
 void	intersect_obj(t_rt *rt, t_intersect *inter, int i, int j)
 {
 	t_list	*tmp;
-	tmp = rt->scn.objs;
 
+	tmp = rt->scn.objs;
 	while (tmp)
 	{
-		if (((t_obj *)tmp->content)->type == 3)
+		//print_tuple(&((t_obj *)tmp->content)->o, "sph");
+		if (((t_obj *)tmp->content)->type == SPHERE)
 			intersect_sph(tmp->content, inter);
+		else if (((t_obj *)tmp->content)->type == PLAN)
+			intersect_plane(tmp->content, inter);
+		printf("inter->t0 = %lf\n", inter->t0);
 		tmp = tmp->next;
 	}
 	if (inter->t0 < DBL_MAX)
@@ -203,6 +154,25 @@ void	intersect_sph(t_obj	*sph, t_intersect *inter)
 	inter->obj = sph;
 	inter->t0 = inter->t0_tmp;
 	inter->t1 = inter->t1_tmp;
+}
+
+void	intersect_plane(t_obj *plane, t_intersect *inter)
+{
+	t_u		k;
+	t_tuple	r_to_p;
+
+	k = dot_product_v3(plane->d, inter->ray.d);
+	r_to_p = create_v3(inter->ray.o, plane->o);
+//	printf("k = %lf\n", k);
+//	print_tuple(&r_to_p, "rtop");
+	if (k > EPS)
+		inter->t0_tmp = dot_product_v3(r_to_p, inter->ray.d) / k;
+	if (inter->t0_tmp > inter->t0 || inter->t0_tmp < 0)
+		return ;
+	inter->obj = plane;
+	inter->t0 = inter->t0_tmp;
+	inter->t1 = DBL_MAX;
+
 }
 
 void	get_matrix_align_v1_v2(t_u m[4][4], t_tuple v1, t_tuple v2)
@@ -250,11 +220,14 @@ void	world_to_camera(t_rt *rt)
 	trans_matrix_4(trans_m4, -rt->scn.cam.o.x, -rt->scn.cam.o.y, -rt->scn.cam.o.z);
 	mult_matrix_4(rt->wtoc_m, tmp, trans_m4);
 	invert_matrix_4(rt->wtoc_m, rt->ctow_m);
+	print_tuple(&rt->scn.cam.o, "camo");
+	print_tuple(&rt->scn.cam.d, "camd");
 	test_world_matrix(rt);
 }
 
 t_bool	check_vector_opposite(t_tuple v1, t_tuple v2)
 {
+
 	norm_v3(&v1);
 	norm_v3(&v2);
 	if ((v1.x == -v2.x) && (v1.y == -v2.y) && (v1.z == -v2.z) && (v1.w == v2.w))

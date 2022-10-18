@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:01:40 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/17 15:08:20 by nthimoni         ###   ########.fr       */
+/*   Updated: 2022/10/18 16:59:34 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ typedef struct s_scene
 {
 	t_obj amb;
 	t_obj	cam;
-	t_obj	sph;
 	t_list	*light;
 	t_list	*objs;
 }	t_scene;
