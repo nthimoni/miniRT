@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:31:59 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/17 14:36:07 by nthimoni         ###   ########.fr       */
+/*   Updated: 2022/10/18 16:20:29 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int isValidLiteral(char *str)
 		return (0);
 	point = 0;
 	i = 0;
+	while (str[i] == '-' || str[i] == '+')
+		i++;
 	while (str[i])
 	{
 		if (str[i] == '.')

@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 18:41:10 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/17 15:01:47 by nthimoni         ###   ########.fr       */
+/*   Updated: 2022/10/18 15:35:20 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static int	set_type(char **sp, t_scene *scene, t_rt *rt)
 	t_obj					*tmp;
 
 	i = 0;
-	while (type[i] && !ft_strncmp(type[i], *sp, 3))
+	while (type[i] && ft_strncmp(type[i], *sp, 3))
 		i++;
 	tmp = creat_obj(otype[i]);
 	if (!tmp)
@@ -105,10 +105,10 @@ void	parsing(t_rt *rt, char *file, t_scene *scene)
 	line = get_next_line(fd);
 	while (line)
 	{
+		if (line[ft_strlen(line) - 1] == '\n')
+			line[ft_strlen(line) - 1] = 0;
 		fill_scene(line, scene, rt);
 		free(line);
 		line = get_next_line(fd);
-		if (!line)
-			exit_parsing(rt, BAD_ALLOC_MSG, BAD_ALLOC);
 	}
 }

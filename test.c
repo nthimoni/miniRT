@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 17:15:56 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/13 18:55:41 by nthimoni         ###   ########.fr       */
+/*   Updated: 2022/10/18 16:27:02 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,5 @@ int main(int argc, char **argv)
 		printf("OVERFLOW!\n");
 	else
 		printf("%.15f\n", a);
-	printf("%.15f\n", atof(argv[1]));
+	printf("%.15lf\n", strtod(argv[1], NULL));
 }

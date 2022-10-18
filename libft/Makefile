@@ -72,7 +72,7 @@ EXTOBJ = $(addprefix $(OBJDIR), $(addprefix $(EXTDIR), $(EXTFILES:.c=.o)))
 ######################################################################
 AR = ar -rc
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror
 INCPATH = -I$(INCDIR) -Iinclude/
 ######################################################################
 NAME = libft.a

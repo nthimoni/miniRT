@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 22:48:27 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/17 15:11:09 by nthimoni         ###   ########.fr       */
+/*   Updated: 2022/10/18 16:12:17 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,26 +53,38 @@ int fill_cam(t_obj *tmp, t_rt *rt, char **sp)
 	float	buf;
 	if (get_pos(sp[1], &tmp->o))
 		return (1);
-	if (get_ori(sp[1], &tmp->d))
+	if (get_ori(sp[2], &tmp->d))
 		return (1);
-	if (ft_atof(sp[1], &buf) || buf < 0.f || buf > 180.f)
+	if (ft_atof(sp[3], &buf) || buf < 0.f || buf > 180.f)
 		return (1);
 	tmp->FOV = buf;
+	rt->scn.cam = *tmp;
 	return (0);
 }
 int fill_plan(t_obj *tmp, t_rt *rt, char **sp)
 {
+	t_list	*new;
+
 	if (get_pos(sp[1], &tmp->o))
 		return (1);
 	if (get_ori(sp[2], &tmp->d))
 		return (1);
 	if (get_color(sp[3], &tmp->color))
 		return (1);
+	new = ft_lstnew(tmp);
+	if (!new)
+	{
+		free(tmp);
+		free_split(sp);
+		exit_parsing(rt, BAD_ALLOC_MSG, BAD_ALLOC);
+	}
+	ft_lstadd_back(&rt->scn.objs, new);
 	return (0);
 }
 int fill_sphere(t_obj *tmp, t_rt *rt, char **sp)
 {
-	float buf;
+	float	buf;
+	t_list	*new;
 
 	if (get_pos(sp[1], &tmp->o))
 		return (1);
@@ -81,11 +93,21 @@ int fill_sphere(t_obj *tmp, t_rt *rt, char **sp)
 	tmp->diam = buf;
 	if (get_color(sp[3], &tmp->color))
 		return (1);
+	new = ft_lstnew(tmp);
+	if (!new)
+	{
+		free(tmp);
+		free_split(sp);
+		exit_parsing(rt, BAD_ALLOC_MSG, BAD_ALLOC);
+	}
+	ft_lstadd_back(&rt->scn.objs, new);
 	return (0);
 }
 int fill_cylindre(t_obj *tmp, t_rt *rt, char **sp)
 {
 	float	buf;
+	t_list	*new;
+
 	if (get_pos(sp[1], &tmp->o))
 		return (1);
 	if (get_ori(sp[2], &tmp->d))
@@ -98,5 +120,13 @@ int fill_cylindre(t_obj *tmp, t_rt *rt, char **sp)
 	tmp->height = buf;
 	if (get_color(sp[5], &tmp->color))
 		return (1);
+	new = ft_lstnew(tmp);
+	if (!new)
+	{
+		free(tmp);
+		free_split(sp);
+		exit_parsing(rt, BAD_ALLOC_MSG, BAD_ALLOC);
+	}
+	ft_lstadd_back(&rt->scn.objs, new);
 	return (0);
 }
