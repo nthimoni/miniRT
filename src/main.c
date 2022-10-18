@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 14:54:33 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/18 16:53:54 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/19 01:15:10 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,78 +41,5 @@ int	main(int argc, char **argv)
 	init_inter(rt);
 	(void)rt;
 	mlx_loop(rt->mlx);
-	ft_split("ok", ' ');
-	{
-		char *s = ".0";
-		printf("%s\n", s);
-		float a = 0;
-		if (ft_atof(s, &a))
-			printf("OVERFLOW\n");
-		else
-			printf("%.50f\n", a);
-	}
-	{
-		char *s = ".005";
-		printf("%s\n", s);
-		float a = 0;
-		if (ft_atof(s, &a))
-			printf("OVERFLOW\n");
-		else
-			printf("%.50f\n", a);
-	}
-	{
-		char *s = ".05";
-		printf("%s\n", s);
-		float a = 0;
-		if (ft_atof(s, &a))
-			printf("OVERFLOW\n");
-		else
-			printf("%.50f\n", a);
-	}
-	{
-		char *s = "13.0";
-		printf("%s\n", s);
-		float a = 0;
-		if (ft_atof(s, &a))
-			printf("OVERFLOW\n");
-		else
-			printf("%.50f\n", a);
-	}
-	{
-		char *s = "13.657";
-		printf("%s\n", s);
-		float a = 0;
-		if (ft_atof(s, &a))
-			printf("OVERFLOW\n");
-		else
-			printf("%.50f\n", a);
-	}
-	{
-		char *s = ".3";
-		printf("%s\n", s);
-		float a = 0;
-		if (ft_atof(s, &a))
-			printf("OVERFLOW\n");
-		else
-			printf("%.50f\n", a);
-	}
-	{
-		char *s = ".33333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333";
-		printf("%s\n", s);
-		float a = 0;
-		if (ft_atof(s, &a))
-			printf("OVERFLOW\n");
-		else
-			printf("%.50f\n", a);
-	}
-	{
-		char *s = "333333333333333333333333333333333333333333333333333333333333333333333.3";
-		printf("%s\n", s);
-		float a = 0;
-		if (ft_atof(s, &a))
-			printf("OVERFLOW\n");
-		else
-			printf("%.50f\n", a);
-	}
 	return (0);
 }
