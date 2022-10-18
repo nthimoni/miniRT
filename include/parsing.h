@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:08:02 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/17 14:58:55 by nthimoni         ###   ########.fr       */
+/*   Updated: 2022/10/18 15:08:20 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "libft.h"
 # include "data_struct.h"
 
-void	void_parsing(char *file, t_scene *scene);
+void	parsing(t_rt *rt, char *file, t_scene *scene);
 int 	ft_strslen(char **sp);
 t_obj	*creat_obj(t_otype type);
 int		ft_atof(char *str, float *val);

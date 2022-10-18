@@ -6,12 +6,13 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 17:07:26 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/14 12:09:48 by nthimoni         ###   ########.fr       */
+/*   Updated: 2022/10/18 15:03:50 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 #include "parsing.h"
+#include "color.h"
 
 static int	only_nb(char *s)
 {
@@ -53,7 +54,7 @@ int get_pos(char *s, t_tuple *pos)
 	float	tmp;
 	char	**sp;
 
-	sp = ft_split(s, '.');
+	sp = ft_split(s, ',');
 	if (ft_strslen(sp) != 3)
 		return (free_split(sp), 1);
 	if (ft_atof(sp[0], &tmp))
