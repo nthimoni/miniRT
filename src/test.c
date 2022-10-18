@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 12:56:21 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/14 13:33:25 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/18 17:00:13 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,4 +235,50 @@ void	test_world_matrix(t_rt *rt)
 	mult_tuple_matrix_4(&rt->scn.cam.o, rt->ctow_m, rt->scn.cam.o);
 	print_tuple(&rt->scn.cam.o, "rt->scn.cam.o * ctow");
 	printf("\n");
+}
+
+void	test_sphere_init(t_rt *rt)
+{
+	t_tuple	o1;
+	t_tuple	o2;
+	t_tuple	o3;
+	t_u		arr1[4] = {-20, -20, 150, 1};
+	t_u		arr2[4] = {-50, -50, 200, 1};
+	t_u		arr3[4] = {-40, 0, 220, 1};
+
+	ft_bzero(&rt->scn.cam, sizeof(t_obj));
+	rt->scn.cam.o.x = 0;
+	rt->scn.cam.o.y = 0;
+	rt->scn.cam.o.z = 0;
+	rt->scn.cam.o.w = 1;
+	rt->scn.cam.d.x = 0;
+	rt->scn.cam.d.y = 0;
+	rt->scn.cam.d.z = 1;
+	rt->scn.cam.d.w = 0;
+	norm_v3(&rt->scn.cam.d);
+	rt->scn.cam.FOV = M_PI * 70 / 180;	
+	o1 = create_tuple(arr1); 
+	o2 = create_tuple(arr2); 
+	o3 = create_tuple(arr3); 
+	ft_lstadd_back(&rt->scn.objs, ft_lstnew(create_sphere(3, o1, 30, create_trgb(0, 0, 255, 0))));
+	printf("sph_color = %d\n", ((t_obj *)rt->scn.objs->content)->color); 
+	ft_lstadd_back(&rt->scn.objs, ft_lstnew(create_sphere(3, o2, 50, create_trgb(0, 0, 255, 255))));
+	ft_lstadd_back(&rt->scn.objs, ft_lstnew(create_sphere(3, o3, 80, create_trgb(0, 0, 0, 255))));
+}
+
+t_obj	*create_sphere(int type, t_tuple origin, float diam, int color)
+{
+	t_obj	*sph;
+
+	sph = malloc(sizeof(t_obj));
+	if (!sph)
+		return (NULL);
+	sph->type = type; //3
+	sph->o.x = origin.x;
+	sph->o.y = origin.y;
+	sph->o.z = origin.z;
+	sph->o.w = origin.w;
+	sph->diam = diam;
+	sph->color = color;
+	return (sph);
 }

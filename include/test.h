@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 13:02:04 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/14 13:35:57 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/18 16:49:32 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void		test3(t_rt *rt);
 void		test4(t_rt *rt);
 void		print_point_test4(t_rt *rt, t_tuple pos);
 void		test_world_matrix(t_rt *rt);
+void	test_sphere_init(t_rt *rt);
+t_obj	*create_sphere(int type, t_tuple origin, float diam, int color);
 
 
 #endif 

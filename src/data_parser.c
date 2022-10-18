@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 17:07:26 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/18 15:03:50 by nthimoni         ###   ########.fr       */
+/*   Updated: 2022/10/18 17:03:48 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ int	get_ori(char *s, t_tuple *ori)
 {
 	if (get_pos(s, ori))
 		return (1);
+	ori->w = 0;
 	if (ori->x > 1 || ori->x < -1)
 		return (1);
 	if (ori->y > 1 || ori->y < -1)

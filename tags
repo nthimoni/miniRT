@@ -23,6 +23,7 @@ $(OBJ_DIR)/%.o	minilibx-linux/Makefile.mk	/^$(OBJ_DIR)\/%.o: %.c$/;"	t
 1	.cache/compile_commands.json	/^  {$/;"	o
 10	.cache/compile_commands.json	/^  {$/;"	o
 11	.cache/compile_commands.json	/^  {$/;"	o
+12	.cache/compile_commands.json	/^  {$/;"	o
 2	.cache/compile_commands.json	/^  {$/;"	o
 3	.cache/compile_commands.json	/^  {$/;"	o
 4	.cache/compile_commands.json	/^  {$/;"	o
@@ -114,6 +115,7 @@ INCLUDE	minilibx-linux/man/man1/mlx.1	/^.SH INCLUDE FILE$/;"	s	title:MiniLibX
 INCLUDE	minilibx-linux/man/man3/mlx.3	/^.SH INCLUDE FILE$/;"	s	title:MiniLibX
 INCPATH	Makefile	/^INCPATH = -I$(INCDIR) -I$(FTINC) -I$(MLXPATH)$/;"	m
 INCPATH	libft/Makefile	/^INCPATH = -I$(INCDIR) -Iinclude\/$/;"	m
+INF	include/data_struct.h	/^# define INF /;"	d
 INIT_H	include/init.h	/^#define INIT_H /;"	d
 LFLAGS	minilibx-linux/test/Makefile.mk	/^LFLAGS = -L.. -lmlx -L$(INCLIB) -lXext -lX11 -lm$/;"	m
 LIBFT	Makefile	/^LIBFT = $(FTPATH)libft.a$/;"	m
@@ -286,6 +288,7 @@ command	.cache/compile_commands.json	/^    "command": "gcc -g -c -Wall -Wextra -
 command	.cache/compile_commands.json	/^    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude\/ -Ilibft\/include\/ -Iminili/;"	s	object:1
 command	.cache/compile_commands.json	/^    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude\/ -Ilibft\/include\/ -Iminili/;"	s	object:10
 command	.cache/compile_commands.json	/^    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude\/ -Ilibft\/include\/ -Iminili/;"	s	object:11
+command	.cache/compile_commands.json	/^    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude\/ -Ilibft\/include\/ -Iminili/;"	s	object:12
 command	.cache/compile_commands.json	/^    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude\/ -Ilibft\/include\/ -Iminili/;"	s	object:2
 command	.cache/compile_commands.json	/^    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude\/ -Ilibft\/include\/ -Iminili/;"	s	object:3
 command	.cache/compile_commands.json	/^    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude\/ -Ilibft\/include\/ -Iminili/;"	s	object:4
@@ -301,6 +304,7 @@ create_back	libft/src/bonus/ft_lstmap.c	/^static int	create_back(t_list *lst, t_
 create_matrix_x	src/matrix.c	/^t_u	**create_matrix_x(int x)$/;"	f	typeref:typename:t_u **
 create_null_tuple	src/vector.c	/^t_tuple	create_null_tuple(void)$/;"	f	typeref:typename:t_tuple
 create_ray	src/ray.c	/^void	create_ray(t_ray *new, t_tuple p, t_tuple v)$/;"	f	typeref:typename:void
+create_sphere	src/ray.c	/^t_obj	*create_sphere(int type, t_tuple origin, float diam, int color)$/;"	f	typeref:typename:t_obj *
 create_trgb	src/colors.c	/^int	create_trgb(int t, int r, int g, int b)$/;"	f	typeref:typename:int
 create_tuple	src/vector.c	/^t_tuple	create_tuple(t_u *array)$/;"	f	typeref:typename:t_tuple
 create_tuple_copy	src/vector.c	/^t_tuple	create_tuple_copy(t_tuple t)$/;"	f	typeref:typename:t_tuple
@@ -322,18 +326,19 @@ det_matrix_3	src/matrix.c	/^t_u	det_matrix_3(t_u m[3][3])$/;"	f	typeref:typename
 det_matrix_4	src/matrix.c	/^t_u	det_matrix_4(t_u m[4][4])$/;"	f	typeref:typename:t_u
 diam	include/data_struct.h	/^	float	diam;$/;"	m	struct:s_obj	typeref:typename:float
 diez	libft/include/include_imp/parse_flags.h	/^	int		diez;$/;"	m	struct:s_flags	typeref:typename:int
-directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/nthimoni\/Documents\/miniRT",$/;"	s	object:0
-directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/nthimoni\/Documents\/miniRT",$/;"	s	object:1
-directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/nthimoni\/Documents\/miniRT",$/;"	s	object:10
-directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/nthimoni\/Documents\/miniRT",$/;"	s	object:11
-directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/nthimoni\/Documents\/miniRT",$/;"	s	object:2
-directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/nthimoni\/Documents\/miniRT",$/;"	s	object:3
-directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/nthimoni\/Documents\/miniRT",$/;"	s	object:4
-directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/nthimoni\/Documents\/miniRT",$/;"	s	object:5
-directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/nthimoni\/Documents\/miniRT",$/;"	s	object:6
-directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/nthimoni\/Documents\/miniRT",$/;"	s	object:7
-directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/nthimoni\/Documents\/miniRT",$/;"	s	object:8
-directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/nthimoni\/Documents\/miniRT",$/;"	s	object:9
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:0
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:1
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:10
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:11
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:12
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:2
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:3
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:4
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:5
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:6
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:7
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:8
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:9
 disc	include/data_struct.h	/^	t_u		disc;$/;"	m	struct:s_quadra	typeref:typename:t_u
 dispatcher	libft/src/extra/ft_printf/ft_printf.c	/^static void	dispatcher(t_flags *flags, va_list ap)$/;"	f	typeref:typename:void	file:
 display	minilibx-linux/mlx_int.h	/^	Display		*display;$/;"	m	struct:s_xvar	typeref:typename:Display *
@@ -365,6 +370,7 @@ file	.cache/compile_commands.json	/^    "file": "src\/init.c"$/;"	s	object:6
 file	.cache/compile_commands.json	/^    "file": "src\/main.c"$/;"	s	object:0
 file	.cache/compile_commands.json	/^    "file": "src\/matrix.c"$/;"	s	object:10
 file	.cache/compile_commands.json	/^    "file": "src\/print.c"$/;"	s	object:5
+file	.cache/compile_commands.json	/^    "file": "src\/ray.c"$/;"	s	object:12
 file	.cache/compile_commands.json	/^    "file": "src\/test.c"$/;"	s	object:7
 file	.cache/compile_commands.json	/^    "file": "src\/transformations.c"$/;"	s	object:11
 file	.cache/compile_commands.json	/^    "file": "src\/trash.c"$/;"	s	object:8
@@ -454,6 +460,7 @@ init_inter	src/ray.c	/^void	init_inter(t_rt *rt)$/;"	f	typeref:typename:void
 init_pixel	src/ray.c	/^void	init_pixel(t_rt *rt)$/;"	f	typeref:typename:void
 init_rt	src/init.c	/^t_rt	*init_rt(void)$/;"	f	typeref:typename:t_rt *
 intersect_obj	src/ray.c	/^void	intersect_obj(t_rt *rt, t_intersect *inter, int i, int j)$/;"	f	typeref:typename:void
+intersect_sph	src/ray.c	/^void	intersect_sph(t_obj	*sph, t_intersect *inter)$/;"	f	typeref:typename:void
 invert_matrix_4	src/matrix.c	/^void	invert_matrix_4(t_u m[4][4], t_u new[4][4])$/;"	f	typeref:typename:void
 isin	libft/src/mandatory/ft_strtrim.c	/^static	int	isin(char a, const char *str)$/;"	f	typeref:typename:int	file:
 key_hook	minilibx-linux/mlx_int.h	/^	int					(*key_hook)();$/;"	m	struct:s_win_list	typeref:typename:int (*)()
@@ -675,7 +682,9 @@ sub_matrix_4	src/matrix.c	/^void	sub_matrix_4(t_u m[4][4], int a, int b, t_u new
 sub_matrix_4_1	src/matrix.c	/^void	sub_matrix_4_1(t_u m[4][4], t_u new[3][3], t_matex i)$/;"	f	typeref:typename:void
 sub_tupple	src/vector.c	/^t_tuple	sub_tupple(t_tuple t1, t_tuple t2)$/;"	f	typeref:typename:t_tuple
 t0	include/data_struct.h	/^	t_u			t0;$/;"	m	struct:s_intersect	typeref:typename:t_u
+t0_tmp	include/data_struct.h	/^	t_u			t0_tmp;$/;"	m	struct:s_intersect	typeref:typename:t_u
 t1	include/data_struct.h	/^	t_u			t1;$/;"	m	struct:s_intersect	typeref:typename:t_u
+t1_tmp	include/data_struct.h	/^	t_u			t1_tmp;$/;"	m	struct:s_intersect	typeref:typename:t_u
 t_bool	include/data_struct.h	/^}	t_bool;$/;"	t	typeref:enum:e_bool
 t_content	libft/include/libft.h	/^typedef void*	t_content;$/;"	t	typeref:typename:void *
 t_event_list	minilibx-linux/mlx_int.h	/^}				t_event_list;$/;"	t	typeref:struct:s_event_list
