@@ -6,11 +6,12 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:13:15 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/18 19:32:47 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/18 22:40:59 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ray.h"
+#include "lighting.h"
 
 void	create_ray(t_ray *new, t_tuple p, t_tuple v)
 {
@@ -133,11 +134,11 @@ void	intersect_obj(t_rt *rt, t_intersect *inter, int i, int j)
 			intersect_sph(tmp->content, inter);
 		else if (((t_obj *)tmp->content)->type == PLAN)
 			intersect_plane(tmp->content, inter);
-		printf("inter->t0 = %lf\n", inter->t0);
+		//printf("inter->t0 = %lf\n", inter->t0);
 		tmp = tmp->next;
 	}
 	if (inter->t0 < DBL_MAX)
-		my_mlx_pixel_put(rt, i, j, inter->obj->color);
+		my_mlx_pixel_put(rt, i, j, lighting(rt, inter));
 }
 
 void	intersect_sph(t_obj	*sph, t_intersect *inter)
