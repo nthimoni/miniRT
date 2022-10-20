@@ -8,7 +8,7 @@ LIBFT = $(FTPATH)libft.a
 MLX = $(MLXPATH)libmlx.a
 ######################################################################
 SRCS = main.c vector.c image.c hook.c exit_rt.c print.c init.c test.c trash.c colors.c matrix.c transformations.c\
-   ft_atof.c ft_atof_utils.c parsing.c parsing_utils.c ray.c data_parser.c obj_filler.c
+   ft_atof.c ft_atof_utils.c parsing.c parsing_utils.c ray.c data_parser.c obj_filler.c camera.c rendering.c
 OBJS = $(addprefix $(OBJDIR),$(SRCS:.c=.o))
 DEPENDS = $(OBJS:.o=.d)
 ######################################################################
@@ -19,7 +19,7 @@ INCPATH = -I$(INCDIR) -I$(FTINC) -I$(MLXPATH)
 LIBPATH = -L$(FTPATH) -L$(MLXPATH)
 NAME = miniRT
 VAL = valgrind --leak-check=full ./$(NAME)
-RUN = ./$(NAME)
+RUN = ./$(NAME) input.rt
 ######################################################################
 all: $(NAME)
 	$(RUN)

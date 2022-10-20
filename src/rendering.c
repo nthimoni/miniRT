@@ -1,24 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook.h                                             :+:      :+:    :+:   */
+/*   rendering.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/14 13:05:16 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/20 17:26:13 by rmorel           ###   ########.fr       */
+/*   Created: 2022/10/20 17:54:45 by rmorel            #+#    #+#             */
+/*   Updated: 2022/10/20 17:55:36 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HOOK_H
-#define HOOK_H 
+#include "rendering.h"
 
-# include "data_struct.h"
-# include "mlx.h"
-# include <stdio.h>
+void	print_axis(t_rt *rt)
+{
+	int	i;
+	int	j;
 
-int	red_cross(t_rt *rt);
-int	key_hook(int keycode, t_rt *rt);
-int	mouse_hook(int button, int x, int y, t_rt *rt);
-
-#endif 
+	i = W_W / 2;
+	j = 0;
+	while (j++ < W_H)
+		my_mlx_pixel_put(rt, i, j, create_trgb(0, 255, 255, 255));
+	i = 0;
+	j = W_H / 2;
+	while (i++ < W_W)
+		my_mlx_pixel_put(rt, i, j, create_trgb(0, 255, 255, 255));
+	return ;
+}
