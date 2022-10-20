@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:13:15 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/19 01:21:53 by nthimoni         ###   ########.fr       */
+/*   Updated: 2022/10/20 17:37:17 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -215,7 +215,7 @@ void	world_to_camera(t_rt *rt)
 	cam_space.w = 0;
 	norm_v3(&cam_space);
 	if (check_vector_opposite(cam_space, rt->scn.cam.d))
-		scale_matrix_4(tmp, 1, 1, -1);
+		rot_y_matrix_4(tmp, M_PI);
 	else
 		get_matrix_align_v1_v2(tmp, rt->scn.cam.d, cam_space);
 	trans_matrix_4(trans_m4, -rt->scn.cam.o.x, -rt->scn.cam.o.y, -rt->scn.cam.o.z);
