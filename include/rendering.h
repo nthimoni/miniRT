@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook.h                                             :+:      :+:    :+:   */
+/*   rendering.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/14 13:05:16 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/20 17:26:13 by rmorel           ###   ########.fr       */
+/*   Created: 2022/10/20 17:55:09 by rmorel            #+#    #+#             */
+/*   Updated: 2022/10/20 17:57:31 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HOOK_H
-#define HOOK_H 
+#ifndef RENDERING_H
+#define RENDERING_H 
 
 # include "data_struct.h"
 # include "mlx.h"
-# include <stdio.h>
+# include "color.h"
+# include "image.h"
 
-int	red_cross(t_rt *rt);
-int	key_hook(int keycode, t_rt *rt);
-int	mouse_hook(int button, int x, int y, t_rt *rt);
+void	print_axis(t_rt *rt);
 
 #endif 
