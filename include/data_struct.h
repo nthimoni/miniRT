@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:01:40 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/18 16:59:34 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/20 15:03:31 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ typedef struct s_obj
 	t_u		FOV;
 	int		color;
 	double	ratio;
+	t_u		wtoo_m[4][4];
+	t_u		otow_m[4][4];
 }	t_obj;
 
 typedef struct s_scene

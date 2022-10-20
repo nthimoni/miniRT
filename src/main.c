@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 14:54:33 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/18 16:53:54 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/20 12:00:25 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char **argv)
 {
 	t_rt	*rt;
 
-	float a = 10;
+	/*float a = 10;
 	if (ft_atof("1", &a))
 		ft_printf("OVERFLOW\n\n");
 	printf("val : %f\n", a);
@@ -34,14 +34,14 @@ int	main(int argc, char **argv)
 		ft_printf("OVERFLOW\n\n");
 	printf("val : %f\n", a);
 	rt = NULL;
-	ft_printf("Hello World!\n");
+	ft_printf("Hello World!\n");*/
 	rt = init_rt();
 	if (argc > 1)
 		parsing(rt, argv[1], &rt->scn);
 	init_inter(rt);
 	(void)rt;
 	mlx_loop(rt->mlx);
-	ft_split("ok", ' ');
+	/*ft_split("ok", ' ');
 	{
 		char *s = ".0";
 		printf("%s\n", s);
@@ -113,6 +113,6 @@ int	main(int argc, char **argv)
 			printf("OVERFLOW\n");
 		else
 			printf("%.50f\n", a);
-	}
+	}*/
 	return (0);
 }

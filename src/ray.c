@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:13:15 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/18 19:32:47 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/20 15:20:16 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,32 +36,9 @@ void	init_inter(t_rt *rt)
 {
 	//test_sphere_init(rt);
 	world_to_camera(rt);
+	fill_obj(rt);
 	init_pixel(rt);
 	clear_image(rt);
-}
-
-void	init_pixel(t_rt *rt)
-{
-	t_intersect	inter;
-	int			i;
-	int			j;
-
-	i = 0;
-	j = 0;
-	while (i < W_W)
-	{
-		while (j++ < W_H)
-		{
-			ft_bzero(&inter, sizeof(t_intersect));
-			inter.t0 = DBL_MAX;
-			inter.t1 = DBL_MAX;
-			pixel_raster_to_space(&inter, i, j, rt);
-			intersect_obj(rt, &inter, i, j);
-		}
-		j = 0;
-		i++;
-	}
-	printf("Done !");
 }
 
 void	pixel_raster_to_space(t_intersect *i, int x, int y, t_rt *rt)
@@ -121,6 +98,30 @@ int	ft_sign(t_u i)
 		return (1);
 }
 
+void	init_pixel(t_rt *rt)
+{
+	t_intersect	inter;
+	int			i;
+	int			j;
+
+	i = 0;
+	j = 0;
+	while (i < W_W)
+	{
+		while (j++ < W_H)
+		{
+			ft_bzero(&inter, sizeof(t_intersect));
+			inter.t0 = DBL_MAX;
+			inter.t1 = DBL_MAX;
+			pixel_raster_to_space(&inter, i, j, rt);
+			intersect_obj(rt, &inter, i, j);
+		}
+		j = 0;
+		i++;
+	}
+	printf("Done !");
+}
+
 void	intersect_obj(t_rt *rt, t_intersect *inter, int i, int j)
 {
 	t_list	*tmp;
@@ -131,16 +132,16 @@ void	intersect_obj(t_rt *rt, t_intersect *inter, int i, int j)
 		//print_tuple(&((t_obj *)tmp->content)->o, "sph");
 		if (((t_obj *)tmp->content)->type == SPHERE)
 			intersect_sph(tmp->content, inter);
-		else if (((t_obj *)tmp->content)->type == PLAN)
-			intersect_plane(tmp->content, inter);
-		printf("inter->t0 = %lf\n", inter->t0);
+		//else if (((t_obj *)tmp->content)->type == PLAN)
+		//	intersect_plane(tmp->content, inter);
+		//printf("inter->t0 = %lf\n", inter->t0);
 		tmp = tmp->next;
 	}
 	if (inter->t0 < DBL_MAX)
 		my_mlx_pixel_put(rt, i, j, inter->obj->color);
 }
 
-void	intersect_sph(t_obj	*sph, t_intersect *inter)
+void	intersect_sph(t_obj *sph, t_intersect *inter)
 {
 	t_quadra	q;
 	t_tuple		s_to_r;
@@ -154,6 +155,49 @@ void	intersect_sph(t_obj	*sph, t_intersect *inter)
 	inter->obj = sph;
 	inter->t0 = inter->t0_tmp;
 	inter->t1 = inter->t1_tmp;
+//	printf("(intersect)sph) inter->t0 = %lf\n", inter->t0);
+}
+
+void	fill_obj(t_rt *rt)
+{
+	t_list	*tmp;
+	t_obj	*obj;
+	t_u		scale_m[4][4];
+	t_u		tmp_m[4][4];
+
+	tmp = rt->scn.objs;
+	printf("tmp = %p\n", rt->scn.objs);
+	obj = (t_obj *)(tmp->content);
+	while (tmp)
+	{
+		if (obj->type == SPHERE)
+		{
+			trans_matrix_4(tmp_m, obj->o.x, obj->o.y, obj->o.z);
+			scale_matrix_4(scale_m, obj->diam, obj->diam, obj->diam);
+			mult_matrix_4(obj->otow_m, tmp_m, scale_m);
+			invert_matrix_4(obj->otow_m, obj->wtoo_m);
+		}
+		tmp = tmp->next;
+		obj = (t_obj *)tmp->content;
+	}
+}
+void	intersect_sph2(t_obj *sph, t_intersect *inter)
+{
+	t_quadra	q;
+	t_tuple		s_to_r;
+
+	mult_tuple_matrix_4(&inter->ray.d, sph->wtoo_m, inter->ray.d);
+	mult_tuple_matrix_4(&inter->ray.o, sph->wtoo_m, inter->ray.o);
+	s_to_r = create_v3(sph->o, inter->ray.o);
+	q.a = dot_product_v3(inter->ray.d, inter->ray.d);
+	q.b = 2 * dot_product_v3(inter->ray.d, s_to_r);
+	q.c = dot_product_v3(s_to_r, s_to_r) - pow(sph->diam / 2, 2); 
+	if (!solve_quadratic(inter, q) || inter->t0_tmp > inter->t0)
+		return ;
+	inter->obj = sph;
+	inter->t0 = inter->t0_tmp;
+	inter->t1 = inter->t1_tmp;
+//	printf("(intersect)sph) inter->t0 = %lf\n", inter->t0);
 }
 
 void	intersect_plane(t_obj *plane, t_intersect *inter)
@@ -161,12 +205,16 @@ void	intersect_plane(t_obj *plane, t_intersect *inter)
 	t_u		k;
 	t_tuple	r_to_p;
 
+//	print_tuple(&plane->d, "pland");
+//	print_tuple(&inter->ray.d, "rayd");
 	k = dot_product_v3(plane->d, inter->ray.d);
+//	printf("k = %lf\n", k);
 	r_to_p = create_v3(inter->ray.o, plane->o);
+//	print_tuple(&r_to_p, "rtop");
 //	printf("k = %lf\n", k);
 //	print_tuple(&r_to_p, "rtop");
 	if (k > EPS)
-		inter->t0_tmp = dot_product_v3(r_to_p, inter->ray.d) / k;
+		inter->t0_tmp = dot_product_v3(r_to_p, plane->d) / k;
 	if (inter->t0_tmp > inter->t0 || inter->t0_tmp < 0)
 		return ;
 	inter->obj = plane;
@@ -220,9 +268,7 @@ void	world_to_camera(t_rt *rt)
 	trans_matrix_4(trans_m4, -rt->scn.cam.o.x, -rt->scn.cam.o.y, -rt->scn.cam.o.z);
 	mult_matrix_4(rt->wtoc_m, tmp, trans_m4);
 	invert_matrix_4(rt->wtoc_m, rt->ctow_m);
-	print_tuple(&rt->scn.cam.o, "camo");
-	print_tuple(&rt->scn.cam.d, "camd");
-	test_world_matrix(rt);
+	//test_world_matrix(rt);
 }
 
 t_bool	check_vector_opposite(t_tuple v1, t_tuple v2)
