@@ -1,28 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   camera.h                                           :+:      :+:    :+:   */
+/*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bek <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/20 17:49:48 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/20 17:55:36 by rmorel           ###   ########.fr       */
+/*   Created: 2022/10/21 10:09:36 by bek               #+#    #+#             */
+/*   Updated: 2022/10/21 13:40:45 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAMERA_H
-#define CAMERA_H 
+#ifndef SCENE_H
+# define SCENE_H 
 
 # include "data_struct.h"
 # include "matrix.h"
-# include "transformations.h"
-# include "test.h"
 # include "vector.h"
+# include "transformations.h"
+# include "mlx.h"
+# include "image.h"
+# include "test.h"
 
-void	world_to_camera(t_rt *rt);
+//		camera.c
+
 void	get_matrix_align_v1_v2(t_u m[4][4], t_tuple v1, t_tuple v2);
+void	world_to_camera(t_rt *rt);
 t_bool	check_vector_opposite(t_tuple v1, t_tuple v2);
 void	fill_obj(t_rt *rt);
 void	pixel_raster_to_space(t_intersect *i, int x, int y, t_rt *rt);
 
-#endif 
+//		rendering.c
+
+void	print_axis(t_rt *rt);
+
+//		obj.c
+
+void	transform_obj_wtoo(t_rt *rt);
+
+#endif

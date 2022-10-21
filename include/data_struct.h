@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:01:40 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/20 15:03:31 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/21 09:53:59 by bek              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,13 @@ typedef enum e_otype
 	CYLINDRE,
 	LIGHT
 }	t_otype;
+
+typedef enum	e_space
+{
+	WORLD = 0,
+	CAM,
+	OBJ,
+}	t_space;
 
 typedef struct s_obj
 {
@@ -83,6 +90,7 @@ typedef struct	s_rt
 	t_u		wtoc_m[4][4];
 	t_u		ctow_m[4][4];
 	t_scene	scn;
+	t_space	space;
 }	t_rt;
 
 typedef	enum	e_bool

@@ -6,11 +6,11 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 17:49:21 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/20 20:59:16 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/21 13:50:19 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "camera.h"
+# include "scene.h"
 
 void	get_matrix_align_v1_v2(t_u m[4][4], t_tuple v1, t_tuple v2)
 {
@@ -51,13 +51,14 @@ void	world_to_camera(t_rt *rt)
 	cam_space.w = 0;
 	norm_v3(&cam_space);
 	if (check_vector_opposite(cam_space, rt->scn.cam.d))
-		scale_matrix_4(tmp, 1, 1, -1);
+		rot_y_matrix_4(tmp, M_PI);
 	else
 		get_matrix_align_v1_v2(tmp, rt->scn.cam.d, cam_space);
+	print_tuple(&rt->scn.cam.o, "camo");
 	trans_matrix_4(trans_m4, -rt->scn.cam.o.x, -rt->scn.cam.o.y, -rt->scn.cam.o.z);
-	mult_matrix_4(rt->wtoc_m, tmp, trans_m4);
+	mult_matrix_4(rt->wtoc_m, trans_m4, tmp);
 	invert_matrix_4(rt->wtoc_m, rt->ctow_m);
-	//test_world_matrix(rt);
+	test_world_matrix(rt);
 }
 
 t_bool	check_vector_opposite(t_tuple v1, t_tuple v2)
@@ -75,10 +76,11 @@ void	fill_obj(t_rt *rt)
 	t_list	*tmp;
 	t_obj	*obj;
 	t_u		scale_m[4][4];
-	t_u		tmp_m[4][4];
+	t_u		scale_invert_m[4][4];
+	t_u		trans_m[4][4];
+	t_u		trans_inv_m[4][4];
 
 	tmp = rt->scn.objs;
-	printf("tmp = %p\n", rt->scn.objs);
 	while (tmp)
 	{
 		obj = (t_obj *)tmp->content;
@@ -86,10 +88,12 @@ void	fill_obj(t_rt *rt)
 		ft_bzero(&obj->otow_m, sizeof(t_u[4][4]));
 		if (obj->type == SPHERE)
 		{
-			trans_matrix_4(tmp_m, obj->o.x, obj->o.y, obj->o.z);
-			scale_matrix_4(scale_m, obj->diam, obj->diam, obj->diam);
-			mult_matrix_4(obj->otow_m, tmp_m, scale_m);
-			invert_matrix_4(obj->otow_m, obj->wtoo_m);
+			trans_matrix_4(trans_m, obj->o.x, obj->o.y, obj->o.z);
+			invert_matrix_4(trans_m, trans_inv_m);
+			scale_matrix_4(scale_m, obj->diam / 2, obj->diam / 2, obj->diam / 2);
+			invert_matrix_4(scale_m, scale_invert_m);
+			mult_matrix_4(obj->wtoo_m, scale_invert_m, trans_inv_m);
+			mult_matrix_4(obj->otow_m, scale_m, trans_m);
 		}
 		tmp = tmp->next;
 	}
