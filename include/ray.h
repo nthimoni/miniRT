@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:13:31 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/20 17:56:45 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/21 10:17:50 by bek              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@
 # include "print.h"
 # include "test.h"
 # include "vector.h"
-# include "camera.h"
-# include "rendering.h"
+# include "scene.h"
 # include <float.h>
 
 void	create_ray(t_ray *new, t_tuple p, t_tuple v);

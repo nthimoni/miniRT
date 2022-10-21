@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:13:15 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/20 22:14:18 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/21 13:46:29 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,14 @@ void	position(t_tuple *new, t_ray r, t_tuple p)
 
 void	init_inter(t_rt *rt)
 {
-	//test_sphere_init(rt);
 	world_to_camera(rt);
 	print_axis(rt);
 	fill_obj(rt);
+	// rt-space défini dans quel espace on va faire les calculs
+	rt->space = OBJ;
 	init_pixel(rt);
 	clear_image(rt);
+//	test_wtoo(rt);
 }
 
 t_bool	solve_quadratic(t_intersect *inter, t_quadra q)
@@ -102,7 +104,7 @@ void	init_pixel(t_rt *rt)
 		j = 0;
 		i++;
 	}
-	ft_bzero(&inter, sizeof(t_intersect));
+	/*ft_bzero(&inter, sizeof(t_intersect));
 	inter.t0 = DBL_MAX;
 	inter.t1 = DBL_MAX;
 	pixel_raster_to_space(&inter, 1230, 363, rt);
@@ -118,7 +120,7 @@ void	init_pixel(t_rt *rt)
 	pixel_raster_to_space(&inter, 1232, 362, rt);
 	intersect_obj(rt, &inter, 1232, 362);
 	ft_bzero(&inter, sizeof(t_intersect));
-	printf("Done !\n");
+	printf("Done !\n");*/
 }
 
 void	init_pixel_debug(t_rt *rt)
@@ -153,7 +155,12 @@ void	intersect_obj(t_rt *rt, t_intersect *inter, int i, int j)
 	{
 		//print_tuple(&((t_obj *)tmp->content)->o, "sph");
 		if (((t_obj *)tmp->content)->type == SPHERE)
-			intersect_sph2(tmp->content, inter);
+		{
+			if (rt->space == WORLD)
+				intersect_sph(tmp->content, inter);
+			else if (rt->space == OBJ)
+				intersect_sph2(tmp->content, inter);
+		}
 		//else if (((t_obj *)tmp->content)->type == PLAN)
 		//	intersect_plane(tmp->content, inter);
 		//printf("inter->t0 = %lf\n", inter->t0);
@@ -190,9 +197,9 @@ void	intersect_sph2(t_obj *sph, t_intersect *inter)
 	print_matrix_4(sph->wtoo_m, "wtoo"); */
 	mult_tuple_matrix_4(&ray2.d, sph->wtoo_m, inter->ray.d);
 	mult_tuple_matrix_4(&ray2.o, sph->wtoo_m, inter->ray.o);
-	s_to_r = create_v3(sph->o, inter->ray.o);
-	q.a = dot_product_v3(inter->ray.d, inter->ray.d);
-	q.b = 2 * dot_product_v3(inter->ray.d, s_to_r);
+	s_to_r = create_v3(sph->o, ray2.o);
+	q.a = dot_product_v3(ray2.d, ray2.d);
+	q.b = 2 * dot_product_v3(ray2.d, s_to_r);
 	q.c = dot_product_v3(s_to_r, s_to_r) - pow(sph->diam / 2, 2); 
 /* 	print_tuple(&inter->ray.d, "rayd");
 	print_tuple(&s_to_r, "stor");
