@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:01:40 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/21 09:53:59 by bek              ###   ########.fr       */
+/*   Updated: 2022/10/24 14:25:49 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,12 @@ typedef struct	s_img
 	int		y;
 }	t_img;
 
+typedef	enum	e_bool
+{
+	FALSE,
+	TRUE,
+}	t_bool;
+
 typedef struct	s_rt
 {
 	t_list	*trash;
@@ -91,13 +97,8 @@ typedef struct	s_rt
 	t_u		ctow_m[4][4];
 	t_scene	scn;
 	t_space	space;
+	t_bool	debug;
 }	t_rt;
-
-typedef	enum	e_bool
-{
-	FALSE,
-	TRUE,
-}	t_bool;
 
 typedef struct	s_ray
 {

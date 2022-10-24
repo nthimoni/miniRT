@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 12:56:21 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/21 13:51:01 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/24 15:14:36 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,7 +212,7 @@ void	test_world_matrix(t_rt *rt)
 
 	cam_space.x = 0;
 	cam_space.y = 0;
-	cam_space.z = -1;
+	cam_space.z = 1;
 	cam_space.w = 0;
 	print_matrix_4(rt->wtoc_m, "wtoc");
 	print_matrix_4(rt->ctow_m, "ctow");
