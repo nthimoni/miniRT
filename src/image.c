@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 22:14:48 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/14 13:31:10 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/24 15:44:54 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	my_mlx_pixel_put(t_rt *rt, int x, int y, int color)
 {
 	char	*dst;
 
-	if (x > W_W || y > W_H || x <= 0 || y <= 0)
+	if (x >= W_W || y >= W_H || x < 0 || y < 0)
 		return ;
 	dst = rt->img->addr + (y * rt->img->line_lgth + x * (rt->img->bpp / 8));
 	*(unsigned int *)dst = color;

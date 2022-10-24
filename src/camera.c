@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 17:49:21 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/21 13:50:19 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/24 17:55:26 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,28 +39,6 @@ void	get_matrix_align_v1_v2(t_u m[4][4], t_tuple v1, t_tuple v2)
 	m[3][3] = 1;
 }
 
-void	world_to_camera(t_rt *rt)
-{
-	t_u		trans_m4[4][4];
-	t_u		tmp[4][4];
-	t_tuple	cam_space;
-
-	cam_space.x = 0;
-	cam_space.y = 0;
-	cam_space.z = -1;
-	cam_space.w = 0;
-	norm_v3(&cam_space);
-	if (check_vector_opposite(cam_space, rt->scn.cam.d))
-		rot_y_matrix_4(tmp, M_PI);
-	else
-		get_matrix_align_v1_v2(tmp, rt->scn.cam.d, cam_space);
-	print_tuple(&rt->scn.cam.o, "camo");
-	trans_matrix_4(trans_m4, -rt->scn.cam.o.x, -rt->scn.cam.o.y, -rt->scn.cam.o.z);
-	mult_matrix_4(rt->wtoc_m, trans_m4, tmp);
-	invert_matrix_4(rt->wtoc_m, rt->ctow_m);
-	test_world_matrix(rt);
-}
-
 t_bool	check_vector_opposite(t_tuple v1, t_tuple v2)
 {
 
@@ -83,6 +61,10 @@ void	fill_obj(t_rt *rt)
 	tmp = rt->scn.objs;
 	while (tmp)
 	{
+		ft_bzero(scale_m, sizeof(t_u[4][4]));
+		ft_bzero(scale_invert_m, sizeof(t_u[4][4]));
+		ft_bzero(trans_inv_m, sizeof(t_u[4][4]));
+		ft_bzero(trans_m, sizeof(t_u[4][4]));
 		obj = (t_obj *)tmp->content;
 		ft_bzero(&obj->wtoo_m, sizeof(t_u[4][4]));
 		ft_bzero(&obj->otow_m, sizeof(t_u[4][4]));
@@ -99,6 +81,28 @@ void	fill_obj(t_rt *rt)
 	}
 }
 
+void	world_to_camera(t_rt *rt)
+{
+	t_u		trans_m4[4][4];
+	t_u		tmp[4][4];
+	t_tuple	cam_space;
+
+	cam_space.x = 0;
+	cam_space.y = 0;
+	cam_space.z = 1;
+	cam_space.w = 0;
+	norm_v3(&cam_space);
+	norm_v3(&rt->scn.cam.d);
+	if (check_vector_opposite(cam_space, rt->scn.cam.d))
+		rot_y_matrix_4(tmp, M_PI);
+	else
+		get_matrix_align_v1_v2(tmp, cam_space, rt->scn.cam.d);
+	trans_matrix_4(trans_m4, rt->scn.cam.o.x, rt->scn.cam.o.y, rt->scn.cam.o.z);
+	mult_matrix_4(rt->ctow_m, trans_m4, tmp);
+	invert_matrix_4(rt->ctow_m, rt->wtoc_m);
+	//test_world_matrix(rt);
+}
+
 void	pixel_raster_to_space(t_intersect *i, int x, int y, t_rt *rt)
 {
 	i->pixel.x = (x + 0.5) / W_W;
@@ -107,15 +111,27 @@ void	pixel_raster_to_space(t_intersect *i, int x, int y, t_rt *rt)
 	i->pixel.y = 1 - 2 * i->pixel.y;
 	i->pixel.x = i->pixel.x * W_W / W_H * tan(rt->scn.cam.FOV / 2);	
 	i->pixel.y = i->pixel.y * tan(rt->scn.cam.FOV / 2);	
-	i->pixel.z = -1;
+	i->pixel.z = 1;
 	i->pixel.w = 1;
-	ft_bzero(&i->ray.o, sizeof(t_tuple));
+	i->ray.o.x = 0;
+	i->ray.o.y = 0;
+	i->ray.o.z = 0;
 	i->ray.o.w = 1;
 	i->ray.d.x = i->pixel.x - 0;
 	i->ray.d.y = i->pixel.y - 0;
 	i->ray.d.z = i->pixel.z - 0;
 	i->ray.d.w = 0;
+	if (rt->debug)
+	{
+		print_tuple(&i->ray.o, "ray_o in camera space");
+		print_tuple(&i->ray.d, "ray_d in camera space");
+	}
 	mult_tuple_matrix_4(&i->ray.o, rt->ctow_m, i->ray.o);
 	mult_tuple_matrix_4(&i->ray.d, rt->ctow_m, i->ray.d);
+	if (rt->debug)
+	{
+		print_tuple(&i->ray.o, "ray_o * ctow");
+		print_tuple(&i->ray.d, "ray_d * ctow");
+	}
 	norm_v3(&i->ray.d);
 }
