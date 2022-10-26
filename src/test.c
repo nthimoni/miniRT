@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 12:56:21 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/24 15:14:36 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/26 13:57:49 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,20 +208,8 @@ void	print_point_test4(t_rt *rt, t_tuple pos)
 
 void	test_world_matrix(t_rt *rt)
 {
-	t_tuple	cam_space;
-
-	cam_space.x = 0;
-	cam_space.y = 0;
-	cam_space.z = 1;
-	cam_space.w = 0;
 	print_matrix_4(rt->wtoc_m, "wtoc");
 	print_matrix_4(rt->ctow_m, "ctow");
-	printf("\n");
-	print_tuple(&cam_space, "cam_space.d");
-	mult_tuple_matrix_4(&cam_space, rt->ctow_m, cam_space);
-	print_tuple(&cam_space, "cam_space.d * ctow");
-	mult_tuple_matrix_4(&cam_space, rt->wtoc_m, cam_space);
-	print_tuple(&cam_space, "cam_space.d * wtoc");
 	printf("\n");
 	print_tuple(&rt->scn.cam.d, "rt->scn.cam.d");
 	mult_tuple_matrix_4(&rt->scn.cam.d, rt->wtoc_m, rt->scn.cam.d);
