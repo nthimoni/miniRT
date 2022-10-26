@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 17:49:21 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/24 17:55:26 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/26 13:58:46 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,34 @@ void	fill_obj(t_rt *rt)
 			invert_matrix_4(trans_m, trans_inv_m);
 			scale_matrix_4(scale_m, obj->diam / 2, obj->diam / 2, obj->diam / 2);
 			invert_matrix_4(scale_m, scale_invert_m);
-			mult_matrix_4(obj->wtoo_m, scale_invert_m, trans_inv_m);
 			mult_matrix_4(obj->otow_m, scale_m, trans_m);
+			mult_matrix_4(obj->wtoo_m, scale_invert_m, trans_inv_m);
+		}
+		tmp = tmp->next;
+	}
+}
+
+void	fill_obj2(t_rt *rt)
+{
+	t_list	*tmp;
+	t_obj	*obj;
+	t_u		scale_m[4][4];
+	t_u		trans_m[4][4];
+
+	tmp = rt->scn.objs;
+	while (tmp)
+	{
+		ft_bzero(scale_m, sizeof(t_u[4][4]));
+		ft_bzero(trans_m, sizeof(t_u[4][4]));
+		obj = (t_obj *)tmp->content;
+		ft_bzero(&obj->wtoo_m, sizeof(t_u[4][4]));
+		ft_bzero(&obj->otow_m, sizeof(t_u[4][4]));
+		if (obj->type == SPHERE)
+		{
+			trans_matrix_4(trans_m, obj->o.x, obj->o.y, obj->o.z);
+			scale_matrix_4(scale_m, obj->diam / 2, obj->diam / 2, obj->diam / 2);
+			mult_matrix_4(obj->otow_m, trans_m, scale_m);
+			invert_matrix_4(obj->otow_m, obj->wtoo_m);
 		}
 		tmp = tmp->next;
 	}
@@ -91,6 +117,8 @@ void	world_to_camera(t_rt *rt)
 	cam_space.y = 0;
 	cam_space.z = 1;
 	cam_space.w = 0;
+	ft_bzero(&rt->ctow_m, sizeof(t_u[4][4]));
+	ft_bzero(&rt->wtoc_m, sizeof(t_u[4][4]));
 	norm_v3(&cam_space);
 	norm_v3(&rt->scn.cam.d);
 	if (check_vector_opposite(cam_space, rt->scn.cam.d))
@@ -101,6 +129,34 @@ void	world_to_camera(t_rt *rt)
 	mult_matrix_4(rt->ctow_m, trans_m4, tmp);
 	invert_matrix_4(rt->ctow_m, rt->wtoc_m);
 	//test_world_matrix(rt);
+}
+
+void	world_to_camera2(t_rt *rt)
+{
+	t_u		rotx[4][4];
+	t_u		roty[4][4];
+	t_u		trans[4][4];
+	t_u		tmp[4][4];
+	t_u		alpha;
+	t_u		beta;
+	t_u		hyp;
+
+	ft_bzero(&rt->ctow_m, sizeof(t_u[4][4]));
+	ft_bzero(&rt->wtoc_m, sizeof(t_u[4][4]));
+	alpha = atan2(rt->scn.cam.d.x, rt->scn.cam.d.z);
+	hyp = sqrt(pow(rt->scn.cam.d.x, 2) + pow(rt->scn.cam.d.z, 2));
+	beta = atan2(rt->scn.cam.d.y, hyp);
+	norm_v3(&rt->scn.cam.d);
+	rot_y_matrix_4(roty, alpha);
+	rot_x_matrix_4(rotx, -beta);
+	print_matrix_4(rotx, "rotx");
+	print_matrix_4(roty, "roty");
+	mult_matrix_4(tmp, roty, rotx);
+	trans_matrix_4(trans, -rt->scn.cam.o.x, -rt->scn.cam.o.y, -rt->scn.cam.o.z);
+	print_matrix_4(trans, "trans");
+	mult_matrix_4(rt->wtoc_m, trans, tmp);
+	invert_matrix_4(rt->wtoc_m, rt->ctow_m);
+	test_world_matrix(rt);
 }
 
 void	pixel_raster_to_space(t_intersect *i, int x, int y, t_rt *rt)

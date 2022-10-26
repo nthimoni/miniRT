@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 12:04:54 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/14 15:41:48 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/26 13:23:16 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,27 @@ void	fill_matrix_x(t_u array[4][4], int sz, char *str)
 }
 
 void	mult_matrix_4(t_u new[4][4], t_u m1[4][4], t_u m2[4][4])
+{
+	u_int8_t	a;
+	u_int8_t	b;
+
+	a = 0;
+	while (a < 4)
+	{
+		b = 0;
+		while (b < 4)
+		{
+			new[a][b] = m1[a][0] * m2[0][b] + m1[a][1] * m2[1][b]
+				+ m1[a][2] * m2[2][b] + m1[a][3] * m2[3][b];
+			clamp(&new[a][b]);
+			b++;
+		}
+		a++;
+	}
+	return ;
+}
+
+void	mult_matrix_4bis(t_u new[4][4], t_u m1[4][4], t_u m2[4][4])
 {
 	t_matex	i;
 

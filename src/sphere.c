@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 16:28:44 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/24 18:27:08 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/26 15:06:20 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,35 +17,9 @@ t_bool	solve_quadratic(t_intersect *inter, t_quadra q)
 	q.disc = pow(q.b, 2) - 4 * q.a * q.c;
 	if (q.disc < - EPS)
 		return (FALSE);
-	else if (q.disc < EPS && q.disc > - EPS)
-	{
-		inter->t0_tmp = -q.b * 0.5 / q.a;
-		inter->t1_tmp = -inter->t0_tmp;
-		return (TRUE);
-	}
-	else
-	{
-		q.q = - 0.5 * (q.b + ft_sign(q.b) * sqrt(q.disc));
-		if (q.q / q.a > q.q / q.a)
-		{
-			inter->t0_tmp = q.q / q.c;
-			inter->t1_tmp = q.q / q.a;
-		}
-		else
-		{
-			inter->t0_tmp = q.q / q.a;
-			inter->t1_tmp = q.q / q.c;
-		}
-	}
+	inter->t0_tmp = -q.b - sqrt(q.disc) * 0.5 / q.a;
+	inter->t1_tmp = -q.b + sqrt(q.disc) * 0.5 / q.a;
 	return (TRUE);
-}
-
-int	ft_sign(t_u i)
-{
-	if (i < 0)
-		return (-1);
-	else
-		return (1);
 }
 
 void	intersect_sph(t_obj *sph, t_intersect *inter)

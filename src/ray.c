@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:13:15 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/24 18:08:58 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/26 15:15:20 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,15 @@
 
 void	init_inter(t_rt *rt)
 {
-	world_to_camera(rt);
+	world_to_camera2(rt);
 	print_axis(rt);
-	fill_obj(rt);
+	fill_obj2(rt);
 	// rt-space défini dans quel espace on va faire les calculs
-	rt->space = OBJ;
+	rt->space = WORLD;
 	rt->debug = FALSE;
 	init_pixel(rt);
 	rt->debug = TRUE;
+	init_pixel_debug(rt);
 	clear_image(rt);
 }
 

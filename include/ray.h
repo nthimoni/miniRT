@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:13:31 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/24 17:36:27 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/26 15:06:31 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ t_u		abs_u(t_u n);
 //		sphere.c
 
 t_bool	solve_quadratic(t_intersect *inter, t_quadra q);
-int		ft_sign(t_u i);
 void	intersect_sph(t_obj	*sph, t_intersect *inter);
 void	intersect_sph2(t_obj *sph, t_intersect *inter);
 
