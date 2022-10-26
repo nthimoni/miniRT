@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 16:28:44 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/26 15:06:20 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/26 19:55:17 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ t_bool	solve_quadratic(t_intersect *inter, t_quadra q)
 	q.disc = pow(q.b, 2) - 4 * q.a * q.c;
 	if (q.disc < - EPS)
 		return (FALSE);
-	inter->t0_tmp = -q.b - sqrt(q.disc) * 0.5 / q.a;
-	inter->t1_tmp = -q.b + sqrt(q.disc) * 0.5 / q.a;
+	inter->t0_tmp = (-q.b - sqrt(q.disc)) * 0.5 / q.a;
+	inter->t1_tmp = (-q.b + sqrt(q.disc)) * 0.5 / q.a;
 	return (TRUE);
 }
 
@@ -50,7 +50,7 @@ void	intersect_sph2(t_obj *sph, t_intersect *inter)
 	s_to_r = create_v3(sph->o, ray2.o);
 	q.a = dot_product_v3(ray2.d, ray2.d);
 	q.b = 2 * dot_product_v3(ray2.d, s_to_r);
-	q.c = dot_product_v3(s_to_r, s_to_r) - pow(sph->diam / 2, 2); 
+	q.c = dot_product_v3(s_to_r, s_to_r) - 1; 
 	if (!solve_quadratic(inter, q) || inter->t0_tmp >= inter->t0)
 		return ;
 	inter->obj = sph;
