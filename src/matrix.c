@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 12:04:54 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/26 13:23:16 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/26 16:30:11 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -330,18 +330,18 @@ void	invert_matrix_4(t_u m[4][4], t_u new[4][4])
 {
 	int			i;
 	int			j;
-	t_u	ret;
+	t_u	det;
 
 	i = 0;
 	j = 0;
-	ret = det_matrix_4(m);
+	det = det_matrix_4(m);
 	if (!matrix_4_is_invertible(m))
 		return ;
 	while (i < 4)
 	{
 		while (j < 4)
 		{
-			new[j][i] = cofactor_matrix_4(m, i, j) / ret;
+			new[j][i] = cofactor_matrix_4(m, i, j) / det;
 			clamp(&new[i][j]);
 			j++;
 		}

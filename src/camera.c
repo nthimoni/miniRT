@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 17:49:21 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/26 13:58:46 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/26 19:30:21 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,39 +49,7 @@ t_bool	check_vector_opposite(t_tuple v1, t_tuple v2)
 	return (FALSE);
 }
 
-void	fill_obj(t_rt *rt)
-{
-	t_list	*tmp;
-	t_obj	*obj;
-	t_u		scale_m[4][4];
-	t_u		scale_invert_m[4][4];
-	t_u		trans_m[4][4];
-	t_u		trans_inv_m[4][4];
-
-	tmp = rt->scn.objs;
-	while (tmp)
-	{
-		ft_bzero(scale_m, sizeof(t_u[4][4]));
-		ft_bzero(scale_invert_m, sizeof(t_u[4][4]));
-		ft_bzero(trans_inv_m, sizeof(t_u[4][4]));
-		ft_bzero(trans_m, sizeof(t_u[4][4]));
-		obj = (t_obj *)tmp->content;
-		ft_bzero(&obj->wtoo_m, sizeof(t_u[4][4]));
-		ft_bzero(&obj->otow_m, sizeof(t_u[4][4]));
-		if (obj->type == SPHERE)
-		{
-			trans_matrix_4(trans_m, obj->o.x, obj->o.y, obj->o.z);
-			invert_matrix_4(trans_m, trans_inv_m);
-			scale_matrix_4(scale_m, obj->diam / 2, obj->diam / 2, obj->diam / 2);
-			invert_matrix_4(scale_m, scale_invert_m);
-			mult_matrix_4(obj->otow_m, scale_m, trans_m);
-			mult_matrix_4(obj->wtoo_m, scale_invert_m, trans_inv_m);
-		}
-		tmp = tmp->next;
-	}
-}
-
-void	fill_obj2(t_rt *rt)
+void	fill_matrix_obj(t_rt *rt)
 {
 	t_list	*tmp;
 	t_obj	*obj;
@@ -99,9 +67,11 @@ void	fill_obj2(t_rt *rt)
 		if (obj->type == SPHERE)
 		{
 			trans_matrix_4(trans_m, obj->o.x, obj->o.y, obj->o.z);
-			scale_matrix_4(scale_m, obj->diam / 2, obj->diam / 2, obj->diam / 2);
+			scale_matrix_4(scale_m, obj->diam /2, obj->diam /2, obj->diam /2);
 			mult_matrix_4(obj->otow_m, trans_m, scale_m);
 			invert_matrix_4(obj->otow_m, obj->wtoo_m);
+			print_matrix_4(obj->wtoo_m, "wtoo");
+			print_matrix_4(obj->otow_m, "otow");
 		}
 		tmp = tmp->next;
 	}
@@ -149,14 +119,10 @@ void	world_to_camera2(t_rt *rt)
 	norm_v3(&rt->scn.cam.d);
 	rot_y_matrix_4(roty, alpha);
 	rot_x_matrix_4(rotx, -beta);
-	print_matrix_4(rotx, "rotx");
-	print_matrix_4(roty, "roty");
 	mult_matrix_4(tmp, roty, rotx);
 	trans_matrix_4(trans, -rt->scn.cam.o.x, -rt->scn.cam.o.y, -rt->scn.cam.o.z);
-	print_matrix_4(trans, "trans");
 	mult_matrix_4(rt->wtoc_m, trans, tmp);
 	invert_matrix_4(rt->wtoc_m, rt->ctow_m);
-	test_world_matrix(rt);
 }
 
 void	pixel_raster_to_space(t_intersect *i, int x, int y, t_rt *rt)

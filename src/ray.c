@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:13:15 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/26 15:15:20 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/26 19:53:58 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 void	init_inter(t_rt *rt)
 {
-	world_to_camera2(rt);
+	world_to_camera(rt);
 	print_axis(rt);
-	fill_obj2(rt);
+	fill_matrix_obj(rt);
 	// rt-space défini dans quel espace on va faire les calculs
 	rt->space = WORLD;
 	rt->debug = FALSE;
 	init_pixel(rt);
 	rt->debug = TRUE;
-	init_pixel_debug(rt);
+	//init_pixel_debug(rt);
 	clear_image(rt);
 }
 
@@ -69,7 +69,6 @@ void	intersect_obj(t_rt *rt, t_intersect *inter, int i, int j)
 		}
 		else if (((t_obj *)tmp->content)->type == PLAN)
 			intersect_plane(tmp->content, inter);
-		//printf("inter->t0 = %lf\n", inter->t0);
 		tmp = tmp->next;
 	}
 	if (inter->t0 < DBL_MAX)
@@ -78,17 +77,6 @@ void	intersect_obj(t_rt *rt, t_intersect *inter, int i, int j)
 
 void	intersect_plane(t_obj *plane, t_intersect *inter)
 {
-	/*t_u		k;
-	t_tuple	r_to_p;*/
-
-//	print_tuple(&plane->d, "pland");
-//	print_tuple(&inter->ray.d, "rayd");
-//	k = dot_product_v3(plane->d, inter->ray.d);
-//	printf("k = %lf\n", k);
-//	r_to_p = create_v3(inter->ray.o, plane->o);
-//	print_tuple(&r_to_p, "rtop");
-//	printf("k = %lf\n", k);
-//	print_tuple(&r_to_p, "rtop");
 	if (abs_u(inter->ray.d.y) < EPS)
 		return ;
 	inter->t0_tmp = -inter->ray.o.y / inter->ray.d.y;
