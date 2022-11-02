@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:13:15 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/26 19:53:58 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/11/02 18:12:28 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	init_inter(t_rt *rt)
 	print_axis(rt);
 	fill_matrix_obj(rt);
 	// rt-space défini dans quel espace on va faire les calculs
-	rt->space = WORLD;
+	rt->space = OBJ;
 	rt->debug = FALSE;
 	init_pixel(rt);
 	rt->debug = TRUE;
@@ -38,8 +38,11 @@ void	init_pixel(t_rt *rt)
 	{
 		while (j < W_H)
 		{
-			if (i == 868 && j == 440)
+			if (i == 854 && j == 549)
+			{
 				printf("Eh le schtroumpf, vient ici !\n");
+				printf("scalarFOV = %lf\n", tan(rt->scn.cam.FOV / 2));
+			}
 			ft_bzero(&inter, sizeof(t_intersect));
 			inter.t0 = DBL_MAX;
 			inter.t1 = DBL_MAX;
@@ -73,18 +76,6 @@ void	intersect_obj(t_rt *rt, t_intersect *inter, int i, int j)
 	}
 	if (inter->t0 < DBL_MAX)
 		my_mlx_pixel_put(rt, i, j, inter->obj->color);
-}
-
-void	intersect_plane(t_obj *plane, t_intersect *inter)
-{
-	if (abs_u(inter->ray.d.y) < EPS)
-		return ;
-	inter->t0_tmp = -inter->ray.o.y / inter->ray.d.y;
-	if (inter->t0_tmp >= inter->t0 || inter->t0_tmp < 0)
-		return ;
-	inter->obj = plane;
-	inter->t0 = inter->t0_tmp;
-	inter->t1 = DBL_MAX;
 }
 
 t_u	abs_u(t_u n)
