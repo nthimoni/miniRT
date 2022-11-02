@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 12:56:21 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/18 17:00:13 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/26 13:57:49 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,20 +208,8 @@ void	print_point_test4(t_rt *rt, t_tuple pos)
 
 void	test_world_matrix(t_rt *rt)
 {
-	t_tuple	cam_space;
-
-	cam_space.x = 0;
-	cam_space.y = 0;
-	cam_space.z = -1;
-	cam_space.w = 0;
 	print_matrix_4(rt->wtoc_m, "wtoc");
 	print_matrix_4(rt->ctow_m, "ctow");
-	printf("\n");
-	print_tuple(&cam_space, "cam_space");
-	mult_tuple_matrix_4(&cam_space, rt->ctow_m, cam_space);
-	print_tuple(&cam_space, "cam_space * ctow");
-	mult_tuple_matrix_4(&cam_space, rt->wtoc_m, cam_space);
-	print_tuple(&cam_space, "cam_space * wtoc");
 	printf("\n");
 	print_tuple(&rt->scn.cam.d, "rt->scn.cam.d");
 	mult_tuple_matrix_4(&rt->scn.cam.d, rt->wtoc_m, rt->scn.cam.d);
@@ -281,4 +269,66 @@ t_obj	*create_sphere(int type, t_tuple origin, float diam, int color)
 	sph->diam = diam;
 	sph->color = color;
 	return (sph);
+}
+
+void	test_wtoo(t_rt *rt)
+{
+	t_list	*tmp;
+	t_obj	*obj;
+	t_u		scale_m[4][4];
+	t_u		scale_invert_m[4][4];
+	t_u		trans_m[4][4];
+	t_u		trans_inv_m[4][4];
+	t_tuple	objo_cpy;
+	t_tuple	camo_cpy;
+	t_tuple	camd_cpy;
+	t_tuple	objo_cpy2;
+	t_tuple	camo_cpy2;
+	t_tuple	camd_cpy2;
+
+	tmp = rt->scn.objs;
+	printf("--------------------------------------------------\n");
+	while (tmp)
+	{
+		obj = tmp->content;
+		if (obj->type != SPHERE)
+			break;
+		objo_cpy = create_tuple_copy(obj->o);
+		camo_cpy = create_tuple_copy(rt->scn.cam.o);
+		camd_cpy = create_tuple_copy(rt->scn.cam.d);
+		objo_cpy2 = create_tuple_copy(obj->o);
+		camo_cpy2 = create_tuple_copy(rt->scn.cam.o);
+		camd_cpy2 = create_tuple_copy(rt->scn.cam.d);
+		trans_matrix_4(trans_m, obj->o.x, obj->o.y, obj->o.z);
+		invert_matrix_4(trans_m, trans_inv_m);
+		print_matrix_4(trans_inv_m, "transinv");
+		scale_matrix_4(scale_m, obj->diam / 2, obj->diam / 2, obj->diam / 2);
+		invert_matrix_4(scale_m, scale_invert_m);
+		print_matrix_4(scale_invert_m, "scaleinv");
+		print_tuple(&objo_cpy, "objo");
+		print_tuple(&camo_cpy, "camo");
+		print_tuple(&camd_cpy, "camd");
+		mult_tuple_matrix_4(&objo_cpy, trans_inv_m, objo_cpy);
+		mult_tuple_matrix_4(&camo_cpy, trans_inv_m, camo_cpy);
+		mult_tuple_matrix_4(&camd_cpy, trans_inv_m, camd_cpy);
+		print_tuple(&objo_cpy, "objo * transinv");
+		print_tuple(&camo_cpy, "camo * transinv");
+		print_tuple(&camd_cpy, "camd * transinv");
+		mult_tuple_matrix_4(&objo_cpy, scale_invert_m, objo_cpy);
+		mult_tuple_matrix_4(&camo_cpy, scale_invert_m, camo_cpy);
+		mult_tuple_matrix_4(&camd_cpy, scale_invert_m, camd_cpy);
+		print_tuple(&objo_cpy, "objo * scaleinv");
+		print_tuple(&camo_cpy, "camo * scaleinv");
+		print_tuple(&camd_cpy, "camd * scaleinv");
+		print_matrix_4(obj->wtoo_m, "wtoo");
+		print_matrix_4(obj->otow_m, "otow");
+		mult_tuple_matrix_4(&objo_cpy2, obj->wtoo_m, objo_cpy2);
+		mult_tuple_matrix_4(&camo_cpy2, obj->wtoo_m, camo_cpy2);
+		mult_tuple_matrix_4(&camd_cpy2, obj->wtoo_m, camd_cpy2);
+		print_tuple(&objo_cpy2, "objo * wtoo");
+		print_tuple(&camo_cpy2, "camo * wtoo");
+		print_tuple(&camd_cpy2, "camd * wtoo");
+		printf("--------------------------------------------------\n");
+		tmp = tmp->next;
+	}
 }

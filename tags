@@ -1,14 +1,10 @@
 !_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
 !_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
-!_TAG_OUTPUT_EXCMD	mixed	/number, pattern, mixed, or combineV2/
-!_TAG_OUTPUT_FILESEP	slash	/slash or backslash/
 !_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
-!_TAG_PATTERN_LENGTH_LIMIT	96	/0 for no limit/
-!_TAG_PROC_CWD	/mnt/nfs/homes/rmorel/Documents/miniRT/	//
 !_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
 !_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
 !_TAG_PROGRAM_URL	https://ctags.io/	/official site/
-!_TAG_PROGRAM_VERSION	5.9.0	//
+!_TAG_PROGRAM_VERSION	0.0.0	//
 $(LIBFT)	Makefile	/^$(LIBFT):$/;"	t
 $(MLX)	Makefile	/^$(MLX):$/;"	t
 $(NAME)	Makefile	/^$(NAME): $(OBJDIR) $(MLX) $(LIBFT) $(OBJS)$/;"	t
@@ -20,10 +16,22 @@ $(OBJDIR)%.o	Makefile	/^$(OBJDIR)%.o: $(SRCDIR)%.c$/;"	t
 $(OBJDIR)%.o	libft/Makefile	/^$(OBJDIR)%.o: $(SRCDIR)%.c$/;"	t
 $(OBJ_DIR)/%.o	minilibx-linux/Makefile.mk	/^$(OBJ_DIR)\/%.o: %.c$/;"	t
 0	.cache/compile_commands.json	/^  {$/;"	o
+0	.vscode/launch.json	/^                {$/;"	o	array:configurations.0.setupCommands
+0	.vscode/launch.json	/^            "args": ["${workspaceFolder}\/input.rt"],$/;"	s	array:configurations.0.args
+0	.vscode/launch.json	/^        {$/;"	o	array:configurations
+0	.vscode/tasks.json	/^                "$gcc"$/;"	s	array:tasks.0.problemMatcher
+0	.vscode/tasks.json	/^        {$/;"	o	array:tasks
 1	.cache/compile_commands.json	/^  {$/;"	o
+1	.vscode/launch.json	/^                {$/;"	o	array:configurations.0.setupCommands
 10	.cache/compile_commands.json	/^  {$/;"	o
 11	.cache/compile_commands.json	/^  {$/;"	o
 12	.cache/compile_commands.json	/^  {$/;"	o
+13	.cache/compile_commands.json	/^  {$/;"	o
+14	.cache/compile_commands.json	/^  {$/;"	o
+15	.cache/compile_commands.json	/^  {$/;"	o
+16	.cache/compile_commands.json	/^  {$/;"	o
+17	.cache/compile_commands.json	/^  {$/;"	o
+18	.cache/compile_commands.json	/^  {$/;"	o
 2	.cache/compile_commands.json	/^  {$/;"	o
 3	.cache/compile_commands.json	/^  {$/;"	o
 4	.cache/compile_commands.json	/^  {$/;"	o
@@ -55,6 +63,7 @@ BONDIR	libft/Makefile	/^BONDIR = bonus\/$/;"	m
 BONFILES	libft/Makefile	/^BONFILES = ft_lstnew.c\\$/;"	m
 BONOBJ	libft/Makefile	/^BONOBJ = $(addprefix $(OBJDIR), $(addprefix $(BONDIR), $(BONFILES:.c=.o)))$/;"	m
 BUFFER_H	libft/include/include_imp/buffer.h	/^# define BUFFER_H$/;"	d
+CAM	include/data_struct.h	/^	CAM,$/;"	e	enum:e_space
 CAMERA	include/data_struct.h	/^	CAMERA,$/;"	e	enum:e_otype
 CC	Makefile	/^CC = gcc -g$/;"	m
 CC	libft/Makefile	/^CC = gcc$/;"	m
@@ -63,7 +72,7 @@ CC	minilibx-linux/Makefile.mk	/^CC	= gcc$/;"	m
 CC	minilibx-linux/test/Makefile.mk	/^	CC	= gcc$/;"	m
 CC	minilibx-linux/test/Makefile.mk	/^	CC = clang$/;"	m
 CFLAGS	Makefile	/^CFLAGS = -Wall -Wextra -Werror -MMD -MP$/;"	m
-CFLAGS	libft/Makefile	/^CFLAGS = -Wall -Wextra -Werror$/;"	m
+CFLAGS	libft/Makefile	/^CFLAGS = -g -Wall -Wextra -Werror$/;"	m
 CFLAGS	minilibx-linux/Makefile.mk	/^CFLAGS	= -O3 -I$(INC)$/;"	m
 CFLAGS	minilibx-linux/test/Makefile.mk	/^CFLAGS= -I$(INC) -O3 -I.. -g$/;"	m
 COLOR	minilibx-linux/man/man1/mlx_pixel_put.1	/^.SH COLOR MANAGEMENT$/;"	s	title:MiniLibX
@@ -132,6 +141,7 @@ MANDIR	libft/Makefile	/^MANDIR = mandatory\/$/;"	m
 MANFILES	libft/Makefile	/^MANFILES = ft_isalpha.c\\$/;"	m
 MANOBJ	libft/Makefile	/^MANOBJ = $(addprefix $(OBJDIR), $(addprefix $(MANDIR), $(MANFILES:.c=.o)))$/;"	m
 MATRIX_H	include/matrix.h	/^#define MATRIX_H /;"	d
+MIMode	.vscode/launch.json	/^            "MIMode": "gdb",$/;"	s	object:configurations.0
 MINIRT_H	include/miniRT.h	/^# define MINIRT_H$/;"	d
 MLX	Makefile	/^MLX = $(MLXPATH)libmlx.a$/;"	m
 MLXPATH	Makefile	/^MLXPATH = minilibx-linux\/$/;"	m
@@ -167,6 +177,7 @@ NAME	minilibx-linux/man/man3/mlx_pixel_put.3	/^.SH NAME$/;"	s	title:MiniLibX
 NAME	minilibx-linux/test/Makefile.mk	/^NAME= mlx-test$/;"	m
 NAME_UNAME	minilibx-linux/Makefile.mk	/^NAME_UNAME	= libmlx_$(UNAME).a$/;"	m
 NONE	include/data_struct.h	/^	NONE = 0,$/;"	e	enum:e_otype
+OBJ	include/data_struct.h	/^	OBJ,$/;"	e	enum:e_space
 OBJ	minilibx-linux/Makefile.mk	/^OBJ	= $(addprefix $(OBJ_DIR)\/,$(SRC:%.c=%.o))$/;"	m
 OBJ	minilibx-linux/test/Makefile.mk	/^OBJ = $(SRC:%.c=%.o)$/;"	m
 OBJDIR	Makefile	/^OBJDIR = bin\/$/;"	m
@@ -192,7 +203,8 @@ RETURN	minilibx-linux/man/man3/mlx.3	/^.SH RETURN VALUES$/;"	s	title:MiniLibX
 RETURN	minilibx-linux/man/man3/mlx_new_image.3	/^.SH RETURN VALUES$/;"	s	title:MiniLibX
 RETURN	minilibx-linux/man/man3/mlx_new_window.3	/^.SH RETURN VALUES$/;"	s	title:MiniLibX
 RETURN	minilibx-linux/mlx_xpm.c	/^#define	RETURN	/;"	d	file:
-RUN	Makefile	/^RUN = .\/$(NAME)$/;"	m
+RUN	Makefile	/^RUN = .\/$(NAME) input.rt$/;"	m
+SCENE_H	include/scene.h	/^# define SCENE_H /;"	d
 SEE	minilibx-linux/man/man1/mlx.1	/^.SH SEE ALSO$/;"	s	title:MiniLibX
 SEE	minilibx-linux/man/man1/mlx_loop.1	/^.SH SEE ALSO$/;"	s	title:MiniLibX
 SEE	minilibx-linux/man/man1/mlx_new_image.1	/^.SH SEE ALSO$/;"	s	title:MiniLibX
@@ -208,7 +220,7 @@ SRC	minilibx-linux/Makefile.mk	/^SRC	= mlx_init.c mlx_new_window.c mlx_pixel_put
 SRC	minilibx-linux/test/Makefile.mk	/^SRC = main.c$/;"	m
 SRCDIR	Makefile	/^SRCDIR = src\/$/;"	m
 SRCDIR	libft/Makefile	/^SRCDIR = src\/$/;"	m
-SRCS	Makefile	/^SRCS = 	main.c vector.c image.c hook.c exit_rt.c print.c init.c test.c trash.c \\$/;"	m
+SRCS	Makefile	/^SRCS = main.c vector.c image.c hook.c exit_rt.c print.c init.c test.c trash.c colors.c matrix.c /;"	m
 STORING	minilibx-linux/man/man1/mlx_new_image.1	/^.SH STORING COLOR INSIDE IMAGES$/;"	s	title:MiniLibX
 STORING	minilibx-linux/man/man3/mlx_new_image.3	/^.SH STORING COLOR INSIDE IMAGES$/;"	s	title:MiniLibX
 SYNOPSYS	minilibx-linux/man/man1/mlx.1	/^.SH SYNOPSYS$/;"	s	title:MiniLibX
@@ -232,6 +244,7 @@ VECTOR_H	include/vector.h	/^#define VECTOR_H$/;"	d
 WARN_SHM_ATTACH	minilibx-linux/mlx_int.h	/^# define WARN_SHM_ATTACH /;"	d
 WIN1_SX	minilibx-linux/test/main.c	/^#define	WIN1_SX	/;"	d	file:
 WIN1_SY	minilibx-linux/test/main.c	/^#define	WIN1_SY	/;"	d	file:
+WORLD	include/data_struct.h	/^	WORLD = 0,$/;"	e	enum:e_space
 W_H	include/data_struct.h	/^# define W_H /;"	d
 W_W	include/data_struct.h	/^# define W_W /;"	d
 X-WINDOW	minilibx-linux/man/man1/mlx.1	/^.SH X-WINDOW CONCEPT$/;"	s	title:MiniLibX
@@ -243,6 +256,7 @@ XPM	minilibx-linux/man/man3/mlx_new_image.3	/^.SH XPM IMAGES$/;"	s	title:MiniLib
 X_ShmAttach	minilibx-linux/mlx_new_image.c	/^#define	X_ShmAttach	/;"	d	file:
 a	include/data_struct.h	/^	t_u		a;$/;"	m	struct:s_quadra	typeref:typename:t_u
 a	include/matrix.h	/^	int	a;$/;"	m	struct:s_matrix_index	typeref:typename:int
+abs_u	src/ray.c	/^t_u	abs_u(t_u n)$/;"	f	typeref:typename:t_u
 add_to_trash	src/trash.c	/^void	add_to_trash(t_rt *rt, void *ptr)$/;"	f	typeref:typename:void
 add_tupple	src/vector.c	/^t_tuple	add_tupple(t_tuple t1, t_tuple t2)$/;"	f	typeref:typename:t_tuple
 addr	include/data_struct.h	/^	char	*addr;$/;"	m	struct:s_img	typeref:typename:char *
@@ -252,6 +266,8 @@ all	minilibx-linux/Makefile	/^all	: do_configure$/;"	t
 all	minilibx-linux/Makefile.mk	/^all	: $(NAME)$/;"	t
 all	minilibx-linux/test/Makefile.mk	/^all: $(NAME)$/;"	t
 amb	include/data_struct.h	/^	t_obj amb;$/;"	m	struct:s_scene	typeref:typename:t_obj
+args	.vscode/launch.json	/^            "args": ["${workspaceFolder}\/input.rt"],$/;"	a	object:configurations.0
+args	.vscode/tasks.json	/^            "args": [$/;"	a	object:tasks.0
 at_exit	minilibx-linux/test/run_tests.sh	/^at_exit() {$/;"	f
 b	include/data_struct.h	/^	t_u		b;$/;"	m	struct:s_quadra	typeref:typename:t_u
 b	include/matrix.h	/^	int	b;$/;"	m	struct:s_matrix_index	typeref:typename:int
@@ -267,7 +283,8 @@ c	include/matrix.h	/^	int	c;$/;"	m	struct:s_matrix_index	typeref:typename:int
 cam	include/data_struct.h	/^	t_obj	cam;$/;"	m	struct:s_scene	typeref:typename:t_obj
 check	minilibx-linux/Makefile.mk	/^check: all$/;"	t
 check_nb_arg	src/parsing.c	/^static int	check_nb_arg(t_otype type, int nb_wrds)$/;"	f	typeref:typename:int	file:
-check_vector_opposite	src/ray.c	/^t_bool	check_vector_opposite(t_tuple v1, t_tuple v2)$/;"	f	typeref:typename:t_bool
+check_overflow	src/ft_atof.c	/^static int check_overflow(char *str, int sign)$/;"	f	typeref:typename:int	file:
+check_vector_opposite	src/camera.c	/^t_bool	check_vector_opposite(t_tuple v1, t_tuple v2)$/;"	f	typeref:typename:t_bool
 clamp	src/matrix.c	/^void	clamp(t_u *x)$/;"	f	typeref:typename:void
 clean	Makefile	/^clean:$/;"	t
 clean	libft/Makefile	/^clean:$/;"	t
@@ -289,6 +306,12 @@ command	.cache/compile_commands.json	/^    "command": "gcc -g -c -Wall -Wextra -
 command	.cache/compile_commands.json	/^    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude\/ -Ilibft\/include\/ -Iminili/;"	s	object:10
 command	.cache/compile_commands.json	/^    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude\/ -Ilibft\/include\/ -Iminili/;"	s	object:11
 command	.cache/compile_commands.json	/^    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude\/ -Ilibft\/include\/ -Iminili/;"	s	object:12
+command	.cache/compile_commands.json	/^    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude\/ -Ilibft\/include\/ -Iminili/;"	s	object:13
+command	.cache/compile_commands.json	/^    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude\/ -Ilibft\/include\/ -Iminili/;"	s	object:14
+command	.cache/compile_commands.json	/^    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude\/ -Ilibft\/include\/ -Iminili/;"	s	object:15
+command	.cache/compile_commands.json	/^    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude\/ -Ilibft\/include\/ -Iminili/;"	s	object:16
+command	.cache/compile_commands.json	/^    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude\/ -Ilibft\/include\/ -Iminili/;"	s	object:17
+command	.cache/compile_commands.json	/^    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude\/ -Ilibft\/include\/ -Iminili/;"	s	object:18
 command	.cache/compile_commands.json	/^    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude\/ -Ilibft\/include\/ -Iminili/;"	s	object:2
 command	.cache/compile_commands.json	/^    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude\/ -Ilibft\/include\/ -Iminili/;"	s	object:3
 command	.cache/compile_commands.json	/^    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude\/ -Ilibft\/include\/ -Iminili/;"	s	object:4
@@ -297,20 +320,23 @@ command	.cache/compile_commands.json	/^    "command": "gcc -g -c -Wall -Wextra -
 command	.cache/compile_commands.json	/^    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude\/ -Ilibft\/include\/ -Iminili/;"	s	object:7
 command	.cache/compile_commands.json	/^    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude\/ -Ilibft\/include\/ -Iminili/;"	s	object:8
 command	.cache/compile_commands.json	/^    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude\/ -Ilibft\/include\/ -Iminili/;"	s	object:9
+command	.vscode/tasks.json	/^            "command": "\/usr\/bin\/make",$/;"	s	object:tasks.0
+configurations	.vscode/launch.json	/^    "configurations": [$/;"	a
 content	libft/include/libft.h	/^	t_content		content;$/;"	m	struct:s_list	typeref:typename:t_content
 cpywrd	libft/src/mandatory/ft_split.c	/^static	char	*cpywrd(char const *s, char c)$/;"	f	typeref:typename:char *	file:
 creat_obj	src/parsing_utils.c	/^t_obj	*creat_obj(t_otype type)$/;"	f	typeref:typename:t_obj *
 create_back	libft/src/bonus/ft_lstmap.c	/^static int	create_back(t_list *lst, t_content content)$/;"	f	typeref:typename:int	file:
 create_matrix_x	src/matrix.c	/^t_u	**create_matrix_x(int x)$/;"	f	typeref:typename:t_u **
 create_null_tuple	src/vector.c	/^t_tuple	create_null_tuple(void)$/;"	f	typeref:typename:t_tuple
-create_ray	src/ray.c	/^void	create_ray(t_ray *new, t_tuple p, t_tuple v)$/;"	f	typeref:typename:void
-create_sphere	src/ray.c	/^t_obj	*create_sphere(int type, t_tuple origin, float diam, int color)$/;"	f	typeref:typename:t_obj *
+create_sphere	src/test.c	/^t_obj	*create_sphere(int type, t_tuple origin, float diam, int color)$/;"	f	typeref:typename:t_obj *
 create_trgb	src/colors.c	/^int	create_trgb(int t, int r, int g, int b)$/;"	f	typeref:typename:int
 create_tuple	src/vector.c	/^t_tuple	create_tuple(t_u *array)$/;"	f	typeref:typename:t_tuple
 create_tuple_copy	src/vector.c	/^t_tuple	create_tuple_copy(t_tuple t)$/;"	f	typeref:typename:t_tuple
 create_v3	src/vector.c	/^t_tuple	create_v3(t_tuple p1, t_tuple p2)$/;"	f	typeref:typename:t_tuple
 cross_product_v3	src/vector.c	/^t_tuple	cross_product_v3(t_tuple v1, t_tuple v2)$/;"	f	typeref:typename:t_tuple
 ctow_m	include/data_struct.h	/^	t_u		ctow_m[4][4];$/;"	m	struct:s_rt	typeref:typename:t_u[4][4]
+cwd	.vscode/launch.json	/^            "cwd": "${fileDirname}",$/;"	s	object:configurations.0
+cwd	.vscode/tasks.json	/^                "cwd": "${fileDirname}"$/;"	s	object:tasks.0.options
 d	include/data_struct.h	/^	t_tuple	d;$/;"	m	struct:s_obj	typeref:typename:t_tuple
 d	include/data_struct.h	/^	t_tuple	d;$/;"	m	struct:s_ray	typeref:typename:t_tuple
 d	include/matrix.h	/^	int	d;$/;"	m	struct:s_matrix_index	typeref:typename:int
@@ -319,18 +345,28 @@ data1	minilibx-linux/test/main.c	/^char	*data1;$/;"	v	typeref:typename:char *
 data2	minilibx-linux/test/main.c	/^char	*data2;$/;"	v	typeref:typename:char *
 data3	minilibx-linux/test/main.c	/^char	*data3;$/;"	v	typeref:typename:char *
 data4	minilibx-linux/test/main.c	/^char	*data4;$/;"	v	typeref:typename:char *
+debug	include/data_struct.h	/^	t_bool	debug;$/;"	m	struct:s_rt	typeref:typename:t_bool
 decrgb	minilibx-linux/mlx_int.h	/^	int			decrgb[6];$/;"	m	struct:s_xvar	typeref:typename:int[6]
 depth	minilibx-linux/mlx_int.h	/^	int			depth;$/;"	m	struct:s_xvar	typeref:typename:int
+description	.vscode/launch.json	/^                    "description":  "Set Disassembly Flavor to Intel",$/;"	s	object:configurations.0.setupCommands.1
+description	.vscode/launch.json	/^                    "description": "Enable pretty-printing for gdb",$/;"	s	object:configurations.0.setupCommands.0
 det_matrix_2	src/matrix.c	/^t_u	det_matrix_2(t_u m[2][2])$/;"	f	typeref:typename:t_u
 det_matrix_3	src/matrix.c	/^t_u	det_matrix_3(t_u m[3][3])$/;"	f	typeref:typename:t_u
 det_matrix_4	src/matrix.c	/^t_u	det_matrix_4(t_u m[4][4])$/;"	f	typeref:typename:t_u
-diam	include/data_struct.h	/^	float	diam;$/;"	m	struct:s_obj	typeref:typename:float
+detail	.vscode/tasks.json	/^            "detail": "Task generated by Debugger."$/;"	s	object:tasks.0
+diam	include/data_struct.h	/^	double	diam;$/;"	m	struct:s_obj	typeref:typename:double
 diez	libft/include/include_imp/parse_flags.h	/^	int		diez;$/;"	m	struct:s_flags	typeref:typename:int
 directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:0
 directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:1
 directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:10
 directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:11
 directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:12
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:13
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:14
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:15
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:16
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:17
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:18
 directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:2
 directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:3
 directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:4
@@ -348,42 +384,62 @@ dot	libft/include/include_imp/parse_flags.h	/^	int		dot;$/;"	m	struct:s_flags	ty
 dot_product_v3	src/vector.c	/^t_u	dot_product_v3(t_tuple v1, t_tuple v2)$/;"	f	typeref:typename:t_u
 e_bool	include/data_struct.h	/^typedef	enum	e_bool$/;"	g
 e_otype	include/data_struct.h	/^typedef enum e_otype$/;"	g
+e_space	include/data_struct.h	/^typedef enum	e_space$/;"	g
 end_loop	minilibx-linux/mlx_int.h	/^	int 		end_loop;$/;"	m	struct:s_xvar	typeref:typename:int
 endian	include/data_struct.h	/^	int		endian;$/;"	m	struct:s_img	typeref:typename:int
 endian1	minilibx-linux/test/main.c	/^int	endian1;$/;"	v	typeref:typename:int
 endian2	minilibx-linux/test/main.c	/^int	endian2;$/;"	v	typeref:typename:int
 endian3	minilibx-linux/test/main.c	/^int	endian3;$/;"	v	typeref:typename:int
 endian4	minilibx-linux/test/main.c	/^int	endian4;$/;"	v	typeref:typename:int
+environment	.vscode/launch.json	/^            "environment": [],$/;"	a	object:configurations.0
 exit_parsing	src/exit_rt.c	/^void	exit_parsing(t_rt *rt, char *error_msg, int exit_code)$/;"	f	typeref:typename:void
 exit_rt	src/exit_rt.c	/^void	exit_rt(t_rt *rt, char *error_msg, int exit_code)$/;"	f	typeref:typename:void
 expose_hook	minilibx-linux/mlx_int.h	/^	int					(*expose_hook)();$/;"	m	struct:s_win_list	typeref:typename:int (*)()
 expose_param	minilibx-linux/mlx_int.h	/^	void				*expose_param;$/;"	m	struct:s_win_list	typeref:typename:void *
 expose_win1	minilibx-linux/test/main.c	/^int	expose_win1(void *p)$/;"	f	typeref:typename:int
 expose_win2	minilibx-linux/test/main.c	/^int	expose_win2(void *p)$/;"	f	typeref:typename:int
+externalConsole	.vscode/launch.json	/^            "externalConsole": false,$/;"	b	object:configurations.0
 fclean	Makefile	/^fclean: clean$/;"	t
 fclean	libft/Makefile	/^fclean: clean$/;"	t
 file	.cache/compile_commands.json	/^    "file": "src\/colors.c"$/;"	s	object:9
+file	.cache/compile_commands.json	/^    "file": "src\/data_parser.c"$/;"	s	object:17
 file	.cache/compile_commands.json	/^    "file": "src\/exit_rt.c"$/;"	s	object:4
+file	.cache/compile_commands.json	/^    "file": "src\/ft_atof.c"$/;"	s	object:12
+file	.cache/compile_commands.json	/^    "file": "src\/ft_atof_utils.c"$/;"	s	object:13
 file	.cache/compile_commands.json	/^    "file": "src\/hook.c"$/;"	s	object:3
 file	.cache/compile_commands.json	/^    "file": "src\/image.c"$/;"	s	object:2
 file	.cache/compile_commands.json	/^    "file": "src\/init.c"$/;"	s	object:6
 file	.cache/compile_commands.json	/^    "file": "src\/main.c"$/;"	s	object:0
 file	.cache/compile_commands.json	/^    "file": "src\/matrix.c"$/;"	s	object:10
+file	.cache/compile_commands.json	/^    "file": "src\/obj_filler.c"$/;"	s	object:18
+file	.cache/compile_commands.json	/^    "file": "src\/parsing.c"$/;"	s	object:14
+file	.cache/compile_commands.json	/^    "file": "src\/parsing_utils.c"$/;"	s	object:15
 file	.cache/compile_commands.json	/^    "file": "src\/print.c"$/;"	s	object:5
-file	.cache/compile_commands.json	/^    "file": "src\/ray.c"$/;"	s	object:12
+file	.cache/compile_commands.json	/^    "file": "src\/ray.c"$/;"	s	object:16
 file	.cache/compile_commands.json	/^    "file": "src\/test.c"$/;"	s	object:7
 file	.cache/compile_commands.json	/^    "file": "src\/transformations.c"$/;"	s	object:11
 file	.cache/compile_commands.json	/^    "file": "src\/trash.c"$/;"	s	object:8
 file	.cache/compile_commands.json	/^    "file": "src\/vector.c"$/;"	s	object:1
+fill_cam	src/obj_filler.c	/^int fill_cam(t_obj *tmp, t_rt *rt, char **sp)$/;"	f	typeref:typename:int
+fill_cylindre	src/obj_filler.c	/^int fill_cylindre(t_obj *tmp, t_rt *rt, char **sp)$/;"	f	typeref:typename:int
+fill_floating_point_part	src/ft_atof.c	/^static void fill_floating_point_part(char *str, float *val)$/;"	f	typeref:typename:void	file:
+fill_integer_part	src/ft_atof.c	/^static char	*fill_integer_part(char *str, float *val)$/;"	f	typeref:typename:char *	file:
+fill_light	src/obj_filler.c	/^int fill_light(t_obj *tmp, t_rt *rt, char **sp)$/;"	f	typeref:typename:int
 fill_matrix_x	src/matrix.c	/^void	fill_matrix_x(t_u array[4][4], int sz, char *str)$/;"	f	typeref:typename:void
+fill_obj	src/camera.c	/^void	fill_obj(t_rt *rt)$/;"	f	typeref:typename:void
 fill_obj	src/parsing.c	/^static int	fill_obj(char **sp, t_obj *tmp, t_rt *rt)$/;"	f	typeref:typename:int	file:
+fill_plan	src/obj_filler.c	/^int fill_plan(t_obj *tmp, t_rt *rt, char **sp)$/;"	f	typeref:typename:int
 fill_scene	src/parsing.c	/^static void	fill_scene(char *line, t_scene *scene, t_rt *rt)$/;"	f	typeref:typename:void	file:
+fill_sphere	src/obj_filler.c	/^int fill_sphere(t_obj *tmp, t_rt *rt, char **sp)$/;"	f	typeref:typename:int
 fill_str	libft/src/mandatory/ft_itoa.c	/^static	void	fill_str(char *str, int val, size_t len)$/;"	f	typeref:typename:void	file:
+fill_val	src/ft_atof.c	/^static int fill_val(char *str, float *val)$/;"	f	typeref:typename:int	file:
 flush	libft/src/extra/ft_printf/write_buf.c	/^static int	flush(char *buffer, size_t *len)$/;"	f	typeref:typename:int	file:
 format	minilibx-linux/mlx_int.h	/^	int				format;$/;"	m	struct:s_img	typeref:typename:int
 free_part_tab	libft/src/mandatory/ft_split.c	/^char	**free_part_tab(char **ret, int a)$/;"	f	typeref:typename:char **
 free_ptr	libft/src/extra/get_next_line.c	/^static char	*free_ptr(void **ptr)$/;"	f	typeref:typename:char *	file:
+free_split	src/ft_atof_utils.c	/^void free_split(char **sp)$/;"	f	typeref:typename:void
 free_trash	src/trash.c	/^void	free_trash(t_list *trash)$/;"	f	typeref:typename:void
+ft_atof	src/ft_atof.c	/^int	ft_atof(char *str, float *val)$/;"	f	typeref:typename:int
 ft_atoi	libft/src/mandatory/ft_atoi.c	/^int	ft_atoi(const char *str)$/;"	f	typeref:typename:int
 ft_atol	libft/src/extra/ft_atol.c	/^long int	ft_atol(const char *str)$/;"	f	typeref:typename:long int
 ft_bzero	libft/src/mandatory/ft_bzero.c	/^void	ft_bzero(void *pointer, size_t count)$/;"	f	typeref:typename:void
@@ -414,7 +470,7 @@ ft_putchar_fd	libft/src/mandatory/ft_putchar_fd.c	/^void	ft_putchar_fd(char c, i
 ft_putendl_fd	libft/src/mandatory/ft_putendl_fd.c	/^void	ft_putendl_fd(char *s, int fd)$/;"	f	typeref:typename:void
 ft_putnbr_fd	libft/src/mandatory/ft_putnbr_fd.c	/^void	ft_putnbr_fd(int n, int fd)$/;"	f	typeref:typename:void
 ft_putstr_fd	libft/src/mandatory/ft_putstr_fd.c	/^void	ft_putstr_fd(char *s, int fd)$/;"	f	typeref:typename:void
-ft_sign	src/ray.c	/^int	ft_sign(t_u i)$/;"	f	typeref:typename:int
+ft_sign	src/sphere.c	/^int	ft_sign(t_u i)$/;"	f	typeref:typename:int
 ft_split	libft/src/mandatory/ft_split.c	/^char	**ft_split(char const *s, char c)$/;"	f	typeref:typename:char **
 ft_strchr	libft/src/mandatory/ft_strchr.c	/^char	*ft_strchr(const char *s, int c)$/;"	f	typeref:typename:char *
 ft_strdup	libft/src/mandatory/ft_strdup.c	/^char	*ft_strdup(const char *src)$/;"	f	typeref:typename:char *
@@ -437,17 +493,24 @@ gc	minilibx-linux/mlx_int.h	/^	GC					gc;$/;"	m	struct:s_win_list	typeref:typena
 gc	minilibx-linux/mlx_int.h	/^	GC				gc;$/;"	m	struct:s_img	typeref:typename:GC
 gere_mouse	minilibx-linux/test/new_win.c	/^int gere_mouse(int x,int y,int button,void*toto)$/;"	f	typeref:typename:int
 get_b	src/colors.c	/^int	get_b(int trgb)$/;"	f	typeref:typename:int
+get_color	src/data_parser.c	/^int	get_color(char *s, int *color)$/;"	f	typeref:typename:int
 get_g	src/colors.c	/^int	get_g(int trgb)$/;"	f	typeref:typename:int
-get_matrix_align_v1_v2	src/ray.c	/^void	get_matrix_align_v1_v2(t_u m[4][4], t_tuple v1, t_tuple v2)$/;"	f	typeref:typename:void
+get_matrix_align_v1_v2	src/camera.c	/^void	get_matrix_align_v1_v2(t_u m[4][4], t_tuple v1, t_tuple v2)$/;"	f	typeref:typename:void
 get_next_line	libft/src/extra/get_next_line.c	/^char	*get_next_line(int fd)$/;"	f	typeref:typename:char *
+get_ori	src/data_parser.c	/^int	get_ori(char *s, t_tuple *ori)$/;"	f	typeref:typename:int
+get_pos	src/data_parser.c	/^int get_pos(char *s, t_tuple *pos)$/;"	f	typeref:typename:int
 get_r	src/colors.c	/^int	get_r(int trgb)$/;"	f	typeref:typename:int
+get_ratio	src/data_parser.c	/^int get_ratio(char *s, double *ratio)$/;"	f	typeref:typename:int
 get_t	src/colors.c	/^int	get_t(int trgb)$/;"	f	typeref:typename:int
 get_xlib_include_path	minilibx-linux/configure	/^get_xlib_include_path(){$/;"	f
-height	include/data_struct.h	/^	float	height;$/;"	m	struct:s_obj	typeref:typename:float
+group	.vscode/tasks.json	/^            "group": {$/;"	o	object:tasks.0
+height	include/data_struct.h	/^	double	height;$/;"	m	struct:s_obj	typeref:typename:double
 height	minilibx-linux/mlx_int.h	/^	int				height;$/;"	m	struct:s_img	typeref:typename:int
 hook	minilibx-linux/mlx_int.h	/^	int		(*hook)();$/;"	m	struct:s_event_list	typeref:typename:int (*)()
 hooks	minilibx-linux/mlx_int.h	/^	t_event_list		hooks[MLX_MAX_EVENT];$/;"	m	struct:s_win_list	typeref:typename:t_event_list[]
 identity_matrix_4	src/matrix.c	/^void	identity_matrix_4(t_u new[4][4])$/;"	f	typeref:typename:void
+ignoreFailures	.vscode/launch.json	/^                    "ignoreFailures": true$/;"	b	object:configurations.0.setupCommands.0
+ignoreFailures	.vscode/launch.json	/^                    "ignoreFailures": true$/;"	b	object:configurations.0.setupCommands.1
 im1	minilibx-linux/test/main.c	/^void    *im1;$/;"	v	typeref:typename:void *
 im2	minilibx-linux/test/main.c	/^void	*im2;$/;"	v	typeref:typename:void *
 im3	minilibx-linux/test/main.c	/^void	*im3;$/;"	v	typeref:typename:void *
@@ -458,10 +521,17 @@ img	include/data_struct.h	/^	void	*img;$/;"	m	struct:s_img	typeref:typename:void
 init_flags	libft/src/extra/ft_printf/ft_printf.c	/^static void	init_flags(t_flags *flags)$/;"	f	typeref:typename:void	file:
 init_inter	src/ray.c	/^void	init_inter(t_rt *rt)$/;"	f	typeref:typename:void
 init_pixel	src/ray.c	/^void	init_pixel(t_rt *rt)$/;"	f	typeref:typename:void
+init_pixel_debug	src/debug.c	/^void	init_pixel_debug(t_rt *rt)$/;"	f	typeref:typename:void
 init_rt	src/init.c	/^t_rt	*init_rt(void)$/;"	f	typeref:typename:t_rt *
 intersect_obj	src/ray.c	/^void	intersect_obj(t_rt *rt, t_intersect *inter, int i, int j)$/;"	f	typeref:typename:void
-intersect_sph	src/ray.c	/^void	intersect_sph(t_obj	*sph, t_intersect *inter)$/;"	f	typeref:typename:void
+intersect_obj_debug	src/debug.c	/^void	intersect_obj_debug(t_rt *rt, t_intersect *inter, int i, int j)$/;"	f	typeref:typename:void
+intersect_plane	src/ray.c	/^void	intersect_plane(t_obj *plane, t_intersect *inter)$/;"	f	typeref:typename:void
+intersect_sph	src/sphere.c	/^void	intersect_sph(t_obj *sph, t_intersect *inter)$/;"	f	typeref:typename:void
+intersect_sph2	src/sphere.c	/^void	intersect_sph2(t_obj *sph, t_intersect *inter)$/;"	f	typeref:typename:void
+intersect_sph2_debug	src/debug.c	/^void	intersect_sph2_debug(t_obj *sph, t_intersect *inter)$/;"	f	typeref:typename:void
 invert_matrix_4	src/matrix.c	/^void	invert_matrix_4(t_u m[4][4], t_u new[4][4])$/;"	f	typeref:typename:void
+isDefault	.vscode/tasks.json	/^                "isDefault": true$/;"	b	object:tasks.0.group
+isValidLiteral	src/ft_atof_utils.c	/^int isValidLiteral(char *str)$/;"	f	typeref:typename:int
 isin	libft/src/mandatory/ft_strtrim.c	/^static	int	isin(char a, const char *str)$/;"	f	typeref:typename:int	file:
 key_hook	minilibx-linux/mlx_int.h	/^	int					(*key_hook)();$/;"	m	struct:s_win_list	typeref:typename:int (*)()
 key_hook	src/hook.c	/^int	key_hook(int keycode, t_rt *rt)$/;"	f	typeref:typename:int
@@ -469,6 +539,8 @@ key_param	minilibx-linux/mlx_int.h	/^	void				*key_param;$/;"	m	struct:s_win_lis
 key_win1	minilibx-linux/test/main.c	/^int	key_win1(int key,void *p)$/;"	f	typeref:typename:int
 key_win2	minilibx-linux/test/main.c	/^int	key_win2(int key,void *p)$/;"	f	typeref:typename:int
 key_win3	minilibx-linux/test/main.c	/^int	key_win3(int key,void *p)$/;"	f	typeref:typename:int
+kind	.vscode/tasks.json	/^                "kind": "build",$/;"	s	object:tasks.0.group
+label	.vscode/tasks.json	/^            "label": "C\/C++: gcc build active file",$/;"	s	object:tasks.0
 length_v3	src/vector.c	/^t_u	length_v3(t_tuple v)$/;"	f	typeref:typename:t_u
 light	include/data_struct.h	/^	t_list	*light;$/;"	m	struct:s_scene	typeref:typename:t_list *
 line_lgth	include/data_struct.h	/^	int		line_lgth;$/;"	m	struct:s_img	typeref:typename:int
@@ -485,7 +557,8 @@ main	minilibx-linux/configure	/^main(){$/;"	f
 main	minilibx-linux/test/main.c	/^int	main()$/;"	f	typeref:typename:int
 main	minilibx-linux/test/new_win.c	/^int main()$/;"	f	typeref:typename:int
 main	minilibx-linux/test/run_tests.sh	/^main(){$/;"	f
-main	src/main.c	/^int	main(void)$/;"	f	typeref:typename:int
+main	src/main.c	/^int	main(int argc, char **argv)$/;"	f	typeref:typename:int
+main	test.c	/^int main(int argc, char **argv)$/;"	f	typeref:typename:int
 mask	minilibx-linux/mlx_int.h	/^	int		mask;$/;"	m	struct:s_event_list	typeref:typename:int
 matrix_4_is_invertible	src/matrix.c	/^t_bool	matrix_4_is_invertible(t_u m[4][4])$/;"	f	typeref:typename:t_bool
 matrix_ex1	src/matrix.c	/^void	matrix_ex1(t_u new[4][4])$/;"	f	typeref:typename:void
@@ -566,6 +639,7 @@ mlx_xpm_file_to_image	minilibx-linux/mlx_xpm.c	/^void	*mlx_xpm_file_to_image(t_x
 mlx_xpm_to_image	minilibx-linux/mlx_lib_xpm.c	/^void	*mlx_xpm_to_image(t_xvar *xvar,char **data,int *width,int *height)$/;"	f	typeref:typename:void *
 mlx_xpm_to_image	minilibx-linux/mlx_xpm.c	/^void	*mlx_xpm_to_image(t_xvar *xvar,char **xpm_data,int *width,int *height)$/;"	f	typeref:typename:void *
 mouse_hook	minilibx-linux/mlx_int.h	/^	int					(*mouse_hook)();$/;"	m	struct:s_win_list	typeref:typename:int (*)()
+mouse_hook	src/hook.c	/^int	mouse_hook(int button, int x, int y, t_rt *rt)$/;"	f	typeref:typename:int
 mouse_param	minilibx-linux/mlx_int.h	/^	void				*mouse_param;$/;"	m	struct:s_win_list	typeref:typename:void *
 mouse_win1	minilibx-linux/test/main.c	/^int	mouse_win1(int button,int x,int y, void *p)$/;"	f	typeref:typename:int
 mouse_win2	minilibx-linux/test/main.c	/^int	mouse_win2(int button,int x,int y, void *p)$/;"	f	typeref:typename:int
@@ -573,6 +647,7 @@ mouse_win3	minilibx-linux/test/main.c	/^int	mouse_win3(int x,int y, void *p)$/;"
 mult_matrix_4	src/matrix.c	/^void	mult_matrix_4(t_u new[4][4], t_u m1[4][4], t_u m2[4][4])$/;"	f	typeref:typename:void
 mult_tuple_matrix_4	src/transformations.c	/^void	mult_tuple_matrix_4(t_tuple *new, t_u m[4][4], t_tuple t)$/;"	f	typeref:typename:void
 my_mlx_pixel_put	src/image.c	/^void	my_mlx_pixel_put(t_rt *rt, int x, int y, int color)$/;"	f	typeref:typename:void
+name	.vscode/launch.json	/^            "name": "(gdb) Launch",$/;"	s	object:configurations.0
 name	minilibx-linux/mlx_int.h	/^	char	*name;$/;"	m	struct:s_col_name	typeref:typename:char *
 name	minilibx-linux/mlx_int.h	/^	int		name;$/;"	m	struct:s_xpm_col	typeref:typename:int
 nb_size	libft/src/mandatory/ft_itoa.c	/^static	size_t	nb_size(int a)$/;"	f	typeref:typename:size_t	file:
@@ -586,6 +661,9 @@ o	include/data_struct.h	/^	t_tuple	o;$/;"	m	struct:s_obj	typeref:typename:t_tupl
 o	include/data_struct.h	/^	t_tuple	o;$/;"	m	struct:s_ray	typeref:typename:t_tuple
 obj	include/data_struct.h	/^	t_obj		*obj;$/;"	m	struct:s_intersect	typeref:typename:t_obj *
 objs	include/data_struct.h	/^	t_list	*objs;$/;"	m	struct:s_scene	typeref:typename:t_list *
+only_nb	src/data_parser.c	/^static int	only_nb(char *s)$/;"	f	typeref:typename:int	file:
+options	.vscode/tasks.json	/^            "options": {$/;"	o	object:tasks.0
+otow_m	include/data_struct.h	/^	t_u		otow_m[4][4];$/;"	m	struct:s_obj	typeref:typename:t_u[4][4]
 param	minilibx-linux/mlx_int.h	/^	void	*param;$/;"	m	struct:s_event_list	typeref:typename:void *
 parse	libft/src/extra/get_next_line.c	/^static char	*parse(char **prev)$/;"	f	typeref:typename:char *	file:
 parse_args	minilibx-linux/configure	/^parse_args(){$/;"	f
@@ -593,10 +671,10 @@ parse_flags	libft/src/extra/ft_printf/parse_flags.c	/^const char	*parse_flags(co
 parsing	src/parsing.c	/^void	parsing(t_rt *rt, char *file, t_scene *scene)$/;"	f	typeref:typename:void
 pix	minilibx-linux/mlx_int.h	/^	Pixmap			pix;$/;"	m	struct:s_img	typeref:typename:Pixmap
 pixel	include/data_struct.h	/^	t_tuple		pixel;$/;"	m	struct:s_intersect	typeref:typename:t_tuple
-pixel_raster_to_space	src/ray.c	/^void	pixel_raster_to_space(t_intersect *i, int x, int y, t_rt *rt)$/;"	f	typeref:typename:void
+pixel_raster_to_space	src/camera.c	/^void	pixel_raster_to_space(t_intersect *i, int x, int y, t_rt *rt)$/;"	f	typeref:typename:void
 plus	libft/include/include_imp/parse_flags.h	/^	int		plus;$/;"	m	struct:s_flags	typeref:typename:int
 position	include/test.h	/^	t_tuple	position;$/;"	m	struct:s_proj	typeref:typename:t_tuple
-position	src/ray.c	/^void	position(t_tuple *new, t_ray r, t_tuple p)$/;"	f	typeref:typename:void
+print_axis	src/rendering.c	/^void	print_axis(t_rt *rt)$/;"	f	typeref:typename:void
 print_before	libft/src/extra/ft_printf/print_di.c	/^static void	print_before(t_flags *flags, int a, unsigned int len, int sign)$/;"	f	typeref:typename:void	file:
 print_before	libft/src/extra/ft_printf/print_u.c	/^static void	print_before(t_flags *flags, unsigned int len)$/;"	f	typeref:typename:void	file:
 print_before	libft/src/extra/ft_printf/print_xX.c	/^static void	print_before(t_flags *flags, unsigned int len, int i, int pref)$/;"	f	typeref:typename:void	file:
@@ -615,11 +693,13 @@ print_u	libft/src/extra/ft_printf/print_u.c	/^void	print_u(unsigned int u, t_fla
 print_ui_base	libft/src/extra/ft_printf/print_u.c	/^void	print_ui_base(unsigned long int val, const char *base)$/;"	f	typeref:typename:void
 print_x	libft/src/extra/ft_printf/print_xX.c	/^void	print_x(int i, t_flags *flags)$/;"	f	typeref:typename:void
 private_cmap	minilibx-linux/mlx_int.h	/^	int			private_cmap;$/;"	m	struct:s_xvar	typeref:typename:int
+problemMatcher	.vscode/tasks.json	/^            "problemMatcher": [$/;"	a	object:tasks.0
 process_dot	libft/src/extra/ft_printf/parse_flags.c	/^static void	process_dot(t_flags *flags)$/;"	f	typeref:typename:void	file:
+program	.vscode/launch.json	/^            "program": "${workspaceFolder}\/miniRT",$/;"	s	object:configurations.0
 pshm_format	minilibx-linux/mlx_int.h	/^	int			pshm_format;$/;"	m	struct:s_xvar	typeref:typename:int
 q	include/data_struct.h	/^	t_quadra	q;$/;"	m	struct:s_intersect	typeref:typename:t_quadra
 q	include/data_struct.h	/^	t_u		q;$/;"	m	struct:s_quadra	typeref:typename:t_u
-ratio	include/data_struct.h	/^	float	ratio;$/;"	m	struct:s_obj	typeref:typename:float
+ratio	include/data_struct.h	/^	double	ratio;$/;"	m	struct:s_obj	typeref:typename:double
 ray	include/data_struct.h	/^	t_ray		ray;$/;"	m	struct:s_intersect	typeref:typename:t_ray
 re	Makefile	/^re: fclean $(NAME) run$/;"	t
 re	libft/Makefile	/^re: fclean $(NAME)$/;"	t
@@ -630,6 +710,7 @@ read_nb	libft/src/extra/ft_printf/parse_flags.c	/^static int	read_nb(t_flags *fl
 red_cross	src/hook.c	/^int	red_cross(t_rt *rt)$/;"	f	typeref:typename:int
 reg_dot	libft/src/extra/ft_printf/print_di.c	/^void	reg_dot(t_flags *flags, size_t len)$/;"	f	typeref:typename:void
 render_next_frame	src/image.c	/^int	render_next_frame(t_rt *rt)$/;"	f	typeref:typename:int
+request	.vscode/launch.json	/^            "request": "launch",$/;"	s	object:configurations.0
 root	minilibx-linux/mlx_int.h	/^	Window		root;$/;"	m	struct:s_xvar	typeref:typename:Window
 rot_x_matrix_4	src/transformations.c	/^void	rot_x_matrix_4(t_u m[4][4], t_u angle)$/;"	f	typeref:typename:void
 rot_y_matrix_4	src/transformations.c	/^void	rot_y_matrix_4(t_u m[4][4], t_u angle)$/;"	f	typeref:typename:void
@@ -659,6 +740,7 @@ scale_v3	src/vector.c	/^void	scale_v3(t_tuple *v1, t_u s)$/;"	f	typeref:typename
 scn	include/data_struct.h	/^	t_scene	scn;$/;"	m	struct:s_rt	typeref:typename:t_scene
 screen	minilibx-linux/mlx_int.h	/^	int			screen;$/;"	m	struct:s_xvar	typeref:typename:int
 set_type	src/parsing.c	/^static int	set_type(char **sp, t_scene *scene, t_rt *rt)$/;"	f	typeref:typename:int	file:
+setupCommands	.vscode/launch.json	/^            "setupCommands": [$/;"	a	object:configurations.0
 shearing_matrix_4	src/transformations.c	/^void	shearing_matrix_4(t_u m[4][4], t_u shearing[6])$/;"	f	typeref:typename:void
 shm	minilibx-linux/mlx_int.h	/^	XShmSegmentInfo	shm;$/;"	m	struct:s_img	typeref:typename:XShmSegmentInfo
 shm_att_pb	minilibx-linux/mlx_new_image.c	/^int	shm_att_pb(Display *d,XErrorEvent *ev)$/;"	f	typeref:typename:int
@@ -672,9 +754,10 @@ sl1	minilibx-linux/test/main.c	/^int	sl1;$/;"	v	typeref:typename:int
 sl2	minilibx-linux/test/main.c	/^int	sl2;$/;"	v	typeref:typename:int
 sl3	minilibx-linux/test/main.c	/^int	sl3;$/;"	v	typeref:typename:int
 sl4	minilibx-linux/test/main.c	/^int	sl4;$/;"	v	typeref:typename:int
-solve_quadratic	src/ray.c	/^t_bool	solve_quadratic(t_intersect *inter, t_quadra q)$/;"	f	typeref:typename:t_bool
+solve_quadratic	src/sphere.c	/^t_bool	solve_quadratic(t_intersect *inter, t_quadra q)$/;"	f	typeref:typename:t_bool
+space	include/data_struct.h	/^	t_space	space;$/;"	m	struct:s_rt	typeref:typename:t_space
 space	libft/include/include_imp/parse_flags.h	/^	int		space;$/;"	m	struct:s_flags	typeref:typename:int
-sph	include/data_struct.h	/^	t_obj	sph;$/;"	m	struct:s_scene	typeref:typename:t_obj
+stopAtEntry	.vscode/launch.json	/^            "stopAtEntry": true,$/;"	b	object:configurations.0
 strlcpy_is_not_posix	minilibx-linux/mlx_xpm.c	/^unsigned int	strlcpy_is_not_posix(char *dest, char *src, unsigned int size)$/;"	f	typeref:typename:unsigned int
 sub_matrix_3	src/matrix.c	/^void	sub_matrix_3(t_u m[3][3], int a, int b, t_u new[2][2])$/;"	f	typeref:typename:void
 sub_matrix_3_1	src/matrix.c	/^void	sub_matrix_3_1(t_u m[3][3], t_u new[2][2], t_matex i)$/;"	f	typeref:typename:void
@@ -701,22 +784,30 @@ t_quadra	include/data_struct.h	/^}	t_quadra;$/;"	t	typeref:struct:s_quadra
 t_ray	include/data_struct.h	/^}	t_ray;$/;"	t	typeref:struct:s_ray
 t_rt	include/data_struct.h	/^}	t_rt;$/;"	t	typeref:struct:s_rt
 t_scene	include/data_struct.h	/^}	t_scene;$/;"	t	typeref:struct:s_scene
+t_space	include/data_struct.h	/^}	t_space;$/;"	t	typeref:enum:e_space
 t_tuple	include/data_struct.h	/^}	t_tuple;$/;"	t	typeref:struct:s_tuple
 t_u	include/data_struct.h	/^typedef double	t_u;$/;"	t	typeref:typename:double
 t_win_list	minilibx-linux/mlx_int.h	/^}				t_win_list;$/;"	t	typeref:struct:s_win_list
 t_xpm_col	minilibx-linux/mlx_int.h	/^}				t_xpm_col;$/;"	t	typeref:struct:s_xpm_col
 t_xvar	minilibx-linux/mlx_int.h	/^}				t_xvar;$/;"	t	typeref:struct:s_xvar
+tasks	.vscode/tasks.json	/^    "tasks": [$/;"	a
 test	src/test.c	/^void	test(t_rt *rt)$/;"	f	typeref:typename:void
 test2	src/test.c	/^void	test2(t_rt *rt)$/;"	f	typeref:typename:void
 test3	src/test.c	/^void	test3(t_rt *rt)$/;"	f	typeref:typename:void
 test4	src/test.c	/^void	test4(t_rt *rt)$/;"	f	typeref:typename:void
 test_default_main	minilibx-linux/test/run_tests.sh	/^test_default_main(){$/;"	f
-test_sphere_init	src/ray.c	/^void	test_sphere_init(t_rt *rt)$/;"	f	typeref:typename:void
+test_sphere_init	src/test.c	/^void	test_sphere_init(t_rt *rt)$/;"	f	typeref:typename:void
 test_world_matrix	src/test.c	/^void	test_world_matrix(t_rt *rt)$/;"	f	typeref:typename:void
+test_wtoo	src/test.c	/^void	test_wtoo(t_rt *rt)$/;"	f	typeref:typename:void
+text	.vscode/launch.json	/^                    "text": "-enable-pretty-printing",$/;"	s	object:configurations.0.setupCommands.0
+text	.vscode/launch.json	/^                    "text": "-gdb-set disassembly-flavor intel",$/;"	s	object:configurations.0.setupCommands.1
 tick_environment	src/test.c	/^t_proj	tick_environment(t_proj proj, t_tuple gravity, t_tuple wind)$/;"	f	typeref:typename:t_proj
 trans_matrix_4	src/transformations.c	/^void	trans_matrix_4(t_u m[4][4], t_u x, t_u y, t_u z)$/;"	f	typeref:typename:void
+transform_obj_wtoo	src/obj.c	/^void	transform_obj_wtoo(t_rt *rt)$/;"	f	typeref:typename:void
 transpose_matrix_4	src/matrix.c	/^void	transpose_matrix_4(t_u m[4][4], t_u new[4][4])$/;"	f	typeref:typename:void
 trash	include/data_struct.h	/^	t_list	*trash;$/;"	m	struct:s_rt	typeref:typename:t_list *
+type	.vscode/launch.json	/^            "type": "cppdbg",$/;"	s	object:configurations.0
+type	.vscode/tasks.json	/^            "type": "cppbuild",$/;"	s	object:tasks.0
 type	include/data_struct.h	/^	t_otype	type;$/;"	m	struct:s_obj	typeref:typename:t_otype
 type	libft/include/include_imp/parse_flags.h	/^	char	type;$/;"	m	struct:s_flags	typeref:typename:char
 type	minilibx-linux/mlx_int.h	/^	int				type;$/;"	m	struct:s_img	typeref:typename:int
@@ -725,6 +816,7 @@ ui_len	libft/src/extra/ft_printf/print_u.c	/^size_t	ui_len(unsigned long int u, 
 use_xshm	minilibx-linux/mlx_int.h	/^	int			use_xshm;$/;"	m	struct:s_xvar	typeref:typename:int
 val	Makefile	/^val:$/;"	t
 velocity	include/test.h	/^	t_tuple	velocity;$/;"	m	struct:s_proj	typeref:typename:t_tuple
+version	.vscode/tasks.json	/^    "version": "2.0.0"$/;"	s
 visual	minilibx-linux/mlx_int.h	/^	Visual		*visual;$/;"	m	struct:s_xvar	typeref:typename:Visual *
 w	include/data_struct.h	/^	t_u	w;$/;"	m	struct:s_tuple	typeref:typename:t_u
 width	minilibx-linux/mlx_int.h	/^	int				width;$/;"	m	struct:s_img	typeref:typename:int
@@ -739,10 +831,11 @@ win_list	minilibx-linux/mlx_int.h	/^	t_win_list	*win_list;$/;"	m	struct:s_xvar	t
 window	minilibx-linux/mlx_int.h	/^	Window				window;$/;"	m	struct:s_win_list	typeref:typename:Window
 wm_delete_window	minilibx-linux/mlx_int.h	/^	Atom		wm_delete_window;$/;"	m	struct:s_xvar	typeref:typename:Atom
 wm_protocols	minilibx-linux/mlx_int.h	/^	Atom		wm_protocols;$/;"	m	struct:s_xvar	typeref:typename:Atom
-world_to_camera	src/ray.c	/^void	world_to_camera(t_rt *rt)$/;"	f	typeref:typename:void
+world_to_camera	src/camera.c	/^void	world_to_camera(t_rt *rt)$/;"	f	typeref:typename:void
 wrdcnt	libft/src/mandatory/ft_split.c	/^static	int	wrdcnt(char const *s, char c)$/;"	f	typeref:typename:int	file:
 write_buf	libft/src/extra/ft_printf/write_buf.c	/^int	write_buf(const char *str, size_t len)$/;"	f	typeref:typename:int
 wtoc_m	include/data_struct.h	/^	t_u		wtoc_m[4][4];$/;"	m	struct:s_rt	typeref:typename:t_u[4][4]
+wtoo_m	include/data_struct.h	/^	t_u		wtoo_m[4][4];$/;"	m	struct:s_obj	typeref:typename:t_u[4][4]
 x	include/data_struct.h	/^	int			x;$/;"	m	struct:s_intersect	typeref:typename:int
 x	include/data_struct.h	/^	int		x;$/;"	m	struct:s_img	typeref:typename:int
 x	include/data_struct.h	/^	t_u	x;$/;"	m	struct:s_tuple	typeref:typename:t_u

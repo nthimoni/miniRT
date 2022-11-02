@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:01:40 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/27 21:37:40 by nthimoni         ###   ########.fr       */
+/*   Updated: 2022/11/02 19:04:23 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,13 @@ typedef enum e_otype
 	LIGHT
 }	t_otype;
 
+typedef enum	e_space
+{
+	WORLD = 0,
+	CAM,
+	OBJ,
+}	t_space;
+
 typedef struct s_obj
 {
 	t_otype	type;
@@ -51,6 +58,8 @@ typedef struct s_obj
 	t_u		FOV;
 	int		color;
 	double	ratio;
+	t_u		wtoo_m[4][4];
+	t_u		otow_m[4][4];
 }	t_obj;
 
 typedef struct s_scene
@@ -72,6 +81,12 @@ typedef struct	s_img
 	int		y;
 }	t_img;
 
+typedef	enum	e_bool
+{
+	FALSE,
+	TRUE,
+}	t_bool;
+
 typedef struct	s_rt
 {
 	t_list	*trash;
@@ -81,13 +96,9 @@ typedef struct	s_rt
 	t_u		wtoc_m[4][4];
 	t_u		ctow_m[4][4];
 	t_scene	scn;
+	t_space	space;
+	t_bool	debug;
 }	t_rt;
-
-typedef	enum	e_bool
-{
-	FALSE,
-	TRUE,
-}	t_bool;
 
 typedef struct	s_ray
 {

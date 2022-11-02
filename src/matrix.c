@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 12:04:54 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/14 15:41:48 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/10/26 16:30:11 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,27 @@ void	fill_matrix_x(t_u array[4][4], int sz, char *str)
 }
 
 void	mult_matrix_4(t_u new[4][4], t_u m1[4][4], t_u m2[4][4])
+{
+	u_int8_t	a;
+	u_int8_t	b;
+
+	a = 0;
+	while (a < 4)
+	{
+		b = 0;
+		while (b < 4)
+		{
+			new[a][b] = m1[a][0] * m2[0][b] + m1[a][1] * m2[1][b]
+				+ m1[a][2] * m2[2][b] + m1[a][3] * m2[3][b];
+			clamp(&new[a][b]);
+			b++;
+		}
+		a++;
+	}
+	return ;
+}
+
+void	mult_matrix_4bis(t_u new[4][4], t_u m1[4][4], t_u m2[4][4])
 {
 	t_matex	i;
 
@@ -309,18 +330,18 @@ void	invert_matrix_4(t_u m[4][4], t_u new[4][4])
 {
 	int			i;
 	int			j;
-	t_u	ret;
+	t_u	det;
 
 	i = 0;
 	j = 0;
-	ret = det_matrix_4(m);
+	det = det_matrix_4(m);
 	if (!matrix_4_is_invertible(m))
 		return ;
 	while (i < 4)
 	{
 		while (j < 4)
 		{
-			new[j][i] = cofactor_matrix_4(m, i, j) / ret;
+			new[j][i] = cofactor_matrix_4(m, i, j) / det;
 			clamp(&new[i][j]);
 			j++;
 		}
