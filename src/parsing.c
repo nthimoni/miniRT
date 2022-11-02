@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 18:41:10 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/18 15:35:20 by nthimoni         ###   ########.fr       */
+/*   Updated: 2022/10/20 20:16:42 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,12 @@ void	parsing(t_rt *rt, char *file, t_scene *scene)
 	line = get_next_line(fd);
 	while (line)
 	{
+		if (*line == '-')
+		{
+			free(line);
+			line = get_next_line(fd);
+			continue ;	
+		}
 		if (line[ft_strlen(line) - 1] == '\n')
 			line[ft_strlen(line) - 1] = 0;
 		fill_scene(line, scene, rt);
