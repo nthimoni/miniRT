@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 14:53:04 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/14 13:34:04 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/11/02 18:12:28 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,17 @@ t_tuple	create_tuple(t_u *array)
 	new.y = array[1];
 	new.z = array[2];
 	new.w = array[3];
+	return (new);
+}
+
+t_tuple	create_tuple_pts(int x, int y, int z, int w)
+{
+	t_tuple	new;
+
+	new.x = x;
+	new.y = y;
+	new.z = z;
+	new.w = w;
 	return (new);
 }
 

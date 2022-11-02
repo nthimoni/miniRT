@@ -6,11 +6,13 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 17:49:21 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/26 19:30:21 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/11/02 19:01:30 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "scene.h"
+
+static t_bool	check_x_plane(t_tuple d);
 
 void	get_matrix_align_v1_v2(t_u m[4][4], t_tuple v1, t_tuple v2)
 {
@@ -53,13 +55,13 @@ void	fill_matrix_obj(t_rt *rt)
 {
 	t_list	*tmp;
 	t_obj	*obj;
-	t_u		scale_m[4][4];
+	t_u		tmp_m[4][4];
 	t_u		trans_m[4][4];
 
 	tmp = rt->scn.objs;
 	while (tmp)
 	{
-		ft_bzero(scale_m, sizeof(t_u[4][4]));
+		ft_bzero(tmp_m, sizeof(t_u[4][4]));
 		ft_bzero(trans_m, sizeof(t_u[4][4]));
 		obj = (t_obj *)tmp->content;
 		ft_bzero(&obj->wtoo_m, sizeof(t_u[4][4]));
@@ -67,14 +69,34 @@ void	fill_matrix_obj(t_rt *rt)
 		if (obj->type == SPHERE)
 		{
 			trans_matrix_4(trans_m, obj->o.x, obj->o.y, obj->o.z);
-			scale_matrix_4(scale_m, obj->diam /2, obj->diam /2, obj->diam /2);
-			mult_matrix_4(obj->otow_m, trans_m, scale_m);
+			scale_matrix_4(tmp_m, obj->diam /2, obj->diam /2, obj->diam /2);
+			mult_matrix_4(obj->otow_m, trans_m, tmp_m);
+			invert_matrix_4(obj->otow_m, obj->wtoo_m);
+			print_matrix_4(obj->wtoo_m, "wtoo");
+			print_matrix_4(obj->otow_m, "otow");
+		}
+		else if (obj->type == PLAN)
+		{
+			trans_matrix_4(trans_m, obj->o.x, obj->o.y, obj->o.z);
+			if (check_x_plane(obj->d))
+				identity_matrix_4(tmp_m);
+			else
+				get_matrix_align_v1_v2(tmp_m, create_tuple_pts(0, 1, 0, 0), obj->d);
+			mult_matrix_4(obj->otow_m, trans_m, tmp_m);
 			invert_matrix_4(obj->otow_m, obj->wtoo_m);
 			print_matrix_4(obj->wtoo_m, "wtoo");
 			print_matrix_4(obj->otow_m, "otow");
 		}
 		tmp = tmp->next;
 	}
+}
+
+static t_bool	check_x_plane(t_tuple d)
+{
+	if (d.x == 0 && d.y == 0)
+		return (TRUE);
+	else
+		return (FALSE);
 }
 
 void	world_to_camera(t_rt *rt)
@@ -127,12 +149,8 @@ void	world_to_camera2(t_rt *rt)
 
 void	pixel_raster_to_space(t_intersect *i, int x, int y, t_rt *rt)
 {
-	i->pixel.x = (x + 0.5) / W_W;
-	i->pixel.y = (y + 0.5) / W_H;
-	i->pixel.x = 2 * i->pixel.x - 1;
-	i->pixel.y = 1 - 2 * i->pixel.y;
-	i->pixel.x = i->pixel.x * W_W / W_H * tan(rt->scn.cam.FOV / 2);	
-	i->pixel.y = i->pixel.y * tan(rt->scn.cam.FOV / 2);	
+	i->pixel.x = (2 * (x + 0.5) / W_W - 1) * W_W / W_H * tan(rt->scn.cam.FOV / 2 * M_PI / 180);
+	i->pixel.y = (1 - 2 * (y + 0.5) / W_H) * tan(rt->scn.cam.FOV / 2 * M_PI / 180);
 	i->pixel.z = 1;
 	i->pixel.w = 1;
 	i->ray.o.x = 0;
