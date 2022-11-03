@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:13:31 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/26 15:06:31 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/11/03 17:59:01 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,22 @@ t_u		abs_u(t_u n);
 //		sphere.c
 
 t_bool	solve_quadratic(t_intersect *inter, t_quadra q);
-void	intersect_sph(t_obj	*sph, t_intersect *inter);
-void	intersect_sph2(t_obj *sph, t_intersect *inter);
+void	intersect_sph(t_obj	*sph, t_intersect *inter, t_ray ray);
+void	intersect_sph2(t_obj *sph, t_intersect *inter, t_ray ray);
 
 //		plane.c
 
-void	intersect_plane(t_obj *plane, t_intersect *inter);
+void	intersect_plane(t_obj *plane, t_intersect *inter, t_ray ray);
+
+//		cylinder.h
+
+void	intersect_cylinder(t_obj *cyl, t_intersect *inter, t_ray ray);
 
 //		debug.c
 
 void	init_pixel_debug(t_rt *rt);
 void	intersect_obj_debug(t_rt *rt, t_intersect *inter, int i, int j);
-void	intersect_sph2_debug(t_obj *sph, t_intersect *inter);
+void	intersect_sph2_debug(t_obj *sph, t_intersect *inter, t_ray ray);
 
 
 #endif 

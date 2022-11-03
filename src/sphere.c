@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 16:28:44 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/26 19:55:17 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/11/03 17:55:51 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ t_bool	solve_quadratic(t_intersect *inter, t_quadra q)
 	return (TRUE);
 }
 
-void	intersect_sph(t_obj *sph, t_intersect *inter)
+void	intersect_sph(t_obj *sph, t_intersect *inter, t_ray	ray)
 {
 	t_quadra	q;
 	t_tuple		s_to_r;
 
-	s_to_r = create_v3(sph->o, inter->ray.o);
-	q.a = dot_product_v3(inter->ray.d, inter->ray.d);
-	q.b = 2 * dot_product_v3(inter->ray.d, s_to_r);
+	s_to_r = create_v3(sph->o, ray.o);
+	q.a = dot_product_v3(inter->ray.d, ray.d);
+	q.b = 2 * dot_product_v3(ray.d, s_to_r);
 	q.c = dot_product_v3(s_to_r, s_to_r) - pow(sph->diam / 2, 2); 
 	if (!solve_quadratic(inter, q) || inter->t0_tmp > inter->t0)
 		return ;
@@ -39,7 +39,7 @@ void	intersect_sph(t_obj *sph, t_intersect *inter)
 //	printf("(intersect)sph) inter->t0 = %lf\n", inter->t0);
 }
 
-void	intersect_sph2(t_obj *sph, t_intersect *inter)
+void	intersect_sph2(t_obj *sph, t_intersect *inter, t_ray ray)
 {
 	t_quadra	q;
 	t_tuple		s_to_r;
@@ -48,8 +48,8 @@ void	intersect_sph2(t_obj *sph, t_intersect *inter)
 
 	ft_bzero(&org, sizeof(t_tuple));
 	org.w = 1;
-	mult_tuple_matrix_4(&ray2.d, sph->wtoo_m, inter->ray.d);
-	mult_tuple_matrix_4(&ray2.o, sph->wtoo_m, inter->ray.o);
+	mult_tuple_matrix_4(&ray2.d, sph->wtoo_m, ray.d);
+	mult_tuple_matrix_4(&ray2.o, sph->wtoo_m, ray.o);
 	s_to_r = create_v3(org, ray2.o);
 	q.a = dot_product_v3(ray2.d, ray2.d);
 	q.b = 2 * dot_product_v3(ray2.d, s_to_r);
