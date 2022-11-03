@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:13:15 by rmorel            #+#    #+#             */
-/*   Updated: 2022/11/02 19:07:27 by nthimoni         ###   ########.fr       */
+/*   Updated: 2022/11/03 20:06:16 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,14 @@ void	intersect_obj(t_rt *rt, t_intersect *inter, int i, int j)
 		if (((t_obj *)tmp->content)->type == SPHERE)
 		{
 			if (rt->space == WORLD)
-				intersect_sph(tmp->content, inter);
+				intersect_sph(tmp->content, inter, inter->ray);
 			else if (rt->space == OBJ)
-				intersect_sph2(tmp->content, inter);
+				intersect_sph2(tmp->content, inter, inter->ray);
 		}
 		else if (((t_obj *)tmp->content)->type == PLAN)
-			intersect_plane(tmp->content, inter);
+			intersect_plane(tmp->content, inter, inter->ray);
+		else if (((t_obj *)tmp->content)->type == CYLINDRE)
+			intersect_cylinder(tmp->content, inter, inter->ray);
 		//printf("inter->t0 = %lf\n", inter->t0);
 		tmp = tmp->next;
 	}
