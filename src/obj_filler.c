@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 22:48:27 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/18 16:12:17 by nthimoni         ###   ########.fr       */
+/*   Updated: 2022/11/03 16:57:49 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "exit_rt.h"
 #include "data_struct.h"
 #include "error.h"
+#include <stdio.h>
 
 int fill_light(t_obj *tmp, t_rt *rt, char **sp)
 {
@@ -108,6 +109,7 @@ int fill_cylindre(t_obj *tmp, t_rt *rt, char **sp)
 	float	buf;
 	t_list	*new;
 
+	printf("On est la\n");
 	if (get_pos(sp[1], &tmp->o))
 		return (1);
 	if (get_ori(sp[2], &tmp->d))

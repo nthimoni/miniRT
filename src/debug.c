@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 16:27:37 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/24 16:28:16 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/11/03 17:57:45 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ void	intersect_obj_debug(t_rt *rt, t_intersect *inter, int i, int j)
 		if (((t_obj *)tmp->content)->type == SPHERE)
 		{
 			if (rt->space == WORLD)
-				intersect_sph(tmp->content, inter);
+				intersect_sph(tmp->content, inter, inter->ray);
 			else if (rt->space == OBJ)
-				intersect_sph2_debug(tmp->content, inter);
+				intersect_sph2_debug(tmp->content, inter, inter->ray);
 		}
 		//else if (((t_obj *)tmp->content)->type == PLAN)
 		//	intersect_plane(tmp->content, inter);
@@ -65,14 +65,14 @@ void	intersect_obj_debug(t_rt *rt, t_intersect *inter, int i, int j)
 		my_mlx_pixel_put(rt, i, j, inter->obj->color);
 }
 
-void	intersect_sph2_debug(t_obj *sph, t_intersect *inter)
+void	intersect_sph2_debug(t_obj *sph, t_intersect *inter, t_ray ray)
 {
 	t_quadra	q;
 	t_tuple		s_to_r;
 	t_ray		ray2;
 
-	mult_tuple_matrix_4(&ray2.d, sph->wtoo_m, inter->ray.d);
-	mult_tuple_matrix_4(&ray2.o, sph->wtoo_m, inter->ray.o);
+	mult_tuple_matrix_4(&ray2.d, sph->wtoo_m, ray.d);
+	mult_tuple_matrix_4(&ray2.o, sph->wtoo_m, ray.o);
  	print_tuple(&inter->ray.d, "rayd normed");
  	print_tuple(&ray2.o, "rayo * wtoo");
  	print_tuple(&ray2.d, "rayd * wtoo");
