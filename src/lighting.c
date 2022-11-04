@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 21:47:50 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/11/02 19:01:35 by nthimoni         ###   ########.fr       */
+/*   Updated: 2022/11/04 17:12:10 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,9 @@ static void	set_normal_position(t_rt *rt, t_intersect *inter, t_surface *sfc)
 			break;
 		case PLAN:
 			sfc->normal = inter->obj->d;
+			break;
+		case CYLINDRE:
+			sfc->normal = inter->normal_w; 
 		default:
 			break;
 	}
