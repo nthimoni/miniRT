@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 21:47:50 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/11/02 19:01:35 by nthimoni         ###   ########.fr       */
+/*   Updated: 2022/11/02 19:22:12 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ int	set_specular(t_surface *sfc, t_tuple *light_v, t_rt *rt, t_obj *light)
 	norm_v3(&cam);
 	norm_v3(&reflection);
 	cos_r_c= dot_product_v3(reflection, cam);
-	if (cos_r_c >= -0.01)
+	if (cos_r_c <= 0.01)
 		return (0);
 	factor = pow(cos_r_c, 350);
 	color = scale_color(light->color, factor);
