@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:13:15 by rmorel            #+#    #+#             */
-/*   Updated: 2022/11/03 20:06:16 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/11/04 16:28:29 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	init_pixel(t_rt *rt)
 	{
 		while (j < W_H)
 		{
-			if (i == 854 && j == 549)
+			if (i == 1014 && j == 540)
 			{
 				printf("Eh le schtroumpf, vient ici !\n");
 				printf("scalarFOV = %lf\n", tan(rt->scn.cam.FOV / 2));
@@ -75,7 +75,6 @@ void	intersect_obj(t_rt *rt, t_intersect *inter, int i, int j)
 			intersect_plane(tmp->content, inter, inter->ray);
 		else if (((t_obj *)tmp->content)->type == CYLINDRE)
 			intersect_cylinder(tmp->content, inter, inter->ray);
-		//printf("inter->t0 = %lf\n", inter->t0);
 		tmp = tmp->next;
 	}
 	if (inter->t0 < DBL_MAX)
