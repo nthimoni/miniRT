@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:01:40 by rmorel            #+#    #+#             */
-/*   Updated: 2022/11/04 16:54:40 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/11/23 11:20:03 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_obj
 	t_otype	type;
 	t_tuple	o;
 	t_tuple	d;
+	t_tuple	top;
 	double	diam;
 	double	height;
 	t_u		FOV;
@@ -129,5 +130,13 @@ typedef struct	s_intersect
 	t_quadra	q;
 	t_obj		*obj;
 }	t_intersect;
+
+typedef struct	s_obj_matix
+{
+	t_u	sca[4][4];
+	t_u	tra[4][4];
+	t_u	rot[4][4];
+	t_u	tmp[4][4];
+}	t_obj_matrix;
 
 #endif 
