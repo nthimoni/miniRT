@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:13:15 by rmorel            #+#    #+#             */
-/*   Updated: 2022/11/04 16:28:29 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/12/02 20:30:20 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	init_inter(t_rt *rt)
 	print_axis(rt);
 	fill_matrix_obj(rt);
 	// rt-space défini dans quel espace on va faire les calculs
-	rt->space = OBJ;
+	rt->space = WORLD;
 	rt->debug = FALSE;
 	init_pixel(rt);
 	rt->debug = TRUE;
@@ -39,7 +39,7 @@ void	init_pixel(t_rt *rt)
 	{
 		while (j < W_H)
 		{
-			if (i == 1014 && j == 540)
+			if (i == 624 && j == 546)
 			{
 				printf("Eh le schtroumpf, vient ici !\n");
 				printf("scalarFOV = %lf\n", tan(rt->scn.cam.FOV / 2));
@@ -48,7 +48,13 @@ void	init_pixel(t_rt *rt)
 			inter.t0 = DBL_MAX;
 			inter.t1 = DBL_MAX;
 			pixel_raster_to_space(&inter, i, j, rt);
-			intersect_obj(rt, &inter, i, j);
+			intersect_obj(rt, &inter);
+			if (inter.t0 < DBL_MAX)
+			{
+				if (i == 966 && j == 541)
+					ft_printf("PAUSE\n");
+				my_mlx_pixel_put(rt, i, j, lighting(rt, &inter));
+			}
 			j++;
 		}
 		j = 0;
@@ -57,28 +63,29 @@ void	init_pixel(t_rt *rt)
 	printf("Ca n'compte quand meme que pourrrr un !\n");
 }
 
-void	intersect_obj(t_rt *rt, t_intersect *inter, int i, int j)
+void	intersect_obj(t_rt *rt, t_intersect *inter)
 {
 	t_list	*tmp;
 
 	tmp = rt->scn.objs;
 	while (tmp)
 	{
-		if (((t_obj *)tmp->content)->type == SPHERE)
-		{
-			if (rt->space == WORLD)
-				intersect_sph(tmp->content, inter, inter->ray);
-			else if (rt->space == OBJ)
-				intersect_sph2(tmp->content, inter, inter->ray);
+		if (inter->obj_ign != tmp->content)
+		{	
+			if (((t_obj *)tmp->content)->type == SPHERE)
+			{
+				if (rt->space == WORLD)
+					intersect_sph(tmp->content, inter, inter->ray);
+				else if (rt->space == OBJ)
+					intersect_sph2(tmp->content, inter, inter->ray);
+			}
+			else if (((t_obj *)tmp->content)->type == PLAN)
+				intersect_plane(tmp->content, inter, inter->ray);
+			else if (((t_obj *)tmp->content)->type == CYLINDRE)
+				intersect_cylinder(tmp->content, inter, inter->ray);
 		}
-		else if (((t_obj *)tmp->content)->type == PLAN)
-			intersect_plane(tmp->content, inter, inter->ray);
-		else if (((t_obj *)tmp->content)->type == CYLINDRE)
-			intersect_cylinder(tmp->content, inter, inter->ray);
 		tmp = tmp->next;
 	}
-	if (inter->t0 < DBL_MAX)
-		my_mlx_pixel_put(rt, i, j, lighting(rt, inter));
 }
 
 t_u	abs_u(t_u n)

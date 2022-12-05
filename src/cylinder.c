@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 12:15:54 by rmorel            #+#    #+#             */
-/*   Updated: 2022/11/04 17:13:07 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/12/05 18:01:32 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void	intersect_cylinder(t_obj *cyl, t_intersect *inter, t_ray ray)
 		return ;
 	q.b = 2 * ray2.o.x * ray2.d.x + 2 * ray2.o.z * ray2.d.z;
 	q.c = pow(ray2.o.x, 2) + pow(ray2.o.z, 2) - 1; 
-	if (!solve_quadratic(inter, q) || inter->t0_tmp >= inter->t0)
+	if (!solve_quadratic(inter, q) || inter->t0_tmp >= inter->t0
+		|| inter->t0_tmp <= 0)
 		return ;
 	inter->obj = cyl;
 	inter->t0 = inter->t0_tmp;

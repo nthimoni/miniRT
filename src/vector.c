@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 14:53:04 by rmorel            #+#    #+#             */
-/*   Updated: 2022/11/02 18:12:28 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/12/02 19:41:33 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,12 @@ t_tuple	add_tupple(t_tuple t1, t_tuple t2)
 	new.y = t2.y + t1.y;
 	new.z = t2.z + t1.z;
 	new.w = 0;
+	if (t1.w && t2.w)
+		ft_printf("ERROR : add_tupple with 2 points\n");
+	else if (t1.w || t2.w)
+		new.w = 1;
+	else
+		new.w = 0;
 	return (new);
 }
 

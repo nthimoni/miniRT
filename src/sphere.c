@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 16:28:44 by rmorel            #+#    #+#             */
-/*   Updated: 2022/11/04 14:46:07 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/12/02 20:58:34 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,11 @@ void	intersect_sph(t_obj *sph, t_intersect *inter, t_ray	ray)
 	t_tuple		s_to_r;
 
 	s_to_r = create_v3(sph->o, ray.o);
-	q.a = dot_product_v3(inter->ray.d, ray.d);
+	//q.a = dot_product_v3(inter->ray.d, ray.d);
+	q.a = 1;
 	q.b = 2 * dot_product_v3(ray.d, s_to_r);
 	q.c = dot_product_v3(s_to_r, s_to_r) - pow(sph->diam / 2, 2); 
-	if (!solve_quadratic(inter, q) || inter->t0_tmp > inter->t0)
+	if (!solve_quadratic(inter, q) || inter->t0_tmp > inter->t0 || inter->t0_tmp < 0)
 		return ;
 	inter->obj = sph;
 	inter->t0 = inter->t0_tmp;
