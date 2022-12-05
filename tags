@@ -21,7 +21,7 @@ $(OBJDIR)%.o	libft/Makefile	/^$(OBJDIR)%.o: $(SRCDIR)%.c$/;"	t
 $(OBJ_DIR)/%.o	minilibx-linux/Makefile.mk	/^$(OBJ_DIR)\/%.o: %.c$/;"	t
 0	.cache/compile_commands.json	/^  {$/;"	o
 0	.vscode/launch.json	/^                {$/;"	o	array:configurations.0.setupCommands
-0	.vscode/launch.json	/^            "args": ["${workspaceFolder}\/input.rt"],$/;"	s	array:configurations.0.args
+0	.vscode/launch.json	/^            "args": ["${workspaceFolder}\/input4.rt"],$/;"	s	array:configurations.0.args
 0	.vscode/launch.json	/^        {$/;"	o	array:configurations
 1	.cache/compile_commands.json	/^  {$/;"	o
 1	.vscode/launch.json	/^                {$/;"	o	array:configurations.0.setupCommands
@@ -43,6 +43,7 @@ $(OBJ_DIR)/%.o	minilibx-linux/Makefile.mk	/^$(OBJ_DIR)\/%.o: %.c$/;"	t
 24	.cache/compile_commands.json	/^  {$/;"	o
 25	.cache/compile_commands.json	/^  {$/;"	o
 26	.cache/compile_commands.json	/^  {$/;"	o
+27	.cache/compile_commands.json	/^  {$/;"	o
 3	.cache/compile_commands.json	/^  {$/;"	o
 4	.cache/compile_commands.json	/^  {$/;"	o
 5	.cache/compile_commands.json	/^  {$/;"	o
@@ -250,7 +251,7 @@ TRASH_H	include/trash.h	/^# define TRASH_H /;"	d
 TRUE	include/data_struct.h	/^	TRUE,$/;"	e	enum:e_bool
 UNAME	minilibx-linux/Makefile.mk	/^UNAME = $(shell uname)$/;"	m
 UNAME	minilibx-linux/test/Makefile.mk	/^UNAME := $(shell uname)$/;"	m
-VAL	Makefile	/^VAL = valgrind --leak-check=full .\/$(NAME)$/;"	m
+VAL	Makefile	/^VAL = valgrind --leak-check=full .\/$(NAME) input4.rt$/;"	m
 VECTOR_H	include/vector.h	/^#define VECTOR_H$/;"	d
 WARN_SHM_ATTACH	minilibx-linux/mlx_int.h	/^# define WARN_SHM_ATTACH /;"	d
 WIN1_SX	minilibx-linux/test/main.c	/^#define	WIN1_SX	/;"	d	file:
@@ -268,6 +269,7 @@ X_ShmAttach	minilibx-linux/mlx_new_image.c	/^#define	X_ShmAttach	/;"	d	file:
 a	include/data_struct.h	/^	t_u		a;$/;"	m	struct:s_quadra	typeref:typename:t_u
 a	include/matrix.h	/^	int	a;$/;"	m	struct:s_matrix_index	typeref:typename:int
 abs_u	src/ray.c	/^t_u	abs_u(t_u n)$/;"	f	typeref:typename:t_u
+add_inter	src/cylinder.c	/^static int	add_inter(t_intersect *inter, t_ray ray, int index, t_obj *cyl)$/;"	f	typeref:typename:int	file:
 add_to_trash	src/trash.c	/^void	add_to_trash(t_rt *rt, void *ptr)$/;"	f	typeref:typename:void
 add_tupple	src/vector.c	/^t_tuple	add_tupple(t_tuple t1, t_tuple t2)$/;"	f	typeref:typename:t_tuple
 addr	include/data_struct.h	/^	char	*addr;$/;"	m	struct:s_img	typeref:typename:char *
@@ -277,7 +279,7 @@ all	minilibx-linux/Makefile	/^all	: do_configure$/;"	t
 all	minilibx-linux/Makefile.mk	/^all	: $(NAME)$/;"	t
 all	minilibx-linux/test/Makefile.mk	/^all: $(NAME)$/;"	t
 amb	include/data_struct.h	/^	t_obj amb;$/;"	m	struct:s_scene	typeref:typename:t_obj
-args	.vscode/launch.json	/^            "args": ["${workspaceFolder}\/input.rt"],$/;"	a	object:configurations.0
+args	.vscode/launch.json	/^            "args": ["${workspaceFolder}\/input4.rt"],$/;"	a	object:configurations.0
 at_exit	minilibx-linux/test/run_tests.sh	/^at_exit() {$/;"	f
 b	include/data_struct.h	/^	t_u		b;$/;"	m	struct:s_quadra	typeref:typename:t_u
 b	include/matrix.h	/^	int	b;$/;"	m	struct:s_matrix_index	typeref:typename:int
@@ -292,10 +294,11 @@ c	include/data_struct.h	/^	t_u		c;$/;"	m	struct:s_quadra	typeref:typename:t_u
 c	include/matrix.h	/^	int	c;$/;"	m	struct:s_matrix_index	typeref:typename:int
 cam	include/data_struct.h	/^	t_obj	cam;$/;"	m	struct:s_scene	typeref:typename:t_obj
 check	minilibx-linux/Makefile.mk	/^check: all$/;"	t
+check_cyl	src/cylinder.c	/^static int	check_cyl(t_obj *cyl, t_ray ray, t_ray *ray2, t_intersect *inter)$/;"	f	typeref:typename:int	file:
 check_nb_arg	src/parsing.c	/^static int	check_nb_arg(t_otype type, int nb_wrds)$/;"	f	typeref:typename:int	file:
 check_overflow	src/ft_atof.c	/^static int check_overflow(char *str, int sign)$/;"	f	typeref:typename:int	file:
 check_vector_opposite	src/camera.c	/^t_bool	check_vector_opposite(t_tuple v1, t_tuple v2)$/;"	f	typeref:typename:t_bool
-check_x_plane	src/camera.c	/^static t_bool	check_x_plane(t_tuple d)$/;"	f	typeref:typename:t_bool	file:
+check_x_plane	src/obj.c	/^static t_bool	check_x_plane(t_tuple d)$/;"	f	typeref:typename:t_bool	file:
 clamp	src/matrix.c	/^void	clamp(t_u *x)$/;"	f	typeref:typename:void
 clean	Makefile	/^clean:$/;"	t
 clean	libft/Makefile	/^clean:$/;"	t
@@ -332,6 +335,7 @@ command	.cache/compile_commands.json	/^    "command": "gcc -g -c -Wall -Wextra -
 command	.cache/compile_commands.json	/^    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude\/ -Ilibft\/include\/ -Iminili/;"	s	object:24
 command	.cache/compile_commands.json	/^    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude\/ -Ilibft\/include\/ -Iminili/;"	s	object:25
 command	.cache/compile_commands.json	/^    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude\/ -Ilibft\/include\/ -Iminili/;"	s	object:26
+command	.cache/compile_commands.json	/^    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude\/ -Ilibft\/include\/ -Iminili/;"	s	object:27
 command	.cache/compile_commands.json	/^    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude\/ -Ilibft\/include\/ -Iminili/;"	s	object:3
 command	.cache/compile_commands.json	/^    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude\/ -Ilibft\/include\/ -Iminili/;"	s	object:4
 command	.cache/compile_commands.json	/^    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude\/ -Ilibft\/include\/ -Iminili/;"	s	object:5
@@ -355,6 +359,7 @@ create_v3	src/vector.c	/^t_tuple	create_v3(t_tuple p1, t_tuple p2)$/;"	f	typeref
 cross_product_v3	src/vector.c	/^t_tuple	cross_product_v3(t_tuple v1, t_tuple v2)$/;"	f	typeref:typename:t_tuple
 ctow_m	include/data_struct.h	/^	t_u		ctow_m[4][4];$/;"	m	struct:s_rt	typeref:typename:t_u[4][4]
 cwd	.vscode/launch.json	/^            "cwd": "${fileDirname}",$/;"	s	object:configurations.0
+cylinder_matrix	src/obj.c	/^void	cylinder_matrix(t_obj_matrix m, t_obj *obj)$/;"	f	typeref:typename:void
 d	include/data_struct.h	/^	t_tuple	d;$/;"	m	struct:s_obj	typeref:typename:t_tuple
 d	include/data_struct.h	/^	t_tuple	d;$/;"	m	struct:s_ray	typeref:typename:t_tuple
 d	include/matrix.h	/^	int	d;$/;"	m	struct:s_matrix_index	typeref:typename:int
@@ -373,33 +378,34 @@ det_matrix_3	src/matrix.c	/^t_u	det_matrix_3(t_u m[3][3])$/;"	f	typeref:typename
 det_matrix_4	src/matrix.c	/^t_u	det_matrix_4(t_u m[4][4])$/;"	f	typeref:typename:t_u
 diam	include/data_struct.h	/^	double	diam;$/;"	m	struct:s_obj	typeref:typename:double
 diez	libft/include/include_imp/parse_flags.h	/^	int		diez;$/;"	m	struct:s_flags	typeref:typename:int
-directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:0
-directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:1
-directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:10
-directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:11
-directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:12
-directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:13
-directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:14
-directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:15
-directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:16
-directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:17
-directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:18
-directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:19
-directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:2
-directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:20
-directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:21
-directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:22
-directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:23
-directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:24
-directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:25
-directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:26
-directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:3
-directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:4
-directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:5
-directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:6
-directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:7
-directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:8
-directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/rmorel\/Documents\/miniRT",$/;"	s	object:9
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/nthimoni\/Documents\/miniRT",$/;"	s	object:0
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/nthimoni\/Documents\/miniRT",$/;"	s	object:1
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/nthimoni\/Documents\/miniRT",$/;"	s	object:10
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/nthimoni\/Documents\/miniRT",$/;"	s	object:11
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/nthimoni\/Documents\/miniRT",$/;"	s	object:12
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/nthimoni\/Documents\/miniRT",$/;"	s	object:13
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/nthimoni\/Documents\/miniRT",$/;"	s	object:14
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/nthimoni\/Documents\/miniRT",$/;"	s	object:15
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/nthimoni\/Documents\/miniRT",$/;"	s	object:16
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/nthimoni\/Documents\/miniRT",$/;"	s	object:17
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/nthimoni\/Documents\/miniRT",$/;"	s	object:18
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/nthimoni\/Documents\/miniRT",$/;"	s	object:19
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/nthimoni\/Documents\/miniRT",$/;"	s	object:2
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/nthimoni\/Documents\/miniRT",$/;"	s	object:20
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/nthimoni\/Documents\/miniRT",$/;"	s	object:21
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/nthimoni\/Documents\/miniRT",$/;"	s	object:22
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/nthimoni\/Documents\/miniRT",$/;"	s	object:23
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/nthimoni\/Documents\/miniRT",$/;"	s	object:24
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/nthimoni\/Documents\/miniRT",$/;"	s	object:25
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/nthimoni\/Documents\/miniRT",$/;"	s	object:26
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/nthimoni\/Documents\/miniRT",$/;"	s	object:27
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/nthimoni\/Documents\/miniRT",$/;"	s	object:3
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/nthimoni\/Documents\/miniRT",$/;"	s	object:4
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/nthimoni\/Documents\/miniRT",$/;"	s	object:5
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/nthimoni\/Documents\/miniRT",$/;"	s	object:6
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/nthimoni\/Documents\/miniRT",$/;"	s	object:7
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/nthimoni\/Documents\/miniRT",$/;"	s	object:8
+directory	.cache/compile_commands.json	/^    "directory": "\/mnt\/nfs\/homes\/nthimoni\/Documents\/miniRT",$/;"	s	object:9
 disc	include/data_struct.h	/^	t_u		disc;$/;"	m	struct:s_quadra	typeref:typename:t_u
 dispatcher	libft/src/extra/ft_printf/ft_printf.c	/^static void	dispatcher(t_flags *flags, va_list ap)$/;"	f	typeref:typename:void	file:
 display	minilibx-linux/mlx_int.h	/^	Display		*display;$/;"	m	struct:s_xvar	typeref:typename:Display *
@@ -437,6 +443,7 @@ file	.cache/compile_commands.json	/^    "file": "src\/ft_atof_utils.c"$/;"	s	obj
 file	.cache/compile_commands.json	/^    "file": "src\/hook.c"$/;"	s	object:3
 file	.cache/compile_commands.json	/^    "file": "src\/image.c"$/;"	s	object:2
 file	.cache/compile_commands.json	/^    "file": "src\/init.c"$/;"	s	object:6
+file	.cache/compile_commands.json	/^    "file": "src\/isShadowed.c"$/;"	s	object:27
 file	.cache/compile_commands.json	/^    "file": "src\/lighting.c"$/;"	s	object:21
 file	.cache/compile_commands.json	/^    "file": "src\/main.c"$/;"	s	object:0
 file	.cache/compile_commands.json	/^    "file": "src\/matrix.c"$/;"	s	object:10
@@ -453,6 +460,7 @@ file	.cache/compile_commands.json	/^    "file": "src\/test.c"$/;"	s	object:7
 file	.cache/compile_commands.json	/^    "file": "src\/transformations.c"$/;"	s	object:11
 file	.cache/compile_commands.json	/^    "file": "src\/trash.c"$/;"	s	object:8
 file	.cache/compile_commands.json	/^    "file": "src\/vector.c"$/;"	s	object:1
+files.associations	.vscode/settings.json	/^    "files.associations": {$/;"	o
 fill_cam	src/obj_filler.c	/^int fill_cam(t_obj *tmp, t_rt *rt, char **sp)$/;"	f	typeref:typename:int
 fill_cylindre	src/obj_filler.c	/^int fill_cylindre(t_obj *tmp, t_rt *rt, char **sp)$/;"	f	typeref:typename:int
 fill_floating_point_part	src/ft_atof.c	/^static void fill_floating_point_part(char *str, float *val)$/;"	f	typeref:typename:void	file:
@@ -466,6 +474,7 @@ fill_scene	src/parsing.c	/^static void	fill_scene(char *line, t_scene *scene, t_
 fill_sphere	src/obj_filler.c	/^int fill_sphere(t_obj *tmp, t_rt *rt, char **sp)$/;"	f	typeref:typename:int
 fill_str	libft/src/mandatory/ft_itoa.c	/^static	void	fill_str(char *str, int val, size_t len)$/;"	f	typeref:typename:void	file:
 fill_val	src/ft_atof.c	/^static int fill_val(char *str, float *val)$/;"	f	typeref:typename:int	file:
+find_pos_inter	src/cylinder.c	/^static t_tuple	find_pos_inter(t_ray ray, t_u t0)$/;"	f	typeref:typename:t_tuple	file:
 find_pos_inter	src/lighting.c	/^static t_tuple	find_pos_inter(t_intersect *inter, t_rt *rt)$/;"	f	typeref:typename:t_tuple	file:
 flush	libft/src/extra/ft_printf/write_buf.c	/^static int	flush(char *buffer, size_t *len)$/;"	f	typeref:typename:int	file:
 format	minilibx-linux/mlx_int.h	/^	int				format;$/;"	m	struct:s_img	typeref:typename:int
@@ -527,6 +536,7 @@ gc	minilibx-linux/mlx_int.h	/^	GC				gc;$/;"	m	struct:s_img	typeref:typename:GC
 gere_mouse	minilibx-linux/test/new_win.c	/^int gere_mouse(int x,int y,int button,void*toto)$/;"	f	typeref:typename:int
 get_b	src/colors.c	/^int	get_b(int trgb)$/;"	f	typeref:typename:int
 get_color	src/data_parser.c	/^int	get_color(char *s, int *color)$/;"	f	typeref:typename:int
+get_cylinder_top	src/obj.c	/^static void	get_cylinder_top(t_obj *cyl)$/;"	f	typeref:typename:void	file:
 get_g	src/colors.c	/^int	get_g(int trgb)$/;"	f	typeref:typename:int
 get_matrix_align_v1_v2	src/camera.c	/^void	get_matrix_align_v1_v2(t_u m[4][4], t_tuple v1, t_tuple v2)$/;"	f	typeref:typename:void
 get_next_line	libft/src/extra/get_next_line.c	/^char	*get_next_line(int fd)$/;"	f	typeref:typename:char *
@@ -557,13 +567,14 @@ init_pixel	src/ray.c	/^void	init_pixel(t_rt *rt)$/;"	f	typeref:typename:void
 init_pixel_debug	src/debug.c	/^void	init_pixel_debug(t_rt *rt)$/;"	f	typeref:typename:void
 init_rt	src/init.c	/^t_rt	*init_rt(void)$/;"	f	typeref:typename:t_rt *
 intersect_cylinder	src/cylinder.c	/^void	intersect_cylinder(t_obj *cyl, t_intersect *inter, t_ray ray)$/;"	f	typeref:typename:void
-intersect_obj	src/ray.c	/^void	intersect_obj(t_rt *rt, t_intersect *inter, int i, int j)$/;"	f	typeref:typename:void
+intersect_obj	src/ray.c	/^void	intersect_obj(t_rt *rt, t_intersect *inter)$/;"	f	typeref:typename:void
 intersect_obj_debug	src/debug.c	/^void	intersect_obj_debug(t_rt *rt, t_intersect *inter, int i, int j)$/;"	f	typeref:typename:void
 intersect_plane	src/plane.c	/^void	intersect_plane(t_obj *plane, t_intersect *inter, t_ray ray)$/;"	f	typeref:typename:void
 intersect_sph	src/sphere.c	/^void	intersect_sph(t_obj *sph, t_intersect *inter, t_ray	ray)$/;"	f	typeref:typename:void
 intersect_sph2	src/sphere.c	/^void	intersect_sph2(t_obj *sph, t_intersect *inter, t_ray ray)$/;"	f	typeref:typename:void
 intersect_sph2_debug	src/debug.c	/^void	intersect_sph2_debug(t_obj *sph, t_intersect *inter, t_ray ray)$/;"	f	typeref:typename:void
 invert_matrix_4	src/matrix.c	/^void	invert_matrix_4(t_u m[4][4], t_u new[4][4])$/;"	f	typeref:typename:void
+isShadowed	src/isShadowed.c	/^int	isShadowed(t_rt *rt, t_tuple pos, t_tuple light_v, t_intersect *o_inter)$/;"	f	typeref:typename:int
 isValidLiteral	src/ft_atof_utils.c	/^int isValidLiteral(char *str)$/;"	f	typeref:typename:int
 isin	libft/src/mandatory/ft_strtrim.c	/^static	int	isin(char a, const char *str)$/;"	f	typeref:typename:int	file:
 key_hook	minilibx-linux/mlx_int.h	/^	int					(*key_hook)();$/;"	m	struct:s_win_list	typeref:typename:int (*)()
@@ -590,13 +601,13 @@ main	minilibx-linux/test/main.c	/^int	main()$/;"	f	typeref:typename:int
 main	minilibx-linux/test/new_win.c	/^int main()$/;"	f	typeref:typename:int
 main	minilibx-linux/test/run_tests.sh	/^main(){$/;"	f
 main	src/main.c	/^int	main(int argc, char **argv)$/;"	f	typeref:typename:int
-main	test.c	/^int main(int argc, char **argv)$/;"	f	typeref:typename:int
 mask	minilibx-linux/mlx_int.h	/^	int		mask;$/;"	m	struct:s_event_list	typeref:typename:int
 matrix_4_is_invertible	src/matrix.c	/^t_bool	matrix_4_is_invertible(t_u m[4][4])$/;"	f	typeref:typename:t_bool
 matrix_ex1	src/matrix.c	/^void	matrix_ex1(t_u new[4][4])$/;"	f	typeref:typename:void
 matrix_ex2	src/matrix.c	/^void	matrix_ex2(t_u new[4][4])$/;"	f	typeref:typename:void
 matrix_ex3	src/matrix.c	/^void	matrix_ex3(t_u new[3][3])$/;"	f	typeref:typename:void
 matrix_ex4	src/matrix.c	/^void	matrix_ex4(t_u new[4][4])$/;"	f	typeref:typename:void
+mini	src/cylinder.c	/^static void	mini(t_u a, t_u b, t_u *y)$/;"	f	typeref:typename:void	file:
 minor_matrix_3	src/matrix.c	/^t_u	minor_matrix_3(t_u m[3][3], int a, int b)$/;"	f	typeref:typename:t_u
 minus	libft/include/include_imp/parse_flags.h	/^	int		minus;$/;"	m	struct:s_flags	typeref:typename:int
 mlx	include/data_struct.h	/^	void	*mlx;$/;"	m	struct:s_rt	typeref:typename:void *
@@ -690,10 +701,12 @@ next	libft/include/libft.h	/^	struct s_list	*next;$/;"	m	struct:s_list	typeref:s
 next	minilibx-linux/mlx_int.h	/^	struct s_win_list	*next;$/;"	m	struct:s_win_list	typeref:struct:s_win_list *
 norm_v3	src/vector.c	/^void	norm_v3(t_tuple *v)$/;"	f	typeref:typename:void
 normal	src/lighting.c	/^	t_tuple normal;$/;"	m	struct:s_surface	typeref:typename:t_tuple	file:
+normal_w	include/data_struct.h	/^	t_tuple		normal_w;$/;"	m	struct:s_intersect	typeref:typename:t_tuple
 null_str	libft/src/extra/ft_printf/print_s.c	/^static int	null_str(const char *str, t_flags *flags)$/;"	f	typeref:typename:int	file:
 o	include/data_struct.h	/^	t_tuple	o;$/;"	m	struct:s_obj	typeref:typename:t_tuple
 o	include/data_struct.h	/^	t_tuple	o;$/;"	m	struct:s_ray	typeref:typename:t_tuple
 obj	include/data_struct.h	/^	t_obj		*obj;$/;"	m	struct:s_intersect	typeref:typename:t_obj *
+obj_ign	include/data_struct.h	/^	t_obj		*obj_ign;$/;"	m	struct:s_intersect	typeref:typename:t_obj *
 objs	include/data_struct.h	/^	t_list	*objs;$/;"	m	struct:s_scene	typeref:typename:t_list *
 only_nb	src/data_parser.c	/^static int	only_nb(char *s)$/;"	f	typeref:typename:int	file:
 otow_m	include/data_struct.h	/^	t_u		otow_m[4][4];$/;"	m	struct:s_obj	typeref:typename:t_u[4][4]
@@ -705,6 +718,7 @@ parsing	src/parsing.c	/^void	parsing(t_rt *rt, char *file, t_scene *scene)$/;"	f
 pix	minilibx-linux/mlx_int.h	/^	Pixmap			pix;$/;"	m	struct:s_img	typeref:typename:Pixmap
 pixel	include/data_struct.h	/^	t_tuple		pixel;$/;"	m	struct:s_intersect	typeref:typename:t_tuple
 pixel_raster_to_space	src/camera.c	/^void	pixel_raster_to_space(t_intersect *i, int x, int y, t_rt *rt)$/;"	f	typeref:typename:void
+plan_matrix	src/obj.c	/^void	plan_matrix(t_obj_matrix m, t_obj *obj)$/;"	f	typeref:typename:void
 plus	libft/include/include_imp/parse_flags.h	/^	int		plus;$/;"	m	struct:s_flags	typeref:typename:int
 pos	src/lighting.c	/^	t_tuple pos;$/;"	m	struct:s_surface	typeref:typename:t_tuple	file:
 position	include/test.h	/^	t_tuple	position;$/;"	m	struct:s_proj	typeref:typename:t_tuple
@@ -734,6 +748,7 @@ q	include/data_struct.h	/^	t_quadra	q;$/;"	m	struct:s_intersect	typeref:typename
 q	include/data_struct.h	/^	t_u		q;$/;"	m	struct:s_quadra	typeref:typename:t_u
 ratio	include/data_struct.h	/^	double	ratio;$/;"	m	struct:s_obj	typeref:typename:double
 ray	include/data_struct.h	/^	t_ray		ray;$/;"	m	struct:s_intersect	typeref:typename:t_ray
+ray.h	.vscode/settings.json	/^        "ray.h": "c"$/;"	s	object:files.associations
 re	Makefile	/^re: fclean $(NAME) run$/;"	t
 re	libft/Makefile	/^re: fclean $(NAME)$/;"	t
 re	minilibx-linux/Makefile	/^re	: clean all$/;"	t
@@ -745,6 +760,7 @@ reg_dot	libft/src/extra/ft_printf/print_di.c	/^void	reg_dot(t_flags *flags, size
 render_next_frame	src/image.c	/^int	render_next_frame(t_rt *rt)$/;"	f	typeref:typename:int
 request	.vscode/launch.json	/^            "request": "launch",$/;"	s	object:configurations.0
 root	minilibx-linux/mlx_int.h	/^	Window		root;$/;"	m	struct:s_xvar	typeref:typename:Window
+rot	include/data_struct.h	/^	t_u	rot[4][4];$/;"	m	struct:s_obj_matix	typeref:typename:t_u[4][4]
 rot_x_matrix_4	src/transformations.c	/^void	rot_x_matrix_4(t_u m[4][4], t_u angle)$/;"	f	typeref:typename:void
 rot_y_matrix_4	src/transformations.c	/^void	rot_y_matrix_4(t_u m[4][4], t_u angle)$/;"	f	typeref:typename:void
 rot_z_matrix_4	src/transformations.c	/^void	rot_z_matrix_4(t_u m[4][4], t_u angle)$/;"	f	typeref:typename:void
@@ -758,6 +774,7 @@ s_intersect	include/data_struct.h	/^typedef struct	s_intersect$/;"	s
 s_list	libft/include/libft.h	/^typedef struct s_list$/;"	s
 s_matrix_index	include/matrix.h	/^typedef struct	s_matrix_index$/;"	s
 s_obj	include/data_struct.h	/^typedef struct s_obj$/;"	s
+s_obj_matix	include/data_struct.h	/^typedef struct	s_obj_matix$/;"	s
 s_proj	include/test.h	/^typedef struct	s_proj$/;"	s
 s_quadra	include/data_struct.h	/^typedef struct	s_quadra$/;"	s
 s_ray	include/data_struct.h	/^typedef struct	s_ray$/;"	s
@@ -769,6 +786,7 @@ s_win_list	minilibx-linux/mlx_int.h	/^typedef struct	s_win_list$/;"	s
 s_xpm_col	minilibx-linux/mlx_int.h	/^typedef	struct	s_xpm_col$/;"	s
 s_xvar	minilibx-linux/mlx_int.h	/^typedef struct	s_xvar$/;"	s
 saved_mode	minilibx-linux/mlx_ext_randr.c	/^RRMode	saved_mode = 0;$/;"	v	typeref:typename:RRMode
+sca	include/data_struct.h	/^	t_u	sca[4][4];$/;"	m	struct:s_obj_matix	typeref:typename:t_u[4][4]
 scale_color	src/colors.c	/^int	scale_color(int color, double coef)$/;"	f	typeref:typename:int
 scale_matrix_4	src/transformations.c	/^void	scale_matrix_4(t_u m[4][4], t_u x, t_u y, t_u z)$/;"	f	typeref:typename:void
 scale_v3	src/vector.c	/^void	scale_v3(t_tuple *v1, t_u s)$/;"	f	typeref:typename:void
@@ -795,6 +813,7 @@ sl4	minilibx-linux/test/main.c	/^int	sl4;$/;"	v	typeref:typename:int
 solve_quadratic	src/sphere.c	/^t_bool	solve_quadratic(t_intersect *inter, t_quadra q)$/;"	f	typeref:typename:t_bool
 space	include/data_struct.h	/^	t_space	space;$/;"	m	struct:s_rt	typeref:typename:t_space
 space	libft/include/include_imp/parse_flags.h	/^	int		space;$/;"	m	struct:s_flags	typeref:typename:int
+sphere_matrix	src/obj.c	/^void	sphere_matrix(t_obj_matrix m, t_obj *obj)$/;"	f	typeref:typename:void
 stopAtEntry	.vscode/launch.json	/^            "stopAtEntry": true,$/;"	b	object:configurations.0
 strlcpy_is_not_posix	minilibx-linux/mlx_xpm.c	/^unsigned int	strlcpy_is_not_posix(char *dest, char *src, unsigned int size)$/;"	f	typeref:typename:unsigned int
 sub_matrix_3	src/matrix.c	/^void	sub_matrix_3(t_u m[3][3], int a, int b, t_u new[2][2])$/;"	f	typeref:typename:void
@@ -817,6 +836,7 @@ t_intersect	include/data_struct.h	/^}	t_intersect;$/;"	t	typeref:struct:s_inters
 t_list	libft/include/libft.h	/^}	t_list;$/;"	t	typeref:struct:s_list
 t_matex	include/matrix.h	/^}	t_matex;$/;"	t	typeref:struct:s_matrix_index
 t_obj	include/data_struct.h	/^}	t_obj;$/;"	t	typeref:struct:s_obj
+t_obj_matrix	include/data_struct.h	/^}	t_obj_matrix;$/;"	t	typeref:struct:s_obj_matix
 t_otype	include/data_struct.h	/^}	t_otype;$/;"	t	typeref:enum:e_otype
 t_proj	include/test.h	/^}	t_proj;$/;"	t	typeref:struct:s_proj
 t_quadra	include/data_struct.h	/^}	t_quadra;$/;"	t	typeref:struct:s_quadra
@@ -841,8 +861,10 @@ test_wtoo	src/test.c	/^void	test_wtoo(t_rt *rt)$/;"	f	typeref:typename:void
 text	.vscode/launch.json	/^                    "text": "-enable-pretty-printing",$/;"	s	object:configurations.0.setupCommands.0
 text	.vscode/launch.json	/^                    "text": "-gdb-set disassembly-flavor intel",$/;"	s	object:configurations.0.setupCommands.1
 tick_environment	src/test.c	/^t_proj	tick_environment(t_proj proj, t_tuple gravity, t_tuple wind)$/;"	f	typeref:typename:t_proj
+tmp	include/data_struct.h	/^	t_u	tmp[4][4];$/;"	m	struct:s_obj_matix	typeref:typename:t_u[4][4]
+top	include/data_struct.h	/^	t_tuple	top;$/;"	m	struct:s_obj	typeref:typename:t_tuple
+tra	include/data_struct.h	/^	t_u	tra[4][4];$/;"	m	struct:s_obj_matix	typeref:typename:t_u[4][4]
 trans_matrix_4	src/transformations.c	/^void	trans_matrix_4(t_u m[4][4], t_u x, t_u y, t_u z)$/;"	f	typeref:typename:void
-transform_obj_wtoo	src/obj.c	/^void	transform_obj_wtoo(t_rt *rt)$/;"	f	typeref:typename:void
 transpose_matrix_4	src/matrix.c	/^void	transpose_matrix_4(t_u m[4][4], t_u new[4][4])$/;"	f	typeref:typename:void
 trash	include/data_struct.h	/^	t_list	*trash;$/;"	m	struct:s_rt	typeref:typename:t_list *
 type	.vscode/launch.json	/^            "type": "cppdbg",$/;"	s	object:configurations.0
