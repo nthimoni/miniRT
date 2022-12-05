@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:13:31 by rmorel            #+#    #+#             */
-/*   Updated: 2022/11/03 17:59:01 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/11/23 17:03:46 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 void	pixel_raster_to_space(t_intersect *i, int x, int y, t_rt *rt);
 void	init_inter(t_rt *rt);
 void	init_pixel(t_rt *rt);
-void	intersect_obj(t_rt *rt, t_intersect *inter, int i, int j);
+void	intersect_obj(t_rt *rt, t_intersect *inter);
 t_u		abs_u(t_u n);
 
 //		sphere.c

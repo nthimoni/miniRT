@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 21:47:50 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/11/04 17:42:43 by nthimoni         ###   ########.fr       */
+/*   Updated: 2022/12/02 19:56:43 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,10 +137,11 @@ int	set_specular(t_surface *sfc, t_tuple *light_v, t_rt *rt, t_obj *light)
 	reflection.x = sfc->normal.x + (sfc->normal.x - light_v->x);
 	reflection.y = sfc->normal.y + (sfc->normal.y - light_v->y);
 	reflection.z = sfc->normal.z + (sfc->normal.z - light_v->z);
+	reflection.w = 0;
 	cam = sub_tupple(rt->scn.cam.o, sfc->pos);
 	norm_v3(&cam);
 	norm_v3(&reflection);
-	cos_r_c= dot_product_v3(reflection, cam);
+	cos_r_c = dot_product_v3(reflection, cam);
 	if (cos_r_c <= 0.01)
 		return (0);
 	factor = pow(cos_r_c, 350);
@@ -164,12 +165,15 @@ int lighting(t_rt *rt, t_intersect *inter)
 	while (light)
 	{
 		light_v = sub_tupple(((t_obj *)light->content)->o, sfc.pos);
-		norm_v3(&light_v);
-		tmp = set_diffuse(&sfc, &light_v, light->content);
-		tmp = sub_synthese(inter->obj->color, tmp, ((t_obj *)light->content)->ratio);
-		inc_color(&final, get_r(tmp), get_g(tmp), get_b(tmp));
-		tmp = set_specular(&sfc, &light_v, rt, light->content);
-		inc_color(&final, get_r(tmp), get_g(tmp), get_b(tmp));
+		if (!isShadowed(rt, sfc.pos, light_v, inter))
+		{
+			norm_v3(&light_v);
+			tmp = set_diffuse(&sfc, &light_v, light->content);
+			tmp = sub_synthese(inter->obj->color, tmp, ((t_obj *)light->content)->ratio);
+			inc_color(&final, get_r(tmp), get_g(tmp), get_b(tmp));
+			tmp = set_specular(&sfc, &light_v, rt, light->content);
+			inc_color(&final, get_r(tmp), get_g(tmp), get_b(tmp));
+		}
 		light = light->next;
 	}
 	return (final);

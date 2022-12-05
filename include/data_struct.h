@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:01:40 by rmorel            #+#    #+#             */
-/*   Updated: 2022/11/04 16:54:40 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/12/02 20:02:09 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ typedef struct	s_intersect
 	t_tuple		normal_w;
 	t_quadra	q;
 	t_obj		*obj;
+	t_obj		*obj_ign;
 }	t_intersect;
 
 #endif 

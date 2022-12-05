@@ -9,7 +9,7 @@ MLX = $(MLXPATH)libmlx.a
 ######################################################################
 SRCS = main.c vector.c image.c hook.c exit_rt.c print.c init.c test.c trash.c colors.c matrix.c transformations.c\
    ft_atof.c ft_atof_utils.c parsing.c parsing_utils.c ray.c data_parser.c obj_filler.c camera.c rendering.c lighting.c\
-   obj.c sphere.c debug.c plane.c cylinder.c
+   obj.c sphere.c debug.c plane.c cylinder.c isShadowed.c
 OBJS = $(addprefix $(OBJDIR),$(SRCS:.c=.o))
 DEPENDS = $(OBJS:.o=.d)
 ######################################################################
@@ -19,7 +19,7 @@ LINK = -lmlx -lft -lm -lXext -lX11
 INCPATH = -I$(INCDIR) -I$(FTINC) -I$(MLXPATH)
 LIBPATH = -L$(FTPATH) -L$(MLXPATH)
 NAME = miniRT
-VAL = valgrind --leak-check=full ./$(NAME)
+VAL = valgrind --leak-check=full ./$(NAME) input4.rt
 RUN = ./$(NAME) input.rt
 ######################################################################
 all: $(NAME)
