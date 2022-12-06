@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 21:47:50 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/12/05 20:26:56 by nthimoni         ###   ########.fr       */
+/*   Updated: 2022/12/06 21:20:41 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,21 +135,33 @@ int	set_specular(t_surface *sfc, t_tuple *light_v, t_rt *rt, t_obj *light)
 	int		color;
 
 	reflection = sfc->normal;
-	scale_v3(light_v, -1);
+	//light_v->x = -light_v->x;
+	//light_v->y = -light_v->y;
+	light_v->z = -light_v->z;
 	scale_v3(&reflection, 2 * dot_product_v3(*light_v, sfc->normal));
 	reflection = sub_tupple(*light_v, sfc->normal);
-	//cam = sub_tupple(sfc->pos, rt->scn.cam.o);
 	cam = sub_tupple(rt->scn.cam.o, sfc->pos);
 	norm_v3(&cam);
 	norm_v3(&reflection);
 	cos_r_c = dot_product_v3(reflection, cam);
-	scale_v3(light_v, -1);
 	if (cos_r_c <= 0.01)
 		return (0);
-	factor = pow(cos_r_c, 1500);
+	factor = pow(cos_r_c, 500);
 	color = scale_color(light->color, factor);
 	color = scale_color(color, light->ratio);
 	return (color);
+}
+
+
+
+int	compute_lightning(t_surface *sfc, t_tuple *light_v, t_obj *light, t_rt *rt)
+{
+	int ret;
+	int tmp;
+	
+	norm_v3(light_v);
+	tmp = set_diffuse(&sfc, &light_v, light->content);
+
 }
 
 int lighting(t_rt *rt, t_intersect *inter)
