@@ -6,7 +6,7 @@
 /*   By: bek <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 10:07:02 by bek               #+#    #+#             */
-/*   Updated: 2022/11/23 11:41:35 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/12/07 20:48:18 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	get_cylinder_top(t_obj *cyl)
 
 static t_bool	check_x_plane(t_tuple d)
 {
-	if (d.x == 0 && d.y == 0)
+	if (d.x == 0 && d.z == 0)
 		return (TRUE);
 	else
 		return (FALSE);

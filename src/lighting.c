@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 21:47:50 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/12/06 21:20:41 by nthimoni         ###   ########.fr       */
+/*   Updated: 2022/12/07 21:52:13 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,8 @@ static void	set_normal_position(t_rt *rt, t_intersect *inter, t_surface *sfc)
 	switch (inter->obj->type)
 	{
 		case SPHERE:
-			sfc->normal = sub_tupple(sfc->pos, inter->obj->o);
+			sfc->normal = sub_tupple(inter->obj->o, sfc->pos);
+			//sfc->normal = sub_tupple(sfc->pos, inter->obj->o);
 			break;
 		case PLAN:
 			sfc->normal = inter->obj->d;
@@ -135,11 +136,11 @@ int	set_specular(t_surface *sfc, t_tuple *light_v, t_rt *rt, t_obj *light)
 	int		color;
 
 	reflection = sfc->normal;
-	//light_v->x = -light_v->x;
-	//light_v->y = -light_v->y;
+	light_v->x = -light_v->x;
+	light_v->y = -light_v->y;
 	light_v->z = -light_v->z;
 	scale_v3(&reflection, 2 * dot_product_v3(*light_v, sfc->normal));
-	reflection = sub_tupple(*light_v, sfc->normal);
+	reflection = sub_tupple(*light_v, reflection);
 	cam = sub_tupple(rt->scn.cam.o, sfc->pos);
 	norm_v3(&cam);
 	norm_v3(&reflection);
@@ -150,18 +151,6 @@ int	set_specular(t_surface *sfc, t_tuple *light_v, t_rt *rt, t_obj *light)
 	color = scale_color(light->color, factor);
 	color = scale_color(color, light->ratio);
 	return (color);
-}
-
-
-
-int	compute_lightning(t_surface *sfc, t_tuple *light_v, t_obj *light, t_rt *rt)
-{
-	int ret;
-	int tmp;
-	
-	norm_v3(light_v);
-	tmp = set_diffuse(&sfc, &light_v, light->content);
-
 }
 
 int lighting(t_rt *rt, t_intersect *inter)
@@ -178,7 +167,8 @@ int lighting(t_rt *rt, t_intersect *inter)
 	light = rt->scn.light;
 	while (light)
 	{
-		light_v = sub_tupple(((t_obj *)light->content)->o, sfc.pos);
+		//light_v = sub_tupple(((t_obj *)light->content)->o, sfc.pos);
+		light_v = sub_tupple(sfc.pos, ((t_obj *)light->content)->o);
 		if (!isShadowed(rt, sfc.pos, light_v, inter))
 		{
 			norm_v3(&light_v);
