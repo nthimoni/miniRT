@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:13:15 by rmorel            #+#    #+#             */
-/*   Updated: 2022/12/05 18:26:04 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/12/07 20:02:03 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	init_inter(t_rt *rt)
 {
 	world_to_camera(rt);
-	print_axis(rt);
+	//print_axis(rt);
 	fill_matrix_obj(rt);
 	// rt-space défini dans quel espace on va faire les calculs
 	rt->space = WORLD;
@@ -39,7 +39,7 @@ void	init_pixel(t_rt *rt)
 	{
 		while (j < W_H)
 		{
-			if (i == 1272 && j == 396)
+			if (i == 965 && j == 543)
 			{
 				printf("Eh le schtroumpf, vient ici !\n");
 				printf("scalarFOV = %lf\n", tan(rt->scn.cam.FOV / 2));
