@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:01:40 by rmorel            #+#    #+#             */
-/*   Updated: 2022/12/05 18:21:42 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/12/15 02:55:48 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,12 @@ typedef struct	s_tuple
 	t_u	z;
 	t_u	w;
 }	t_tuple;
+
+typedef struct	s_2dp
+{
+	t_u	x;
+	t_u	y;
+}	t_2dp;
 
 typedef enum e_otype
 {

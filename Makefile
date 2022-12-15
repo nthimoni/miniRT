@@ -9,7 +9,7 @@ MLX = $(MLXPATH)libmlx.a
 ######################################################################
 SRCS = main.c vector.c image.c hook.c exit_rt.c print.c init.c test.c trash.c colors.c matrix.c transformations.c\
    ft_atof.c ft_atof_utils.c parsing.c parsing_utils.c ray.c data_parser.c obj_filler.c camera.c rendering.c lighting.c\
-   obj.c sphere.c debug.c plane.c cylinder.c isShadowed.c
+   obj.c sphere.c debug.c plane.c cylinder.c isShadowed.c text_mapping.c
 OBJS = $(addprefix $(OBJDIR),$(SRCS:.c=.o))
 DEPENDS = $(OBJS:.o=.d)
 ######################################################################

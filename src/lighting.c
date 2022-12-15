@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 21:47:50 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/12/08 20:25:01 by nthimoni         ###   ########.fr       */
+/*   Updated: 2022/12/15 03:32:07 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "transformations.h"
 #include "vector.h"
 #include "color.h"
+#include "checker.h"
 
 typedef struct s_surface
 {
@@ -163,6 +164,12 @@ int lighting(t_rt *rt, t_intersect *inter)
 	t_tuple		light_v;	
 
 	set_normal_position(rt, inter, &sfc);
+	if (inter->obj->type == SPHERE)
+	{
+		mult_tuple_matrix_4(&sfc.pos, inter->obj->wtoo_m, sfc.pos);
+		inter->obj->color = get_color_checker(sphere_pos_to_2d(&sfc.pos, inter->obj->diam / 2));
+		mult_tuple_matrix_4(&sfc.pos, inter->obj->otow_m, sfc.pos);
+	}
 	norm_v3(&sfc.normal);
 	final = sub_synthese(inter->obj->color, rt->scn.amb.color, rt->scn.amb.ratio);
 	light = rt->scn.light;
