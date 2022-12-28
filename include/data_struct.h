@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:01:40 by rmorel            #+#    #+#             */
-/*   Updated: 2022/12/15 02:55:48 by nthimoni         ###   ########.fr       */
+/*   Updated: 2022/12/15 21:33:48 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,13 @@ typedef enum	e_space
 	OBJ,
 }	t_space;
 
+typedef	enum	e_text
+{
+	COLOR,
+	CHECKER,
+	BUMP,
+}	t_text;
+
 typedef struct s_obj
 {
 	t_otype	type;
@@ -65,6 +72,7 @@ typedef struct s_obj
 	t_u		FOV;
 	int		color;
 	double	ratio;
+	t_text	text;
 	t_u		wtoo_m[4][4];
 	t_u		otow_m[4][4];
 }	t_obj;

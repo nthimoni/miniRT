@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 22:48:27 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/11/03 16:57:49 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/12/15 21:51:55 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int fill_light(t_obj *tmp, t_rt *rt, char **sp)
 		sp++;
 	if (get_ratio(sp[1], &tmp->ratio))
 		return (1);
-	if (get_color(sp[2], &tmp->color))
+	if (get_color(sp[2], &tmp->color, &tmp->text))
 		return (1);
 	if (tmp->type == AMBIANT)
 	{
@@ -70,7 +70,7 @@ int fill_plan(t_obj *tmp, t_rt *rt, char **sp)
 		return (1);
 	if (get_ori(sp[2], &tmp->d))
 		return (1);
-	if (get_color(sp[3], &tmp->color))
+	if (get_color(sp[3], &tmp->color, &tmp->text))
 		return (1);
 	new = ft_lstnew(tmp);
 	if (!new)
@@ -92,7 +92,7 @@ int fill_sphere(t_obj *tmp, t_rt *rt, char **sp)
 	if (ft_atof(sp[2], &buf))
 		return (1);
 	tmp->diam = buf;
-	if (get_color(sp[3], &tmp->color))
+	if (get_color(sp[3], &tmp->color, &tmp->text))
 		return (1);
 	new = ft_lstnew(tmp);
 	if (!new)
@@ -120,7 +120,7 @@ int fill_cylindre(t_obj *tmp, t_rt *rt, char **sp)
 	if (ft_atof(sp[4], &buf))
 		return (1);
 	tmp->height = buf;
-	if (get_color(sp[5], &tmp->color))
+	if (get_color(sp[5], &tmp->color, &tmp->text))
 		return (1);
 	new = ft_lstnew(tmp);
 	if (!new)

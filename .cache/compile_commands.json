@@ -138,5 +138,10 @@
     "directory": "/mnt/nfs/homes/nthimoni/Documents/miniRT",
     "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/isShadowed.c -o bin/isShadowed.o",
     "file": "src/isShadowed.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/nthimoni/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/text_mapping.c -o bin/text_mapping.o",
+    "file": "src/text_mapping.c"
   }
 ]
