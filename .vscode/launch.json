@@ -11,7 +11,7 @@
             "request": "launch",
             "program": "${workspaceFolder}/miniRT",
             "args": ["${workspaceFolder}/input.rt"],
-            "stopAtEntry": false,
+            "stopAtEntry": true,
             "cwd": "${fileDirname}",
             "environment": [],
             "externalConsole": false,
