@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 17:07:26 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/18 17:03:48 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/12/15 21:53:08 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,15 @@ static int	only_nb(char *s)
 	return (1);
 }
 
-int	get_color(char *s, int *color)
+int	get_color(char *s, int *color, t_text *text)
 {
 	char	**sp;
 	int		r;
 	int		g;
 	int		b;
 
+	if (ft_strncmp(s, "checker", 8) == 0)
+		return (*text = CHECKER, 0);
 	sp = ft_split(s, ',');
 	if (ft_strslen(sp) != 3)
 		return (free_split(sp), 1);
