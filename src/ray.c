@@ -39,7 +39,7 @@ void	init_pixel(t_rt *rt)
 	{
 		while (j < W_H)
 		{
-			if (i == 1272 && j == 396)
+			if (i == 1093 && j == 680)
 			{
 				printf("Eh le schtroumpf, vient ici !\n");
 				printf("scalarFOV = %lf\n", tan(rt->scn.cam.FOV / 2));
