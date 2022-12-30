@@ -6,7 +6,7 @@
 /*   By: bek <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 10:07:02 by bek               #+#    #+#             */
-/*   Updated: 2023/01/06 13:28:25 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/11 21:11:29 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ static void	get_cylinder_top(t_obj *cyl)
 	scale_v3(&dir_cpy, cyl->height);
 	cyl->top = add_tupple(dir_cpy, cyl->o); 
 	cyl->top.w = 1;
+	mult_tuple_matrix_4(&cyl->top_obj, cyl->wtoo_m, cyl->top);
+	mult_tuple_matrix_4(&cyl->o_obj, cyl->wtoo_m, cyl->o);
 }
 
 static t_bool	check_x_plane(t_tuple d)
