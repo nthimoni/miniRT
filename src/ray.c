@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:13:15 by rmorel            #+#    #+#             */
-/*   Updated: 2022/12/28 20:04:31 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/12/30 12:51:08 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	init_pixel(t_rt *rt)
 	{
 		while (j < W_H)
 		{
-			if (i == 1093 && j == 680)
+			if (i == 1548 && j == 208)
 			{
 				printf("Eh le schtroumpf, vient ici !\n");
 				printf("scalarFOV = %lf\n", tan(rt->scn.cam.FOV / 2));

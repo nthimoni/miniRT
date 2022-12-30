@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:01:40 by rmorel            #+#    #+#             */
-/*   Updated: 2022/12/15 21:33:48 by nthimoni         ###   ########.fr       */
+/*   Updated: 2022/12/30 11:12:27 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,10 @@ typedef struct s_obj
 {
 	t_otype	type;
 	t_tuple	o;
+	t_tuple o_obj;
 	t_tuple	d;
 	t_tuple	top;
+	t_tuple top_obj;
 	double	diam;
 	double	height;
 	t_u		FOV;
