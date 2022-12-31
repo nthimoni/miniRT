@@ -6,7 +6,7 @@
 /*   By: bek <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 10:09:36 by bek               #+#    #+#             */
-/*   Updated: 2022/11/23 11:39:35 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/12/31 19:26:09 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	print_axis(t_rt *rt);
 //		obj.c
 
 void	cylinder_matrix(t_obj_matrix m, t_obj *obj);
+void	cone_matrix(t_obj_matrix m, t_obj *obj);
 void	sphere_matrix(t_obj_matrix m, t_obj *obj);
 void	plan_matrix(t_obj_matrix m, t_obj *obj);
 

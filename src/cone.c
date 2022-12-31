@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cylinder.c                                         :+:      :+:    :+:   */
+/*   cone.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 12:15:54 by rmorel            #+#    #+#             */
-/*   Updated: 2022/12/31 16:19:23 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/12/31 19:43:22 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	normal_cylinder(t_tuple point, t_obj *cyl, t_tuple *normal);
 void	add_inter0(t_intersect *i, t_obj *o, t_u t);
 void	add_inter1(t_intersect *i, t_obj *o, t_u t);
 
-void	intersect_cylinder(t_obj *cyl, t_intersect *inter, t_ray ray)
+void	intersect_cone(t_obj *cyl, t_intersect *inter, t_ray ray)
 {
 	t_quadra	q;
 	t_ray		ray2;
@@ -29,14 +29,20 @@ void	intersect_cylinder(t_obj *cyl, t_intersect *inter, t_ray ray)
 	mult_tuple_matrix_4(&ray2.d, cyl->wtoo_m, ray.d);
 	mult_tuple_matrix_4(&ray2.o, cyl->wtoo_m, ray.o);
 	intersect_endcap(inter, cyl, &ray2);
-	q.a = ray2.d.x * ray2.d.x + ray2.d.z * ray2.d.z;
-	if (q.a < EPS)
+	q.a = ray2.d.x * ray2.d.x - ray2.d.y * ray2.d.y + ray2.d.z * ray2.d.z;
+	q.b = 2 * ray2.o.x * ray2.d.x - 2 * ray2.o.y * ray2.d.y 
+			+ 2 * ray2.o.z * ray2.d.z;
+	q.c = ray2.o.x * ray2.o.x - ray2.o.y * ray2.o.y + ray2.o.z * ray2.o.z; 
+	if (q.a < EPS && q.b < EPS)
 		return ;
-	q.b = 2 * ray2.o.x * ray2.d.x + 2 * ray2.o.z * ray2.d.z;
-	q.c = ray2.o.x * ray2.o.x + ray2.o.z * ray2.o.z - 1; 
-	res_quad = solve_quadratic(inter, q);
-	if (inter->t0_tmp >= inter->t0 || res_quad == 0)
-		return ;
+	if (q.a < EPS && q.b > EPS)
+		inter->t0_tmp = - c / (2 * b);
+	else
+	{
+		res_quad = solve_quadratic(inter, q);
+		if (inter->t0_tmp >= inter->t0 || res_quad == 0)
+			return ;
+	}
 	check_cylinder(cyl, &ray2, inter);
 	return ;
 }
@@ -59,21 +65,21 @@ void	check_cylinder(t_obj *cyl, t_ray *ray2, t_intersect *inter)
 
 	i0 = find_pos_inter(*ray2, inter->t0_tmp);
 	i1 = find_pos_inter(*ray2, inter->t1_tmp);
-	if (i0.y > cyl->o_obj.y && i0.y < cyl->top_obj.y
-			&& i1.y > cyl->o_obj.y	&& i1.y < cyl->top_obj.y
+	if (i0.y < cyl->o_obj.y && i0.y < 0
+			&& i1.y < cyl->o_obj.y	&& i1.y > 0
 			&& inter->t0 > inter->t0_tmp)
 	{
 		add_inter0(inter, cyl, inter->t0_tmp);
 		add_inter1(inter, cyl, inter->t1_tmp);
 		normal_cylinder(i0, cyl, &inter->normal_w);
 	}
-	else if (i0.y > cyl->o_obj.y && i0.y < cyl->top_obj.y
+	else if (i0.y < cyl->o_obj.y && i0.y < 0
 				&& inter->t0 > inter->t0_tmp)
 	{
 		add_inter0(inter, cyl, inter->t0_tmp);
 		normal_cylinder(i0, cyl, &inter->normal_w);
 	}
-	else if (i1.y > cyl->o_obj.y && i1.y < cyl->top_obj.y
+	else if (i1.y < cyl->o_obj.y && i1.y > 0
 				&& inter->t0 > inter->t1_tmp)
 	{
 		add_inter0(inter, cyl, inter->t1_tmp);
@@ -85,31 +91,14 @@ void	check_cylinder(t_obj *cyl, t_ray *ray2, t_intersect *inter)
 void intersect_endcap(t_intersect *inter, t_obj *cyl, t_ray *ray2)
 {
 	t_u	t0;
-	t_u	t1;
 	t_tuple i0;
-	t_tuple i1;
 
 	t0 = (cyl->o_obj.y - ray2->o.y) / ray2->d.y;
-	t1 = (cyl->top_obj.y - ray2->o.y) / ray2->d.y;
-	inter->t0_tmp = t0 < t1 ? t0 : t1;
-	inter->t1_tmp = t0 < t1 ? t1 : t0;
 	i0 = find_pos_inter(*ray2, inter->t0_tmp);
-	i1 = find_pos_inter(*ray2, inter->t1_tmp);
-	if (i0.x * i0.x + i0.z * i0.z <= 1 && i1.x * i1.x + i1.z * i1.z <= 1)
-	{
-		add_inter0(inter, cyl, inter->t0_tmp);
-		add_inter1(inter, cyl, inter->t1_tmp);
-		normal_endcap(i0, cyl, &inter->normal_w);
-	}
-	else if (i0.x * i0.x + i0.z * i0.z <= 1)
+	if (i0.x * i0.x + i0.z * i0.z <= 1)
 	{
 		add_inter0(inter, cyl, inter->t0_tmp);
 		normal_endcap(i0, cyl, &inter->normal_w);
-	}
-	else if (i1.x * i1.x + i1.z * i1.z <= 1)
-	{
-		add_inter0(inter, cyl, inter->t1_tmp);
-		normal_endcap(i1, cyl, &inter->normal_w);
 	}
 }
 

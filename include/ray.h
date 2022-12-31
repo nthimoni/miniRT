@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:13:31 by rmorel            #+#    #+#             */
-/*   Updated: 2022/11/23 17:03:46 by nthimoni         ###   ########.fr       */
+/*   Updated: 2022/12/31 19:43:13 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,10 @@ void	intersect_plane(t_obj *plane, t_intersect *inter, t_ray ray);
 //		cylinder.h
 
 void	intersect_cylinder(t_obj *cyl, t_intersect *inter, t_ray ray);
+
+//		cone.h
+
+void	intersect_cone(t_obj *cyl, t_intersect *inter, t_ray ray);
 
 //		debug.c
 
