@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 17:49:21 by rmorel            #+#    #+#             */
-/*   Updated: 2022/11/23 11:40:12 by rmorel           ###   ########.fr       */
+/*   Updated: 2022/12/31 19:25:36 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ void	fill_matrix_obj(t_rt *rt)
 			plan_matrix(m, obj);
 		else if (obj->type == CYLINDRE)
 			cylinder_matrix(m, obj);
+		else if (obj->type == CONE)
+			cone_matrix(m, obj);
 		tmp = tmp->next;
 	}
 }

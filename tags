@@ -40,6 +40,7 @@ CHECKER_WIDTH_P	include/checker.h	16;"	d
 CHECKER_WIDTH_S	include/checker.h	19;"	d
 COLOR	include/data_struct.h	/^	COLOR,$/;"	e	enum:e_text
 COLOR_H	include/color.h	14;"	d
+CONE	include/data_struct.h	/^	CONE$/;"	e	enum:e_otype
 CYLINDRE	include/data_struct.h	/^	CYLINDRE,$/;"	e	enum:e_otype
 DATA_STRUCT_H	include/data_struct.h	14;"	d
 DEPENDS	Makefile	/^DEPENDS = $(OBJS:.o=.d)$/;"	m
@@ -77,7 +78,7 @@ LFLAGS	minilibx-linux/test/Makefile.mk	/^LFLAGS = -L.. -lmlx -L$(INCLIB) -lXext 
 LIBFT	Makefile	/^LIBFT = $(FTPATH)libft.a$/;"	m
 LIBFT_H	libft/include/libft.h	14;"	d
 LIBPATH	Makefile	/^LIBPATH = -L$(FTPATH) -L$(MLXPATH)$/;"	m
-LIGHT	include/data_struct.h	/^	LIGHT$/;"	e	enum:e_otype
+LIGHT	include/data_struct.h	/^	LIGHT,$/;"	e	enum:e_otype
 LIGHTING_H	include/lighting.h	14;"	d
 LINK	Makefile	/^LINK = -lmlx -lft -lm -lXext -lX11$/;"	m
 LOCALHOST	minilibx-linux/mlx_int.h	44;"	d
@@ -146,7 +147,9 @@ X_ShmAttach	minilibx-linux/mlx_new_image.c	20;"	d	file:
 a	include/data_struct.h	/^	t_u		a;$/;"	m	struct:s_quadra
 a	include/matrix.h	/^	int	a;$/;"	m	struct:s_matrix_index
 abs_u	src/ray.c	/^t_u	abs_u(t_u n)$/;"	f
+add_inter0	src/cone.c	/^void add_inter0(t_intersect *i, t_obj *o, t_u t)$/;"	f
 add_inter0	src/cylinder.c	/^void add_inter0(t_intersect *i, t_obj *o, t_u t)$/;"	f
+add_inter1	src/cone.c	/^void add_inter1(t_intersect *i, t_obj *o, t_u t)$/;"	f
 add_inter1	src/cylinder.c	/^void add_inter1(t_intersect *i, t_obj *o, t_u t)$/;"	f
 add_to_trash	src/trash.c	/^void	add_to_trash(t_rt *rt, void *ptr)$/;"	f
 add_tupple	src/vector.c	/^t_tuple	add_tupple(t_tuple t1, t_tuple t2)$/;"	f
@@ -165,6 +168,7 @@ bpp4	minilibx-linux/test/main.c	/^int	bpp4;$/;"	v
 c	include/data_struct.h	/^	t_u		c;$/;"	m	struct:s_quadra
 c	include/matrix.h	/^	int	c;$/;"	m	struct:s_matrix_index
 cam	include/data_struct.h	/^	t_obj	cam;$/;"	m	struct:s_scene
+check_cylinder	src/cone.c	/^void	check_cylinder(t_obj *cyl, t_ray *ray2, t_intersect *inter)$/;"	f
 check_cylinder	src/cylinder.c	/^void	check_cylinder(t_obj *cyl, t_ray *ray2, t_intersect *inter)$/;"	f
 check_nb_arg	src/parsing.c	/^static int	check_nb_arg(t_otype type, int nb_wrds)$/;"	f	file:
 check_overflow	src/ft_atof.c	/^static int check_overflow(char *str, int sign)$/;"	f	file:
@@ -181,6 +185,7 @@ color	include/data_struct.h	/^	int		color;$/;"	m	struct:s_obj
 color	minilibx-linux/mlx_int.h	/^	int		color;$/;"	m	struct:s_col_name
 color_map_1	minilibx-linux/test/main.c	/^int	color_map_1(void *win,int w,int h)$/;"	f
 color_map_2	minilibx-linux/test/main.c	/^int	color_map_2(unsigned char *data,int bpp,int sl,int w,int h,int endian, int type)$/;"	f
+cone_matrix	src/obj.c	/^void	cone_matrix(t_obj_matrix m, t_obj *obj)$/;"	f
 content	libft/include/libft.h	/^	t_content		content;$/;"	m	struct:s_list
 cpywrd	libft/src/mandatory/ft_split.c	/^static	char	*cpywrd(char const *s, char c)$/;"	f	file:
 creat_obj	src/parsing_utils.c	/^t_obj	*creat_obj(t_otype type)$/;"	f
@@ -247,6 +252,7 @@ fill_scene	src/parsing.c	/^static void	fill_scene(char *line, t_scene *scene, t_
 fill_sphere	src/obj_filler.c	/^int fill_sphere(t_obj *tmp, t_rt *rt, char **sp)$/;"	f
 fill_str	libft/src/mandatory/ft_itoa.c	/^static	void	fill_str(char *str, int val, size_t len)$/;"	f	file:
 fill_val	src/ft_atof.c	/^static int fill_val(char *str, float *val)$/;"	f	file:
+find_pos_inter	src/cone.c	/^static t_tuple	find_pos_inter(t_ray ray, t_u t0)$/;"	f	file:
 find_pos_inter	src/cylinder.c	/^static t_tuple	find_pos_inter(t_ray ray, t_u t0)$/;"	f	file:
 find_pos_inter	src/lighting.c	/^static t_tuple	find_pos_inter(t_intersect *inter, t_rt *rt)$/;"	f	file:
 flush	libft/src/extra/ft_printf/write_buf.c	/^static int	flush(char *buffer, size_t *len)$/;"	f	file:
@@ -338,7 +344,9 @@ init_inter	src/ray.c	/^void	init_inter(t_rt *rt)$/;"	f
 init_pixel	src/ray.c	/^void	init_pixel(t_rt *rt)$/;"	f
 init_pixel_debug	src/debug.c	/^void	init_pixel_debug(t_rt *rt)$/;"	f
 init_rt	src/init.c	/^t_rt	*init_rt(void)$/;"	f
+intersect_cone	src/cone.c	/^void	intersect_cone(t_obj *cyl, t_intersect *inter, t_ray ray)$/;"	f
 intersect_cylinder	src/cylinder.c	/^void	intersect_cylinder(t_obj *cyl, t_intersect *inter, t_ray ray)$/;"	f
+intersect_endcap	src/cone.c	/^void intersect_endcap(t_intersect *inter, t_obj *cyl, t_ray *ray2)$/;"	f
 intersect_endcap	src/cylinder.c	/^void intersect_endcap(t_intersect *inter, t_obj *cyl, t_ray *ray2)$/;"	f
 intersect_obj	src/ray.c	/^void	intersect_obj(t_rt *rt, t_intersect *inter)$/;"	f
 intersect_obj_debug	src/debug.c	/^void	intersect_obj_debug(t_rt *rt, t_intersect *inter, int i, int j)$/;"	f
@@ -471,7 +479,9 @@ next	libft/include/libft.h	/^	struct s_list	*next;$/;"	m	struct:s_list	typeref:s
 next	minilibx-linux/mlx_int.h	/^	struct s_win_list	*next;$/;"	m	struct:s_win_list	typeref:struct:s_win_list::s_win_list
 norm_v3	src/vector.c	/^void	norm_v3(t_tuple *v)$/;"	f
 normal	src/lighting.c	/^	t_tuple normal;$/;"	m	struct:s_surface	file:
+normal_cylinder	src/cone.c	/^void normal_cylinder(t_tuple point, t_obj *cyl, t_tuple *normal)$/;"	f
 normal_cylinder	src/cylinder.c	/^void normal_cylinder(t_tuple point, t_obj *cyl, t_tuple *normal)$/;"	f
+normal_endcap	src/cone.c	/^void normal_endcap(t_tuple point, t_obj *cyl, t_tuple *normal)$/;"	f
 normal_endcap	src/cylinder.c	/^void normal_endcap(t_tuple point, t_obj *cyl, t_tuple *normal)$/;"	f
 normal_w	include/data_struct.h	/^	t_tuple		normal_w;$/;"	m	struct:s_intersect
 null_str	libft/src/extra/ft_printf/print_s.c	/^static int	null_str(const char *str, t_flags *flags)$/;"	f	file:
