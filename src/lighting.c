@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 21:47:50 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/12/15 21:54:02 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/01 14:23:25 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,7 @@ int lighting(t_rt *rt, t_intersect *inter)
 	t_list		*light;
 	t_tuple		light_v;	
 
+	ft_bzero(&sfc, sizeof(t_surface));
 	set_normal_position(rt, inter, &sfc);
 
 	if (inter->obj->type == SPHERE && inter->obj->text == CHECKER)

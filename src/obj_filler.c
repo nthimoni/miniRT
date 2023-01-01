@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 22:48:27 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/12/15 21:51:55 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/01 13:42:49 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,12 +104,40 @@ int fill_sphere(t_obj *tmp, t_rt *rt, char **sp)
 	ft_lstadd_back(&rt->scn.objs, new);
 	return (0);
 }
+
 int fill_cylindre(t_obj *tmp, t_rt *rt, char **sp)
 {
 	float	buf;
 	t_list	*new;
 
-	printf("On est la\n");
+	if (get_pos(sp[1], &tmp->o))
+		return (1);
+	if (get_ori(sp[2], &tmp->d))
+		return (1);
+	if (ft_atof(sp[3], &buf))
+		return (1);
+	tmp->diam = buf;
+	if (ft_atof(sp[4], &buf))
+		return (1);
+	tmp->height = buf;
+	if (get_color(sp[5], &tmp->color, &tmp->text))
+		return (1);
+	new = ft_lstnew(tmp);
+	if (!new)
+	{
+		free(tmp);
+		free_split(sp);
+		exit_parsing(rt, BAD_ALLOC_MSG, BAD_ALLOC);
+	}
+	ft_lstadd_back(&rt->scn.objs, new);
+	return (0);
+}
+
+int fill_cone(t_obj *tmp, t_rt *rt, char **sp)
+{
+	float	buf;
+	t_list	*new;
+
 	if (get_pos(sp[1], &tmp->o))
 		return (1);
 	if (get_ori(sp[2], &tmp->d))

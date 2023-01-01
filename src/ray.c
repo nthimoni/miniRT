@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:13:15 by rmorel            #+#    #+#             */
-/*   Updated: 2022/12/30 12:51:08 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/01 14:33:20 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	init_inter(t_rt *rt)
 	world_to_camera(rt);
 	//print_axis(rt);
 	fill_matrix_obj(rt);
+	test_wtoo(rt);
 	// rt-space défini dans quel espace on va faire les calculs
 	rt->space = WORLD;
 	rt->debug = FALSE;
@@ -83,6 +84,8 @@ void	intersect_obj(t_rt *rt, t_intersect *inter)
 				intersect_plane(tmp->content, inter, inter->ray);
 			else if (((t_obj *)tmp->content)->type == CYLINDRE)
 				intersect_cylinder(tmp->content, inter, inter->ray);
+			else if (((t_obj *)tmp->content)->type == CONE)
+				intersect_cone(tmp->content, inter, inter->ray);
 		}
 		tmp = tmp->next;
 	}
