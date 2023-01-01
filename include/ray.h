@@ -7,10 +7,14 @@
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:13:31 by rmorel            #+#    #+#             */
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*   Updated: 2023/01/09 13:24:48 by rmorel           ###   ########.fr       */
 =======
 /*   Updated: 2022/12/31 19:43:13 by rmorel           ###   ########.fr       */
 >>>>>>> d017d0b (Cone calculation ok, but need to be added to parser in order to be tested)
+=======
+/*   Updated: 2023/01/01 13:59:03 by rmorel           ###   ########.fr       */
+>>>>>>> 249c057 (Cylinder ont ok, check the wtoo matrix in test_wtoo)
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +51,13 @@ void	intersect_plane(t_obj *plane, t_intersect *inter, t_ray ray);
 void	intersect_cylinder(t_obj *cyl, t_intersect *inter, t_ray ray);
 void	normal_endcap(t_tuple point, t_obj *cyl, t_tuple *normal);
 void	normal_cylinder(t_tuple point, t_obj *cyl, t_tuple *normal);
+<<<<<<< HEAD
 
 //		cone.h
 
 void	intersect_cone(t_obj *cyl, t_intersect *inter, t_ray ray);
+=======
+>>>>>>> 249c057 (Cylinder ont ok, check the wtoo matrix in test_wtoo)
 
 //		cone.h
 
@@ -64,9 +71,15 @@ void	intersect_sph2_debug(t_obj *sph, t_intersect *inter, t_ray ray);
 
 //		intersect.c
 
+<<<<<<< HEAD
 t_bool	solve_quadratic(t_intersect *inter, t_quadra q);
 void	add_inter0(t_intersect *i, t_obj *o, t_u t);
 void	add_inter1(t_intersect *i, t_obj *o, t_u t);
 t_tuple	find_pos_inter(t_ray ray, t_u t);
+=======
+void	add_inter0(t_intersect *i, t_obj *o, t_u t);
+void	add_inter1(t_intersect *i, t_obj *o, t_u t);
+
+>>>>>>> 249c057 (Cylinder ont ok, check the wtoo matrix in test_wtoo)
 
 #endif 

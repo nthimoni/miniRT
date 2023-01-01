@@ -6,15 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 12:15:54 by rmorel            #+#    #+#             */
-<<<<<<< HEAD:src/primitives/cylinder.c
-<<<<<<< HEAD:src/primitives/cylinder.c
 /*   Updated: 2023/01/11 21:10:55 by rmorel           ###   ########.fr       */
-=======
-/*   Updated: 2022/12/31 16:19:23 by rmorel           ###   ########.fr       */
->>>>>>> d017d0b (Cone calculation ok, but need to be added to parser in order to be tested):src/cylinder.c
-=======
-/*   Updated: 2023/01/01 13:59:03 by rmorel           ###   ########.fr       */
->>>>>>> 249c057 (Cylinder ont ok, check the wtoo matrix in test_wtoo):src/cylinder.c
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,15 +100,10 @@ void intersect_endcap(t_intersect *inter, t_obj *cyl, t_ray *ray2)
 	else if (i1.x * i1.x + i1.z * i1.z <= 1)
 	{
 		add_inter0(inter, cyl, inter->t1_tmp);
-<<<<<<< HEAD:src/primitives/cylinder.c
-		if (inter->t0 == inter->t1_tmp)
-			normal_endcap(i1, cyl, &inter->normal_w);
-=======
 		normal_endcap(i1, cyl, &inter->normal_w);
 	}
 }
 
-<<<<<<< HEAD:src/primitives/cylinder.c
 void add_inter0(t_intersect *i, t_obj *o, t_u t)
 {
 	if (t < i->t0 && t > 0)
@@ -132,12 +119,9 @@ void add_inter1(t_intersect *i, t_obj *o, t_u t)
 	{
 		i->t1 = t;
 		i->obj = o;
->>>>>>> d017d0b (Cone calculation ok, but need to be added to parser in order to be tested):src/cylinder.c
 	}
 }
 
-=======
->>>>>>> 249c057 (Cylinder ont ok, check the wtoo matrix in test_wtoo):src/cylinder.c
 void normal_endcap(t_tuple point, t_obj *cyl, t_tuple *normal)
 {
 	normal->x = 0;

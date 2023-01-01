@@ -6,11 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:01:40 by rmorel            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/01/11 21:09:07 by rmorel           ###   ########.fr       */
-=======
-/*   Updated: 2022/12/31 18:59:37 by rmorel           ###   ########.fr       */
->>>>>>> d017d0b (Cone calculation ok, but need to be added to parser in order to be tested)
+/*   Updated: 2023/01/11 21:13:49 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +57,9 @@ typedef enum e_otype
 	SPHERE,
 	PLAN,
 	CYLINDRE,
-<<<<<<< HEAD
 	CONE,
 	LIGHT,
 	AA
-=======
-	LIGHT,
-	CONE
->>>>>>> d017d0b (Cone calculation ok, but need to be added to parser in order to be tested)
 }	t_otype;
 
 typedef enum	e_space

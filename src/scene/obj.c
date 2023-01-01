@@ -6,11 +6,7 @@
 /*   By: bek <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 10:07:02 by bek               #+#    #+#             */
-<<<<<<< HEAD:src/scene/obj.c
-/*   Updated: 2023/01/11 21:11:29 by rmorel           ###   ########.fr       */
-=======
-/*   Updated: 2022/12/31 19:26:15 by rmorel           ###   ########.fr       */
->>>>>>> d017d0b (Cone calculation ok, but need to be added to parser in order to be tested):src/obj.c
+/*   Updated: 2023/01/11 21:18:47 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
