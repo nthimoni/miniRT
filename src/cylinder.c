@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 12:15:54 by rmorel            #+#    #+#             */
-/*   Updated: 2022/12/31 16:19:23 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/01 13:59:03 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,6 @@
 static 	t_tuple	find_pos_inter(t_ray ray, t_u t0);
 void	check_cylinder(t_obj *cyl, t_ray *ray2, t_intersect *inter);
 void 	intersect_endcap(t_intersect *inter, t_obj *cyl, t_ray *ray2);
-void	normal_endcap(t_tuple point, t_obj *cyl, t_tuple *normal);
-void	normal_cylinder(t_tuple point, t_obj *cyl, t_tuple *normal);
-void	add_inter0(t_intersect *i, t_obj *o, t_u t);
-void	add_inter1(t_intersect *i, t_obj *o, t_u t);
 
 void	intersect_cylinder(t_obj *cyl, t_intersect *inter, t_ray ray)
 {
@@ -113,31 +109,13 @@ void intersect_endcap(t_intersect *inter, t_obj *cyl, t_ray *ray2)
 	}
 }
 
-void add_inter0(t_intersect *i, t_obj *o, t_u t)
-{
-	if (t < i->t0 && t > 0)
-	{
-		i->t0 = t;
-		i->obj = o;
-	}
-}
-
-void add_inter1(t_intersect *i, t_obj *o, t_u t)
-{
-	if (t < i->t1 && t > 0)
-	{
-		i->t1 = t;
-		i->obj = o;
-	}
-}
-
 void normal_endcap(t_tuple point, t_obj *cyl, t_tuple *normal)
 {
 	normal->x = 0;
 	if (point.y >= cyl->top_obj.y - EPS)
-	normal->y = 1;
+		normal->y = 1;
 	else if (point.y <= cyl->o_obj.y + EPS)
-	normal->y = -1;
+		normal->y = -1;
 	normal->z = 0;
 	normal->w = 0;
 	mult_tuple_matrix_4(normal, cyl->otow_m, *normal);
