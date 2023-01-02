@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 12:04:54 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/26 16:30:11 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/02 10:05:28 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	mult_matrix_4(t_u new[4][4], t_u m1[4][4], t_u m2[4][4])
 	return ;
 }
 
-void	mult_matrix_4bis(t_u new[4][4], t_u m1[4][4], t_u m2[4][4])
+void	mult_matrix_4bis(t_u (*new)[4][4], t_u m1[4][4], t_u m2[4][4])
 {
 	t_matex	i;
 
@@ -86,8 +86,8 @@ void	mult_matrix_4bis(t_u new[4][4], t_u m1[4][4], t_u m2[4][4])
 		{
 			while (i.c < 4)
 			{
-				new[i.a][i.b] += m1[i.a][i.c++] * m2[i.d++][i.b];
-				clamp(&new[i.a][i.b]);
+				*new[i.a][i.b] += m1[i.a][i.c++] * m2[i.d++][i.b];
+				clamp(new[i.a][i.b]);
 			}
 			i.c = 0;
 			i.d = 0;

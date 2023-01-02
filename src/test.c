@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 12:56:21 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/01 14:38:11 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/02 09:00:04 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -275,10 +275,6 @@ void	test_wtoo(t_rt *rt)
 {
 	t_list	*tmp;
 	t_obj	*obj;
-	t_u		scale_m[4][4];
-	t_u		scale_invert_m[4][4];
-	t_u		trans_m[4][4];
-	t_u		trans_inv_m[4][4];
 	t_tuple	objo_cpy;
 	t_tuple	camo_cpy;
 	t_tuple	camd_cpy;
@@ -295,38 +291,19 @@ void	test_wtoo(t_rt *rt)
 			tmp = tmp->next;
 		else
 		{
+			print_obj(obj);
 			objo_cpy = create_tuple_copy(obj->o);
 			camo_cpy = create_tuple_copy(rt->scn.cam.o);
 			camd_cpy = create_tuple_copy(rt->scn.cam.d);
 			objo_cpy2 = create_tuple_copy(obj->o);
 			camo_cpy2 = create_tuple_copy(rt->scn.cam.o);
 			camd_cpy2 = create_tuple_copy(rt->scn.cam.d);
-			trans_matrix_4(trans_m, obj->o.x, obj->o.y, obj->o.z);
-			invert_matrix_4(trans_m, trans_inv_m);
-			print_matrix_4(trans_inv_m, "transinv");
-			scale_matrix_4(scale_m, obj->diam / 2, obj->diam / 2, obj->diam / 2);
-			invert_matrix_4(scale_m, scale_invert_m);
-			print_matrix_4(scale_invert_m, "scaleinv");
 			print_tuple(&objo_cpy, "objo");
 			print_tuple(&camo_cpy, "camo");
 			print_tuple(&camd_cpy, "camd");
-			mult_tuple_matrix_4(&objo_cpy, trans_inv_m, objo_cpy);
-			mult_tuple_matrix_4(&camo_cpy, trans_inv_m, camo_cpy);
-			mult_tuple_matrix_4(&camd_cpy, trans_inv_m, camd_cpy);
-			print_tuple(&objo_cpy, "objo * transinv");
-			print_tuple(&camo_cpy, "camo * transinv");
-			print_tuple(&camd_cpy, "camd * transinv");
-			mult_tuple_matrix_4(&objo_cpy, scale_invert_m, objo_cpy);
-			mult_tuple_matrix_4(&camo_cpy, scale_invert_m, camo_cpy);
-			mult_tuple_matrix_4(&camd_cpy, scale_invert_m, camd_cpy);
-			print_tuple(&objo_cpy, "objo * scaleinv");
-			print_tuple(&camo_cpy, "camo * scaleinv");
-			print_tuple(&camd_cpy, "camd * scaleinv");
-			print_matrix_4(obj->wtoo_m, "wtoo");
-			print_matrix_4(obj->otow_m, "otow");
-			mult_tuple_matrix_4(&objo_cpy2, obj->wtoo_m, objo_cpy2);
-			mult_tuple_matrix_4(&camo_cpy2, obj->wtoo_m, camo_cpy2);
-			mult_tuple_matrix_4(&camd_cpy2, obj->wtoo_m, camd_cpy2);
+			mult_tuple_matrix_4(&objo_cpy2, obj->wtoo_m, objo_cpy);
+			mult_tuple_matrix_4(&camo_cpy2, obj->wtoo_m, camo_cpy);
+			mult_tuple_matrix_4(&camd_cpy2, obj->wtoo_m, camd_cpy);
 			print_tuple(&objo_cpy2, "objo * wtoo");
 			print_tuple(&camo_cpy2, "camo * wtoo");
 			print_tuple(&camd_cpy2, "camd * wtoo");
