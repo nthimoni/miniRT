@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:13:15 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/01 14:33:20 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/03 21:34:33 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@ void	init_inter(t_rt *rt)
 	world_to_camera(rt);
 	//print_axis(rt);
 	fill_matrix_obj(rt);
-	test_wtoo(rt);
+	//test_wtoo(rt);
+	//test_cone();
 	// rt-space défini dans quel espace on va faire les calculs
-	rt->space = WORLD;
+	rt->space = OBJ;
 	rt->debug = FALSE;
 	init_pixel(rt);
 	rt->debug = TRUE;

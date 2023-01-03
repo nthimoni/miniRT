@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 14:53:04 by rmorel            #+#    #+#             */
-/*   Updated: 2022/12/02 19:41:33 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/03 15:19:06 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_tuple	create_tuple(t_u *array)
 	return (new);
 }
 
-t_tuple	create_tuple_pts(int x, int y, int z, int w)
+t_tuple	create_tuple_pts(t_u x, t_u y, t_u z, t_u w)
 {
 	t_tuple	new;
 
@@ -119,7 +119,7 @@ t_u	length_v3(t_tuple v)
 {
 	t_u	d;
 
-	if (v.w > 1 - EPS && v.w < 1 + EPS)
+	if (v.w > 1 + EPS && v.w < 1 - EPS)
 	{
 		ft_putstr_fd("Add_v3 parami's is a point\n", 2);
 		return (0);
@@ -150,7 +150,7 @@ t_u	dot_product_v3(t_tuple v1, t_tuple v2)
 	onem = 1 - EPS;
 	if ((v1.w > onem && v1.w < onep) || (v2.w > onem && v2.w < onep))
 	{
-		ft_putstr_fd("Cross_product_v3 param's is a point", 2);
+		ft_putstr_fd("Dot_product_v3 param's is a point", 2);
 		return (0);
 	}
 	d = v2.x * v1.x + v2.y * v1.y + v2.z * v1.z;

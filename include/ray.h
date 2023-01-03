@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:13:31 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/01 13:59:03 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/03 10:08:29 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ t_u		abs_u(t_u n);
 
 //		sphere.c
 
-t_bool	solve_quadratic(t_intersect *inter, t_quadra q);
 void	intersect_sph(t_obj	*sph, t_intersect *inter, t_ray ray);
 void	intersect_sph2(t_obj *sph, t_intersect *inter, t_ray ray);
 
@@ -56,8 +55,9 @@ void	intersect_sph2_debug(t_obj *sph, t_intersect *inter, t_ray ray);
 
 //		intersect.c
 
+t_bool	solve_quadratic(t_intersect *inter, t_quadra q);
 void	add_inter0(t_intersect *i, t_obj *o, t_u t);
 void	add_inter1(t_intersect *i, t_obj *o, t_u t);
-
+t_tuple	find_pos_inter(t_ray ray, t_u t);
 
 #endif 

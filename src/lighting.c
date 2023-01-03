@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 21:47:50 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/02 17:25:39 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/03 10:22:44 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,19 +115,16 @@ static void	set_normal_position(t_rt *rt, t_intersect *inter, t_surface *sfc)
 	switch (inter->obj->type)
 	{
 		case SPHERE:
-			sfc->normal = sub_tupple(inter->obj->o, sfc->pos);
-			//sfc->normal = sub_tupple(sfc->pos, inter->obj->o);
+			sfc->normal = inter->normal_w;
 			break;
 		case PLAN:
-			sfc->normal = inter->obj->d;
+			sfc->normal = inter->normal_w;
 			break;
 		case CYLINDRE:
 			sfc->normal = inter->normal_w; 
-			scale_v3(&sfc->normal, -1);
 			break;
 		case CONE:
 			sfc->normal = inter->normal_w; 
-			scale_v3(&sfc->normal, -1);
 			break;
 		default:
 			break;

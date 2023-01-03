@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.62.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06.22:66:33 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/02 09:00:11 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/03 14:30:29 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ void	print_obj(t_obj *obj)
 {
 	const char *s[8] = {"NONE", "AMBIANT", "CAMERA", "SPHERE", "PLAN", "CYLINDRE", "CONE", "LIGHT"};
 	printf("OBJ_TYPE = %s\n", s[obj->type]);
-	print_tuple(&obj->o, "Origin :");
-	print_tuple(&obj->d, "Direction :");
+	print_tuple(&obj->o, "Origin");
+	print_tuple(&obj->d, "Direction");
 	print_tuple(&obj->top, "Top :");
-	print_tuple(&obj->o_obj, "Origin_obj :");
-	print_tuple(&obj->top_obj, "Top_obj :");
+	print_tuple(&obj->o_obj, "Origin_obj");
+	print_tuple(&obj->top_obj, "Top_obj");
 	printf("Diam = %lf | Height = %lf\n", obj->diam, obj->height);
 	printf("FOV = %lf | color = %d | ratio = %lf\n", obj->FOV, obj->color, obj->ratio);
 	print_matrix_4(obj->wtoo_m, "wtoo");
