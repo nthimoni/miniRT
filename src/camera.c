@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 17:49:21 by rmorel            #+#    #+#             */
-/*   Updated: 2022/12/31 19:25:36 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/03 21:30:54 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	fill_matrix_obj(t_rt *rt)
 	{
 		ft_bzero(&m, sizeof(t_obj_matrix));
 		obj = (t_obj *)tmp->content;
+		norm_v3(&obj->d);
 		ft_bzero(&obj->wtoo_m, sizeof(t_u[4][4]));
 		ft_bzero(&obj->otow_m, sizeof(t_u[4][4]));
 		if (obj->type == SPHERE)

@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 12:04:54 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/02 10:05:28 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/03 13:48:00 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -342,7 +342,7 @@ void	invert_matrix_4(t_u m[4][4], t_u new[4][4])
 		while (j < 4)
 		{
 			new[j][i] = cofactor_matrix_4(m, i, j) / det;
-			clamp(&new[i][j]);
+			clamp(&new[j][i]);
 			j++;
 		}
 		i++;

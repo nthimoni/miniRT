@@ -6,13 +6,12 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 12:15:54 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/01 13:59:03 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/03 10:23:10 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ray.h"
 
-static 	t_tuple	find_pos_inter(t_ray ray, t_u t0);
 void	check_cylinder(t_obj *cyl, t_ray *ray2, t_intersect *inter);
 void 	intersect_endcap(t_intersect *inter, t_obj *cyl, t_ray *ray2);
 
@@ -35,15 +34,6 @@ void	intersect_cylinder(t_obj *cyl, t_intersect *inter, t_ray ray)
 		return ;
 	check_cylinder(cyl, &ray2, inter);
 	return ;
-}
-
-static t_tuple	find_pos_inter(t_ray ray, t_u t0)
-{
-	t_tuple	tmp;
-
-	tmp = ray.d;
-	scale_v3(&tmp, t0);
-	return (add_tupple(ray.o, tmp));
 }
 
 // Le calcul de t0 et t1 se fait sur un cylindre infini -> la premiere intersection peut etre en dehors du cylindre
@@ -119,7 +109,6 @@ void normal_endcap(t_tuple point, t_obj *cyl, t_tuple *normal)
 	normal->z = 0;
 	normal->w = 0;
 	mult_tuple_matrix_4(normal, cyl->otow_m, *normal);
-	scale_v3(normal, -1);
 }
 
 void normal_cylinder(t_tuple point, t_obj *cyl, t_tuple *normal)
@@ -129,5 +118,4 @@ void normal_cylinder(t_tuple point, t_obj *cyl, t_tuple *normal)
 	normal->z = point.z;
 	normal->w = 0;
 	mult_tuple_matrix_4(normal, cyl->otow_m, *normal);
-	scale_v3(normal, -1);
 }

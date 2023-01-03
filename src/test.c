@@ -6,11 +6,12 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 12:56:21 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/02 09:00:04 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/03 21:10:56 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "test.h"
+#include "ray.h"
 
 void	test(t_rt *rt)
 {
@@ -275,12 +276,9 @@ void	test_wtoo(t_rt *rt)
 {
 	t_list	*tmp;
 	t_obj	*obj;
-	t_tuple	objo_cpy;
-	t_tuple	camo_cpy;
-	t_tuple	camd_cpy;
-	t_tuple	objo_cpy2;
-	t_tuple	camo_cpy2;
-	t_tuple	camd_cpy2;
+	t_tuple	t1;
+	t_tuple	t2;
+	t_tuple	t3;
 
 	tmp = rt->scn.objs;
 	printf("--------------------------------------------------\n");
@@ -292,23 +290,83 @@ void	test_wtoo(t_rt *rt)
 		else
 		{
 			print_obj(obj);
-			objo_cpy = create_tuple_copy(obj->o);
-			camo_cpy = create_tuple_copy(rt->scn.cam.o);
-			camd_cpy = create_tuple_copy(rt->scn.cam.d);
-			objo_cpy2 = create_tuple_copy(obj->o);
-			camo_cpy2 = create_tuple_copy(rt->scn.cam.o);
-			camd_cpy2 = create_tuple_copy(rt->scn.cam.d);
-			print_tuple(&objo_cpy, "objo");
-			print_tuple(&camo_cpy, "camo");
-			print_tuple(&camd_cpy, "camd");
-			mult_tuple_matrix_4(&objo_cpy2, obj->wtoo_m, objo_cpy);
-			mult_tuple_matrix_4(&camo_cpy2, obj->wtoo_m, camo_cpy);
-			mult_tuple_matrix_4(&camd_cpy2, obj->wtoo_m, camd_cpy);
-			print_tuple(&objo_cpy2, "objo * wtoo");
-			print_tuple(&camo_cpy2, "camo * wtoo");
-			print_tuple(&camd_cpy2, "camd * wtoo");
+			t1 = create_tuple_pts(0,60,80,1);
+			t2 = create_tuple_pts(-5,30,80,1);
+			t3 = create_tuple_pts(-1,-1,0,1);
+			print_tuple(&t1, "t1");
+			print_tuple(&t2, "t2");
+			print_tuple(&t3, "t3");
+			mult_tuple_matrix_4(&t1, obj->wtoo_m, t1);
+			mult_tuple_matrix_4(&t2, obj->wtoo_m, t2);
+			mult_tuple_matrix_4(&t3, obj->otow_m, t3);
+			print_tuple(&t1, "t1 * wtoo");
+			print_tuple(&t2, "t2 * wtoo");
+			print_tuple(&t3, "t3 * otow");
 			printf("--------------------------------------------------\n");
 			tmp = tmp->next;
 		}
 	}
 }
+
+void	cone_intersect(t_intersect *inter, t_ray ray)
+{
+	t_quadra	q;
+	int			res_quad;
+
+	ft_bzero(&q, sizeof(t_quadra));
+	q.a = ray.d.x * ray.d.x - ray.d.y * ray.d.y + ray.d.z * ray.d.z;
+	q.b = 2 * ray.o.x * ray.d.x - 2 * ray.o.y * ray.d.y 
+			+ 2 * ray.o.z * ray.d.z;
+	q.c = ray.o.x * ray.o.x - ray.o.y * ray.o.y + ray.o.z * ray.o.z; 
+	if (q.a < EPS && q.a > - EPS && q.b < EPS && q.b > - EPS)
+		return ;
+	else if (q.a < EPS && q.a > - EPS)
+	{
+		inter->t0_tmp = - q.c / (2 * q.b);
+		inter->t1_tmp = DBL_MAX;
+	}
+	else
+	{
+		res_quad = solve_quadratic(inter, q);
+		print_tuple(&ray.o, "Origin");
+		print_tuple(&ray.d, "Direction");
+		printf("q.a = %lf, q.b = %lf & q.c = %lf\n", q.a, q.b, q.c);
+		printf("t0 = %lf && t1 = %lf\n", inter->t0_tmp, inter->t1_tmp);
+		(void)res_quad;
+	}
+}
+
+void	test_cone(void)
+{
+	t_ray		ray1;
+	t_ray		ray2;
+	t_ray		ray3;
+	t_ray		ray4;
+	t_ray		ray5;
+	t_ray		ray6;
+	t_intersect	inter;
+
+	ft_bzero(&inter, sizeof(t_intersect));
+	ray1.o = create_tuple_pts(0, 0, -5, 0);
+	ray1.d = create_tuple_pts(0, 0, 1, 1);
+	norm_v3(&ray1.d);
+	ray2.o = create_tuple_pts(0, 0, -5, 0);
+	ray2.d = create_tuple_pts(1, 1, 1, 1);
+	norm_v3(&ray2.d);
+	ray3.o = create_tuple_pts(1, 1, -5, 0);
+	ray3.d = create_tuple_pts(-0.5, -1, 1, 1);
+	norm_v3(&ray3.d);
+	ray4.o = create_tuple_pts(0, 0, -5, 0);
+	ray4.d = create_tuple_pts(0, 0, 1, 1);
+	norm_v3(&ray4.d);
+	ray5.o = create_tuple_pts(0, 0, -5, 0);
+	ray5.d = create_tuple_pts(1, 1, 1, 1);
+	norm_v3(&ray5.d);
+	ray6.o = create_tuple_pts(1, 1, -5, 0);
+	ray6.d = create_tuple_pts(-0.5, -1, 1, 1);
+	norm_v3(&ray6.d);
+	cone_intersect(&inter, ray4);
+	cone_intersect(&inter, ray5);
+	cone_intersect(&inter, ray6);
+}
+

@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 14:43:53 by rmorel            #+#    #+#             */
-/*   Updated: 2022/11/02 18:01:13 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/03 13:03:12 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include "color.h"
 
 t_tuple		create_tuple(t_u *array);
-t_tuple		create_tuple_pts(int x, int y, int z, int w);
+t_tuple		create_tuple_pts(t_u x, t_u y, t_u z, t_u w);
 t_tuple		create_null_tuple(void);
 t_tuple		create_v3(t_tuple p1, t_tuple p2);
 t_tuple		create_tuple_copy(t_tuple t);
