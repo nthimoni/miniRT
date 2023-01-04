@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 12:15:54 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/03 10:23:10 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/04 17:17:58 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,22 @@ void	check_cylinder(t_obj *cyl, t_ray *ray2, t_intersect *inter)
 	{
 		add_inter0(inter, cyl, inter->t0_tmp);
 		add_inter1(inter, cyl, inter->t1_tmp);
-		normal_cylinder(i0, cyl, &inter->normal_w);
+		if (inter->t0 == inter->t0_tmp)
+			normal_cylinder(i0, cyl, &inter->normal_w);
 	}
 	else if (i0.y > cyl->o_obj.y && i0.y < cyl->top_obj.y
 				&& inter->t0 > inter->t0_tmp)
 	{
 		add_inter0(inter, cyl, inter->t0_tmp);
-		normal_cylinder(i0, cyl, &inter->normal_w);
+		if (inter->t0 == inter->t0_tmp)
+			normal_cylinder(i0, cyl, &inter->normal_w);
 	}
 	else if (i1.y > cyl->o_obj.y && i1.y < cyl->top_obj.y
 				&& inter->t0 > inter->t1_tmp)
 	{
 		add_inter0(inter, cyl, inter->t1_tmp);
-		normal_cylinder(i1, cyl, &inter->normal_w);
+		if (inter->t0 == inter->t1_tmp)
+			normal_cylinder(i1, cyl, &inter->normal_w);
 	}
 	return;
 }
@@ -85,17 +88,20 @@ void intersect_endcap(t_intersect *inter, t_obj *cyl, t_ray *ray2)
 	{
 		add_inter0(inter, cyl, inter->t0_tmp);
 		add_inter1(inter, cyl, inter->t1_tmp);
-		normal_endcap(i0, cyl, &inter->normal_w);
+		if (inter->t0 == inter->t0_tmp)
+			normal_endcap(i0, cyl, &inter->normal_w);
 	}
 	else if (i0.x * i0.x + i0.z * i0.z <= 1)
 	{
 		add_inter0(inter, cyl, inter->t0_tmp);
-		normal_endcap(i0, cyl, &inter->normal_w);
+		if (inter->t0 == inter->t0_tmp)
+			normal_endcap(i0, cyl, &inter->normal_w);
 	}
 	else if (i1.x * i1.x + i1.z * i1.z <= 1)
 	{
 		add_inter0(inter, cyl, inter->t1_tmp);
-		normal_endcap(i1, cyl, &inter->normal_w);
+		if (inter->t0 == inter->t1_tmp)
+			normal_endcap(i1, cyl, &inter->normal_w);
 	}
 }
 
