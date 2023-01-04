@@ -6,7 +6,7 @@
 /*   By: bek <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 10:07:02 by bek               #+#    #+#             */
-/*   Updated: 2023/01/03 21:34:08 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/04 16:16:53 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,17 @@ void	cylinder_matrix(t_obj_matrix m, t_obj *obj)
 {
 	get_cylinder_top(obj);
 	scale_matrix_4(m.sca, obj->diam / 2, obj->height, obj->diam / 2);
-	if (check_x_plane(obj->d))
+	if (obj->d.x == 0 && obj->d.z == 0 && obj->d.y < 0)
+		rot_z_matrix_4(m.rot, M_PI);
+	else if (check_x_plane(obj->d))
 		identity_matrix_4(m.rot);
 	else
 		get_matrix_align_v1_v2(m.rot, create_tuple_pts(0, 1, 0, 0), obj->d);
 	mult_matrix_4(m.tmp, m.rot, m.sca);
-	trans_matrix_4(m.tra, obj->o.x, obj->o.y, obj->o.z);
+	if (obj->d.x == 0 && obj->d.z == 0 && obj->d.y < 0)
+		trans_matrix_4(m.tra, obj->top.x, obj->top.y, obj->top.z);
+	else
+		trans_matrix_4(m.tra, obj->o.x, obj->o.y, obj->o.z);
 	mult_matrix_4(obj->otow_m, m.tra, m.tmp);
 	invert_matrix_4(obj->otow_m, obj->wtoo_m);
 	mult_tuple_matrix_4(&obj->top_obj, obj->wtoo_m, obj->top);
@@ -51,11 +56,11 @@ void	cone_matrix(t_obj_matrix m, t_obj *obj)
 	get_cylinder_top(obj);
 	scale_matrix_4(m.sca, obj->diam / 2, obj->height, obj->diam / 2);
 	if (check_x_plane(obj->d))
-	{
-		printf("Je te vois Turuk Makto\n");
-		//scale_matrix_4(m.rot, -1, -1, -1);
 		identity_matrix_4(m.rot);
-	}
+	/*
+	else if (obj->d.x == 0 && obj->d.y == 0 && obj->d.z < 0)
+		rot_x_matrix_4(m.rot, M_PI * 3 / 2);
+		*/
 	else
 		get_matrix_align_v1_v2(m.rot, create_tuple_pts(0, 1, 0, 0), obj->d);
 	mult_matrix_4(m.tmp, m.rot, m.sca);
