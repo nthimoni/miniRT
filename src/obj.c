@@ -6,7 +6,7 @@
 /*   By: bek <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 10:07:02 by bek               #+#    #+#             */
-/*   Updated: 2023/01/04 16:16:53 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/05 12:05:40 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,11 @@ void	cone_matrix(t_obj_matrix m, t_obj *obj)
 		*/
 	else
 		get_matrix_align_v1_v2(m.rot, create_tuple_pts(0, 1, 0, 0), obj->d);
-	mult_matrix_4(m.tmp, m.rot, m.sca);
+	mult_matrix_4(obj->otow_m_rs, m.rot, m.sca);
 	trans_matrix_4(m.tra, obj->top.x, obj->top.y, obj->top.z);
-	mult_matrix_4(obj->otow_m, m.tra, m.tmp);
+	mult_matrix_4(obj->otow_m, m.tra, obj->otow_m_rs);
 	invert_matrix_4(obj->otow_m, obj->wtoo_m);
+	invert_matrix_4(obj->otow_m_rs, obj->wtoo_m_inv_rs);
 	mult_tuple_matrix_4(&obj->top_obj, obj->wtoo_m, obj->top);
 	mult_tuple_matrix_4(&obj->o_obj, obj->wtoo_m, obj->o);
 }

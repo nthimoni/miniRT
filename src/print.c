@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.62.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06.22:66:33 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/03 14:30:29 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/05 16:51:21 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,21 @@ void	print_tuple(t_tuple *t, char *str)
 {
 	printf("%s :\n| %6.2lf |\n| %6.2lf |\n| %6.2lf |\n| %6.2lf |\n",
 			str, t->x, t->y, t->z, t->w);
+}
+
+void	print_cone_test_tuple(t_tuple o, t_tuple d, t_tuple top, t_tuple t[2])
+{
+	printf("%-10s | %-10s | %-10s | %-10s |", "o", "d", "top", "t1");
+	printf(" %-10s\n", "t2");
+	printf("----------------------------------------------------------------\n");
+	printf("%-10.2lf | %-10.2lf | %-10.2lf |", o.x, d.x, top.x);
+	printf(" %-10.2lf | %-10.2lf\n", t[0].x, t[1].x);
+	printf("%-10.2lf | %-10.2lf | %-10.2lf |", o.y, d.y, top.y);
+	printf(" %-10.2lf | %-10.2lf\n", t[0].y, t[1].y);
+	printf("%-10.2lf | %-10.2lf | %-10.2lf |", o.z, d.z, top.z);
+	printf(" %-10.2lf | %-10.2lf\n", t[0].z, t[1].z);
+	printf("%-10.2lf | %-10.2lf | %-10.2lf |", o.w, d.w, top.w);
+	printf(" %-10.2lf | %-10.2lf\n", t[0].w, t[1].w);
 }
 
 void	print_matrix_4(t_u m[4][4], char *s)
