@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:01:40 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/02 10:28:54 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/05 12:05:05 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,9 @@ typedef struct s_obj
 	double	ratio;
 	t_text	text;
 	t_u		wtoo_m[4][4];
+	t_u		wtoo_m_inv_rs[4][4];
 	t_u		otow_m[4][4];
+	t_u		otow_m_rs[4][4];
 }	t_obj;
 
 typedef struct s_scene

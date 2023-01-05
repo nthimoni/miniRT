@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 12:56:21 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/03 21:10:56 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/05 16:48:07 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -276,12 +276,10 @@ void	test_wtoo(t_rt *rt)
 {
 	t_list	*tmp;
 	t_obj	*obj;
-	t_tuple	t1;
-	t_tuple	t2;
-	t_tuple	t3;
+	t_tuple r_vec3;
+	t_tuple	t[2];
 
 	tmp = rt->scn.objs;
-	printf("--------------------------------------------------\n");
 	while (tmp)
 	{
 		obj = tmp->content;
@@ -289,20 +287,19 @@ void	test_wtoo(t_rt *rt)
 			tmp = tmp->next;
 		else
 		{
-			print_obj(obj);
-			t1 = create_tuple_pts(0,60,80,1);
-			t2 = create_tuple_pts(-5,30,80,1);
-			t3 = create_tuple_pts(-1,-1,0,1);
-			print_tuple(&t1, "t1");
-			print_tuple(&t2, "t2");
-			print_tuple(&t3, "t3");
-			mult_tuple_matrix_4(&t1, obj->wtoo_m, t1);
-			mult_tuple_matrix_4(&t2, obj->wtoo_m, t2);
-			mult_tuple_matrix_4(&t3, obj->otow_m, t3);
-			print_tuple(&t1, "t1 * wtoo");
-			print_tuple(&t2, "t2 * wtoo");
-			print_tuple(&t3, "t3 * otow");
-			printf("--------------------------------------------------\n");
+			r_vec3 = cross_product_v3(create_tuple_pts(0,1,0,0), obj->d);
+			norm_v3(&r_vec3);
+			scale_v3(&r_vec3, obj->diam / 2);
+			t[0] = add_tupple(obj->o, r_vec3);
+			scale_v3(&r_vec3, -1);
+			t[1] = add_tupple(obj->o, r_vec3);
+			printf("\nWORLD coordinate:\n");
+			print_cone_test_tuple(obj->o, obj->d, obj->top, t);
+			mult_tuple_matrix_4(&t[0], obj->wtoo_m, t[0]);
+			mult_tuple_matrix_4(&t[1], obj->wtoo_m, t[1]);
+			printf("OBJ coordinate:\n");
+			print_cone_test_tuple(obj->o_obj,
+					sub_tupple(obj->o_obj, obj->top_obj), obj->top_obj, t);
 			tmp = tmp->next;
 		}
 	}
