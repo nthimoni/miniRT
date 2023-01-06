@@ -180,7 +180,7 @@ int lighting(t_rt *rt, t_intersect *inter)
 		mult_tuple_matrix_4(&sfc.pos, inter->obj->wtoo_m, sfc.pos);
 		inter->obj->color = get_color_checker(plan_pos_to_2d(&sfc.pos), inter);
 		mult_tuple_matrix_4(&sfc.pos, inter->obj->otow_m, sfc.pos);
-	}
+	} 
 	norm_v3(&sfc.normal);
 	final = sub_synthese(inter->obj->color, rt->scn.amb.color, rt->scn.amb.ratio);
 	light = rt->scn.light;

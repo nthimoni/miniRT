@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 12:15:54 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/04 19:07:17 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/06 14:20:21 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ static void	intersect_side_cone(t_intersect *i, t_obj *obj, t_ray *r)
 	}
 	min_max[0] = -1;
 	min_max[1] = 0;
-	if ((obj->d.x == 0 && obj->d.z == 0 && obj->d.y < 0) ||
-			(obj->d.x == 0 && obj->d.y == 0 && obj->d.z < 0))
+	if ((obj->d.x == 0 && obj->d.z == 0 && obj->d.y < 0))
+			//(obj->d.x == 0 && obj->d.y == 0 && obj->d.z < 0))
 	{
 		min_max[0] = 0;
 		min_max[1] = 1;
@@ -111,32 +111,11 @@ static void intersect_endcap_cone(t_intersect *inter, t_obj *obj, t_ray *ray2)
 
 static void normal_cone(t_tuple point, t_obj *obj, t_tuple *normal)
 {
-	/*
-	t_u	radius;
-
-	radius = point.x * point.x + point.z * point.z;
-	if (radius < 1 && point.y >= 1 - EPS)
-		*normal = create_tuple_pts(0, 1, 0, 0);
-	else if (radius < 1 && point.y <= 0 + EPS)
-		*normal = create_tuple_pts(0, -1, 0, 0);
-	else
-		*normal = create_tuple_pts(point.x, 0, point.z, 0);
-	*/
 	normal->x = point.x;
 	normal->y = 0;
+	if ((obj->d.x == 0 && obj->d.y == 0 && obj->d.z < 0))
+		normal->y = 0.2 * point.x + 0.2 * point.z;
 	normal->z = point.z;
 	normal->w = 0;
-	if (point.y > 0)
-		normal->y *= -1;	
-	if (point.x == 0 && point.z == 0)
-		point.y = 1;
-	/*
-	t_tuple hit_to_top;
-
-	//point.y -= 1;
-	hit_to_top = sub_tupple(point, obj->top_obj);
-	scale_v3(&hit_to_top, dot_product_v3(hit_to_top, create_tuple_pts(0, 1, 0, 0)) / dot_product_v3(hit_to_top, hit_to_top));
-	*normal = sub_tupple(hit_to_top, create_tuple_pts(0, 1, 0, 0));
-	*/
 	mult_tuple_matrix_4(normal, obj->otow_m, *normal);
 }

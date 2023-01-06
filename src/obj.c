@@ -6,7 +6,7 @@
 /*   By: bek <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 10:07:02 by bek               #+#    #+#             */
-/*   Updated: 2023/01/05 12:05:40 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/06 13:28:25 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	cone_matrix(t_obj_matrix m, t_obj *obj)
 		identity_matrix_4(m.rot);
 	/*
 	else if (obj->d.x == 0 && obj->d.y == 0 && obj->d.z < 0)
-		rot_x_matrix_4(m.rot, M_PI * 3 / 2);
+		get_matrix_align_v1_v2(m.rot, create_tuple_pts(0, -1, 0, 0), obj->d);
 		*/
 	else
 		get_matrix_align_v1_v2(m.rot, create_tuple_pts(0, 1, 0, 0), obj->d);

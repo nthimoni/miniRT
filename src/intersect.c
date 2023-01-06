@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 13:55:29 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/04 17:15:40 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/06 17:51:04 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,21 @@ t_bool	solve_quadratic(t_intersect *inter, t_quadra q)
 		return (FALSE);
 	q1 = (-q.b - sqrt(q.disc)) * 0.5 / q.a;
 	q2 = (-q.b + sqrt(q.disc)) * 0.5 / q.a;
+	if (isnan(q1))
+		return (FALSE);
 	inter->t0_tmp = (q1 > q2 ? q2 : q1);
 	inter->t1_tmp = (q1 > q2 ? q1 : q2);
+	if (inter->t0_tmp < 0 && inter->t1_tmp > 0)
+	{
+		inter->t0_tmp = inter->t1_tmp;
+		inter->t1_tmp = DBL_MAX;
+	}
 	return (TRUE);
 }
 
 void add_inter0(t_intersect *i, t_obj *o, t_u t)
 {
-	if (t <= i->t0 && t > 0)
+	if (t <= i->t0 && t >= 0)
 	{
 		i->t0 = t;
 		i->obj = o;
@@ -38,7 +45,7 @@ void add_inter0(t_intersect *i, t_obj *o, t_u t)
 
 void add_inter1(t_intersect *i, t_obj *o, t_u t)
 {
-	if (t <= i->t1 && t > 0)
+	if (t <= i->t1 && t >= 0)
 	{
 		i->t1 = t;
 		i->obj = o;
