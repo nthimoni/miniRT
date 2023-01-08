@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 21:47:50 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/12/15 21:54:02 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/08 20:16:22 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,14 +168,14 @@ int lighting(t_rt *rt, t_intersect *inter)
 	if (inter->obj->type == SPHERE && inter->obj->text == CHECKER)
 	{
 		mult_tuple_matrix_4(&sfc.pos, inter->obj->wtoo_m, sfc.pos);
-		inter->obj->color = get_color_checker(sphere_pos_to_2d(&sfc.pos, 8), inter);
+		inter->obj->color = get_color_checker(uv_sphere(&sfc.pos), inter);
 		mult_tuple_matrix_4(&sfc.pos, inter->obj->otow_m, sfc.pos);
 	}
 	
 	if (inter->obj->type == PLAN && inter->obj->text == CHECKER)
 	{
 		mult_tuple_matrix_4(&sfc.pos, inter->obj->wtoo_m, sfc.pos);
-		inter->obj->color = get_color_checker(plan_pos_to_2d(&sfc.pos), inter);
+		inter->obj->color = get_color_checker(uv_plan(&sfc.pos), inter);
 		mult_tuple_matrix_4(&sfc.pos, inter->obj->otow_m, sfc.pos);
 	}
 	norm_v3(&sfc.normal);
