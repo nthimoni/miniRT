@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 17:49:21 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/03 21:30:54 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/09 16:25:14 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,31 +123,22 @@ void	world_to_camera2(t_rt *rt)
 	invert_matrix_4(rt->wtoc_m, rt->ctow_m);
 }
 
-void	pixel_raster_to_space(t_intersect *i, int x, int y, t_rt *rt)
+void	pixel_raster_to_space(t_intersect *i, t_u x, t_u y, t_rt *rt)
 {
 	i->pixel.x = (2 * (x + 0.5) / W_W - 1) * W_W / W_H * tan(rt->scn.cam.FOV / 2 * M_PI / 180);
 	i->pixel.y = (1 - 2 * (y + 0.5) / W_H) * tan(rt->scn.cam.FOV / 2 * M_PI / 180);
 	i->pixel.z = 1;
 	i->pixel.w = 1;
-	i->ray.o.x = 0;
-	i->ray.o.y = 0;
-	i->ray.o.z = 0;
+	ft_bzero(&i->ray.o, sizeof(t_tuple));
+	i->ray.o.x = 1;
+	i->ray.o.y = 1;
+	i->ray.o.z = 1;
 	i->ray.o.w = 1;
 	i->ray.d.x = i->pixel.x - 0;
 	i->ray.d.y = i->pixel.y - 0;
 	i->ray.d.z = i->pixel.z - 0;
 	i->ray.d.w = 0;
-	if (rt->debug)
-	{
-		print_tuple(&i->ray.o, "ray_o in camera space");
-		print_tuple(&i->ray.d, "ray_d in camera space");
-	}
 	mult_tuple_matrix_4(&i->ray.o, rt->ctow_m, i->ray.o);
 	mult_tuple_matrix_4(&i->ray.d, rt->ctow_m, i->ray.d);
-	if (rt->debug)
-	{
-		print_tuple(&i->ray.o, "ray_o * ctow");
-		print_tuple(&i->ray.d, "ray_d * ctow");
-	}
 	norm_v3(&i->ray.d);
 }

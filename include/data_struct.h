@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:01:40 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/05 12:05:05 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/09 16:35:55 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,20 @@
 
 # include "libft.h"
 
-# define W_W 1920
-# define W_H 1080
+# define W_W 1080
+# define W_H 540
 # define EPS 0.000001
 # define INF 1797693134862315708145274237317043567980705675258449965989174768031572607800285387605895586327668781715404589535143824642343213268894641827684675467035375169860499105765512820762454900903893289440758685084551339423045832369032229481658085593321233482747978262041447231687381771809192998812504040261841248583687
 
 typedef double t_u;
+
+typedef struct	s_color
+{
+	int		t;
+	int		r;
+	int		g;
+	int		b;
+}	t_color;
 
 typedef struct s_mat4
 {
@@ -50,7 +58,8 @@ typedef enum e_otype
 	PLAN,
 	CYLINDRE,
 	CONE,
-	LIGHT
+	LIGHT,
+	AA
 }	t_otype;
 
 typedef enum	e_space
@@ -87,9 +96,21 @@ typedef struct s_obj
 	t_u		otow_m_rs[4][4];
 }	t_obj;
 
+typedef	enum	e_bool
+{
+	FALSE,
+	TRUE,
+}	t_bool;
+
+typedef struct	s_aa
+{
+	t_bool			anti_aliasing;
+	unsigned int	n;
+}	t_aa;
+
 typedef struct s_scene
 {
-	t_obj amb;
+	t_obj 	amb;
 	t_obj	cam;
 	t_list	*light;
 	t_list	*objs;
@@ -106,12 +127,6 @@ typedef struct	s_img
 	int		y;
 }	t_img;
 
-typedef	enum	e_bool
-{
-	FALSE,
-	TRUE,
-}	t_bool;
-
 typedef struct	s_rt
 {
 	t_list	*trash;
@@ -123,6 +138,7 @@ typedef struct	s_rt
 	t_scene	scn;
 	t_space	space;
 	t_bool	debug;
+	t_aa	aa;
 }	t_rt;
 
 typedef struct	s_ray
@@ -154,9 +170,10 @@ typedef struct	s_intersect
 	t_quadra	q;
 	t_obj		*obj;
 	t_obj		*obj_ign;
+	t_list		*color;
 }	t_intersect;
 
-typedef struct	s_obj_matix
+typedef struct	s_obj_matrix
 {
 	t_u	sca[4][4];
 	t_u	tra[4][4];

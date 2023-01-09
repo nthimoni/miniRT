@@ -6,7 +6,7 @@
 /*   By: bek <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 10:09:36 by bek               #+#    #+#             */
-/*   Updated: 2022/12/31 19:26:09 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/09 12:03:19 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	world_to_camera(t_rt *rt);
 void	world_to_camera2(t_rt *rt);
 t_bool	check_vector_opposite(t_tuple v1, t_tuple v2);
 void	fill_matrix_obj(t_rt *rt);
-void	pixel_raster_to_space(t_intersect *i, int x, int y, t_rt *rt);
+void	pixel_raster_to_space(t_intersect *i, t_u x, t_u y, t_rt *rt);
 
 //		rendering.c
 
