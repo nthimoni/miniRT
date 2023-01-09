@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:13:15 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/06 18:45:57 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/09 16:36:04 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,63 @@
 void	init_inter(t_rt *rt)
 {
 	world_to_camera(rt);
-	//print_axis(rt);
 	fill_matrix_obj(rt);
-	//test_wtoo(rt);
-	//test_cone();
 	// rt-space défini dans quel espace on va faire les calculs
 	rt->space = OBJ;
 	rt->debug = FALSE;
-	init_pixel(rt);
+	if (rt->aa.anti_aliasing)
+		init_pixel_aa(rt);
+	else
+		init_pixel(rt);
 	rt->debug = TRUE;
-	//init_pixel_debug(rt);
 	clear_image(rt);
 }
+
+void	init_pixel_aa(t_rt *rt)
+{
+	int			i_j[2];
+
+	i_j[0] = 0;
+	i_j[1] = 0;
+	while (i_j[0] < W_W)
+	{
+		while (i_j[1] < W_H)
+		{
+			draw_pixel_aa(i_j, rt);		
+			i_j[1]++;
+		}
+		i_j[1] = 0;
+		i_j[0]++;
+	}
+}
+
+void	draw_pixel_aa(int i_j[2], t_rt *rt)
+{
+	t_color			color;
+	int				res;
+	t_intersect		inter;
+	double			rand_n;
+	unsigned int	count;
+
+	ft_bzero(&color, sizeof(t_color));;
+	count = 0;
+	while (count++ < rt->aa.n)
+	{
+		rand_n = ((double)rand()) / RAND_MAX - 0.5;
+		ft_bzero(&inter, sizeof(t_intersect));
+		inter.t0 = DBL_MAX;
+		inter.t1 = DBL_MAX;
+		pixel_raster_to_space(&inter, i_j[0] + rand_n, i_j[1] + rand_n, rt);
+		intersect_obj(rt, &inter);
+		res = lighting(rt, &inter);
+		color.t += get_t(res);
+		color.r += get_r(res);
+		color.g += get_g(res);
+		color.b += get_b(res);
+	}
+	my_mlx_pixel_put(rt, i_j[0], i_j[1], create_trgb(color.t / rt->aa.n, color.r / rt->aa.n, color.g / rt->aa.n, color.b / rt->aa.n));
+}
+
 
 void	init_pixel(t_rt *rt)
 {
@@ -42,21 +87,14 @@ void	init_pixel(t_rt *rt)
 		while (j < W_H)
 		{
 			if (i == 810 && j == 505)
-			{
 				printf("Eh le schtroumpf, vient ici !\n");
-				printf("scalarFOV = %lf\n", tan(rt->scn.cam.FOV / 2));
-			}
 			ft_bzero(&inter, sizeof(t_intersect));
 			inter.t0 = DBL_MAX;
 			inter.t1 = DBL_MAX;
 			pixel_raster_to_space(&inter, i, j, rt);
 			intersect_obj(rt, &inter);
 			if (inter.t0 < DBL_MAX)
-			{
-				if (i == 966 && j == 541)
-					ft_printf("PAUSE\n");
 				my_mlx_pixel_put(rt, i, j, lighting(rt, &inter));
-			}
 			j++;
 		}
 		j = 0;

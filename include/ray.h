@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:13:31 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/03 10:08:29 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/09 13:24:48 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,10 @@
 # include "scene.h"
 # include <float.h>
 
-void	pixel_raster_to_space(t_intersect *i, int x, int y, t_rt *rt);
 void	init_inter(t_rt *rt);
 void	init_pixel(t_rt *rt);
+void	init_pixel_aa(t_rt *rt);
+void	draw_pixel_aa(int i_j[2], t_rt *rt);
 void	intersect_obj(t_rt *rt, t_intersect *inter);
 t_u		abs_u(t_u n);
 

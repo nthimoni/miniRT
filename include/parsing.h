@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:08:02 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/01 13:25:07 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/09 13:21:13 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ int fill_plan(t_obj *tmp, t_rt *rt, char **sp);
 int fill_sphere(t_obj *tmp, t_rt *rt, char **sp);
 int fill_cylindre(t_obj *tmp, t_rt *rt, char **sp);
 int fill_cone(t_obj *tmp, t_rt *rt, char **sp);
+int fill_aa(t_rt *rt, char **sp);
 
 #endif 
