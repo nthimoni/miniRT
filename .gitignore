@@ -5,6 +5,7 @@ miniRT
 */tags
 */.tags
 */.cache/*
+*/.cache/clangd
 
 # Prerequisites
 *.d
