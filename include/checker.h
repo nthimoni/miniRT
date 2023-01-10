@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 03:00:54 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/10 04:17:50 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/10 21:16:24 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ t_2dp uv_sphere(t_tuple *pos);
 t_2dp uv_plan(t_tuple *pos);
 int get_color_checker(t_2dp pos, t_intersect *inter);
 int	color_at(t_img *img, t_2dp pos);
-t_tuple normal_perturbation(t_img *img, t_2dp pos);
+t_tuple normal_perturbation(t_img *img, t_2dp pos, t_tuple *normal);
 
 #endif 
