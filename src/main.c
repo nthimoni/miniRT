@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 14:54:33 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/12/02 19:00:42 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/10 04:54:48 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,12 @@ int	main(int argc, char **argv)
 	rt = init_rt();
 	if (argc > 1)
 		parsing(rt, argv[1], &rt->scn);
+	rt->text.img = mlx_xpm_file_to_image(rt->mlx, "earth.xpm", &rt->text.x, &rt->text.y);
+	rt->text.addr = mlx_get_data_addr(rt->text.img, &rt->text.bpp, &rt->text.line_lgth, &rt->text.endian);
+	rt->bump.img = mlx_xpm_file_to_image(rt->mlx, "bump.xpm", &rt->bump.x, &rt->bump.y);
+	rt->bump.addr = mlx_get_data_addr(rt->bump.img, &rt->bump.bpp, &rt->bump.line_lgth, &rt->bump.endian);
+	mlx_put_image_to_window(rt->mlx, rt->win, rt->bump.img, 0, 0);
+
 	init_inter(rt);
 	mlx_hook(rt->win, 17, 1<<17, red_cross, rt);
 	mlx_hook(rt->win, 2, 1L << 0, key_hook, rt);

@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:01:40 by rmorel            #+#    #+#             */
-/*   Updated: 2022/12/15 21:33:48 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/10 00:41:12 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,8 @@ typedef struct	s_rt
 	t_img	*img;
 	t_u		wtoc_m[4][4];
 	t_u		ctow_m[4][4];
+	t_img text;
+	t_img bump;
 	t_scene	scn;
 	t_space	space;
 	t_bool	debug;
