@@ -7,7 +7,20 @@ FTINC = $(FTPATH)include/
 LIBFT = $(FTPATH)libft.a
 MLX = $(MLXPATH)libmlx.a
 ######################################################################
-SRCS = main.c vector.c image.c hook.c exit_rt.c print.c init.c test.c trash.c colors.c matrix.c transformations.c\
+SRCS = maths/ft_atof.c\
+	   maths/ft_atof_utils.c\
+	   maths/matrix.c\
+	   maths/matrix2.c\
+	   maths/matrix3.c\
+	   maths/matrix4.c\
+	   matrix_test.c\
+	   maths/transformations.c\
+	   maths/transformations2.c\
+	   maths/vector.c\
+	   maths/vector2.c\
+	   maths/vector3.c\
+
+main.c vector.c image.c hook.c exit_rt.c print.c init.c test.c trash.c colors.c matrix.c transformations.c\
    ft_atof.c ft_atof_utils.c parsing.c parsing_utils.c ray.c data_parser.c obj_filler.c camera.c rendering.c lighting.c\
    obj.c sphere.c debug.c plane.c cylinder.c isShadowed.c text_mapping.c cone.c intersect.c
 OBJS = $(addprefix $(OBJDIR),$(SRCS:.c=.o))
