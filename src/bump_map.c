@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 23:07:36 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/10 21:30:47 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/11 00:38:18 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,6 @@ t_tuple normal_perturbation(t_img *img, t_2dp pos, t_tuple *normal)
 	invert_matrix_4(m_rot, m_rot_inv);
 	mult_tuple_matrix_4(&perturb, m_rot_inv, perturb);
 	norm_v3(&perturb);
-	scale_v3(&perturb, 0.9);
+	scale_v3(&perturb, 0.99);
 	return (perturb);
 }
