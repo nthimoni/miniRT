@@ -6,10 +6,11 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 21:47:50 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/10 17:53:48 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/10 18:48:43 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "data_struct.h"
 #include "lighting.h"
 #include "transformations.h"
 #include "vector.h"
