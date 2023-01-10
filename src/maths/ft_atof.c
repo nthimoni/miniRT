@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 13:09:11 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/17 14:37:08 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/10 15:43:01 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static char	*fill_integer_part(char *str, float *val)
 	return (str);
 }
 
-static void fill_floating_point_part(char *str, float *val)
+static void	fill_floating_point_part(char *str, float *val)
 {
 	int		i;
 	float	tmp;
@@ -41,7 +41,7 @@ static void fill_floating_point_part(char *str, float *val)
 	*val += tmp;
 }
 
-static int fill_val(char *str, float *val)
+static int	fill_val(char *str, float *val)
 {
 	str = fill_integer_part(str, val);
 	if (*str == '.')
@@ -49,12 +49,11 @@ static int fill_val(char *str, float *val)
 	return (0);
 }
 
-static int check_overflow(char *str, int sign)
+static int	check_overflow(char *str, int sign)
 {
-	static const char *max_float
-		= "340282346638528859811704183484516925440";
-	int cmp;
-	char **sp;
+	static const char	*max_float = "340282346638528859811704183484516925440";
+	int					cmp;
+	char				**sp;
 
 	sp = ft_split(str, '.');
 	if (sp[0])
@@ -72,7 +71,7 @@ static int check_overflow(char *str, int sign)
 int	ft_atof(char *str, float *val)
 {
 	int	sign;
-	int over;
+	int	over;
 
 	if (!isValidLiteral(str))
 		return (1);

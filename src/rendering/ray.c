@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:13:15 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/09 16:36:04 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/10 16:27:39 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	init_inter(t_rt *rt)
 {
 	world_to_camera(rt);
 	fill_matrix_obj(rt);
-	// rt-space défini dans quel espace on va faire les calculs
 	rt->space = OBJ;
 	rt->debug = FALSE;
 	if (rt->aa.anti_aliasing)

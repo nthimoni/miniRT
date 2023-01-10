@@ -6,11 +6,11 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 17:49:21 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/09 16:25:14 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/10 16:24:35 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "scene.h"
+#include "scene.h"
 
 void	get_matrix_align_v1_v2(t_u m[4][4], t_tuple v1, t_tuple v2)
 {
@@ -41,7 +41,6 @@ void	get_matrix_align_v1_v2(t_u m[4][4], t_tuple v1, t_tuple v2)
 
 t_bool	check_vector_opposite(t_tuple v1, t_tuple v2)
 {
-
 	norm_v3(&v1);
 	norm_v3(&v2);
 	if ((v1.x == -v2.x) && (v1.y == -v2.y) && (v1.z == -v2.z) && (v1.w == v2.w))
@@ -51,9 +50,9 @@ t_bool	check_vector_opposite(t_tuple v1, t_tuple v2)
 
 void	fill_matrix_obj(t_rt *rt)
 {
-	t_list	*tmp;
-	t_obj	*obj;
-	t_obj_matrix m;
+	t_list			*tmp;
+	t_obj			*obj;
+	t_obj_matrix	m;
 
 	tmp = rt->scn.objs;
 	while (tmp)
@@ -96,37 +95,15 @@ void	world_to_camera(t_rt *rt)
 	trans_matrix_4(trans_m4, rt->scn.cam.o.x, rt->scn.cam.o.y, rt->scn.cam.o.z);
 	mult_matrix_4(rt->ctow_m, trans_m4, tmp);
 	invert_matrix_4(rt->ctow_m, rt->wtoc_m);
-	//test_world_matrix(rt);
-}
-
-void	world_to_camera2(t_rt *rt)
-{
-	t_u		rotx[4][4];
-	t_u		roty[4][4];
-	t_u		trans[4][4];
-	t_u		tmp[4][4];
-	t_u		alpha;
-	t_u		beta;
-	t_u		hyp;
-
-	ft_bzero(&rt->ctow_m, sizeof(t_u[4][4]));
-	ft_bzero(&rt->wtoc_m, sizeof(t_u[4][4]));
-	alpha = atan2(rt->scn.cam.d.x, rt->scn.cam.d.z);
-	hyp = sqrt(pow(rt->scn.cam.d.x, 2) + pow(rt->scn.cam.d.z, 2));
-	beta = atan2(rt->scn.cam.d.y, hyp);
-	norm_v3(&rt->scn.cam.d);
-	rot_y_matrix_4(roty, alpha);
-	rot_x_matrix_4(rotx, -beta);
-	mult_matrix_4(tmp, roty, rotx);
-	trans_matrix_4(trans, -rt->scn.cam.o.x, -rt->scn.cam.o.y, -rt->scn.cam.o.z);
-	mult_matrix_4(rt->wtoc_m, trans, tmp);
-	invert_matrix_4(rt->wtoc_m, rt->ctow_m);
 }
 
 void	pixel_raster_to_space(t_intersect *i, t_u x, t_u y, t_rt *rt)
 {
-	i->pixel.x = (2 * (x + 0.5) / W_W - 1) * W_W / W_H * tan(rt->scn.cam.FOV / 2 * M_PI / 180);
-	i->pixel.y = (1 - 2 * (y + 0.5) / W_H) * tan(rt->scn.cam.FOV / 2 * M_PI / 180);
+	t_u	angle;
+
+	angle = tan(rt->scn.cam.FOV / 2 * M_PI / 180);
+	i->pixel.x = (2 * (x + 0.5) / W_W - 1) * W_W / W_H * angle;
+	i->pixel.y = (1 - 2 * (y + 0.5) / W_H) * angle;
 	i->pixel.z = 1;
 	i->pixel.w = 1;
 	ft_bzero(&i->ray.o, sizeof(t_tuple));
