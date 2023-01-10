@@ -6,11 +6,12 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 21:47:50 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/08 20:16:22 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/10 06:28:35 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lighting.h"
+#include "data_struct.h"
 #include "transformations.h"
 #include "vector.h"
 #include "color.h"
@@ -127,6 +128,7 @@ static void	set_normal_position(t_rt *rt, t_intersect *inter, t_surface *sfc)
 		default:
 			break;
 	}
+	norm_v3(&sfc->normal);
 }
 
 int	set_specular(t_surface *sfc, t_tuple *light_v, t_rt *rt, t_obj *light)
@@ -168,7 +170,10 @@ int lighting(t_rt *rt, t_intersect *inter)
 	if (inter->obj->type == SPHERE && inter->obj->text == CHECKER)
 	{
 		mult_tuple_matrix_4(&sfc.pos, inter->obj->wtoo_m, sfc.pos);
-		inter->obj->color = get_color_checker(uv_sphere(&sfc.pos), inter);
+		//inter->obj->color = get_color_checker(uv_sphere(&sfc.pos), inter);
+		sfc.normal = add_tupple(sfc.normal, normal_perturbation(&rt->bump,uv_sphere(&sfc.pos)));
+		norm_v3(&sfc.normal);
+		inter->obj->color = color_at(&rt->text, uv_sphere(&sfc.pos));
 		mult_tuple_matrix_4(&sfc.pos, inter->obj->otow_m, sfc.pos);
 	}
 	
@@ -178,7 +183,6 @@ int lighting(t_rt *rt, t_intersect *inter)
 		inter->obj->color = get_color_checker(uv_plan(&sfc.pos), inter);
 		mult_tuple_matrix_4(&sfc.pos, inter->obj->otow_m, sfc.pos);
 	}
-	norm_v3(&sfc.normal);
 	final = sub_synthese(inter->obj->color, rt->scn.amb.color, rt->scn.amb.ratio);
 	light = rt->scn.light;
 	while (light)

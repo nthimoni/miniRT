@@ -9,12 +9,13 @@ MLX = $(MLXPATH)libmlx.a
 ######################################################################
 SRCS = main.c vector.c image.c hook.c exit_rt.c print.c init.c test.c trash.c colors.c matrix.c transformations.c\
    ft_atof.c ft_atof_utils.c parsing.c parsing_utils.c ray.c data_parser.c obj_filler.c camera.c rendering.c lighting.c\
-   obj.c sphere.c debug.c plane.c cylinder.c isShadowed.c text_mapping.c
+   obj.c sphere.c debug.c plane.c cylinder.c isShadowed.c text_mapping.c bump_map.c
 OBJS = $(addprefix $(OBJDIR),$(SRCS:.c=.o))
 DEPENDS = $(OBJS:.o=.d)
 ######################################################################
-CC = gcc -g
-CFLAGS = -Wall -Wextra -Werror -MMD -MP
+CC = gcc -g -fsanitize=address -lasan
+CFLAGS = -Wall -Wextra -Werror -MMD -MP 
+
 LINK = -lmlx -lft -lm -lXext -lX11
 INCPATH = -I$(INCDIR) -I$(FTINC) -I$(MLXPATH)
 LIBPATH = -L$(FTPATH) -L$(MLXPATH)

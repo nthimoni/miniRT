@@ -6,12 +6,13 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 02:53:27 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/08 20:19:23 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/10 06:10:02 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "data_struct.h"
 #include "checker.h"
+#include "libft.h"
 #include <math.h>
 #include <stdio.h>
 
@@ -45,7 +46,7 @@ t_2dp uv_sphere(t_tuple *pos)
 
 	phi = acosl(pos->y);
 	theta = atan2l(pos->x, pos->z);
-	ret.x = 1 - ((theta / M_PI_2) + 0.5);
+	ret.x = (1 - ((theta / M_PI_2) + 0.5)) / 4;
 	ret.y = 1 - (phi / M_PI);
 	return (ret);
 }
