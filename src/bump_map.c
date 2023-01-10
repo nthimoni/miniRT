@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 23:07:36 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/10 06:38:03 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/10 21:30:47 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "color.h"
 #include "mlx.h"
 #include "vector.h"
+#include "scene.h"
 
 t_u normalize_black_and_white(int color)
 {
@@ -29,7 +30,7 @@ int	color_at(t_img *img, t_2dp pos)
 	int		x;
 	int		y;
 
-	x = floor(pos.x * (img->x - 1));
+	x = floor(pos.x * (img->x - 1));// + img->x / 4;
 	y = floor(pos.y * (img->y - 1));
 	dst = img->addr + ((img->y - y) * img->line_lgth + x * (img->bpp / 8));
 	//ft_printf("%d %d \n", x, y);
@@ -41,29 +42,37 @@ t_u height_at(t_img *img, t_2dp *pos)
 	return (normalize_black_and_white(color_at(img, *pos)));
 }
 
-t_tuple normal_perturbation(t_img *img, t_2dp pos)
+t_tuple normal_perturbation(t_img *img, t_2dp pos, t_tuple *normal)
 {
-	t_tuple	per;
+	t_tuple	perturb;
 	t_u		denom;
 	t_u		tmp;
+	t_2dp	unit;
+	t_u		m_rot[4][4];
+	t_u		m_rot_inv[4][4];
 
-	per.w = 0;
-	denom = height_at(img, &(t_2dp){pos.x + 0.001, pos.y});
+	perturb.w = 0;
+	unit.x = 1.0 / img->x;
+	unit.y = 1.0 / img->y;
+	denom = height_at(img, &(t_2dp){pos.x + unit.x, pos.y});
 	denom -= height_at(img, &(t_2dp){pos.x, pos.y});
 	denom *= denom;
-	tmp = height_at(img, &(t_2dp){pos.x, pos.y + 0.001});
+	tmp = height_at(img, &(t_2dp){pos.x, pos.y + unit.y});
 	tmp -= height_at(img, &(t_2dp){pos.x, pos.y});
 	tmp *= tmp;
 	denom += tmp;
 	denom += 1.0;
-	per.x = -height_at(img, &(t_2dp){pos.x + 0.001, pos.y});
-	per.x += height_at(img, &(t_2dp){pos.x, pos.y});
-	per.x /= denom;
-	per.y = -height_at(img, &(t_2dp){pos.x, pos.y + 0.001});
-	per.y += height_at(img, &(t_2dp){pos.x, pos.y});
-	per.y /= denom;
-	per.z = 1 / denom;
-	norm_v3(&per);
-	scale_v3(&per, 0.7);
-	return (per);
+	perturb.x = -height_at(img, &(t_2dp){pos.x + unit.x, pos.y});
+	perturb.x += height_at(img, &(t_2dp){pos.x, pos.y});
+	perturb.x /= denom;
+	perturb.y = -height_at(img, &(t_2dp){pos.x, pos.y + unit.y});
+	perturb.y += height_at(img, &(t_2dp){pos.x, pos.y});
+	perturb.y /= denom;
+	perturb.z = 1 / denom;
+	get_matrix_align_v1_v2(m_rot, *normal, create_tuple_pts(0, 0, -1, 0));
+	invert_matrix_4(m_rot, m_rot_inv);
+	mult_tuple_matrix_4(&perturb, m_rot_inv, perturb);
+	norm_v3(&perturb);
+	scale_v3(&perturb, 0.9);
+	return (perturb);
 }

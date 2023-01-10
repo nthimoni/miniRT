@@ -13,8 +13,8 @@ SRCS = main.c vector.c image.c hook.c exit_rt.c print.c init.c test.c trash.c co
 OBJS = $(addprefix $(OBJDIR),$(SRCS:.c=.o))
 DEPENDS = $(OBJS:.o=.d)
 ######################################################################
-CC = gcc -g -fsanitize=address -lasan
-CFLAGS = -Wall -Wextra -Werror -MMD -MP 
+CC = gcc -g
+CFLAGS = #-Wall -Wextra -Werror -MMD -MP 
 
 LINK = -lmlx -lft -lm -lXext -lX11
 INCPATH = -I$(INCDIR) -I$(FTINC) -I$(MLXPATH)
