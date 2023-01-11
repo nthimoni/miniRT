@@ -6,12 +6,13 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 02:53:27 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/12/15 20:13:47 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/11 18:17:12 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "data_struct.h"
 #include "checker.h"
+#include "libft.h"
 #include <math.h>
 #include <stdio.h>
 
@@ -37,26 +38,25 @@ int get_color_checker(t_2dp pos, t_intersect *inter)
 	return (CHECKER_COL_2);
 }
 
-t_2dp sphere_pos_to_2d(t_tuple *pos, t_u diameter)
+t_2dp uv_sphere(t_tuple *pos)
 {
 	t_u		phi;
-	t_u		raw_u;
+	t_u		theta;
 	t_2dp	ret;
 
-	phi = acosl(pos->y / (diameter / 2));
-	raw_u = atan2l(pos->x, pos->z) / (2 * M_PI);
-	ret.x = 1 - (raw_u + 0.5);
-	ret.y = 1 - phi / M_PI;
+	phi = acosl(pos->y);
+	theta = atan2l(pos->x, pos->z);
+	ret.x = (1 - ((theta / M_PI_2) + 0.5)) / 4;
+	ret.y = 1 - (phi / M_PI);
 	return (ret);
 }
 
 
-t_2dp plan_pos_to_2d(t_tuple *pos)
+t_2dp uv_plan(t_tuple *pos)
 {
 	t_2dp	ret;
-	long double useless;
 
-	ret.x = modfl(pos->x / 40, &useless);
-	ret.y = modfl(pos->z / 40, &useless);
+	ret.x = fmod(pos->x / 40, 1);
+	ret.y = fmod(pos->z / 40, 1);
 	return (ret);
 }
