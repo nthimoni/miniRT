@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 18:41:10 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/10/20 20:16:42 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/09 13:20:59 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 
 static int	check_nb_arg(t_otype type, int nb_wrds)
 {
-	static const int	tab[] = {3, 4, 4, 4, 4, 6};
-	static const t_otype	otype[] = {AMBIANT, CAMERA, LIGHT,
-										PLAN, SPHERE, CYLINDRE, NONE};
+	static const int	tab[] = {3, 4, 4, 4, 4, 6, 6, 2};
+	static const t_otype	otype[] = {AMBIANT, CAMERA, LIGHT, PLAN,
+										SPHERE, CYLINDRE, CONE, AA, NONE};
 	int i;
 
 	i = 0;
@@ -51,14 +51,19 @@ static int	fill_obj(char **sp, t_obj *tmp, t_rt *rt)
 		error = fill_sphere(tmp, rt, sp);
 	else if (tmp->type == CYLINDRE)
 		error = fill_cylindre(tmp, rt, sp);
+	else if (tmp->type == CONE)
+		error = fill_cone(tmp, rt, sp);
+	else if (tmp->type == AA)
+		error = fill_aa(rt, sp);
 	return (error);
 }
 
 static int	set_type(char **sp, t_scene *scene, t_rt *rt)
 {
-	static const char		*type[] = {"A", "C", "L", "pl", "sp", "cy", NULL};
+	static const char		*type[] = {"A", "C", "L", "pl", "sp", "cy", "co",
+										"anti-aliasing", NULL};
 	static const t_otype	otype[] = {AMBIANT, CAMERA, LIGHT,
-										PLAN, SPHERE, CYLINDRE};
+										PLAN, SPHERE, CYLINDRE, CONE, AA};
 	int 					i;
 	t_obj					*tmp;
 

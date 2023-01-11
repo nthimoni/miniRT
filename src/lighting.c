@@ -6,10 +6,11 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 21:47:50 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/11 00:38:33 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/11 04:13:16 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "data_struct.h"
 #include "lighting.h"
 #include "data_struct.h"
 #include "transformations.h"
@@ -116,15 +117,17 @@ static void	set_normal_position(t_rt *rt, t_intersect *inter, t_surface *sfc)
 	switch (inter->obj->type)
 	{
 		case SPHERE:
-			sfc->normal = sub_tupple(inter->obj->o, sfc->pos);
-			//sfc->normal = sub_tupple(sfc->pos, inter->obj->o);
+			sfc->normal = inter->normal_w;
 			break;
 		case PLAN:
-			sfc->normal = inter->obj->d;
+			sfc->normal = inter->normal_w;
 			break;
 		case CYLINDRE:
 			sfc->normal = inter->normal_w; 
-			scale_v3(&sfc->normal, -1);
+			break;
+		case CONE:
+			sfc->normal = inter->normal_w; 
+			break;
 		default:
 			break;
 	}
@@ -165,16 +168,19 @@ int lighting(t_rt *rt, t_intersect *inter)
 	t_list		*light;
 	t_tuple		light_v;	
 
+	if (!inter->obj)
+		return 0;
+	ft_bzero(&sfc, sizeof(t_surface));
 	set_normal_position(rt, inter, &sfc);
 
 	if (inter->obj->type == SPHERE && inter->obj->text == CHECKER)
 	{
 		mult_tuple_matrix_4(&sfc.pos, inter->obj->wtoo_m, sfc.pos);
-		//inter->obj->color = get_color_checker(uv_sphere(&sfc.pos), inter);
 		sfc.normal = add_tupple(sfc.normal, normal_perturbation(&rt->bump,uv_sphere(&sfc.pos), &sfc.normal));
 		norm_v3(&sfc.normal);
-		//inter->obj->color = color_at(&rt->text, uv_sphere(&sfc.pos));
-		inter->obj->color = create_trgb(0, 100, 20, 20);
+		inter->obj->color = color_at(&rt->text, uv_sphere(&sfc.pos));
+		//inter->obj->color = create_trgb(0, 100, 20, 20);
+		//inter->obj->color = get_color_checker(uv_sphere(&sfc.pos), inter);
 		mult_tuple_matrix_4(&sfc.pos, inter->obj->otow_m, sfc.pos);
 	}
 	
@@ -183,7 +189,8 @@ int lighting(t_rt *rt, t_intersect *inter)
 		mult_tuple_matrix_4(&sfc.pos, inter->obj->wtoo_m, sfc.pos);
 		inter->obj->color = get_color_checker(uv_plan(&sfc.pos), inter);
 		mult_tuple_matrix_4(&sfc.pos, inter->obj->otow_m, sfc.pos);
-	}
+	} 
+	norm_v3(&sfc.normal);
 	final = sub_synthese(inter->obj->color, rt->scn.amb.color, rt->scn.amb.ratio);
 	light = rt->scn.light;
 	while (light)

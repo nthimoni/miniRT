@@ -2,6 +2,7 @@
 miniRT
 
 #Personal files
+compile_commands.json
 */tags
 */.tags
 */.cache/*

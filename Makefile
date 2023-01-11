@@ -7,21 +7,49 @@ FTINC = $(FTPATH)include/
 LIBFT = $(FTPATH)libft.a
 MLX = $(MLXPATH)libmlx.a
 ######################################################################
-SRCS = main.c vector.c image.c hook.c exit_rt.c print.c init.c test.c trash.c colors.c matrix.c transformations.c\
-   ft_atof.c ft_atof_utils.c parsing.c parsing_utils.c ray.c data_parser.c obj_filler.c camera.c rendering.c lighting.c\
-   obj.c sphere.c debug.c plane.c cylinder.c isShadowed.c text_mapping.c bump_map.c
+SRCS =	maths/ft_atof.c \
+	  	maths/ft_atof_utils.c\
+	  	maths/matrix.c\
+	  	maths/matrix2.c\
+	  	maths/matrix3.c\
+	  	maths/matrix4.c\
+	  	maths/matrix_test.c\
+	  	maths/transformations.c\
+	  	maths/transformations2.c\
+	  	maths/vector.c\
+	  	maths/vector2.c\
+	  	maths/vector3.c\
+	  	scene/camera.c\
+	  	scene/obj.c\
+	  	primitives/cone.c\
+	  	primitives/cylinder.c\
+	  	primitives/plane.c\
+	  	primitives/sphere.c\
+	  	rendering/hook.c\
+	   	rendering/image.c\
+	  	rendering/init.c\
+	  	rendering/intersect.c\
+	  	rendering/ray.c\
+	  	rendering/rendering.c\
+	  	utils/debug.c\
+	  	utils/print.c\
+	  	utils/test.c\
+		main.c exit_rt.c trash.c colors.c \
+		parsing.c parsing_utils.c data_parser.c obj_filler.c lighting.c\
+		isShadowed.c text_mapping.c bump_map.c
 OBJS = $(addprefix $(OBJDIR),$(SRCS:.c=.o))
 DEPENDS = $(OBJS:.o=.d)
 ######################################################################
-CC = gcc -g -fsanitize=address -lasan
+CC = gcc -O3#-g -fsanitize=address -lasan
 CFLAGS = #-Wall -Wextra -Werror -MMD -MP 
 
 LINK = -lmlx -lft -lm -lXext -lX11
 INCPATH = -I$(INCDIR) -I$(FTINC) -I$(MLXPATH)
 LIBPATH = -L$(FTPATH) -L$(MLXPATH)
 NAME = miniRT
-VAL = valgrind --leak-check=full ./$(NAME) input.rt
-RUN = ./$(NAME) input.rt
+MAP = input.rt
+VAL = valgrind --leak-check=full ./$(NAME) $(MAP)
+RUN = ./$(NAME) $(MAP)
 ######################################################################
 all: $(NAME)
 	$(RUN)
@@ -42,6 +70,11 @@ $(MLX):
 
 $(OBJDIR):
 	@mkdir -p $(OBJDIR)
+	@mkdir -p $(OBJDIR)/maths
+	@mkdir -p $(OBJDIR)/scene
+	@mkdir -p $(OBJDIR)/primitives
+	@mkdir -p $(OBJDIR)/rendering
+	@mkdir -p $(OBJDIR)/utils
 
 run:
 	$(RUN)

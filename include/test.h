@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 13:02:04 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/21 11:03:21 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/03 13:14:09 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void		test_world_matrix(t_rt *rt);
 void	test_sphere_init(t_rt *rt);
 t_obj	*create_sphere(int type, t_tuple origin, float diam, int color);
 void	test_wtoo(t_rt *rt);
+void	test_cone(void);
 
 
 #endif 
