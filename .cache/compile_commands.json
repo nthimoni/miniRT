@@ -1,0 +1,197 @@
+[
+  {
+    "directory": "/mnt/nfs/homes/rmorel/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/maths/ft_atof.c -o bin/maths/ft_atof.o",
+    "file": "src/maths/ft_atof.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/rmorel/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/maths/ft_atof_utils.c -o bin/maths/ft_atof_utils.o",
+    "file": "src/maths/ft_atof_utils.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/rmorel/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/maths/matrix.c -o bin/maths/matrix.o",
+    "file": "src/maths/matrix.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/rmorel/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/maths/matrix2.c -o bin/maths/matrix2.o",
+    "file": "src/maths/matrix2.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/rmorel/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/maths/matrix3.c -o bin/maths/matrix3.o",
+    "file": "src/maths/matrix3.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/rmorel/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/maths/matrix4.c -o bin/maths/matrix4.o",
+    "file": "src/maths/matrix4.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/rmorel/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/maths/matrix_test.c -o bin/maths/matrix_test.o",
+    "file": "src/maths/matrix_test.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/rmorel/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/maths/transformations.c -o bin/maths/transformations.o",
+    "file": "src/maths/transformations.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/rmorel/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/maths/transformations2.c -o bin/maths/transformations2.o",
+    "file": "src/maths/transformations2.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/rmorel/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/maths/vector.c -o bin/maths/vector.o",
+    "file": "src/maths/vector.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/rmorel/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/maths/vector2.c -o bin/maths/vector2.o",
+    "file": "src/maths/vector2.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/rmorel/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/maths/vector3.c -o bin/maths/vector3.o",
+    "file": "src/maths/vector3.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/rmorel/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/maths/math_utils.c -o bin/maths/math_utils.o",
+    "file": "src/maths/math_utils.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/rmorel/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/scene/camera.c -o bin/scene/camera.o",
+    "file": "src/scene/camera.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/rmorel/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/scene/obj.c -o bin/scene/obj.o",
+    "file": "src/scene/obj.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/rmorel/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/primitives/cone.c -o bin/primitives/cone.o",
+    "file": "src/primitives/cone.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/rmorel/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/primitives/cylinder.c -o bin/primitives/cylinder.o",
+    "file": "src/primitives/cylinder.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/rmorel/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/primitives/plane.c -o bin/primitives/plane.o",
+    "file": "src/primitives/plane.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/rmorel/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/primitives/sphere.c -o bin/primitives/sphere.o",
+    "file": "src/primitives/sphere.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/rmorel/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/rendering/hook.c -o bin/rendering/hook.o",
+    "file": "src/rendering/hook.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/rmorel/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/rendering/image.c -o bin/rendering/image.o",
+    "file": "src/rendering/image.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/rmorel/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/rendering/init.c -o bin/rendering/init.o",
+    "file": "src/rendering/init.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/rmorel/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/rendering/intersect.c -o bin/rendering/intersect.o",
+    "file": "src/rendering/intersect.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/rmorel/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/rendering/ray.c -o bin/rendering/ray.o",
+    "file": "src/rendering/ray.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/rmorel/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/rendering/rendering.c -o bin/rendering/rendering.o",
+    "file": "src/rendering/rendering.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/rmorel/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/utils/debug.c -o bin/utils/debug.o",
+    "file": "src/utils/debug.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/rmorel/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/utils/print.c -o bin/utils/print.o",
+    "file": "src/utils/print.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/rmorel/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/utils/test.c -o bin/utils/test.o",
+    "file": "src/utils/test.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/rmorel/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/main.c -o bin/main.o",
+    "file": "src/main.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/rmorel/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/exit_rt.c -o bin/exit_rt.o",
+    "file": "src/exit_rt.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/rmorel/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/trash.c -o bin/trash.o",
+    "file": "src/trash.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/rmorel/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/colors.c -o bin/colors.o",
+    "file": "src/colors.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/rmorel/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/parsing.c -o bin/parsing.o",
+    "file": "src/parsing.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/rmorel/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/parsing_utils.c -o bin/parsing_utils.o",
+    "file": "src/parsing_utils.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/rmorel/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/data_parser.c -o bin/data_parser.o",
+    "file": "src/data_parser.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/rmorel/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/obj_filler.c -o bin/obj_filler.o",
+    "file": "src/obj_filler.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/rmorel/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/lighting.c -o bin/lighting.o",
+    "file": "src/lighting.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/rmorel/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/isShadowed.c -o bin/isShadowed.o",
+    "file": "src/isShadowed.c"
+  },
+  {
+    "directory": "/mnt/nfs/homes/rmorel/Documents/miniRT",
+    "command": "gcc -g -c -Wall -Wextra -Werror -MMD -MP -Iinclude/ -Ilibft/include/ -Iminilibx-linux/ src/text_mapping.c -o bin/text_mapping.o",
+    "file": "src/text_mapping.c"
+  }
+]

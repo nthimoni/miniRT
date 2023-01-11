@@ -6,15 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:13:31 by rmorel            #+#    #+#             */
-<<<<<<< HEAD
-<<<<<<< HEAD
-/*   Updated: 2023/01/09 13:24:48 by rmorel           ###   ########.fr       */
-=======
-/*   Updated: 2022/12/31 19:43:13 by rmorel           ###   ########.fr       */
->>>>>>> d017d0b (Cone calculation ok, but need to be added to parser in order to be tested)
-=======
-/*   Updated: 2023/01/01 13:59:03 by rmorel           ###   ########.fr       */
->>>>>>> 249c057 (Cylinder ont ok, check the wtoo matrix in test_wtoo)
+/*   Updated: 2023/01/11 21:49:04 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +27,6 @@ void	init_pixel(t_rt *rt);
 void	init_pixel_aa(t_rt *rt);
 void	draw_pixel_aa(int i_j[2], t_rt *rt);
 void	intersect_obj(t_rt *rt, t_intersect *inter);
-t_u		abs_u(t_u n);
 
 //		sphere.c
 
@@ -49,37 +40,19 @@ void	intersect_plane(t_obj *plane, t_intersect *inter, t_ray ray);
 //		cylinder.h
 
 void	intersect_cylinder(t_obj *cyl, t_intersect *inter, t_ray ray);
-void	normal_endcap(t_tuple point, t_obj *cyl, t_tuple *normal);
+void	normal_endcap(t_tuple p, t_obj *cyl, t_intersect *i, t_u t);
 void	normal_cylinder(t_tuple point, t_obj *cyl, t_tuple *normal);
-<<<<<<< HEAD
-
-//		cone.h
-
-void	intersect_cone(t_obj *cyl, t_intersect *inter, t_ray ray);
-=======
->>>>>>> 249c057 (Cylinder ont ok, check the wtoo matrix in test_wtoo)
 
 //		cone.h
 
 void	intersect_cone(t_obj *cyl, t_intersect *inter, t_ray ray);
 
-//		debug.c
-
-void	init_pixel_debug(t_rt *rt);
-void	intersect_obj_debug(t_rt *rt, t_intersect *inter, int i, int j);
-void	intersect_sph2_debug(t_obj *sph, t_intersect *inter, t_ray ray);
 
 //		intersect.c
 
-<<<<<<< HEAD
 t_bool	solve_quadratic(t_intersect *inter, t_quadra q);
 void	add_inter0(t_intersect *i, t_obj *o, t_u t);
 void	add_inter1(t_intersect *i, t_obj *o, t_u t);
 t_tuple	find_pos_inter(t_ray ray, t_u t);
-=======
-void	add_inter0(t_intersect *i, t_obj *o, t_u t);
-void	add_inter1(t_intersect *i, t_obj *o, t_u t);
-
->>>>>>> 249c057 (Cylinder ont ok, check the wtoo matrix in test_wtoo)
 
 #endif 
