@@ -49,7 +49,7 @@ LIBPATH = -L$(FTPATH) -L$(MLXPATH)
 NAME = miniRT
 MAP = input.rt
 VAL = valgrind --leak-check=full ./$(NAME) $(MAP)
-RUN = ./$(NAME) $(MAP)
+RUN = ./$(NAME) input/$(MAP)
 ######################################################################
 all: $(NAME)
 	$(RUN)
