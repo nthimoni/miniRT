@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:13:15 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/10 16:27:39 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/11 18:34:55 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	init_pixel_aa(t_rt *rt)
 	{
 		while (i_j[1] < W_H)
 		{
-			draw_pixel_aa(i_j, rt);		
+			draw_pixel_aa(i_j, rt);
 			i_j[1]++;
 		}
 		i_j[1] = 0;
@@ -50,18 +50,19 @@ void	draw_pixel_aa(int i_j[2], t_rt *rt)
 	t_color			color;
 	int				res;
 	t_intersect		inter;
-	double			rand_n;
+	double			eps[2];
 	unsigned int	count;
 
-	ft_bzero(&color, sizeof(t_color));;
+	ft_bzero(&color, sizeof(t_color));
 	count = 0;
 	while (count++ < rt->aa.n)
 	{
-		rand_n = ((double)rand()) / RAND_MAX - 0.5;
+		eps[0] = ((double)rand()) / RAND_MAX - 0.5;
+		eps[1] = ((double)rand()) / RAND_MAX - 0.5;
 		ft_bzero(&inter, sizeof(t_intersect));
 		inter.t0 = DBL_MAX;
 		inter.t1 = DBL_MAX;
-		pixel_raster_to_space(&inter, i_j[0] + rand_n, i_j[1] + rand_n, rt);
+		pixel_raster_to_space(&inter, i_j[0] + eps[0], i_j[1] + eps[1], rt);
 		intersect_obj(rt, &inter);
 		res = lighting(rt, &inter);
 		color.t += get_t(res);
@@ -69,9 +70,9 @@ void	draw_pixel_aa(int i_j[2], t_rt *rt)
 		color.g += get_g(res);
 		color.b += get_b(res);
 	}
-	my_mlx_pixel_put(rt, i_j[0], i_j[1], create_trgb(color.t / rt->aa.n, color.r / rt->aa.n, color.g / rt->aa.n, color.b / rt->aa.n));
+	my_mlx_pixel_put(rt, i_j[0], i_j[1], create_trgb(color.t / rt->aa.n,
+			color.r / rt->aa.n, color.g / rt->aa.n, color.b / rt->aa.n));
 }
-
 
 void	init_pixel(t_rt *rt)
 {
@@ -85,8 +86,6 @@ void	init_pixel(t_rt *rt)
 	{
 		while (j < W_H)
 		{
-			if (i == 810 && j == 505)
-				printf("Eh le schtroumpf, vient ici !\n");
 			ft_bzero(&inter, sizeof(t_intersect));
 			inter.t0 = DBL_MAX;
 			inter.t1 = DBL_MAX;
@@ -99,7 +98,6 @@ void	init_pixel(t_rt *rt)
 		j = 0;
 		i++;
 	}
-	printf("Ca n'compte quand meme que pourrrr un !\n");
 }
 
 void	intersect_obj(t_rt *rt, t_intersect *inter)
@@ -127,11 +125,4 @@ void	intersect_obj(t_rt *rt, t_intersect *inter)
 		}
 		tmp = tmp->next;
 	}
-}
-
-t_u	abs_u(t_u n)
-{
-	if (n < 0)
-		return (-n);
-	return (n);
 }

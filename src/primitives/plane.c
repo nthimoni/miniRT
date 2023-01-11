@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:41:56 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/03 10:20:50 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/10 21:38:25 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,3 @@ void	intersect_plane(t_obj *plane, t_intersect *inter, t_ray ray)
 	inter->t1 = DBL_MAX;
 	inter->normal_w = plane->d;
 }
-

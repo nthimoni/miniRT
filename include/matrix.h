@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 12:05:46 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/02 10:41:02 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/10 19:19:59 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,9 @@ void	matrix_ex1(t_u new[4][4]);
 void	matrix_ex2(t_u new[4][4]);
 void	matrix_ex3(t_u new[3][3]);
 void	matrix_ex4(t_u new[4][4]);
+t_u		max_u(t_u a, t_u b);
+t_u		min_u(t_u a, t_u b);
 void	clamp(t_u *x);
+t_u		abs_u(t_u n);
 
 #endif 

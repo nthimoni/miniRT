@@ -9,6 +9,7 @@ MLX = $(MLXPATH)libmlx.a
 ######################################################################
 SRCS =	maths/ft_atof.c \
 	  	maths/ft_atof_utils.c\
+	  	maths/math_utils.c\
 	  	maths/matrix.c\
 	  	maths/matrix2.c\
 	  	maths/matrix3.c\
@@ -19,24 +20,29 @@ SRCS =	maths/ft_atof.c \
 	  	maths/vector.c\
 	  	maths/vector2.c\
 	  	maths/vector3.c\
-	  	scene/camera.c\
-	  	scene/obj.c\
+	  	mlx_utils/hook.c\
+	   	mlx_utils/image.c\
+		parser/data_parser.c\
+		parser/obj_filler.c\
+		parser/parsing.c\
+		parser/parsing_utils.c\
 	  	primitives/cone.c\
 	  	primitives/cylinder.c\
-	  	primitives/plane.c\
 	  	primitives/sphere.c\
-	  	rendering/hook.c\
-	   	rendering/image.c\
+	  	primitives/plane.c\
+		rendering/colors.c\
 	  	rendering/init.c\
-	  	rendering/intersect.c\
+	  	rendering/intersect_utils.c\
+		rendering/isShadowed.c\
+		rendering/lighting.c\
 	  	rendering/ray.c\
-	  	rendering/rendering.c\
-	  	utils/debug.c\
+		rendering/text_mapping.c\
+	  	scene/camera.c\
+	  	scene/obj.c\
+		utils/exit_rt.c\
 	  	utils/print.c\
 	  	utils/test.c\
-		main.c exit_rt.c trash.c colors.c \
-		parsing.c parsing_utils.c data_parser.c obj_filler.c lighting.c\
-		isShadowed.c text_mapping.c 
+		main.c
 OBJS = $(addprefix $(OBJDIR),$(SRCS:.c=.o))
 DEPENDS = $(OBJS:.o=.d)
 ######################################################################
@@ -69,9 +75,11 @@ $(MLX):
 $(OBJDIR):
 	@mkdir -p $(OBJDIR)
 	@mkdir -p $(OBJDIR)/maths
-	@mkdir -p $(OBJDIR)/scene
+	@mkdir -p $(OBJDIR)/mlx_utils
+	@mkdir -p $(OBJDIR)/parser
 	@mkdir -p $(OBJDIR)/primitives
 	@mkdir -p $(OBJDIR)/rendering
+	@mkdir -p $(OBJDIR)/scene
 	@mkdir -p $(OBJDIR)/utils
 
 run:

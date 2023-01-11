@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 21:47:50 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/10 18:48:43 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/10 18:59:43 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,7 @@ int lighting(t_rt *rt, t_intersect *inter)
 		//inter->obj->color = get_color_checker(uv_sphere(&sfc.pos), inter);
 		//sfc.normal = add_tupple(sfc.normal, normal_perturbation(&rt->bump,uv_sphere(&sfc.pos)));
 		norm_v3(&sfc.normal);
-		inter->obj->color = color_at(&rt->text, uv_sphere(&sfc.pos));
+		//inter->obj->color = color_at(&rt->text, uv_sphere(&sfc.pos));
 		mult_tuple_matrix_4(&sfc.pos, inter->obj->otow_m, sfc.pos);
 	}
 	
