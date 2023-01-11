@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 21:47:50 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/10 18:59:43 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/11 19:32:37 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,8 @@ int lighting(t_rt *rt, t_intersect *inter)
 	t_list		*light;
 	t_tuple		light_v;	
 
+	if (!inter->obj)
+		return (0);
 	ft_bzero(&sfc, sizeof(t_surface));
 	set_normal_position(rt, inter, &sfc);
 

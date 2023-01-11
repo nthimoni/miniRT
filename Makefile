@@ -53,7 +53,7 @@ INCPATH = -I$(INCDIR) -I$(FTINC) -I$(MLXPATH)
 LIBPATH = -L$(FTPATH) -L$(MLXPATH)
 NAME = miniRT
 VAL = valgrind --leak-check=full ./$(NAME) input.rt
-RUN = ./$(NAME) input.rt
+RUN = ./$(NAME) input/input.rt
 ######################################################################
 all: $(NAME)
 	$(RUN)
