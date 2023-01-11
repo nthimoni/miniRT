@@ -6,7 +6,11 @@
 /*   By: bek <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 10:07:02 by bek               #+#    #+#             */
+<<<<<<< HEAD:src/scene/obj.c
 /*   Updated: 2023/01/11 21:11:29 by rmorel           ###   ########.fr       */
+=======
+/*   Updated: 2022/12/31 19:26:15 by rmorel           ###   ########.fr       */
+>>>>>>> d017d0b (Cone calculation ok, but need to be added to parser in order to be tested):src/obj.c
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +76,20 @@ void	cone_matrix(t_obj_matrix m, t_obj *obj)
 	invert_matrix_4(obj->otow_m_rs, obj->wtoo_m_inv_rs);
 	mult_tuple_matrix_4(&obj->top_obj, obj->wtoo_m, obj->top);
 	mult_tuple_matrix_4(&obj->o_obj, obj->wtoo_m, obj->o);
+}
+
+void	cone_matrix(t_obj_matrix m, t_obj *obj)
+{
+	trans_matrix_4(m.tra, obj->o.x, obj->o.y + obj->height, obj->o.z);
+	if (check_x_plane(obj->d))
+		identity_matrix_4(m.rot);
+	else
+		get_matrix_align_v1_v2(m.rot, create_tuple_pts(0, -1, 0, 0), obj->d);
+	scale_matrix_4(m.sca, obj->diam /2, 1, obj->diam /2);
+	mult_matrix_4(m.tmp, m.rot, m.sca);
+	mult_matrix_4(obj->otow_m, m.tra, m.tmp);
+	invert_matrix_4(obj->otow_m, obj->wtoo_m);
+	get_cylinder_top(obj);
 }
 
 void	sphere_matrix(t_obj_matrix m, t_obj *obj)

@@ -6,7 +6,11 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 17:49:21 by rmorel            #+#    #+#             */
+<<<<<<< HEAD:src/scene/camera.c
 /*   Updated: 2023/01/09 16:25:14 by rmorel           ###   ########.fr       */
+=======
+/*   Updated: 2022/12/31 19:25:36 by rmorel           ###   ########.fr       */
+>>>>>>> d017d0b (Cone calculation ok, but need to be added to parser in order to be tested):src/camera.c
 /*                                                                            */
 /* ************************************************************************** */
 

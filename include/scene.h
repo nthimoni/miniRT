@@ -6,7 +6,11 @@
 /*   By: bek <marvin@42.fr>                         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 10:09:36 by bek               #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/01/09 12:03:19 by rmorel           ###   ########.fr       */
+=======
+/*   Updated: 2022/12/31 19:26:09 by rmorel           ###   ########.fr       */
+>>>>>>> d017d0b (Cone calculation ok, but need to be added to parser in order to be tested)
 /*                                                                            */
 /* ************************************************************************** */
 
