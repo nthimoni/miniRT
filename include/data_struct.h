@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:01:40 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/09 16:35:55 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/13 16:07:10 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,19 @@ typedef	enum	e_text
 {
 	COLOR,
 	CHECKER,
-	BUMP,
+	TEXTURE,
 }	t_text;
+
+typedef struct	s_img
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_lgth;
+	int		endian;
+	int		x;
+	int		y;
+}	t_img;
 
 typedef struct s_obj
 {
@@ -90,6 +101,9 @@ typedef struct s_obj
 	int		color;
 	double	ratio;
 	t_text	text;
+	t_img	img_text;
+	t_img	img_bump;
+	int		bump;
 	t_u		wtoo_m[4][4];
 	t_u		wtoo_m_inv_rs[4][4];
 	t_u		otow_m[4][4];
@@ -116,16 +130,6 @@ typedef struct s_scene
 	t_list	*objs;
 }	t_scene;
 
-typedef struct	s_img
-{
-	void	*img;
-	char	*addr;
-	int		bpp;
-	int		line_lgth;
-	int		endian;
-	int		x;
-	int		y;
-}	t_img;
 
 typedef struct	s_rt
 {
