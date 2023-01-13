@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 17:07:26 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/13 16:28:32 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/13 18:46:46 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	define_bump(t_rt *rt, char *s, t_obj *tmp)
 		return (free_split(sp), 1);
 	if (ft_strslen(sp) == 2)
 	{
+		*ft_strchr(s, '/') = 0;
 		if (load_img(rt, sp[1], &tmp->img_bump))
 			return (free_split(sp), 1);
 		tmp->bump = 1;
@@ -53,7 +54,7 @@ int	define_bump(t_rt *rt, char *s, t_obj *tmp)
 	if (load_img(rt, sp[0], &tmp->img_text))
 		return (free_split(sp), 1);
 	tmp->text = TEXTURE;
-	return (0);
+	return (free_split(sp), 0);
 }
 
 int	get_color(char *s, int *color, t_obj *tmp, t_rt *rt)
@@ -65,9 +66,13 @@ int	get_color(char *s, int *color, t_obj *tmp, t_rt *rt)
 
 	if (define_bump(rt, s, tmp))
 		return (1);
+	if (tmp->text == TEXTURE)
+		return (0);
 	if (ft_strncmp(s, "checker", 8) == 0)
 		return (tmp->text = CHECKER, 0);
 	sp = ft_split(s, ',');
+	if (!sp)
+		return (0);
 	if (ft_strslen(sp) != 3)
 		return (free_split(sp), 1);
 	if (ft_strlen(sp[0]) > 3 || ft_strlen(sp[1]) > 3 || ft_strlen(sp[2]) > 3)

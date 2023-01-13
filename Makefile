@@ -30,6 +30,7 @@ SRCS =	maths/ft_atof.c \
 	  	primitives/cylinder.c\
 	  	primitives/sphere.c\
 	  	primitives/plane.c\
+		rendering/bump_map.c\
 		rendering/colors.c\
 	  	rendering/init.c\
 	  	rendering/intersect_utils.c\

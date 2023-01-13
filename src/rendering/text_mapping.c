@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 02:53:27 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/12/15 20:13:47 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/13 18:38:06 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,50 @@ t_2dp plan_pos_to_2d(t_tuple *pos)
 	ret.x = modfl(pos->x / 40, &useless);
 	ret.y = modfl(pos->z / 40, &useless);
 	return (ret);
+}
+
+t_2dp	uv_plan(t_tuple *pos)
+{
+	t_2dp	uv;
+
+	uv.x = fmod(pos->x, 1);
+	uv.y = fmod(pos->z, 1);
+	return (uv);
+}
+
+t_2dp	uv_sphere(t_tuple *pos)
+{
+	t_2dp	uv;
+	double	theta;
+	double	phi;
+
+	theta = atan2(pos->x, pos->z);
+	phi = acos(pos->y);
+	uv.x = 1 - ((theta / (2 * M_PI)) + 0.5);
+	uv.y = 1 - (phi / M_PI);
+	return (uv);
+}
+
+t_2dp	uv_cylindre(t_tuple *pos)
+{
+	t_2dp	uv;
+	double	theta;
+
+	theta = atan2(pos->x, pos->z);
+	uv.x = 1 - ((theta / (2 * M_PI)) + 0.5);
+	uv.y = fmod(pos->y, 1);
+	return (uv);
+}
+
+t_2dp	uv_cone(t_tuple *pos)
+{
+	t_2dp	uv;
+	double	theta;
+	double	radius;
+
+	radius = pos->x * pos->x + pos->z * pos->z;
+	theta = atan2(pos->x, pos->z);
+	uv.x = 1 - ((theta / (2 * M_PI)) + 0.5);
+	uv.y = fmod(sqrt(radius), 1);
+	return (uv);
 }
