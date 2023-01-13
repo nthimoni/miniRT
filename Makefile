@@ -52,8 +52,9 @@ LINK = -lmlx -lft -lm -lXext -lX11
 INCPATH = -I$(INCDIR) -I$(FTINC) -I$(MLXPATH)
 LIBPATH = -L$(FTPATH) -L$(MLXPATH)
 NAME = miniRT
+MAP = input.rt
 VAL = valgrind --leak-check=full ./$(NAME) input.rt
-RUN = ./$(NAME) input/input.rt
+RUN = ./$(NAME) input/$(MAP)
 ######################################################################
 all: $(NAME)
 	$(RUN)

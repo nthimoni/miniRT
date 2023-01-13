@@ -6,13 +6,14 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 17:07:26 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/12/15 21:53:08 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/12 19:11:27 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 #include "parsing.h"
 #include "color.h"
+#include "mlx.h"
 
 static int	only_nb(char *s)
 {
@@ -25,6 +26,30 @@ static int	only_nb(char *s)
 	return (1);
 }
 
+int load_img(t_rt *rt, char *path, t_img *img)
+{
+	img->img = mlx_xpm_file_to_image(rt->mlx, path, &img->x, &img->y);
+	if (!img->img)
+		return (1);
+	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->line_lgth, &img->endian);
+	return (0);
+}
+
+int	define_bump(t_rt *rt, char *s)
+{
+	char **sp;
+
+	sp = ft_split(s, '/');
+	if (ft_strslen(sp) > 2)
+		return (free_split(sp), 1);
+	if (ft_strslen(sp) == 1)
+	{
+		if (load_img(sp[2))
+	}
+
+	return (0);
+}
+
 int	get_color(char *s, int *color, t_text *text)
 {
 	char	**sp;
@@ -32,6 +57,8 @@ int	get_color(char *s, int *color, t_text *text)
 	int		g;
 	int		b;
 
+	if (define_bump(s))
+		return (1);
 	if (ft_strncmp(s, "checker", 8) == 0)
 		return (*text = CHECKER, 0);
 	sp = ft_split(s, ',');
