@@ -1,0 +1,22 @@
+-anti-aliasing 10
+A 0.3 255,255,255
+
+-(Ocean pacifique)
+-C 0,0,-57 0,0,1 70
+-(Afrique)
+-C 0,0,57 0,0,-1 70 
+-C -57,0,0 1,0,0 70 (Amerique du sud)
+-C 57,0,0 -1,0,0 70 (Oceanie)
+-(Antarctique -bug-)
+-C 0,-57,0 0,1,0 70
+-(Arctique -bug-)
+C 0,-34000,0 0,1,0 70
+
+sp 0,0,0         60000        earth_8k.xpm/bump_42k.xpm
+L 1000,-150000,0 0.8 255,255,255
+
+
+
+-C 0,4,0 0,-1,0 70
+-L 4,4,4 0.8 255,255,255
+-sp 0,0,0         1.5       earth.xpm/bump.xpm

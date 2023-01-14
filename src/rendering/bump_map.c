@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 23:07:36 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/13 18:10:27 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/14 06:44:28 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,16 @@ int	color_at(t_img *img, t_2dp pos)
 	int		x;
 	int		y;
 
-	x = floor(pos.x * (img->x - 1));// + (img->x - img->x * (1.1/50));
-	y = floor(pos.y * (img->y - 1));// + (img->y - img->y * (-2.0/50));
+	x = roundl(pos.x * (img->x - 1));// + (img->x - img->x * (1.1/50));
+	y = roundl(pos.y * (img->y - 1));// + (img->y - img->y * (-2.0/50));
 //	y %= img->y - 1;
+	if (y < 2)
+		y = 2;
+	if (y > img->y - 2)
+		y = img->y - 2;
 
 	dst = img->addr + ((img->y - y) * img->line_lgth + x * (img->bpp / 8));
+	//ft_printf("%d %d\n", x, y);
 	return (*(int *)dst);
 }
 

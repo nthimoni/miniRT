@@ -1,5 +1,5 @@
 anti-aliasing 10
-sp 0,0,150 70 checker/bump.xpm
+sp 0,0,150 120 earth.xpm/bump.xpm
 C 0,0,0 0,0,1 70
 A 0.3 255,255,255
 sp 45,0,100 30 0,0,255

@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:01:40 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/13 17:55:28 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/14 05:37:16 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ typedef enum	e_space
 
 typedef	enum	e_text
 {
-	COLOR,
+	COLOR = 0,
 	CHECKER,
 	TEXTURE,
 }	t_text;
