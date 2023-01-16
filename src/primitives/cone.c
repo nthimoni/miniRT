@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 12:15:54 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/11 21:53:29 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/16 14:11:38 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,9 @@ static void	normal_cone(t_tuple point, t_obj *obj, t_intersect *i, t_u t)
 	i->normal_w.x = point.x;
 	i->normal_w.y = 0;
 	if ((obj->d.x == 0 && obj->d.y == 0 && obj->d.z < 0))
-		i->normal_w.y = 0.2 * point.x + 0.2 * point.z;
+		i->normal_w.y = (0.2 * point.x + 0.2 * point.z);
 	i->normal_w.z = point.z;
 	i->normal_w.w = 0;
 	mult_tuple_matrix_4(&i->normal_w, obj->otow_m, i->normal_w);
 }
+

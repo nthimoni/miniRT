@@ -30,6 +30,7 @@ SRCS =	maths/ft_atof.c \
 	  	primitives/cylinder.c\
 	  	primitives/sphere.c\
 	  	primitives/plane.c\
+	  	primitives/get_normal.c\
 		rendering/bump_map.c\
 		rendering/colors.c\
 	  	rendering/init.c\
@@ -48,7 +49,7 @@ OBJS = $(addprefix $(OBJDIR),$(SRCS:.c=.o))
 DEPENDS = $(OBJS:.o=.d)
 ######################################################################
 CC = gcc -g
-CFLAGS = -Wall -Wextra -Werror -MMD -MP
+CFLAGS = #-Wall -Wextra -Werror -MMD -MP
 LINK = -lmlx -lft -lm -lXext -lX11
 INCPATH = -I$(INCDIR) -I$(FTINC) -I$(MLXPATH)
 LIBPATH = -L$(FTPATH) -L$(MLXPATH)
