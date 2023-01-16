@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 12:15:54 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/16 14:11:38 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/16 20:15:46 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static void	check_cone(t_obj *obj, t_ray *ray2, t_intersect *inter, t_u m_m[2]);
 static void	intersect_endcap_cone(t_intersect *inter, t_obj *obj, t_ray *ray2);
 static void	normal_cone(t_tuple point, t_obj *obj, t_intersect *i, t_u t);
 static void	intersect_side_cone(t_intersect *i, t_obj *obj, t_ray *r);
+static void	cone_normal(t_intersect *i, t_ray *ray, t_obj *obj);
 
 void	intersect_cone(t_obj *obj, t_intersect *inter, t_ray ray)
 {
@@ -25,6 +26,9 @@ void	intersect_cone(t_obj *obj, t_intersect *inter, t_ray ray)
 	mult_tuple_matrix_4(&ray2.o, obj->wtoo_m, ray.o);
 	intersect_endcap_cone(inter, obj, &ray2);
 	intersect_side_cone(inter, obj, &ray2);
+	if (inter->obj == obj)
+		//get_normal(inter, &ray, obj); 
+		cone_normal(inter, &ray, obj); 
 	return ;
 }
 
@@ -109,3 +113,20 @@ static void	normal_cone(t_tuple point, t_obj *obj, t_intersect *i, t_u t)
 	mult_tuple_matrix_4(&i->normal_w, obj->otow_m, i->normal_w);
 }
 
+static void	cone_normal(t_intersect *i, t_ray *ray, t_obj *obj)
+{
+	t_u		angle_cone;
+	t_tuple	obj_to_inter;
+	t_tuple	scaled_direction;
+	t_tuple	intersection;
+
+	intersection = find_pos_inter(*ray, i->t0_tmp);
+	(void)ray;
+	angle_cone = 0;
+	if (obj->height)
+		angle_cone = atan(obj->diam / 2 / obj->height);
+	obj_to_inter = sub_tupple(obj->o, intersection);
+	scaled_direction = create_tuple_copy(obj->d);
+	scale_v3(&scaled_direction, length_v3(obj_to_inter) / cos(angle_cone));
+	i->normal_w = sub_tupple(scaled_direction, obj_to_inter);
+}

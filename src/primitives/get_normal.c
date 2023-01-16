@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 12:39:45 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/16 14:45:43 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/16 20:09:16 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,20 @@ static void	cylinder_normal(t_intersect *i, t_ray *ray, t_obj *obj, t_tuple *x);
 void	get_normal(t_intersect *i, t_ray *ray, t_obj *obj)
 {
 	t_tuple	intersection;
+	t_ray	ray2;
 
-	intersection = find_pos_inter(*ray, i->t0_tmp);
-//	if (obj->type == SPHERE)
-//		sphere_normal(i, ray, obj, &intersection);
-//	else if (obj->type == PLAN)
-//		plan_normal(i, ray, obj, &intersection);
-//	else if (obj->type == CYLINDRE)
-//		cylinder_normal(i, ray, obj, &intersection);
-	if (obj->type == CONE)
+	mult_tuple_matrix_4(&ray2.d, obj->wtoo_m, ray->d);
+	mult_tuple_matrix_4(&ray2.o, obj->wtoo_m, ray->o);
+	intersection = find_pos_inter(ray2, i->t0);
+	if (obj->type == SPHERE)
+		sphere_normal(i, ray, obj, &intersection);
+	else if (obj->type == PLAN)
+		plan_normal(i, ray, obj, &intersection);
+	else if (obj->type == CYLINDRE)
+		cylinder_normal(i, ray, obj, &intersection);
+	else if (obj->type == CONE)
 		cone_normal(i, ray, obj, &intersection);
+	mult_tuple_matrix_4(&i->normal_w, obj->otow_m, i->normal_w);
 	norm_v3(&i->normal_w);
 }
 
@@ -78,4 +82,3 @@ static void	cylinder_normal(t_intersect *i, t_ray *ray, t_obj *obj, t_tuple *x)
 	y = add_tupple(obj->o, scaled_direction);
 	i->normal_w = sub_tupple(y, *x);
 }
-

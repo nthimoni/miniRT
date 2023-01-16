@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:13:15 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/16 14:46:54 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/16 20:10:26 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ void	intersect_obj(t_rt *rt, t_intersect *inter)
 		}
 		tmp = tmp->next;
 	}
-	//if (inter->obj)
+	//if (inter->t0 < DBL_MAX)
 	//	get_normal(inter, &inter->ray, inter->obj);
 
 }
