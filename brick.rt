@@ -1,4 +1,4 @@
-anti-aliasing 10
+-anti-aliasing 10
 A 0.1 255,255,255
 
 -(Ocean pacifique)
@@ -14,9 +14,9 @@ C 0,0,57 0,0,-1 70
 -(Arctique -bug-)
 -C 0,57,0 0,-1,0 70
 
-sp 0,0,0         55        180,180,180/hd_brick.xpm
+sp 0,0,0         55        200,200,200/rock.xpm
 -sp 0,0,0         80        checker
-L 0,20,67 0.9 255,255,255
+L 0,40,57 0.9 255,255,255
 
 
 

@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:13:15 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/16 01:16:47 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/16 17:56:42 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,7 @@ void	init_pixel(t_rt *rt)
 			inter.t1 = DBL_MAX;
 			pixel_raster_to_space(&inter, i, j, rt);
 			intersect_obj(rt, &inter);
-			if (inter.t0 < DBL_MAX)
-				my_mlx_pixel_put(rt, i, j, lighting(rt, &inter));
+			my_mlx_pixel_put(rt, i, j, lighting(rt, &inter));
 			j++;
 		}
 		j = 0;
