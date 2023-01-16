@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 02:53:27 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/16 17:13:32 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/16 19:03:30 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,11 @@ t_2dp	uv_sphere(t_tuple *pos)
 	uv.x = 1 - ((theta / (2 * M_PI)) + 0.5);
 	uv.y = 1 - (phi / M_PI);
 	uv.x += 2/20.0;
+	uv.x += 0.5;
 	if (uv.x > 1)
 		uv.x -= 1;
 	if (uv.y > 1)
 		uv.y -= 1;
-	uv.x *= 8;
-	uv.y *= 4;
 	return (uv);
 }
 

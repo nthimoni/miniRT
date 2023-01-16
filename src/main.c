@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 14:54:33 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/16 18:00:23 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/16 19:01:22 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	main(int argc, char **argv)
 	{
 		//ft_bzero(rt->img->addr, W_H * W_W * 4);
 		rt->scn.objs = NULL;
+		rt->scn.light = NULL;
 		parsing(rt, *argv, &rt->scn);
 		init_inter(rt);
 		argv++;
