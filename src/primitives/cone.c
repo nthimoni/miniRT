@@ -6,11 +6,14 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 12:15:54 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/10 21:36:23 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/15 18:53:25 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "data_struct.h"
 #include "ray.h"
+#include "vector.h"
+#include <math.h>
 
 static void	check_cone(t_obj *obj, t_ray *ray2, t_intersect *inter, t_u m_m[2]);
 static void	intersect_endcap_cone(t_intersect *inter, t_obj *obj, t_ray *ray2);

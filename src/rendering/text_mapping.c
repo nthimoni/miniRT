@@ -6,13 +6,14 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 02:53:27 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/14 06:09:05 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/16 02:42:21 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "data_struct.h"
 #include "checker.h"
 #include "libft.h"
+#include "vector.h"
 #include <math.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -54,28 +55,16 @@ t_2dp	uv_sphere(t_tuple *pos)
 	t_2dp	uv;
 	double	theta;
 	double	phi;
-	static t_2dp max = {-100, -100};
-	static t_2dp min = {100, 100};
 
-	printf("POS : %lf %lf %lf\n", pos->x, pos->y, pos->z);
 	theta = atan2l(pos->x, pos->z);
 	phi = acosl(pos->y);
 	uv.x = 1 - ((theta / (2 * M_PI)) + 0.5);
 	uv.y = 1 - (phi / M_PI);
-	max.y = uv.y;
-	if (isnan(max.y))
-	{
-		ft_printf("coucou\n");
-		//usleep(300000);
-	}
-	if (uv.x > max.x || uv.x < min.x || uv.y > max.y || uv.y < min.y)
-	{
-		max.x = (uv.x > max.x) ? uv.x : max.x;
-		max.y = (uv.y > max.y) ? uv.y : max.y;
-		min.x = (uv.x < min.x) ? uv.x : min.x;
-		min.y = (uv.y < min.y) ? uv.y : min.y;
-		printf("%lf %lf %lf %lf\n", max.x, max.y, min.x, min.y);
-	}
+	uv.x += 2/20.0;
+	if (uv.x > 1)
+		uv.x -= 1;
+	if (uv.y > 1)
+		uv.y -= 1;
 	return (uv);
 }
 

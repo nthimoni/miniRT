@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 03:00:54 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/14 00:52:30 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/16 03:39:23 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # define CHECKER_WIDTH_S 8
 # define CHECKER_HEIGHT_S 16
 
-# define CHECKER_COL_1 0x00000000
+# define CHECKER_COL_1 0x00040404
 # define CHECKER_COL_2 0x00FFFFFF
 
 # include "data_struct.h"

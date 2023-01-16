@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 17:49:21 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/11 17:28:37 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/15 23:10:04 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,9 +107,9 @@ void	pixel_raster_to_space(t_intersect *i, t_u x, t_u y, t_rt *rt)
 	i->pixel.z = 1;
 	i->pixel.w = 1;
 	ft_bzero(&i->ray.o, sizeof(t_tuple));
-	i->ray.o.x = 1;
-	i->ray.o.y = 1;
-	i->ray.o.z = 1;
+	i->ray.o.x = 0;
+	i->ray.o.y = 0;
+	i->ray.o.z = 0;
 	i->ray.o.w = 1;
 	i->ray.d.x = i->pixel.x - 0;
 	i->ray.d.y = i->pixel.y - 0;
