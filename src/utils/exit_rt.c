@@ -6,25 +6,55 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 18:03:15 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/11 18:50:13 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/17 17:13:08 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "exit_rt.h"
+#include "data_struct.h"
+#include "libft.h"
+#include "mlx.h"
 
-void	exit_rt(t_rt *rt, char *error_msg, int exit_code)
+static void free_obj_lst(t_rt *rt)
 {
-	(void)rt->trash;
-	if (error_msg)
-		ft_putstr_fd(error_msg, 2);
-	exit(exit_code);
+	t_list	*tmp;
+	t_obj	*obj;
 
+	tmp = rt->scn.objs;
+	while (tmp)
+	{
+		obj = tmp->content;
+		if (obj->bump)
+			mlx_destroy_image(rt->mlx, obj->img_bump.img);
+		if (obj->text == TEXTURE)
+			mlx_destroy_image(rt->mlx, obj->img_text.img);
+		tmp = tmp->next;
+	}
+	ft_lstclear(&rt->scn.objs, free);
+}
+
+void free_scene(t_rt *rt)
+{
+	free_obj_lst(rt);
+	ft_lstclear(&rt->scn.light, free);
+	ft_bzero(&rt->scn, sizeof(t_scene));
+}
+
+void	exit_rt(t_rt *rt)
+{
+	free_scene(rt);
+	mlx_destroy_image(rt->mlx, rt->img->img);
+	mlx_destroy_window(rt->mlx, rt->win);
+	mlx_destroy_display(rt->mlx);
+	free(rt->mlx);
+	free(rt->img);
+	free(rt);
 }
 
 void	exit_parsing(t_rt *rt, char *error_msg, int exit_code)
 {
-	(void)rt->trash;
 	if (error_msg)
 		ft_putstr_fd(error_msg, 2);
+	close(rt->fd);
+	exit_rt(rt);
 	exit(exit_code);
 }

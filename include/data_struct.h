@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:01:40 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/09 16:35:55 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/17 17:13:36 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,21 @@ typedef enum	e_space
 
 typedef	enum	e_text
 {
-	COLOR,
+	COLOR = 0,
 	CHECKER,
-	BUMP,
+	TEXTURE,
 }	t_text;
+
+typedef struct	s_img
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_lgth;
+	int		endian;
+	int		x;
+	int		y;
+}	t_img;
 
 typedef struct s_obj
 {
@@ -90,6 +101,9 @@ typedef struct s_obj
 	int		color;
 	double	ratio;
 	t_text	text;
+	t_img	img_text;
+	t_img	img_bump;
+	int		bump;
 	t_u		wtoo_m[4][4];
 	t_u		wtoo_m_inv_rs[4][4];
 	t_u		otow_m[4][4];
@@ -116,20 +130,9 @@ typedef struct s_scene
 	t_list	*objs;
 }	t_scene;
 
-typedef struct	s_img
-{
-	void	*img;
-	char	*addr;
-	int		bpp;
-	int		line_lgth;
-	int		endian;
-	int		x;
-	int		y;
-}	t_img;
 
 typedef struct	s_rt
 {
-	t_list	*trash;
 	void	*mlx;
 	void	*win;
 	t_img	*img;
@@ -139,6 +142,7 @@ typedef struct	s_rt
 	t_space	space;
 	t_bool	debug;
 	t_aa	aa;
+	int		fd;
 }	t_rt;
 
 typedef struct	s_ray
@@ -167,6 +171,7 @@ typedef struct	s_intersect
 	t_u			t0_tmp;
 	t_u			t1_tmp;
 	t_tuple		normal_w;
+	t_2dp		uv;
 	t_quadra	q;
 	t_obj		*obj;
 	t_obj		*obj_ign;

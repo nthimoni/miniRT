@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:13:15 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/11 18:34:55 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/16 17:56:42 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	init_pixel_aa(t_rt *rt)
 	i_j[1] = 0;
 	while (i_j[0] < W_W)
 	{
+		ft_printf("\rRendering ... [ %d%% ]", (int)(i_j[0] / (W_W - 1.0) * 100));
 		while (i_j[1] < W_H)
 		{
 			draw_pixel_aa(i_j, rt);
@@ -43,6 +44,7 @@ void	init_pixel_aa(t_rt *rt)
 		i_j[1] = 0;
 		i_j[0]++;
 	}
+	ft_printf("\nRendered !\n");
 }
 
 void	draw_pixel_aa(int i_j[2], t_rt *rt)
@@ -84,6 +86,7 @@ void	init_pixel(t_rt *rt)
 	j = 0;
 	while (i < W_W)
 	{
+		ft_printf("\rRendering ... [ %d%% ]", (int)(i / (W_W - 1.0) * 100));
 		while (j < W_H)
 		{
 			ft_bzero(&inter, sizeof(t_intersect));
@@ -91,13 +94,13 @@ void	init_pixel(t_rt *rt)
 			inter.t1 = DBL_MAX;
 			pixel_raster_to_space(&inter, i, j, rt);
 			intersect_obj(rt, &inter);
-			if (inter.t0 < DBL_MAX)
-				my_mlx_pixel_put(rt, i, j, lighting(rt, &inter));
+			my_mlx_pixel_put(rt, i, j, lighting(rt, &inter));
 			j++;
 		}
 		j = 0;
 		i++;
 	}
+	ft_printf("\nRendered !\n");
 }
 
 void	intersect_obj(t_rt *rt, t_intersect *inter)

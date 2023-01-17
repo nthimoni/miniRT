@@ -6,13 +6,14 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 17:07:26 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/12/15 21:53:08 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/13 18:46:46 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "miniRT.h"
 #include "parsing.h"
 #include "color.h"
+#include "mlx.h"
 
 static int	only_nb(char *s)
 {
@@ -25,16 +26,53 @@ static int	only_nb(char *s)
 	return (1);
 }
 
-int	get_color(char *s, int *color, t_text *text)
+int load_img(t_rt *rt, char *path, t_img *img)
+{
+	img->img = mlx_xpm_file_to_image(rt->mlx, path, &img->x, &img->y);
+	if (!img->img)
+		return (ft_printf("unnable to open : %s\n", path), 1);
+	img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->line_lgth, &img->endian);
+	return (0);
+}
+
+int	define_bump(t_rt *rt, char *s, t_obj *tmp)
+{
+	char **sp;
+
+	sp = ft_split(s, '/');
+	if (ft_strslen(sp) > 2)
+		return (free_split(sp), 1);
+	if (ft_strslen(sp) == 2)
+	{
+		*ft_strchr(s, '/') = 0;
+		if (load_img(rt, sp[1], &tmp->img_bump))
+			return (free_split(sp), 1);
+		tmp->bump = 1;
+	}
+	if (ft_strncmp(sp[0] + ft_strlen(sp[0]) - 4, ".xpm", 5))
+		return (free_split(sp), 0);
+	if (load_img(rt, sp[0], &tmp->img_text))
+		return (free_split(sp), 1);
+	tmp->text = TEXTURE;
+	return (free_split(sp), 0);
+}
+
+int	get_color(char *s, int *color, t_obj *tmp, t_rt *rt)
 {
 	char	**sp;
 	int		r;
 	int		g;
 	int		b;
 
+	if (define_bump(rt, s, tmp))
+		return (1);
+	if (tmp->text == TEXTURE)
+		return (0);
 	if (ft_strncmp(s, "checker", 8) == 0)
-		return (*text = CHECKER, 0);
+		return (tmp->text = CHECKER, 0);
 	sp = ft_split(s, ',');
+	if (!sp)
+		return (0);
 	if (ft_strslen(sp) != 3)
 		return (free_split(sp), 1);
 	if (ft_strlen(sp[0]) > 3 || ft_strlen(sp[1]) > 3 || ft_strlen(sp[2]) > 3)
@@ -48,7 +86,7 @@ int	get_color(char *s, int *color, t_text *text)
 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
 		return (1);
 	*color = create_trgb(0, r, g, b);
-	return (0);
+	return (tmp->text = COLOR, 0);
 }
 
 int get_pos(char *s, t_tuple *pos)
