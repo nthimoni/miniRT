@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 14:54:33 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/17 00:53:18 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/17 17:17:35 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,6 @@ int	main(int argc, char **argv)
 	while (*argv)
 	{
 		ft_printf("input file : %s\n", *argv);
-		rt->scn.objs = NULL;
-		rt->scn.light = NULL;
 		parsing(rt, *argv, &rt->scn);
 		init_inter(rt);
 		free_scene(rt);

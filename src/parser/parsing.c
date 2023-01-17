@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 18:41:10 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/09 13:20:59 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/17 17:56:20 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int	fill_obj(char **sp, t_obj *tmp, t_rt *rt)
 	else if (tmp->type == CONE)
 		error = fill_cone(tmp, rt, sp);
 	else if (tmp->type == AA)
-		error = fill_aa(rt, sp);
+		error = fill_aa(tmp, rt, sp);
 	return (error);
 }
 
@@ -101,25 +101,27 @@ static void	fill_scene(char *line, t_scene *scene, t_rt *rt)
 
 void	parsing(t_rt *rt, char *file, t_scene *scene)
 {
-	int		fd;
 	char	*line;
 
-	fd = open(file, O_RDONLY);
-	if (fd == -1)
+	rt->fd = open(file, O_RDONLY);
+	if (rt->fd == -1)
 		exit_parsing(rt, OPEN_FAILED_MSG, OPEN_FAILED);
-	line = get_next_line(fd);
+	line = get_next_line(rt->fd);
 	while (line)
 	{
 		if (*line == '-')
 		{
 			free(line);
-			line = get_next_line(fd);
+			line = get_next_line(rt->fd);
 			continue ;	
 		}
 		if (line[ft_strlen(line) - 1] == '\n')
 			line[ft_strlen(line) - 1] = 0;
 		fill_scene(line, scene, rt);
 		free(line);
-		line = get_next_line(fd);
+		line = get_next_line(rt->fd);
 	}
+	if (rt->scn.cam.d.x == 0 && rt->scn.cam.d.y == 0 && rt->scn.cam.d.z == 0)
+		exit_parsing(rt, PARSE_ERROR_MSG, PARSE_ERROR);
+	close(rt->fd);
 }

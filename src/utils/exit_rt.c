@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 18:03:15 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/17 00:26:22 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/17 17:13:08 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	exit_parsing(t_rt *rt, char *error_msg, int exit_code)
 {
 	if (error_msg)
 		ft_putstr_fd(error_msg, 2);
+	close(rt->fd);
 	exit_rt(rt);
 	exit(exit_code);
 }

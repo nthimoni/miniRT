@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:01:40 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/16 23:17:55 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/17 17:13:36 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,7 @@ typedef struct	s_rt
 	t_space	space;
 	t_bool	debug;
 	t_aa	aa;
+	int		fd;
 }	t_rt;
 
 typedef struct	s_ray

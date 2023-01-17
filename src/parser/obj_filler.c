@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 22:48:27 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/17 00:50:50 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/17 18:00:22 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,10 +163,11 @@ int fill_cone(t_obj *tmp, t_rt *rt, char **sp)
 	return (0);
 }
 
-int fill_aa(t_rt *rt, char **sp)
+int fill_aa(t_obj *tmp, t_rt *rt, char **sp)
 {
 	float	buf;
 
+	free(tmp);
 	rt->aa.anti_aliasing = TRUE;
 	if (ft_atof(sp[1], &buf))
 		return (1);
