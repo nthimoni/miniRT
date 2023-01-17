@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:01:40 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/11 21:41:48 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/17 13:55:58 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,13 @@ typedef	enum	e_text
 	CHECKER,
 	BUMP,
 }	t_text;
+
+typedef enum	e_endcap
+{
+	SIDE,
+	BOTTOM,
+	TOP,
+}	t_endcap;
 
 typedef struct s_obj
 {
@@ -168,7 +175,9 @@ typedef struct	s_intersect
 	t_u			t1;
 	t_u			t0_tmp;
 	t_u			t1_tmp;
+	t_endcap	endcap;
 	t_tuple		normal_w;
+	t_bool		inside_cone;
 	t_quadra	q;
 	t_obj		*obj;
 	t_obj		*obj_ign;

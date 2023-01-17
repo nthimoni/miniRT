@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 13:55:29 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/06 17:51:04 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/17 17:44:36 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_bool	solve_quadratic(t_intersect *inter, t_quadra q)
 
 void add_inter0(t_intersect *i, t_obj *o, t_u t)
 {
-	if (t <= i->t0 && t >= 0)
+	if (t <= i->t0 && t >= EPS)
 	{
 		i->t0 = t;
 		i->obj = o;
@@ -45,7 +45,7 @@ void add_inter0(t_intersect *i, t_obj *o, t_u t)
 
 void add_inter1(t_intersect *i, t_obj *o, t_u t)
 {
-	if (t <= i->t1 && t >= 0)
+	if (t <= i->t1 && t >= EPS)
 	{
 		i->t1 = t;
 		i->obj = o;

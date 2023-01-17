@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:13:15 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/16 20:10:26 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/17 10:12:05 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,8 @@ void	init_pixel(t_rt *rt)
 	{
 		while (j < W_H)
 		{
-			if (i == 518 && j == 343)
-				printf("Stop here\n");
+			if (i == 571 && j == 504)
+ 				printf("Stop here\n");
 			ft_bzero(&inter, sizeof(t_intersect));
 			inter.t0 = DBL_MAX;
 			inter.t1 = DBL_MAX;
@@ -127,7 +127,6 @@ void	intersect_obj(t_rt *rt, t_intersect *inter)
 		}
 		tmp = tmp->next;
 	}
-	//if (inter->t0 < DBL_MAX)
-	//	get_normal(inter, &inter->ray, inter->obj);
-
+	if (inter->t0 < DBL_MAX)
+		get_normal(inter, &inter->ray, inter->obj);
 }

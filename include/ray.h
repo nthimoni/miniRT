@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:13:31 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/16 13:14:55 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/17 10:58:05 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,18 @@ void	intersect_plane(t_obj *plane, t_intersect *inter, t_ray ray);
 //		cylinder.h
 
 void	intersect_cylinder(t_obj *cyl, t_intersect *inter, t_ray ray);
-void	normal_endcap(t_tuple p, t_obj *cyl, t_intersect *i, t_u t);
-void	normal_cylinder(t_tuple point, t_obj *cyl, t_tuple *normal);
 
 //		cone.h
 
 void	intersect_cone(t_obj *cyl, t_intersect *inter, t_ray ray);
 
-//		intersect.c
+//		intersect_utils.c
 
 t_bool	solve_quadratic(t_intersect *inter, t_quadra q);
 void	add_inter0(t_intersect *i, t_obj *o, t_u t);
 void	add_inter1(t_intersect *i, t_obj *o, t_u t);
 t_tuple	find_pos_inter(t_ray ray, t_u t);
+t_bool	inter_is_true(t_u new_dist, t_u old_dist);
 
 //		get_normal.c
 

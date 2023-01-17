@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 13:55:29 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/16 13:12:40 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/17 10:34:33 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,3 +61,10 @@ t_tuple	find_pos_inter(t_ray ray, t_u t)
 	return (add_tupple(ray.o, tmp));
 }
 
+t_bool	inter_is_true(t_u new_dist, t_u old_dist)
+{
+	if (new_dist <= old_dist && new_dist >= 0 && !isnan(new_dist))
+		return (TRUE);
+	else
+		return (FALSE);
+}

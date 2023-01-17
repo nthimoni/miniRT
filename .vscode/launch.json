@@ -10,7 +10,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/miniRT",
-            "args": ["${workspaceFolder}/input/input.rt"],
+            "args": ["${workspaceFolder}/input/in_cylinder.rt"],
             "stopAtEntry": true,
             "cwd": "${fileDirname}",
             "environment": [],
