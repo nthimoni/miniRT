@@ -2,9 +2,11 @@
 miniRT
 
 #Personal files
+compile_commands.json
 */tags
 */.tags
 */.cache/*
+*/.cache/clangd
 
 # Prerequisites
 *.d

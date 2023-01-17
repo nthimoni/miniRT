@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 12:15:54 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/10 21:02:07 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/17 11:49:21 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	check_cylinder(t_obj *cyl, t_ray *ray2, t_intersect *inter);
 void	intersect_endcap(t_intersect *inter, t_obj *cyl, t_ray *ray2);
+static void	normal_endcap(t_tuple p, t_obj *cyl, t_intersect *i, t_u t);
+static void	normal_cylinder(t_u t, t_intersect *i);
 
 void	intersect_cylinder(t_obj *cyl, t_intersect *inter, t_ray ray)
 {
@@ -48,20 +50,17 @@ void	check_cylinder(t_obj *cyl, t_ray *ray2, t_intersect *i)
 	{
 		add_inter0(i, cyl, i->t0_tmp);
 		add_inter1(i, cyl, i->t1_tmp);
-		if (i->t0 == i->t0_tmp)
-			normal_cylinder(i0, cyl, &i->normal_w);
+		normal_cylinder(i->t0_tmp, i);
 	}
 	else if (i0.y > cyl->o_obj.y && i0.y < cyl->top_obj.y && i->t0 > i->t0_tmp)
 	{
 		add_inter0(i, cyl, i->t0_tmp);
-		if (i->t0 == i->t0_tmp)
-			normal_cylinder(i0, cyl, &i->normal_w);
+		normal_cylinder(i->t0_tmp, i);
 	}
 	else if (i1.y > cyl->o_obj.y && i1.y < cyl->top_obj.y && i->t0 > i->t1_tmp)
 	{
 		add_inter0(i, cyl, i->t1_tmp);
-		if (i->t0 == i->t1_tmp)
-			normal_cylinder(i1, cyl, &i->normal_w);
+		normal_cylinder(i->t1_tmp, i);
 	}
 }
 
@@ -82,37 +81,28 @@ void	intersect_endcap(t_intersect *i, t_obj *c, t_ray *r)
 		add_inter1(i, c, i->t1_tmp);
 		normal_endcap(i0, c, i, i->t0_tmp);
 	}
-	else if (i0.x * i0.x + i0.z * i0.z <= 1)
+	else if (i0.x * i0.x + i0.z * i0.z <= 1 && inter_is_true(i->t0_tmp, i->t0))
 	{
 		add_inter0(i, c, i->t0_tmp);
 		normal_endcap(i0, c, i, i->t0_tmp);
 	}
-	else if (i1.x * i1.x + i1.z * i1.z <= 1)
+	else if (i1.x * i1.x + i1.z * i1.z <= 1 && inter_is_true(i->t1_tmp, i->t0))
 	{
 		add_inter0(i, c, i->t1_tmp);
 		normal_endcap(i1, c, i, i->t1_tmp);
 	}
 }
 
-void	normal_endcap(t_tuple p, t_obj *cyl, t_intersect *i, t_u t)
+static void	normal_endcap(t_tuple p, t_obj *cyl, t_intersect *i, t_u t)
 {
-	if (i->t0 != t)
-		return ;
-	i->normal_w.x = 0;
-	if (p.y >= cyl->top_obj.y - EPS)
-		i->normal_w.y = 1;
-	else if (p.y <= cyl->o_obj.y + EPS)
-		i->normal_w.y = -1;
-	i->normal_w.z = 0;
-	i->normal_w.w = 0;
-	mult_tuple_matrix_4(&i->normal_w, cyl->otow_m, i->normal_w);
+	if (p.y >= cyl->top_obj.y - EPS && inter_is_true(t, i->t0))
+		i->endcap = TOP;
+	else if (p.y <= cyl->o_obj.y + EPS && inter_is_true(t, i->t0))
+		i->endcap = BOTTOM;
 }
 
-void	normal_cylinder(t_tuple point, t_obj *cyl, t_tuple *normal)
+static void	normal_cylinder(t_u t, t_intersect *i)
 {
-	normal->x = point.x;
-	normal->y = 0;
-	normal->z = point.z;
-	normal->w = 0;
-	mult_tuple_matrix_4(normal, cyl->otow_m, *normal);
+	if (inter_is_true(t, i->t0))
+		i->endcap = SIDE;
 }

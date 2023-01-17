@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:01:40 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/17 17:13:36 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/17 18:29:57 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,13 @@ typedef	enum	e_text
 	TEXTURE,
 }	t_text;
 
+typedef enum	e_endcap
+{
+	SIDE,
+	BOTTOM,
+	TOP,
+}	t_endcap;
+
 typedef struct	s_img
 {
 	void	*img;
@@ -138,6 +145,8 @@ typedef struct	s_rt
 	t_img	*img;
 	t_u		wtoc_m[4][4];
 	t_u		ctow_m[4][4];
+	t_img text;
+	t_img bump;
 	t_scene	scn;
 	t_space	space;
 	t_bool	debug;
@@ -170,7 +179,9 @@ typedef struct	s_intersect
 	t_u			t1;
 	t_u			t0_tmp;
 	t_u			t1_tmp;
+	t_endcap	endcap;
 	t_tuple		normal_w;
+	t_bool		inside_cone;
 	t_2dp		uv;
 	t_quadra	q;
 	t_obj		*obj;

@@ -6,12 +6,13 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 21:47:50 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/15 23:26:37 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/17 18:32:50 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "data_struct.h"
 #include "lighting.h"
+#include "data_struct.h"
 #include "transformations.h"
 #include "vector.h"
 #include "color.h"
@@ -150,7 +151,7 @@ int lighting(t_rt *rt, t_intersect *inter)
 	t_tuple		light_v;	
 
 	if (!inter->obj)
-		return (0);
+		return 0;
 	ft_bzero(&sfc, sizeof(t_surface));
 	define_normal_pos(rt, &sfc, inter);
 	define_color(inter);

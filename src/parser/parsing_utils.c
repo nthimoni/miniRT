@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 14:23:51 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/14 02:03:30 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/17 18:31:45 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_obj	*creat_obj(t_otype type)
 	t_obj *ret;
 
 	ret = malloc(sizeof(t_obj));
+	ft_bzero(ret, sizeof(*ret));
 	if (!ret)
 		return (NULL);
 	ft_bzero((ret), sizeof(*ret));
