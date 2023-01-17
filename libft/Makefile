@@ -71,8 +71,8 @@ MANOBJ = $(addprefix $(OBJDIR), $(addprefix $(MANDIR), $(MANFILES:.c=.o)))
 EXTOBJ = $(addprefix $(OBJDIR), $(addprefix $(EXTDIR), $(EXTFILES:.c=.o)))
 ######################################################################
 AR = ar -rc
-CC = gcc
-CFLAGS = -g -Wall -Wextra -Werror
+CC = gcc -O3
+CFLAGS = #-Wall -Wextra -Werror
 INCPATH = -I$(INCDIR) -Iinclude/
 ######################################################################
 NAME = libft.a

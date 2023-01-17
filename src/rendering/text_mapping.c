@@ -6,15 +6,17 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 02:53:27 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/11 18:17:12 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/17 18:33:13 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "data_struct.h"
 #include "checker.h"
 #include "libft.h"
+#include "vector.h"
 #include <math.h>
 #include <stdio.h>
+#include <unistd.h>
 
 int get_color_checker(t_2dp pos, t_intersect *inter)
 {
@@ -25,6 +27,7 @@ int get_color_checker(t_2dp pos, t_intersect *inter)
 	type = inter->obj->type;
 	if (type == SPHERE)
 	{
+		pos.x *= 4;
 		x2 = floorl(pos.x * CHECKER_WIDTH_S);
 		y2 = floorl(pos.y * CHECKER_HEIGHT_S);
 	}
@@ -38,25 +41,54 @@ int get_color_checker(t_2dp pos, t_intersect *inter)
 	return (CHECKER_COL_2);
 }
 
-t_2dp uv_sphere(t_tuple *pos)
+t_2dp	uv_plan(t_tuple *pos)
 {
-	t_u		phi;
-	t_u		theta;
-	t_2dp	ret;
+	t_2dp	uv;
 
-	phi = acosl(pos->y);
-	theta = atan2l(pos->x, pos->z);
-	ret.x = (1 - ((theta / M_PI_2) + 0.5)) / 4;
-	ret.y = 1 - (phi / M_PI);
-	return (ret);
+	uv.x = fmod(pos->x, 1);
+	uv.y = fmod(pos->z, 1);
+	return (uv);
 }
 
-
-t_2dp uv_plan(t_tuple *pos)
+t_2dp	uv_sphere(t_tuple *pos)
 {
-	t_2dp	ret;
+	t_2dp	uv;
+	double	theta;
+	double	phi;
 
-	ret.x = fmod(pos->x / 40, 1);
-	ret.y = fmod(pos->z / 40, 1);
-	return (ret);
+	theta = atan2l(pos->x, pos->z);
+	phi = acosl(pos->y);
+	uv.x = 1 - ((theta / (2 * M_PI)) + 0.5);
+	uv.y = 1 - (phi / M_PI);
+	uv.x += 2/20.0;
+	uv.x += 0.5;
+	if (uv.x > 1)
+		uv.x -= 1;
+	if (uv.y > 1)
+		uv.y -= 1;
+	return (uv);
+}
+
+t_2dp	uv_cylindre(t_tuple *pos)
+{
+	t_2dp	uv;
+	double	theta;
+
+	theta = atan2(pos->x, pos->z);
+	uv.x = 1 - ((theta / (2 * M_PI)) + 0.5);
+	uv.y = fmod(pos->y, 1);
+	return (uv);
+}
+
+t_2dp	uv_cone(t_tuple *pos)
+{
+	t_2dp	uv;
+	double	theta;
+	double	radius;
+
+	radius = pos->x * pos->x + pos->z * pos->z;
+	theta = atan2(pos->x, pos->z);
+	uv.x = 1 - ((theta / (2 * M_PI)) + 0.5);
+	uv.y = fmod(sqrt(radius), 1);
+	return (uv);
 }

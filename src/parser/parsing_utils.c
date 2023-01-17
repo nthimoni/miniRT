@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 14:23:51 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/10 03:46:24 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/17 18:31:45 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_obj	*creat_obj(t_otype type)
 	ft_bzero(ret, sizeof(*ret));
 	if (!ret)
 		return (NULL);
+	ft_bzero((ret), sizeof(*ret));
 	ret->type = type;
 	return (ret);
 }

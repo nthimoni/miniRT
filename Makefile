@@ -95,8 +95,8 @@ clean:
 	rm -rf $(OBJDIR)
 
 fclean: clean
-	#make fclean -C $(FTPATH)
-	#make clean -C $(MLXPATH)
+	make fclean -C $(FTPATH)
+	make clean -C $(MLXPATH)
 	rm -f $(NAME)
 
 re: fclean $(NAME) run

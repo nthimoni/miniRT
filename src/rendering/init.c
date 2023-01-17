@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 12:38:44 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/24 15:48:40 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/16 23:40:41 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ t_rt	*init_rt(void)
 	if (!rt)
 		return (NULL);
 	ft_bzero(rt, sizeof(t_rt));
-	rt->trash = NULL;
 	rt->mlx = mlx_init();
 	rt->win = mlx_new_window(rt->mlx, W_W, W_H, "miniRT");
 	rt->img = malloc(sizeof(t_img));
