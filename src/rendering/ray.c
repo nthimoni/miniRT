@@ -89,7 +89,7 @@ void	init_pixel(t_rt *rt)
 		ft_printf("\rRendering ... [ %d%% ]", (int)(i / (W_W - 1.0) * 100));
 		while (j < W_H)
 		{
-			if (i == 571 && j == 504)
+			if (i == 530 && j == 264)
  				printf("Stop here\n");
 			ft_bzero(&inter, sizeof(t_intersect));
 			inter.t0 = DBL_MAX;

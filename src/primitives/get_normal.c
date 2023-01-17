@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 12:39:45 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/17 18:22:56 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/17 20:55:13 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	get_normal(t_intersect *i, t_ray *ray, t_obj *obj)
 		cone_normal(i, ray, obj, &intersection);
 	norm_v3(&i->normal_w);
 	if (dot_product_v3(i->normal_w, ray->d) > EPS)
-		scale_v3(&i->normal_w, -1);
 	//if (i->inside_cone)
+		scale_v3(&i->normal_w, -1);
 }
 
 static void	cone_normal(t_intersect *i, t_ray *ray, t_obj *obj, t_tuple *x)

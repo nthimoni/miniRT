@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 12:15:54 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/17 11:49:21 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/17 21:19:23 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,18 +46,20 @@ void	check_cylinder(t_obj *cyl, t_ray *ray2, t_intersect *i)
 	i0 = find_pos_inter(*ray2, i->t0_tmp);
 	i1 = find_pos_inter(*ray2, i->t1_tmp);
 	if (i0.y > cyl->o_obj.y && i0.y < cyl->top_obj.y && i1.y > cyl->o_obj.y
-		&& i1.y < cyl->top_obj.y && i->t0 > i->t0_tmp)
+		&& i1.y < cyl->top_obj.y && inter_is_true(i->t0_tmp, i->t0))
 	{
 		add_inter0(i, cyl, i->t0_tmp);
 		add_inter1(i, cyl, i->t1_tmp);
 		normal_cylinder(i->t0_tmp, i);
 	}
-	else if (i0.y > cyl->o_obj.y && i0.y < cyl->top_obj.y && i->t0 > i->t0_tmp)
+	else if (i0.y > cyl->o_obj.y && i0.y < cyl->top_obj.y
+		&& inter_is_true(i->t0_tmp, i->t0))
 	{
 		add_inter0(i, cyl, i->t0_tmp);
 		normal_cylinder(i->t0_tmp, i);
 	}
-	else if (i1.y > cyl->o_obj.y && i1.y < cyl->top_obj.y && i->t0 > i->t1_tmp)
+	else if (i1.y > cyl->o_obj.y && i1.y < cyl->top_obj.y
+		&& inter_is_true(i->t1_tmp, i->t0))
 	{
 		add_inter0(i, cyl, i->t1_tmp);
 		normal_cylinder(i->t1_tmp, i);
@@ -75,7 +77,8 @@ void	intersect_endcap(t_intersect *i, t_obj *c, t_ray *r)
 			(c->top_obj.y - r->o.y) / r->d.y);
 	i0 = find_pos_inter(*r, i->t0_tmp);
 	i1 = find_pos_inter(*r, i->t1_tmp);
-	if (i0.x * i0.x + i0.z * i0.z <= 1 && i1.x * i1.x + i1.z * i1.z <= 1)
+	if (i0.x * i0.x + i0.z * i0.z <= 1 && i1.x * i1.x + i1.z * i1.z <= 1
+			&& inter_is_true(i->t0_tmp, i->t0))
 	{
 		add_inter0(i, c, i->t0_tmp);
 		add_inter1(i, c, i->t1_tmp);
