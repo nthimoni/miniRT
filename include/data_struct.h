@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:01:40 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/16 18:01:56 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/16 23:17:55 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,6 @@ typedef struct s_scene
 
 typedef struct	s_rt
 {
-	t_list	*trash;
 	void	*mlx;
 	void	*win;
 	t_img	*img;

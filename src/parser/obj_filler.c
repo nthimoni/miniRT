@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 22:48:27 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/13 16:25:03 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/17 00:50:50 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int fill_cam(t_obj *tmp, t_rt *rt, char **sp)
 		return (1);
 	tmp->FOV = buf;
 	rt->scn.cam = *tmp;
+	free(tmp);
 	return (0);
 }
 int fill_plan(t_obj *tmp, t_rt *rt, char **sp)

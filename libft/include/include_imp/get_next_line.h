@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/28 15:50:23 by nthimoni          #+#    #+#             */
-/*   Updated: 2022/04/05 18:07:59 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/17 01:06:14 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdlib.h>
 
 # ifndef OPEN_MAX
-#  define OPEN_MAX 50
+#  define OPEN_MAX 250
 # endif
 
 # ifndef GNL_BUFFER_SIZE
