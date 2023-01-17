@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 16:48:40 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/17 18:06:25 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/17 18:42:15 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	isShadowed(t_rt *rt, t_tuple pos, t_tuple light_v, t_intersect *o_inter)
 	inter.t1 = DBL_MAX;
 	inter.obj_ign = NULL;
 	//if (inter.obj && inter.obj->type == PLAN)
-	//	inter.obj_ign = o_inter->obj;
+	inter.obj_ign = o_inter->obj;
 	inter.ray.d = light_v;
 	inter.ray.o = pos;
 	intersect_obj(rt, &inter);
