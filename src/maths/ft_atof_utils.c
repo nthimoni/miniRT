@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 18:31:59 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/10 15:51:46 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/18 17:06:15 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	free_split(char **sp)
 	free(sp);
 }
 
-int	isValidLiteral(char *str)
+int	is_valid_literal(char *str)
 {
 	int	point;
 	int	i;

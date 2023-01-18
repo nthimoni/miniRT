@@ -1,10 +1,12 @@
 from math import *
-nb_map = 200
+nb_map = 500
 nb_max_suffix = 1 + (nb_map // 26)
 map_name = "earth_"
 suff = ord('a');
 cam_pos = [0.0, 0.0, 0.0]
 camera_distance = 60.0
+step = 1
+FOV = 70
 
 
 def def_pos(i):
@@ -33,12 +35,15 @@ for i in range(0, nb_map + 1):
     f.write("A 0.3 255,255,255\n")
     pos = def_pos(i)
     direction = def_dir()
-    f.write("C " + pos + " " + direction + " " + "70\n")
+    f.write("C " + pos + " " + direction + " " + str(FOV) + "\n")
+    #f.write("sp 0,0,0     60   earth.xpm\n")
     f.write("sp 0,0,0     60   earth.xpm\n")
-    #f.write("sp 0,0,0     60   earth.xpm/bump.xpm\n")
     f.write("L 0,10,-60 0.8 255,255,255\n")
     f.write("L 0,10,60 0.8 255,255,255\n")
-    f.write("anti-aliasing 1\n")
+    #f.write("anti-aliasing 3\n")
+    if camera_distance == 50 or camera_distance == 60:
+        step *= -1
+    #camera_distance += step
     f.close()
 param.close()
 
