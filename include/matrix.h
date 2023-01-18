@@ -6,17 +6,17 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 12:05:46 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/11 21:44:38 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/18 19:01:58 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MATRIX_H
-#define MATRIX_H 
+# define MATRIX_H 
 
 # include "data_struct.h"
 # include "print.h"
 
-typedef struct	s_matrix_index
+typedef struct s_matrix_index
 {
 	int	a;
 	int	b;

@@ -6,14 +6,14 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 12:15:54 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/17 21:19:23 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/18 18:30:25 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ray.h"
 
-void	check_cylinder(t_obj *cyl, t_ray *ray2, t_intersect *inter);
-void	intersect_endcap(t_intersect *inter, t_obj *cyl, t_ray *ray2);
+void		check_cylinder(t_obj *cyl, t_ray *ray2, t_intersect *inter);
+void		intersect_endcap(t_intersect *inter, t_obj *cyl, t_ray *ray2);
 static void	normal_endcap(t_tuple p, t_obj *cyl, t_intersect *i, t_u t);
 static void	normal_cylinder(t_u t, t_intersect *i);
 
@@ -78,10 +78,9 @@ void	intersect_endcap(t_intersect *i, t_obj *c, t_ray *r)
 	i0 = find_pos_inter(*r, i->t0_tmp);
 	i1 = find_pos_inter(*r, i->t1_tmp);
 	if (i0.x * i0.x + i0.z * i0.z <= 1 && i1.x * i1.x + i1.z * i1.z <= 1
-			&& inter_is_true(i->t0_tmp, i->t0))
+		&& inter_is_true(i->t0_tmp, i->t0))
 	{
 		add_inter0(i, c, i->t0_tmp);
-		add_inter1(i, c, i->t1_tmp);
 		normal_endcap(i0, c, i, i->t0_tmp);
 	}
 	else if (i0.x * i0.x + i0.z * i0.z <= 1 && inter_is_true(i->t0_tmp, i->t0))

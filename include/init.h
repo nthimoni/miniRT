@@ -6,12 +6,12 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:06:08 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/14 13:35:27 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/18 18:55:15 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef INIT_H
-#define INIT_H 
+# define INIT_H 
 
 # include "data_struct.h"
 # include "mlx.h"

@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 12:15:54 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/17 18:31:56 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/18 18:33:13 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@
 
 static void	check_cone(t_obj *obj, t_ray *ray2, t_intersect *inter, t_u m_m[2]);
 static void	intersect_endcap_cone(t_intersect *inter, t_obj *obj, t_ray *ray2);
-static void	normal_cone(t_tuple point, t_obj *obj, t_intersect *i, t_u t);
 static void	intersect_side_cone(t_intersect *i, t_obj *obj, t_ray *r);
-static void	cone_normal(t_intersect *i, t_ray *ray, t_obj *obj);
 
 void	intersect_cone(t_obj *obj, t_intersect *inter, t_ray ray)
 {
@@ -41,11 +39,11 @@ static void	intersect_endcap_cone(t_intersect *inter, t_obj *obj, t_ray *ray2)
 	if (i0.x * i0.x + i0.z * i0.z <= 1)
 	{
 		add_inter0(inter, obj, inter->t0_tmp);
-		if (inter_is_true(inter->t0_tmp, inter->t0) 
-				&& i0.y >= obj->top_obj.y - EPS)
+		if (inter_is_true(inter->t0_tmp, inter->t0)
+			&& i0.y >= obj->top_obj.y - EPS)
 			inter->endcap = TOP;
 		else if (inter_is_true(inter->t0_tmp, inter->t0)
-				&& i0.y <= obj->o_obj.y + EPS)
+			&& i0.y <= obj->o_obj.y + EPS)
 			inter->endcap = BOTTOM;
 	}
 }
@@ -103,35 +101,4 @@ static void	check_cone(t_obj *obj, t_ray *ray2, t_intersect *i, t_u m_m[2])
 		i->endcap = SIDE;
 	}
 	return ;
-}
-
-static void	normal_cone(t_tuple point, t_obj *obj, t_intersect *i, t_u t)
-{
-	if (i->t0 != t)
-		return ;
-	i->normal_w.x = point.x;
-	i->normal_w.y = 0;
-	if ((obj->d.x == 0 && obj->d.y == 0 && obj->d.z < 0))
-		i->normal_w.y = (0.2 * point.x + 0.2 * point.z);
-	i->normal_w.z = point.z;
-	i->normal_w.w = 0;
-	mult_tuple_matrix_4(&i->normal_w, obj->otow_m, i->normal_w);
-}
-
-static void	cone_normal(t_intersect *i, t_ray *ray, t_obj *obj)
-{
-	t_u		angle_cone;
-	t_tuple	obj_to_inter;
-	t_tuple	scaled_direction;
-	t_tuple	intersection;
-
-	intersection = find_pos_inter(*ray, i->t0_tmp);
-	(void)ray;
-	angle_cone = 0;
-	if (obj->height)
-		angle_cone = atan(obj->diam / 2 / obj->height);
-	obj_to_inter = sub_tupple(obj->o, intersection);
-	scaled_direction = create_tuple_copy(obj->d);
-	scale_v3(&scaled_direction, length_v3(obj_to_inter) / cos(angle_cone));
-	i->normal_w = sub_tupple(scaled_direction, obj_to_inter);
 }

@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 12:39:45 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/17 20:55:13 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/18 18:36:05 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	get_normal(t_intersect *i, t_ray *ray, t_obj *obj)
 		cone_normal(i, ray, obj, &intersection);
 	norm_v3(&i->normal_w);
 	if (dot_product_v3(i->normal_w, ray->d) > EPS)
-	//if (i->inside_cone)
 		scale_v3(&i->normal_w, -1);
 }
 
@@ -55,16 +54,10 @@ static void	cone_normal(t_intersect *i, t_ray *ray, t_obj *obj, t_tuple *x)
 	{
 		obj_to_inter = sub_tupple(obj->top, *x);
 		scaled_direction = create_tuple_copy(obj->d);
-		scale_v3(&scaled_direction, obj->height - length_v3(obj_to_inter) / cos(angle_cone));
+		scale_v3(&scaled_direction, obj->height - length_v3(obj_to_inter)
+			/ cos(angle_cone));
 		point_a = add_tupple(obj->o, scaled_direction);
 		i->normal_w = sub_tupple(point_a, *x);
-	/*
-		(void)ray;
-		obj_to_inter = sub_tupple(obj->o, *x);
-		scaled_direction = create_tuple_copy(obj->d);
-		scale_v3(&scaled_direction, length_v3(obj_to_inter) / cos(angle_cone));
-		i->normal_w = sub_tupple(scaled_direction, obj_to_inter);
-	*/
 	}
 	else if (i->endcap == BOTTOM)
 		i->normal_w = create_tuple_copy(obj->d);
@@ -85,7 +78,7 @@ static void	plan_normal(t_intersect *i, t_ray *ray, t_obj *obj, t_tuple *x)
 
 static void	cylinder_normal(t_intersect *i, t_ray *ray, t_obj *obj, t_tuple *x)
 {
-	t_tuple obj_to_ray;
+	t_tuple	obj_to_ray;
 	t_tuple	scaled_direction;
 	t_u		m;
 	t_tuple	y;
@@ -95,7 +88,8 @@ static void	cylinder_normal(t_intersect *i, t_ray *ray, t_obj *obj, t_tuple *x)
 		obj_to_ray = sub_tupple(obj->o, ray->o);
 		scaled_direction = create_tuple_copy(obj->d);
 		scale_v3(&scaled_direction, i->t0);
-		m = dot_product_v3(ray->d, scaled_direction) + dot_product_v3(obj_to_ray, obj->d); 
+		m = dot_product_v3(ray->d, scaled_direction)
+			+ dot_product_v3(obj_to_ray, obj->d);
 		scaled_direction = create_tuple_copy(obj->d);
 		scale_v3(&scaled_direction, m);
 		y = add_tupple(obj->o, scaled_direction);

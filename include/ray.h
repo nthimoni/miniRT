@@ -6,12 +6,12 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:13:31 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/17 10:58:05 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/18 18:55:52 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RAY_H
-#define RAY_H 
+# define RAY_H 
 
 # include "data_struct.h"
 # include "matrix.h"

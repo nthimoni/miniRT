@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 03:00:54 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/17 18:28:41 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/18 19:06:36 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@
 
 # include "data_struct.h"
 
-t_2dp uv_sphere(t_tuple *pos);
-t_2dp uv_plan(t_tuple *pos);
-int get_color_checker(t_2dp pos, t_intersect *inter);
-t_tuple normal_perturbation(t_img *img, t_2dp pos, t_tuple *normal);
-int	color_at(t_img *img, t_2dp pos);
+t_2dp	uv_sphere(t_tuple *pos);
+t_2dp	uv_plan(t_tuple *pos);
+int		get_color_checker(t_2dp pos, t_intersect *inter);
+t_tuple	normal_perturbation(t_img *img, t_2dp pos, t_tuple *normal);
+int		color_at(t_img *img, t_2dp pos);
 t_2dp	uv_sphere(t_tuple *pos);
 t_2dp	uv_plan(t_tuple *pos);
 t_2dp	uv_cylindre(t_tuple *pos);

@@ -6,12 +6,12 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:04:34 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/14 13:31:09 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/18 18:55:29 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef IMAGE_H
-#define IMAGE_H 
+# define IMAGE_H 
 
 # include "data_struct.h"
 # include "mlx.h"

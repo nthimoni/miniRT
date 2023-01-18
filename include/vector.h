@@ -6,12 +6,12 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 14:43:53 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/03 13:03:12 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/18 19:07:29 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef VECTOR_H
-#define VECTOR_H
+# define VECTOR_H
 
 # include "data_struct.h"
 # include "exit_rt.h"

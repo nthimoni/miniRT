@@ -6,11 +6,10 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 17:07:26 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/13 18:46:46 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/18 18:56:46 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
 #include "parsing.h"
 #include "color.h"
 #include "mlx.h"

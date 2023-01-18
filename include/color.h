@@ -6,12 +6,12 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:07:29 by rmorel            #+#    #+#             */
-/*   Updated: 2022/10/18 23:11:25 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/18 19:00:58 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef COLOR_H
-#define COLOR_H 
+# define COLOR_H 
 
 int	create_trgb(int t, int r, int g, int b);
 int	get_t(int trgb);

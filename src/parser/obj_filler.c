@@ -6,11 +6,10 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 22:48:27 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/17 18:31:36 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/18 18:57:02 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
 #include "parsing.h"
 #include "exit_rt.h"
 #include "data_struct.h"
