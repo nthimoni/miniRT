@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 21:47:50 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/17 18:32:50 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/18 19:19:40 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@
 
 typedef struct s_surface
 {
-	t_tuple normal;
-	t_tuple pos;
+	t_tuple	normal;
+	t_tuple	pos;
+	t_rt	*rt;
 }	t_surface;
-
 
 static t_tuple	find_pos_inter(t_intersect *inter, t_rt *rt)
 {
@@ -81,7 +81,7 @@ int	set_diffuse(t_surface *sfc, t_tuple *light_v, t_obj *light)
 int	set_specular(t_surface *sfc, t_tuple *light_v, t_rt *rt, t_obj *light)
 {
 	t_tuple	cam;
-	t_tuple reflection;
+	t_tuple	reflection;
 	t_u		cos_r_c;
 	t_u		factor;
 	int		color;
@@ -106,7 +106,7 @@ int	set_specular(t_surface *sfc, t_tuple *light_v, t_rt *rt, t_obj *light)
 
 void	define_uv(t_intersect *inter, t_tuple *pos)
 {
-	t_otype type;
+	t_otype	type;
 
 	type = inter->obj->type;
 	if (type == SPHERE)
@@ -129,7 +129,7 @@ void	define_normal_pos(t_rt *rt, t_surface *sfc, t_intersect *inter)
 	norm_v3(&sfc->normal);
 	if (inter->obj->bump)
 		sfc->normal = add_tupple(sfc->normal, normal_perturbation
-				(&inter->obj->img_bump,inter->uv, &sfc->normal));
+				(&inter->obj->img_bump, inter->uv, &sfc->normal));
 	norm_v3(&sfc->normal);
 	mult_tuple_matrix_4(&sfc->pos, inter->obj->otow_m, sfc->pos);
 }
@@ -142,7 +142,26 @@ void	define_color(t_intersect *inter)
 		inter->obj->color = get_color_checker(inter->uv, inter);
 }
 
-int lighting(t_rt *rt, t_intersect *inter)
+
+void	compute_lighting(t_surface *sfc, t_list *light, t_intersect *i, int *f)
+{	
+	t_tuple	light_v;	
+	int		tmp;
+
+	light_v = sub_tupple(sfc->pos, ((t_obj *)light->content)->o);
+	if (!isShadowed(sfc->rt, sfc->pos, light_v, i))
+	{
+		norm_v3(&light_v);
+		tmp = set_diffuse(sfc, &light_v, light->content);
+		tmp = sub_synthese(i->obj->color, tmp,
+				((t_obj *)light->content)->ratio);
+		inc_color(f, get_r(tmp), get_g(tmp), get_b(tmp));
+		tmp = set_specular(sfc, &light_v, sfc->rt, light->content);
+		inc_color(f, get_r(tmp), get_g(tmp), get_b(tmp));
+	}
+}
+
+int	lighting(t_rt *rt, t_intersect *inter)
 {
 	int			tmp;
 	int			final;
@@ -151,24 +170,17 @@ int lighting(t_rt *rt, t_intersect *inter)
 	t_tuple		light_v;	
 
 	if (!inter->obj)
-		return 0;
+		return (0);
 	ft_bzero(&sfc, sizeof(t_surface));
+	sfc.rt = rt;
 	define_normal_pos(rt, &sfc, inter);
 	define_color(inter);
-	final = sub_synthese(inter->obj->color, rt->scn.amb.color, rt->scn.amb.ratio);
+	final = sub_synthese(inter->obj->color, rt->scn.amb.color,
+			rt->scn.amb.ratio);
 	light = rt->scn.light;
 	while (light)
 	{
-		light_v = sub_tupple(sfc.pos, ((t_obj *)light->content)->o);
-		if (!isShadowed(rt, sfc.pos, light_v, inter))
-		{
-			norm_v3(&light_v);
-			tmp = set_diffuse(&sfc, &light_v, light->content);
-			tmp = sub_synthese(inter->obj->color, tmp, ((t_obj *)light->content)->ratio);
-			inc_color(&final, get_r(tmp), get_g(tmp), get_b(tmp));
-			tmp = set_specular(&sfc, &light_v, rt, light->content);
-			inc_color(&final, get_r(tmp), get_g(tmp), get_b(tmp));
-		}
+		compute_lighting(&sfc, light, inter, &final);
 		light = light->next;
 	}
 	return (final);

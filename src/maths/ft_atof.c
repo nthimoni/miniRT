@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 13:09:11 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/10 15:43:01 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/18 17:06:15 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	ft_atof(char *str, float *val)
 	int	sign;
 	int	over;
 
-	if (!isValidLiteral(str))
+	if (!is_valid_literal(str))
 		return (1);
 	sign = 1;
 	while (*str == '-' || *str == '+')
