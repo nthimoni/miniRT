@@ -89,6 +89,8 @@ void	init_pixel(t_rt *rt)
 		ft_printf("\rRendering ... [ %d%% ]", (int)(i / (W_W - 1.0) * 100));
 		while (j < W_H)
 		{
+			if (i == 472 && j == 273)
+				printf("LOL\n");
 			ft_bzero(&inter, sizeof(t_intersect));
 			inter.t0 = DBL_MAX;
 			inter.t1 = DBL_MAX;
