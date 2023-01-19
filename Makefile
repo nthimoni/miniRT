@@ -52,18 +52,18 @@ SRCS =	maths/ft_atof.c \
 OBJS = $(addprefix $(OBJDIR),$(SRCS:.c=.o))
 DEPENDS = $(OBJS:.o=.d)
 ######################################################################
-CC = gcc -0fast
+CC = gcc -O3
 CFLAGS = -Wall -Wextra -Werror -MMD -MP
 LINK = -lmlx -lft -lm -lXext -lX11
 INCPATH = -I$(INCDIR) -I$(FTINC) -I$(MLXPATH)
 LIBPATH = -L$(FTPATH) -L$(MLXPATH)
 NAME = miniRT
-MAP = input.rt
 VAL = valgrind --leak-check=full ./$(NAME) input.rt
-RUN = ./$(NAME) input/$(MAP)
+RUN = ./$(NAME) input/*.rt
 ######################################################################
 all: $(NAME)
-	$(RUN)
+
+bonus: $(NAME)
 
 $(NAME): $(OBJDIR) $(MLX) $(LIBFT) $(OBJS)
 	$(CC) $(OBJS) $(LIBPATH) $(LINK) -o $(NAME)
