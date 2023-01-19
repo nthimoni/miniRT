@@ -23,7 +23,9 @@ SRCS =	maths/ft_atof.c \
 	  	mlx_utils/hook.c\
 	   	mlx_utils/image.c\
 		parser/data_parser.c\
+		parser/data_parser2.c\
 		parser/obj_filler.c\
+		parser/obj_filler2.c\
 		parser/parsing.c\
 		parser/parsing_utils.c\
 	  	primitives/cone.c\
@@ -33,10 +35,12 @@ SRCS =	maths/ft_atof.c \
 	  	primitives/get_normal.c\
 		rendering/bump_map.c\
 		rendering/colors.c\
+		rendering/colors2.c\
 	  	rendering/init.c\
 	  	rendering/intersect_utils.c\
-		rendering/isShadowed.c\
+		rendering/is_shadowed.c\
 		rendering/lighting.c\
+		rendering/lighting2.c\
 	  	rendering/ray.c\
 		rendering/text_mapping.c\
 	  	scene/camera.c\
@@ -48,8 +52,8 @@ SRCS =	maths/ft_atof.c \
 OBJS = $(addprefix $(OBJDIR),$(SRCS:.c=.o))
 DEPENDS = $(OBJS:.o=.d)
 ######################################################################
-CC = gcc -g #Ofast
-CFLAGS = #-Wall -Wextra -Werror -MMD -MP
+CC = gcc -Ofast
+CFLAGS = -Wall -Wextra -Werror -MMD -MP
 LINK = -lmlx -lft -lm -lXext -lX11
 INCPATH = -I$(INCDIR) -I$(FTINC) -I$(MLXPATH)
 LIBPATH = -L$(FTPATH) -L$(MLXPATH)

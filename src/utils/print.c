@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:56:34 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/11 22:01:01 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/19 04:13:46 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	print_obj(t_obj *obj)
 	print_tuple(&obj->o_obj, "Origin_obj");
 	print_tuple(&obj->top_obj, "Top_obj");
 	printf("Diam = %lf | Height = %lf\n", obj->diam, obj->height);
-	printf("FOV = %lf | color = %d | ratio = %lf\n", obj->FOV, obj->color,
+	printf("fov = %lf | color = %d | ratio = %lf\n", obj->fov, obj->color,
 		obj->ratio);
 	print_matrix_4(obj->wtoo_m, "wtoo");
 	print_matrix_4(obj->otow_m, "otow");

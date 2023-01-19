@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 16:08:02 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/18 19:22:34 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/19 03:40:24 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		get_ori(char *s, t_tuple *ori);
 int		get_ratio(char *s, double *ratio);
 int		get_pos(char *s, t_tuple *pos);
 int		get_color(char *s, int *color, t_obj *tmp, t_rt *rt);
-int		isValidLiteral(char *str);
+int		is_valid_literal(char *str);
 int		fill_light(t_obj *tmp, t_rt *rt, char **sp);
 int		fill_cam(t_obj *tmp, t_rt *rt, char **sp);
 int		fill_plan(t_obj *tmp, t_rt *rt, char **sp);
@@ -33,5 +33,10 @@ int		fill_sphere(t_obj *tmp, t_rt *rt, char **sp);
 int		fill_cylindre(t_obj *tmp, t_rt *rt, char **sp);
 int		fill_cone(t_obj *tmp, t_rt *rt, char **sp);
 int		fill_aa(t_obj *tmp, t_rt *rt, char **sp);
+int		load_img(t_rt *rt, char *path, t_img *img);
+int		define_bump(t_rt *rt, char *s, t_obj *tmp);
+int		get_ori(char *s, t_tuple *ori);
+int		parse_rgb(char **sp, int *color);
+int		only_nb(char *s);
 
 #endif 

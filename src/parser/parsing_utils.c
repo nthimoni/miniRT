@@ -6,14 +6,14 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 14:23:51 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/17 18:31:45 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/19 03:21:26 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "parsing.h"
 
-int ft_strslen(char **sp)
+int	ft_strslen(char **sp)
 {
 	int	i;
 
@@ -25,7 +25,7 @@ int ft_strslen(char **sp)
 
 t_obj	*creat_obj(t_otype type)
 {
-	t_obj *ret;
+	t_obj	*ret;
 
 	ret = malloc(sizeof(t_obj));
 	ft_bzero(ret, sizeof(*ret));

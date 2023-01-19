@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 14:54:33 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/17 18:31:19 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/19 04:06:17 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int argc, char **argv)
 	argv++;
 	while (*argv)
 	{
-		ft_printf("input file : %s\n", *argv);
+		ft_printf("Input file : %s\n", *argv);
 		parsing(rt, *argv, &rt->scn);
 		init_inter(rt);
 		free_scene(rt);

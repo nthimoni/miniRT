@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 23:07:36 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/18 23:17:11 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/19 02:27:36 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 #include "vector.h"
 #include "scene.h"
 
-t_u normalize_black_and_white(int color)
+static t_u	normalize_black_and_white(int color)
 {
-	t_u ret;
+	t_u	ret;
 
 	ret = get_r(color) / 255.0;
 	return (ret);
@@ -39,17 +39,16 @@ int	color_at(t_img *img, t_2dp pos)
 	x %= img->x;
 	y %= img->y;
 	y++;
-
 	dst = img->addr + ((img->y - y) * img->line_lgth + x * (img->bpp / 8));
 	return (*(int *)dst);
 }
 
-t_u height_at(t_img *img, t_2dp *pos)
+static t_u	height_at(t_img *img, t_2dp *pos)
 {
 	return (normalize_black_and_white(color_at(img, *pos)));
 }
 
-static t_tuple compute_perturb(t_img *img, t_2dp *pos, t_2dp *unit)
+static t_tuple	compute_perturb(t_img *img, t_2dp *pos, t_2dp *unit)
 {
 	t_u		hxy1;
 	t_u		hx1y;
@@ -61,7 +60,7 @@ static t_tuple compute_perturb(t_img *img, t_2dp *pos, t_2dp *unit)
 	hx1y = height_at(img, &(t_2dp){pos->x + unit->x, pos->y});
 	hxy1 = height_at(img, &(t_2dp){pos->x, pos->y + unit->y});
 	denom = (hx1y - hxy) * (hx1y - hxy) + (hxy1 - hxy) * (hxy1 - hxy) + 1;
-	//denom = sqrt(denom);
+	denom = sqrt(denom);
 	perturb.x = (-hx1y + hxy) / denom;
 	perturb.y = (-hxy1 + hxy) / denom;
 	perturb.z = 1 / denom;
@@ -69,7 +68,7 @@ static t_tuple compute_perturb(t_img *img, t_2dp *pos, t_2dp *unit)
 	return (perturb);
 }
 
-t_tuple normal_perturbation(t_img *img, t_2dp pos, t_tuple *normal)
+t_tuple	normal_perturbation(t_img *img, t_2dp pos, t_tuple *normal)
 {
 	t_tuple	perturb;
 	t_2dp	unit;

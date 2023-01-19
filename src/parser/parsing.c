@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 18:41:10 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/17 18:35:10 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/19 04:23:20 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 
 static int	check_nb_arg(t_otype type, int nb_wrds)
 {
-	static const int	tab[] = {3, 4, 4, 4, 4, 6, 6, 2};
+	static const int		tab[] = {3, 4, 4, 4, 4, 6, 6, 2};
 	static const t_otype	otype[] = {AMBIANT, CAMERA, LIGHT, PLAN,
-										SPHERE, CYLINDRE, CONE, AA, NONE};
-	int i;
+		SPHERE, CYLINDRE, CONE, AA, NONE};
+	int						i;
 
 	i = 0;
 	while (otype[i] && otype[i] != type)
@@ -61,10 +61,10 @@ static int	fill_obj(char **sp, t_obj *tmp, t_rt *rt)
 static int	set_type(char **sp, t_scene *scene, t_rt *rt)
 {
 	static const char		*type[] = {"A", "C", "L", "pl", "sp", "cy", "co",
-										"anti-aliasing", NULL};
+		"anti-aliasing", NULL};
 	static const t_otype	otype[] = {AMBIANT, CAMERA, LIGHT,
-										PLAN, SPHERE, CYLINDRE, CONE, AA};
-	int 					i;
+		PLAN, SPHERE, CYLINDRE, CONE, AA};
+	int						i;
 	t_obj					*tmp;
 
 	i = 0;
@@ -88,11 +88,15 @@ static void	fill_scene(char *line, t_scene *scene, t_rt *rt)
 
 	sp = ft_split(line, ' ');
 	if (!sp)
+	{
+		free(line);
 		exit_parsing(rt, BAD_ALLOC_MSG, BAD_ALLOC);
+	}
 	if (!*sp)
 		return (free_split(sp));
 	if (set_type(sp, scene, rt))
 	{
+		free(line);
 		free_split(sp);
 		exit_parsing(rt, PARSE_ERROR_MSG, PARSE_ERROR);
 	}
@@ -113,7 +117,7 @@ void	parsing(t_rt *rt, char *file, t_scene *scene)
 		{
 			free(line);
 			line = get_next_line(rt->fd);
-			continue ;	
+			continue ;
 		}
 		if (line[ft_strlen(line) - 1] == '\n')
 			line[ft_strlen(line) - 1] = 0;

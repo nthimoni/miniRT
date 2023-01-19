@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 17:49:21 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/17 18:33:31 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/19 04:13:07 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	pixel_raster_to_space(t_intersect *i, t_u x, t_u y, t_rt *rt)
 {
 	t_u	angle;
 
-	angle = tan(rt->scn.cam.FOV / 2 * M_PI / 180);
+	angle = tan(rt->scn.cam.fov / 2 * M_PI / 180);
 	i->pixel.x = (2 * (x + 0.5) / W_W - 1) * W_W / W_H * angle;
 	i->pixel.y = (1 - 2 * (y + 0.5) / W_H) * angle;
 	i->pixel.z = 1;

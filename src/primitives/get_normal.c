@@ -6,13 +6,13 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 12:39:45 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/18 18:36:05 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/19 02:35:45 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ray.h"
 
-static void	cone_normal(t_intersect *i, t_ray *ray, t_obj *obj, t_tuple *x);
+static void	cone_normal(t_intersect *i, t_obj *obj, t_tuple *x);
 static void	sphere_normal(t_intersect *i, t_ray *ray, t_obj *obj, t_tuple *x);
 static void	plan_normal(t_intersect *i, t_ray *ray, t_obj *obj, t_tuple *x);
 static void	cylinder_normal(t_intersect *i, t_ray *ray, t_obj *obj, t_tuple *x);
@@ -29,13 +29,13 @@ void	get_normal(t_intersect *i, t_ray *ray, t_obj *obj)
 	else if (obj->type == CYLINDRE)
 		cylinder_normal(i, ray, obj, &intersection);
 	else if (obj->type == CONE)
-		cone_normal(i, ray, obj, &intersection);
+		cone_normal(i, obj, &intersection);
 	norm_v3(&i->normal_w);
 	if (dot_product_v3(i->normal_w, ray->d) > EPS)
 		scale_v3(&i->normal_w, -1);
 }
 
-static void	cone_normal(t_intersect *i, t_ray *ray, t_obj *obj, t_tuple *x)
+static void	cone_normal(t_intersect *i, t_obj *obj, t_tuple *x)
 {
 	t_u		angle_cone;
 	t_tuple	obj_to_inter;
