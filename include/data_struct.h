@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 13:01:40 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/19 04:11:57 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/19 14:20:29 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ typedef struct s_img
 
 typedef struct s_obj
 {
+	int		is_init;
 	t_otype	type;
 	t_tuple	o;
 	t_tuple	o_obj;
