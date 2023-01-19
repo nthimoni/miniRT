@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 16:28:44 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/11 21:56:22 by rmorel           ###   ########.fr       */
+/*   Updated: 2023/01/19 15:44:17 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,10 @@ void	intersect_sph2(t_obj *sph, t_intersect *inter, t_ray ray)
 		|| inter->t0_tmp < 0)
 		return ;
 	inter->obj = sph;
-	add_inter0(inter, sph, inter->t0_tmp);
-	add_inter1(inter, sph, inter->t1_tmp);
+	if (inter_is_true(inter->t0_tmp, inter->t0))
+		add_inter0(inter, sph, inter->t0_tmp);
+	else
+		add_inter0(inter, sph, inter->t1_tmp);
 	normal_sphere(inter, &ray, inter->t0);
 }
 

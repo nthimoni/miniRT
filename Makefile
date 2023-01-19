@@ -52,7 +52,7 @@ SRCS =	maths/ft_atof.c \
 OBJS = $(addprefix $(OBJDIR),$(SRCS:.c=.o))
 DEPENDS = $(OBJS:.o=.d)
 ######################################################################
-CC = gcc -g
+CC = gcc -0fast
 CFLAGS = -Wall -Wextra -Werror -MMD -MP
 LINK = -lmlx -lft -lm -lXext -lX11
 INCPATH = -I$(INCDIR) -I$(FTINC) -I$(MLXPATH)

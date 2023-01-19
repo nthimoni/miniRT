@@ -6,7 +6,7 @@
 /*   By: rmorel <rmorel@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:13:15 by rmorel            #+#    #+#             */
-/*   Updated: 2023/01/18 19:23:24 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/19 15:52:21 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ void	init_pixel(t_rt *rt)
 		ft_printf("\rRendering ... [ %d%% ]", (int)(i / (W_W - 1.0) * 100));
 		while (j < W_H)
 		{
-			if (i == 472 && j == 273)
-				printf("LOL\n");
+			if (i == 539 && j == 464)
+				ft_printf("");
 			ft_bzero(&inter, sizeof(t_intersect));
 			inter.t0 = DBL_MAX;
 			inter.t1 = DBL_MAX;

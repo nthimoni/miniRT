@@ -1,28 +1,7 @@
--anti-aliasing 10
-A 0.1 255,255,255
+anti-aliasing 10
+A 0.2 255,0,0
 
--(Ocean pacifique)
--C 0,0,-57 0,0,1 70
--(Afrique)
 C 0,0,57 0,0,-1 70 
--(Inde)
--C -57,0,0 1,0,0 70
--(Amerique du sud)
--C 57,0,0 -1,0,0 70
--(Antarctique -bug-)
--C 0,-57,0 0,1,0 70
--(Arctique -bug-)
--C 0,57,0 0,-1,0 70
 
-sp 0,0,0         55        200,200,200/rock.xpm
--sp 0,0,0         80        checker
-L 0,40,57 0.9 255,255,255
-
-
-
--C 0,4,0 0,-1,0 70
--C 0,0,-4 0,0,1 70
--L 4,4,4 0.8 255,255,255
--sp 0,0,0         4       earth_8k.xpm/bump_42k.xpm
--cy 0,0,0   1,-1,0 2 5 earth.xpm
--L 0,4,0 0.8 255,255,255
+sp 0,0,0         55        brick.xpm|brick.xpm
+L 0,0,57 0.9 255,5,5

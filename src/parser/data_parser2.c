@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 03:34:14 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/19 04:03:39 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/19 15:38:07 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	load_img(t_rt *rt, char *path, t_img *img)
 {
 	img->img = mlx_xpm_file_to_image(rt->mlx, path, &img->x, &img->y);
 	if (!img->img)
-		return (ft_printf("unnable to open : %s\n", path), 1);
+		return (ft_printf("unable to open : %s\n", path), 1);
 	img->addr = mlx_get_data_addr(img->img, &img->bpp,
 			&img->line_lgth, &img->endian);
 	return (0);

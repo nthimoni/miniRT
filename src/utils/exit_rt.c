@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 18:03:15 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/19 04:01:54 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:10:30 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static void	free_obj_lst(t_rt *rt)
 
 void	free_scene(t_rt *rt)
 {
+	ft_bzero(&rt->aa, sizeof(rt->aa));
 	free_obj_lst(rt);
 	ft_lstclear(&rt->scn.light, free);
 	ft_bzero(&rt->scn, sizeof(t_scene));
