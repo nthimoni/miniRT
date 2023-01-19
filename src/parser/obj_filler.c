@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 22:48:27 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/19 04:28:44 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/19 14:41:03 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,11 @@ int	fill_light(t_obj *tmp, t_rt *rt, char **sp)
 		return (free(tmp), 1);
 	if (tmp->type == AMBIANT)
 	{
+		if (rt->scn.amb.is_init)
+			return (free(tmp), 1);
 		rt->scn.amb = *tmp;
 		free(tmp);
+		rt->scn.amb.is_init = 1;
 	}
 	else
 	{
@@ -58,6 +61,8 @@ int	fill_cam(t_obj *tmp, t_rt *rt, char **sp)
 {
 	float	buf;
 
+	if (rt->scn.cam.is_init)
+		return (free(tmp), 1);
 	if (get_pos(sp[1], &tmp->o))
 		return (free(tmp), 1);
 	if (get_ori(sp[2], &tmp->d))
@@ -67,6 +72,7 @@ int	fill_cam(t_obj *tmp, t_rt *rt, char **sp)
 	tmp->fov = buf;
 	rt->scn.cam = *tmp;
 	free(tmp);
+	rt->scn.cam.is_init = 1;
 	return (0);
 }
 
@@ -98,7 +104,7 @@ int	fill_sphere(t_obj *tmp, t_rt *rt, char **sp)
 
 	if (get_pos(sp[1], &tmp->o))
 		return (free(tmp), 1);
-	if (ft_atof(sp[2], &buf))
+	if (ft_atof(sp[2], &buf) || buf <= 0)
 		return (free(tmp), 1);
 	tmp->diam = buf;
 	if (get_color(sp[3], &tmp->color, tmp, rt))

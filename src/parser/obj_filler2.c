@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 04:07:32 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/19 04:28:47 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/19 14:38:42 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ int	fill_cylindre(t_obj *tmp, t_rt *rt, char **sp)
 		return (free(tmp), 1);
 	if (get_ori(sp[2], &tmp->d))
 		return (free(tmp), 1);
-	if (ft_atof(sp[3], &buf))
+	if (ft_atof(sp[3], &buf) || buf <= 0)
 		return (free(tmp), 1);
 	tmp->diam = buf;
-	if (ft_atof(sp[4], &buf))
+	if (ft_atof(sp[4], &buf) || buf <= 0)
 		return (free(tmp), 1);
 	tmp->height = buf;
 	if (get_color(sp[5], &tmp->color, tmp, rt))
@@ -52,10 +52,10 @@ int	fill_cone(t_obj *tmp, t_rt *rt, char **sp)
 		return (free(tmp), 1);
 	if (get_ori(sp[2], &tmp->d))
 		return (free(tmp), 1);
-	if (ft_atof(sp[3], &buf))
+	if (ft_atof(sp[3], &buf) || buf <= 0)
 		return (free(tmp), 1);
 	tmp->diam = buf;
-	if (ft_atof(sp[4], &buf))
+	if (ft_atof(sp[4], &buf) || buf <= 0)
 		return (free(tmp), 1);
 	tmp->height = buf;
 	if (get_color(sp[5], &tmp->color, tmp, rt))
@@ -76,8 +76,10 @@ int	fill_aa(t_obj *tmp, t_rt *rt, char **sp)
 	float	buf;
 
 	free(tmp);
+	if (rt->aa.anti_aliasing == TRUE)
+		return (1);
 	rt->aa.anti_aliasing = TRUE;
-	if (ft_atof(sp[1], &buf))
+	if (!only_nb(sp[1]) || ft_atof(sp[1], &buf) || buf < 2)
 		return (1);
 	rt->aa.n = (unsigned int)buf;
 	ft_printf("Anti-aliasing : %d\n", rt->aa.n);

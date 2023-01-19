@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 18:41:10 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/19 04:23:20 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/19 14:25:43 by nthimoni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ void	parsing(t_rt *rt, char *file, t_scene *scene)
 		free(line);
 		line = get_next_line(rt->fd);
 	}
-	if (rt->scn.cam.d.x == 0 && rt->scn.cam.d.y == 0 && rt->scn.cam.d.z == 0)
+	if (!rt->scn.cam.is_init)
 		exit_parsing(rt, PARSE_ERROR_MSG, PARSE_ERROR);
 	close(rt->fd);
 }
