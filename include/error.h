@@ -6,7 +6,7 @@
 /*   By: nthimoni <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 18:10:50 by nthimoni          #+#    #+#             */
-/*   Updated: 2023/01/19 03:59:38 by nthimoni         ###   ########.fr       */
+/*   Updated: 2023/01/19 16:45:37 by rmorel           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@
 # define OPEN_FAILED_MSG "Failed to open your file!\n"
 
 # define PARSE_ERROR 3
-# define PARSE_ERROR_MSG "Parse error!\n"
+# define PARSE_ERROR_MSG "Error\nParse error!\n"
 
 #endif 
