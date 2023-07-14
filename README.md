@@ -58,6 +58,11 @@ Some of them have anti-aliasing. Just look for the line with anti-aliasing and a
 **Cyliner (without ambient light) - input_long/cylinerders.rt :**
 ![image](https://github.com/nthimoni/miniRT/assets/87602480/45e34c47-3c5d-4069-b3cd-be7f19d841c5)
 
+**ft_earth :**
+![image](https://github.com/nthimoni/miniRT/assets/87602480/a834fc65-369b-47da-be79-0dc0e2a95ebf)
+![image](https://github.com/nthimoni/miniRT/assets/87602480/36132034-95a8-486e-9d69-7f28ece806b5)
+![image](https://github.com/nthimoni/miniRT/assets/87602480/d1fe9351-be06-42b5-8441-b24f1b9ad7b1)
+![image](https://github.com/nthimoni/miniRT/assets/87602480/59e7e52b-466a-4235-a508-ced3c862283c)
 
 ---
 
